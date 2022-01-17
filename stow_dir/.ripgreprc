@@ -1,0 +1,7 @@
+# excludes:
+--glob=!git/*
+--glob=!.venv/*
+
+# config:
+--trim
+--no-heading

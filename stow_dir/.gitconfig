@@ -1,0 +1,60 @@
+[include]
+    path = ~/.gitconfig_local
+
+[grep]
+    # matching behavior
+    patternType = perl
+
+[merge]
+    # adds a ||||||| marker and the original text before the ======= marker
+    conflictstyle = diff3
+    tool = fugitive
+
+[mergetool "fugitive"]
+    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    dt = difftool
+    mt = mergetool
+    sw = switch
+
+    # Get the current branch name (not so useful in itself, but used in other aliases)
+    branch-name = !git rev-parse --abbrev-ref HEAD
+    # Short alias for branch name
+    bn = branch-name
+
+    # Show log pretty formated
+    ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    # Show commits in graph mode
+    hist = ll --graph --decorate
+    # Show files changed in each commit
+    lls = ll --numstat
+    # Grep the log
+    llg = ll -E -i --grep
+
+    # Show all current branch commits that do not present in the master
+    brll = !git ll master..$(git branch-name)
+    # Show branch diff
+    brdiff = !git diff master $(git branch-name)
+    # Push the current branch to the remote "origin"
+    brpush = !git push origin $(git branch-name)
+    # Push the current branch with "safe" force parametr to the remote "origin"
+    brpushf = !git push --force-with-lease origin $(git branch-name)
+    # Select branch to checkout
+    cb = !git branch | fzf | xargs git checkout
+
+    # Commits everything in my working directory and then does a hard reset to remove that commit.
+    # You can reach that commit later in 'git reflog'
+    wipe = !git add -A && git commit --no-verify -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+    # diff
+    diff-full = !git diff --ws-error-highlight=all
+
+    # Undo commands
+    undo = !git reset --hard HEAD^
+    uncommit = !git reset --mixed HEAD^
+    unstage = !git reset

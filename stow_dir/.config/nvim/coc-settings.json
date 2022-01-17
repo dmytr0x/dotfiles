@@ -1,0 +1,9 @@
+{
+  "diagnostic.errorSign": "x",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "i",
+  "diagnostic.hintSign": ".",
+  "diagnostic.checkCurrentLine": true,
+  "git.addGBlameToVirtualText": true,
+  "languageserver": {}
+}
