@@ -11,7 +11,7 @@ set spelllang=en       "   for english
 set colorcolumn=80     " show mark at 80 chars length
 set mouse=a            " allow mouse click in UI
 set showmatch          " show matching brackets
-set cmdheight=2        " give more space for displaying messages
+set cmdheight=1        " space for displaying messages
 set updatetime=300     " reduce update time
 set noswapfile         " no swap files
 set encoding=utf-8     " support unicode characters
@@ -43,8 +43,7 @@ set nolist " set list
 "
 set hidden                                      " allow unsaved buffers to be hidden
 "
-" use treesitter for syntax
-syntax off
+syntax enable
 " go to file (with respect to line) in new tab
 nnoremap gf <C-w>gF
 
@@ -63,6 +62,7 @@ Plug 'gruvbox-community/gruvbox'
   let g:gruvbox_contrast_dark = 'hard'
   let g:gruvbox_contrast_light = 'hard'
   let g:gruvbox_bold = 0
+  let g:gruvbox_sign_column = 'bg0'
 
 " build a syntax tree incrementally
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -184,16 +184,6 @@ augroup END
 
 abbr esle else
 abbr retrun return
-
-
-" Highlight
-
-" TODO: fix for light theme
-highlight GruvboxRedSign guibg=background
-" CocGitAddedSign, CocGitChangedSign, CocGitRemovedSign
-highlight DiffAdd guibg=#b8bb26 guifg=background
-highlight DiffChange guibg=#8ec07c guifg=background
-highlight DiffDelete guibg=#fb4934 guifg=background
 
 
 " Remap
