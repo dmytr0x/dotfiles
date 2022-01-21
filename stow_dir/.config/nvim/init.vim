@@ -80,12 +80,11 @@ Plug 'mhinz/vim-startify'
 " lsp
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-  let g:AutoPairs = {'(':')', '[':']', '{':'}'}
-
 " zen mode
 Plug 'folke/zen-mode.nvim'
+
+" escaping insert mode without lagging
+Plug 'jdhao/better-escape.vim'
 
 call plug#end()
 
@@ -126,6 +125,7 @@ endfunction
 
 " Commands
 
+command! EditConfig :e ~/.config/nvim/init.vim
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 
@@ -180,28 +180,53 @@ augroup vimrc
 augroup END
 
 
+" Abbreviations
+
+abbr esle else
+abbr retrun return
+
+
+" Highlight
+
+" TODO: fix for light theme
+highlight GruvboxRedSign guibg=background
+" CocGitAddedSign, CocGitChangedSign, CocGitRemovedSign
+highlight DiffAdd guibg=#b8bb26 guifg=background
+highlight DiffChange guibg=#8ec07c guifg=background
+highlight DiffDelete guibg=#fb4934 guifg=background
+
+
 " Remap
 
 " set leader key
 let mapleader = " "
 
+" toggle
+nnoremap <leader>kr :set relativenumber! <CR>
+nnoremap <leader>kz :ZenMode <CR>
+
 " movement in insert mode
 inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
+inoremap <C-l> <C-o>l
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
+" beggining of the line
+inoremap <C-a> <ESC>^i
+" end of the line
+inoremap <C-e> <End>
+" toggle last buffers
 inoremap <C-^> <C-o><C-^>
 
 " window switching for normal & terminal modes
-nnoremap <M-h> <C-w>h
-nnoremap <M-j> <C-w>j
-nnoremap <M-k> <C-w>k
-nnoremap <M-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 "
-tnoremap <M-h> <C-\><C-n><C-w>h
-tnoremap <M-j> <C-\><C-n><C-w>j
-tnoremap <M-k> <C-\><C-n><C-w>k
-tnoremap <M-l> <C-\><C-n><C-w>l
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " tmux sessionizer from vim
 nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<CR>
@@ -210,8 +235,9 @@ nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<CR>
 nnoremap <leader>s :set spell!<CR>
 
 " split
+" ctr+\ and alt+\
 nnoremap <C-\> :vsplit<CR>
-nnoremap <M-\> :split<CR>
+nnoremap <M-Bslash> :split<CR>
 "  resize
 nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
@@ -224,7 +250,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader><F12> :call ToggleBackground()<CR>
 
 " reload config
-nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <leader><CR> :source ~/.config/nvim/init.vim<CR>
 " save file
 nnoremap <leader>w :w<CR>
 " quit from buffer
@@ -252,6 +278,9 @@ nnoremap <leader>tq :tabclose<CR>
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>tt :execute 'terminal' \| let b:term_type = 'wind' \| startinsert <CR>
+nnoremap <leader>tv :execute 'vnew +terminal' \| let b:term_type = 'vert' \| startinsert <CR>
+nnoremap <leader>th :execute 15 .. 'new +terminal' \| let b:term_type = 'hori' \| startinsert <CR>
 
 " git
 "  navigate chunks of current buffer
@@ -261,7 +290,7 @@ nmap ]g <Plug>(coc-git-nextchunk)
 nmap [c <Plug>(coc-git-prevconflict)
 nmap ]c <Plug>(coc-git-nextconflict)
 "  show chunk diff at current position
-nmap <leader>gs <Plug>(coc-git-chunkinfo)
+nmap <leader>gp <Plug>(coc-git-chunkinfo)
 "  show commit contains current position
 nmap <leader>gc <Plug>(coc-git-commit)
 "

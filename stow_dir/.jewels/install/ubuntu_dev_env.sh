@@ -28,10 +28,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # install devtools via homebrew
 brew install \
-tmux \
-neovim \
 fzf \
 ripgrep \
+fd \
 midnight-commander \
 htop \
 stow \
@@ -50,6 +49,12 @@ fc-cache -f
 mkdir -p ~/code/personal
 # }
 
+
+# === tmux {
+brew install tmux
+# install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# }
 
 # install python {
 brew install python@3.9 pyenv pipx
@@ -89,14 +94,15 @@ stow stow_dir
 # }
 
 
-# prepare vim {
+# === vim {
+brew install neovim
 # install `Plug`
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# install plugins from config (supress errors) & exit
+# install plugins from config
 nvim --headless +PlugInstall +qall 2>/dev/null
-# init treeseeter & exit (not working)
+# init treeseeter
 nvim --headless +TSInstallSync\ all +qall
-# init coc & exit
+# init coc
 nvim --headless +'CocInstall -sync coc-pyright coc-tsserver coc-json' +qall
 # }
 
