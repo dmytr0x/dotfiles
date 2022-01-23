@@ -21,12 +21,12 @@ set signcolumn=number  " merge signcolumn and number column into one
 set listchars=space:␣,tab:>-,trail:~,extends:>,precedes:<
 set nolist             " list/nolist
 " `:grep` command works through ripgrep
-set grepprg=rg\ --vimgrep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 set grepformat=%f:%l:%c:%m
 "
 set inccommand=nosplit                          " real time substitution without splitting buffer
 " gui
-set guicursor=
+set guicursor=n:block,i:ver25-blinkon1
 set guifont=Fira\ Code:h14
 "
 set scrolloff=4                                 " keep 3 lines visible above/below the cursor when scrolling
@@ -73,6 +73,7 @@ Plug 'tpope/vim-fugitive'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+  let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 " start screen
 Plug 'mhinz/vim-startify'
@@ -191,9 +192,16 @@ abbr retrun return
 " set leader key
 let mapleader = " "
 
+nnoremap <leader>M :Maps<CR>
+
+" search for word on cursor
+nnoremap <leader>fw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>fW :CocSearch <C-R>=expand("<cword>")<CR><CR>
+
 " toggle
-nnoremap <leader>kr :set relativenumber! <CR>
-nnoremap <leader>kz :ZenMode <CR>
+nnoremap <leader>kr :set relativenumber!<CR>
+nnoremap <leader>kz :ZenMode<CR>
+nnoremap <leader>km :Filetypes<CR>
 
 " movement in insert mode
 inoremap <C-h> <C-o>h
@@ -243,8 +251,9 @@ nnoremap <leader><F12> :call ToggleBackground()<CR>
 nnoremap <leader><CR> :source ~/.config/nvim/init.vim<CR>
 " save file
 nnoremap <leader>w :w<CR>
-" quit from buffer
+" quit from buffer, delete buffer
 nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :bd<CR>
 
 " quickfix list
 "   back and forth quickfix list
@@ -285,16 +294,23 @@ nmap <leader>gp <Plug>(coc-git-chunkinfo)
 nmap <leader>gc <Plug>(coc-git-commit)
 "
 nnoremap <leader>G :Git<CR>
+nnoremap <leader>gs :GFiles?<CR>
 nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gC :BCommits<CR>
 nnoremap <leader>gf :vsplit \| :Gclog -50 -- %<CR>
+nnoremap <leader>gd :Gdiff<CR>
 vnoremap <leader>gl :Gclog<CR>
+
 
 " fzf
 nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fg :BLines<CR>
+nnoremap <leader>fl :BLines<CR>
 nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fB :Windows<CR>
 nnoremap <leader>fe :History<CR>
-nnoremap <leader>fr :RG<CR>
+nnoremap <leader>fc :History:<CR>
+nnoremap <leader>fs :History/<CR>
+nnoremap <leader>fg :RG!<CR>
 nnoremap <leader>`  :Marks<CR>
 
 " copy to the system clipboard
@@ -357,5 +373,50 @@ nnoremap <leader>e  :<C-u>CocList extensions<CR>
 command! -nargs=0 Format :call CocAction('format')
 
 
-" Status line
-set statusline=%{FugitiveStatusline()}\ \[%n]\ %<%F\ \ \ %m%r%h%w%y[%{&ff}]\ \ %=\ %l:%c/%L\ \ \ \ %p%%
+" Status Line Custom
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'Normal·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ '^V' : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ '^S' : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \ 't'  : 'Terminal'
+    \}
+
+set laststatus=2
+set noshowmode
+set statusline=
+set statusline+=%0*\ %n\                                 " Buffer number
+set statusline+=%1*\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
+set statusline+=%3*│                                     " Separator
+set statusline+=%2*\ %Y\                                 " FileType
+set statusline+=%3*│                                     " Separator
+set statusline+=%2*\ %{''.(&fenc!=''?&fenc:&enc).''}     " Encoding
+set statusline+=\ (%{&ff})                               " FileFormat (dos/unix..)
+set statusline+=%=                                       " Right Side
+set statusline+=%2*\ col:\ %02v\                         " Colomn number
+set statusline+=%3*│                                     " Separator
+set statusline+=%1*\ ln:\ %02l/%L\ (%3p%%)\              " Line number / total lines, percentage of document
+set statusline+=%0*\ %{toupper(g:currentmode[mode()])}\  " The current mode
+
+au InsertEnter * hi statusline guifg=#4e4e4e guibg=red ctermfg=black ctermbg=magenta
+au InsertLeave * hi statusline guifg=#4e4e4e guibg=yellow ctermfg=black ctermbg=cyan
+hi statusline guifg=#4e4e4e guibg=yellow ctermfg=black ctermbg=cyan
+
+hi User1 ctermfg=007 ctermbg=239 guibg=#4e4e4e guifg=#ffffff
+hi User2 ctermfg=007 ctermbg=236 guibg=#303030 guifg=#adadad
+hi User3 ctermfg=236 ctermbg=236 guibg=#303030 guifg=#303030
+hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
