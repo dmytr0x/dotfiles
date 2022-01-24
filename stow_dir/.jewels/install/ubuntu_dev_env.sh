@@ -57,9 +57,16 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # }
 
 # install python {
-brew install python@3.9 pyenv pipx
+brew install python@3.9
+#  pyenv
+brew install pyenv
 pyenv install $LAST_PYTHON
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+#  pipx
+brew install pipx
+pipx install ipython
+pipx install sourcery-cli
 # }
 
 
@@ -72,14 +79,13 @@ brew link node@16
 
 # install zsh {
 sudo apt install -y zsh
+# install "Oh My Zsh"
+curl https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+bash install.sh --skip-chsh
 # install plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-# change default shell to zsh
-chsh -s `which zsh`
-# install "Oh My Zsh"
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# preferences are going with dotfiles
+# INFO: preferences are going with dotfiles
 # }
 
 
