@@ -107,5 +107,11 @@ source $ZSH/oh-my-zsh.sh
 
 # --- my config ---
 
+# --- neovim
+alias vim="nvim"
+alias vi="nvim"
+# neovim as default editor
+export VISUAL="nvim"
+
 # --- pyenv
 eval "$(pyenv init -)"
