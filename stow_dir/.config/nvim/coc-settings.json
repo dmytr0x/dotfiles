@@ -5,5 +5,25 @@
   "diagnostic.hintSign": ".",
   "diagnostic.checkCurrentLine": true,
   "git.addGBlameToVirtualText": true,
-  "languageserver": {}
+  "languageserver": {
+    "sourcery": {
+      "command": "~/.local/bin/sourcery",
+      "args": [
+        "lsp"
+      ],
+      "filetypes": [
+        "python"
+      ],
+      "initializationOptions": {
+        "extension_version": "coc.vim",
+        "editor_version": "vim"
+      },
+      "settings": {
+        "sourcery": {
+          "token": "<TOKEN>",
+          "metricsEnabled": false
+        }
+      }
+    }
+  }
 }
