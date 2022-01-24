@@ -301,7 +301,6 @@ nnoremap <leader>gf :vsplit \| :Gclog -50 -- %<CR>
 nnoremap <leader>gd :Gdiff<CR>
 vnoremap <leader>gl :Gclog<CR>
 
-
 " fzf
 nnoremap <leader>ff :GFiles<CR>
 nnoremap <leader>fl :BLines<CR>
@@ -325,7 +324,6 @@ nnoremap <leader>Y gg"+yG
 nnoremap <leader>yp :let @+ = expand("%")<CR>
 
 " coc
-
 "  use tab for trigger completion with characters ahead and navigate
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -371,6 +369,10 @@ nnoremap <leader>a  :<C-u>CocList diagnostics<CR>
 nnoremap <leader>e  :<C-u>CocList extensions<CR>
 "  add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+"
+nnoremap <leader>cd :CocDiagnostics<cr>
+nnoremap <leader>cf :CocFix<cr>
+nnoremap <leader>ch :call CocAction('doHover')<cr>
 
 
 " Status Line Custom
