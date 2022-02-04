@@ -44,8 +44,20 @@ set nolist " set list
 set hidden                                      " allow unsaved buffers to be hidden
 "
 syntax enable
-" go to file (with respect to line) in new tab
-nnoremap gf <C-w>gF
+" transparency
+set wildoptions=pum
+set winblend=20
+set pumblend=20
+highlight NormalNC guibg=none
+highlight Normal guibg=none ctermbg=none
+highlight LineNr guibg=none ctermbg=none
+highlight Folded guibg=none ctermbg=none
+highlight NonText guibg=none ctermbg=none
+highlight SpecialKey guibg=none ctermbg=none
+highlight VertSplit guibg=none ctermbg=none
+highlight SignColumn guibg=none ctermbg=none
+highlight EndOfBuffer guibg=none ctermbg=none
+"
 
 
 " Plugins
@@ -193,6 +205,7 @@ abbr retrun return
 let mapleader = " "
 
 nnoremap <leader>M :Maps<CR>
+nnoremap <leader>l :nohlsearch<CR>
 
 " search for word on cursor
 nnoremap <leader>fw :Rg <C-R>=expand("<cword>")<CR><CR>
@@ -254,6 +267,9 @@ nnoremap <leader>w :w<CR>
 " quit from buffer, delete buffer
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :bd<CR>
+
+" go to file (with respect to line) in new tab
+nnoremap gf <C-w>gF
 
 " quickfix list
 "   back and forth quickfix list
