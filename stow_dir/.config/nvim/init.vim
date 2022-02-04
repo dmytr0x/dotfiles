@@ -135,11 +135,20 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
 endfunction
 
+function! RipgrepBuffer(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob=' . expand("%") . ' -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--layout=reverse', '--preview-window', 'down:60%', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
 
 " Commands
 
 command! EditConfig :e ~/.config/nvim/init.vim
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang RgBuffer call RipgrepBuffer(<q-args>, <bang>0)
 
 
 " Auto command
@@ -319,13 +328,13 @@ vnoremap <leader>gl :Gclog<CR>
 
 " fzf
 nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fl :BLines<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fB :Windows<CR>
 nnoremap <leader>fe :History<CR>
 nnoremap <leader>fc :History:<CR>
 nnoremap <leader>fs :History/<CR>
 nnoremap <leader>fg :RG!<CR>
+nnoremap <leader>fG :RgBuffer<CR>
 nnoremap <leader>`  :Marks<CR>
 
 " copy to the system clipboard
