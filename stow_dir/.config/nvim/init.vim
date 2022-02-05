@@ -46,8 +46,8 @@ set hidden                                      " allow unsaved buffers to be hi
 syntax enable
 " transparency
 set wildoptions=pum
-set winblend=20
-set pumblend=20
+set winblend=15
+set pumblend=15
 highlight NormalNC guibg=none
 highlight Normal guibg=none ctermbg=none
 highlight LineNr guibg=none ctermbg=none
@@ -121,8 +121,10 @@ colorscheme gruvbox
 function ToggleBackground()
   if &background == 'light'
     set background=dark
+    let $BAT_THEME='gruvbox-dark'
   else
     set background=light
+    let $BAT_THEME='gruvbox-light'
   endif
 endfunc
 
@@ -136,7 +138,7 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 function! RipgrepBuffer(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob=' . expand("%") . ' -- %s || true'
+  let command_fmt = 'rg --trim --column --line-number --no-heading --color=always --smart-case --glob=' . expand("%") . ' -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--layout=reverse', '--preview-window', 'down:60%', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
