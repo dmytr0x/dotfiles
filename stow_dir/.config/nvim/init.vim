@@ -126,7 +126,17 @@ function ToggleBackground()
     set background=light
     let $BAT_THEME='gruvbox-light'
   endif
+  " fix!
+  hi DiffAdd guifg=bg guibg=green
+  hi DiffChange guifg=bg guibg=orange
+  hi DiffDelete guifg=bg guibg=red
+  hi DiffText guifg=bg guibg=grey
 endfunc
+
+hi DiffAdd guifg=bg guibg=green
+hi DiffChange guifg=bg guibg=orange
+hi DiffDelete guifg=bg guibg=red
+hi DiffText guifg=bg guibg=grey
 
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
