@@ -46,8 +46,8 @@ set hidden                                      " allow unsaved buffers to be hi
 syntax enable
 " transparency
 set wildoptions=pum
-set winblend=15
-set pumblend=15
+set winblend=10
+set pumblend=10
 highlight NormalNC guibg=none
 highlight Normal guibg=none ctermbg=none
 highlight LineNr guibg=none ctermbg=none
