@@ -155,6 +155,10 @@ function! RipgrepBuffer(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
+function! SearchWordWithRg()
+    execute 'Rg!' expand('<cword>')
+endfunction
+
 
 " Commands
 
@@ -229,8 +233,10 @@ nnoremap <leader>M :Maps<CR>
 nnoremap <leader>l :nohlsearch<CR>
 
 " search for word on cursor
-nnoremap <leader>fw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>fw :call SearchWordWithRg()<CR>
 nnoremap <leader>fW :CocSearch <C-R>=expand("<cword>")<CR><CR>
+"
+nnoremap <leader>/ :CocSearch 
 
 " toggle
 nnoremap <leader>kr :set relativenumber!<CR>
@@ -459,3 +465,4 @@ hi User1 ctermfg=007 ctermbg=239 guibg=#4e4e4e guifg=#ffffff
 hi User2 ctermfg=007 ctermbg=236 guibg=#303030 guifg=#adadad
 hi User3 ctermfg=236 ctermbg=236 guibg=#303030 guifg=#303030
 hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
+
