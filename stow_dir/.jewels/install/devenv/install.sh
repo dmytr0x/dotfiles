@@ -46,6 +46,10 @@ echo "=== Install tmux ..."
 bash "./universal/install_tmux.sh"
 echo "=== Done."
 
+echo "=== Install pipx ..."
+bash "./universal/install_pipx.sh"
+echo "=== Done."
+
 echo "=== Install pyenv ..."
 bash "./universal/install_pyenv.sh"
 echo "=== Done."
