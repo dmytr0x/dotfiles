@@ -81,6 +81,10 @@ Execute './darwin/install_zsh.sh' './linux/install_zsh.sh'
 bash "./universal/install_zsh.sh"
 echo "=== Done."
 
+echo "=== Install rust ..."
+bash "./universal/install_rust.sh"
+echo "=== Done."
+
 echo "=== Create directories ..."
 bash "./universal/create_directories.sh"
 echo "=== Done."
