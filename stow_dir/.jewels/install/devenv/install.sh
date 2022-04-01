@@ -81,6 +81,10 @@ Execute './darwin/install_zsh.sh' './linux/install_zsh.sh'
 bash "./universal/install_zsh.sh"
 echo "=== Done."
 
+echo "=== Install golang ..."
+bash "./universal/install_golang.sh"
+echo "=== Done."
+
 echo "=== Install rust ..."
 bash "./universal/install_rust.sh"
 echo "=== Done."

@@ -1,8 +1,10 @@
-# --- local bin
-export PATH="$HOME/.local/bin:$PATH"
-
 # --- brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# --- rust
+
+# --- local bin (should be the last)
+export PATH="$HOME/.local/bin:$PATH"
 
 # --- pyenv
 eval "$(pyenv init --path)"
@@ -15,4 +17,4 @@ bindkey -s ^f "tmux-sessionizer\n"
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS='-m --height 50% --border'
 
-# 
+#
