@@ -231,6 +231,7 @@ let mapleader = " "
 
 nnoremap <leader>M :Maps<CR>
 nnoremap <leader>l :nohlsearch<CR>
+nnoremap , @:<CR>
 
 " search for word on cursor
 nnoremap <leader>fw :call SearchWordWithRg()<CR>
