@@ -1,0 +1,18 @@
+[[language]]
+name = "python"
+auto-format = true
+language-servers = [
+	{name = "pyright"},
+	{name = "ruff-lsp"},
+]
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config.python.analysis.typeCheckingMode = "basic"
+
+[language-server.ruff-lsp]
+command = "ruff-lsp"
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
