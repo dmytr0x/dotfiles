@@ -1,0 +1,5 @@
+[user]
+	name = Dmytro Nakonechnyi
+	email = dmytr0x@icloud.com
+[core]
+	excludesfile = /Users/ndm/.gitignore_global
