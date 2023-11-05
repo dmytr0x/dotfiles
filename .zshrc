@@ -126,5 +126,3 @@ eval "$(pyenv init -)"
 # --- fnm
 eval "$(fnm env --use-on-cd)"
 
-# --- broot
-source $HOME/.config/broot/launcher/bash/br
