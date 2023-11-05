@@ -757,6 +757,15 @@ $env.config = {
 }
 
 # --- personal customizations
+$env.PATH = (
+    $env.PATH
+    | split row (char esep)
+    | prepend $"($env.HOME)/.cargo/bin"
+    | prepend $"($env.HOME)/.local/bin"
+)
+
+$env.EDITOR = "hx"
+
 use ~/.config/starship/init.nu
 source ~/.config/zoxide/init.nu
 
