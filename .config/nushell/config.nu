@@ -756,9 +756,7 @@ $env.config = {
     ]
 }
 
-# ?
-# source /Users/ndm/.config/broot/launcher/nushell/br
-
 # --- personal customizations
 use ~/.config/starship/init.nu
+source ~/.config/zoxide/init.nu
 
