@@ -161,28 +161,6 @@
         "command": "workbench.action.moveEditorToLeftGroup"
     },
     //
-    // editor arrows keys (vim style navigation):
-    {
-        "key": "alt+h",
-        "command": "cursorLeft",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+l",
-        "command": "cursorRight",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+k",
-        "command": "cursorUp",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+j",
-        "command": "cursorDown",
-        "when": "editorTextFocus"
-    },
-    //
     //  source: https://code.visualstudio.com/api/references/commands
     {
         "key": "ctrl+z ctrl+t",
