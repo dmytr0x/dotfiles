@@ -58,6 +58,3 @@ C-j = ["hsplit", "jump_view_down", "goto_definition"]
 q = ":quit"
 C-f = "file_picker_in_current_buffer_directory"
 
-[keys.insert]
-# switch from insert mode to normal mode
-j.k = "normal_mode"
