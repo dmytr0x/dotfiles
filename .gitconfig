@@ -1,5 +1,51 @@
 [user]
-	name = Dmytro Nakonechnyi
-	email = dmytr0x@icloud.com
+    name = Dmytro Nakonechnyi
+    email = dmytr0x@icloud.com
 [core]
-	excludesfile = /Users/ndm/.gitignore_global
+    editor = hx
+    excludesfile = ~/.gitignore_global
+
+[diff]
+    tool = difftastic
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+
+[merge]
+    conflictstyle = diff3
+
+[pager]
+    difftool = true
+
+[alias]
+    branch-name = !git rev-parse --abbrev-ref HEAD
+
+    st = status
+    cm = commit
+    ch = checkout
+    br = branch
+    df = diff
+    dft = difftool
+    mt = mergetool
+    sw = switch
+
+    ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    hist = ll --graph --decorate
+    lls = ll --numstat
+    llg = ll -E -i --grep
+
+    bch = !git branch | fzf | xargs git checkout
+    bll = !git ll master..$(git branch-name)
+    bdf = !git diff master $(git branch-name)
+    bp = !git push origin $(git branch-name)
+    bpf = !git push --force-with-lease origin $(git branch-name)
+
+    undo = !git reset --hard HEAD^
+    uncommit = !git reset --mixed HEAD^
+    unstage = !git reset
+
+    # Commits everything in my working directory and then does a hard reset to remove that commit.
+    # You can reach that commit later in 'git reflog'
+    wipe = !git add -A && git commit --no-verify -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    
