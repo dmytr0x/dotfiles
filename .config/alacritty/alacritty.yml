@@ -330,9 +330,9 @@ cursor:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /bin/zsh
-  args:
-    - --login
+  program: /opt/homebrew/bin/nu
+#  args:
+#    - 
 
 # Startup directory
 #
