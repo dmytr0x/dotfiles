@@ -109,8 +109,13 @@ source $ZSH/oh-my-zsh.sh
 alias vscode='code --new-window --profile="Empty" --disable-extensions'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# ---
+# --- helix default viewer/editor for midnight commander
 export EDITOR="hx"
+alias mc="PAGER=hx mc"
+
+
+# --- ripgrep
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
 # --- golang
 export GOPATH="${HOME}/.go"
