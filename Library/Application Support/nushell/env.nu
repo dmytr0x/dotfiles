@@ -99,3 +99,48 @@ $env.NU_PLUGIN_DIRS = [
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+
+
+# --- personal customizations
+
+# --- extra paths
+$env.PATH = (
+    #$env.PATH
+    #| split row (char esep)
+    #
+    # - little shitch
+    | prepend "/Applications/Little Snitch.app/Contents/Components"
+    # - macos security
+    | prepend "/System/Cryptexes/App/usr/bin"
+    | prepend "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+    | prepend "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+    | prepend "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+    # - system binaries
+    | prepend "/usr/bin"
+    | prepend "/bin"
+    | prepend "/usr/sbin"
+    | prepend "/sbin"
+    | prepend "/usr/local/bin"
+    # - homebrew
+    | prepend "/opt/homebrew"
+    | prepend "/opt/homebrew/Cellar"
+    | prepend "/opt/homebrew"
+    | prepend "/opt/homebrew/bin"
+    | prepend "/opt/homebrew/sbin"
+    | prepend "/opt/homebrew/share/man"
+    | prepend "/opt/homebrew/share/info"
+    # - pyenv
+    | prepend $"($env.HOME)/.pyenv/shims"
+    # - go
+    | prepend $"($env.HOME)/.go/bin"
+    | prepend "/opt/homebrew/opt/go/libexec/bin"
+    # - rust
+    | prepend $"($env.HOME)/.cargo/bin"
+    | prepend $"($env.HOME)/.cargo/env"
+    # - user binaries
+    | prepend $"($env.HOME)/.local/bin"
+)
+
+# --- ripgrep
+$env.RIPGREP_CONFIG_PATH = $"($env.HOME)/.config/ripgrep/ripgreprc"
+

@@ -756,16 +756,28 @@ $env.config = {
     ]
 }
 
-# --- personal customizations
-$env.PATH = (
-    $env.PATH
-    | split row (char esep)
-    | prepend $"($env.HOME)/.cargo/bin"
-    | prepend $"($env.HOME)/.local/bin"
-)
+# Personal Customizations
 
-$env.EDITOR = "hx"
-
+# --- starship
 use ~/.config/starship/init.nu
+
+# --- zodixe
 source ~/.config/zoxide/init.nu
 
+# --- dotfiles
+# FIX: hardcoded user
+alias dotfiles = /usr/bin/git --git-dir=/Users/ndm/.dotfiles/ --work-tree=/Users/ndm/
+
+# --- helix as default viewer/editor for midnight commander
+$env.EDITOR = "hx"
+alias mc = with-env { PAGER: hx } { mc }
+
+# --- ripgrep
+def nrg [regexp: string] {
+    rg --json --no-config --regexp $regexp
+    | split row (char enter)
+    | each {|r| $r | from json}
+    | where type == "match"
+    | select data.path.text data.line_number data.lines.text
+    | rename path line match
+}
