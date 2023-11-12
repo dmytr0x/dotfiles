@@ -781,3 +781,43 @@ def nrg [regexp: string] {
     | select data.path.text data.line_number data.lines.text
     | rename path line match
 }
+
+
+# Open file in Helix Editor
+def rghx [] {
+  let li = ((rg -e '.' --no-heading -n --color always | fzf --ansi) | lines |  split row ':')
+  hx ([$li.0, ':', $li.1] | str join)  
+}
+
+
+# Create or attach to the particular Zellij session
+def ss [
+  --new # Create new zellij session from current working directory
+] {
+    let zellij_session_name = ($env | grep "ZELLIJ_SESSION_NAME")
+    if not ($zellij_session_name | is-empty) {
+        echo "You are already inside zellij!"
+        return
+    }
+
+    mut path = ""
+    if $new {
+        $path = (pwd)
+    } else {
+        $path = (zoxide query --list | fzf)
+    }
+    if ($path | is-empty) {
+        return
+    }
+
+    let path_parent = ($path | basename $in)
+
+    let session = zellij list-sessions --short | split row "\n" | filter { |it| $path_parent in $it } | get --ignore-errors 0
+    if ($session | is-empty) {
+        cd $path
+        zellij --session $path_parent
+    } else {
+        zellij attach $path_parent
+    }
+
+}
