@@ -1,10 +1,11 @@
-theme = "dark_plus"
+theme = "dark_modern"
 
 [editor]
 mouse = false
 shell = ["zsh", "-c"]
 line-number = "relative"
 bufferline = "always"
+cursorline = true
 
 [editor.cursor-shape]
 insert = "bar"

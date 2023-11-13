@@ -54,7 +54,9 @@
 "diff.delta" = { fg = "blue4" }
 "diff.minus" = { fg = "orange_red" }
 
-"ui.background" = { fg = "light_gray", bg = "dark_gray2" }
+# "ui.background" = { fg = "light_gray", bg = "dark_gray2" }
+# Add transparency
+"ui.background" = {}
 
 "ui.window" = { bg = "widget" }
 "ui.popup" = { fg = "text", bg = "widget" }
