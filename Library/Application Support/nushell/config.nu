@@ -789,6 +789,11 @@ def rghx [] {
   hx ([$li.0, ':', $li.1] | str join)  
 }
 
+# mkcd functionality
+def-env mkcd [name: path] {
+    mkdir $name
+    cd $name
+}
 
 # Create or attach to the particular Zellij session
 def ss [
