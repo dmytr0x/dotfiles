@@ -790,7 +790,7 @@ def rghx [] {
 }
 
 # mkcd functionality
-def-env mkcd [name: path] {
+def --env mkcd [name: path] {
     mkdir $name
     cd $name
 }
