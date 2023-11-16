@@ -17,12 +17,14 @@ def install_fira_code [] {
     print "    Done. 🎉"
 }
 
+
 def install [name: string, cmd: string] {
     print $"\n=== Installing ($name) ..."
     print $"    ($cmd)"
     nu -c $cmd
     print "    Done. 🎉"
 }
+
 
 print "Updating brew"
 nu -c "brew update"
@@ -57,7 +59,7 @@ for package in [
     "zellij",               # Pluggable terminal workspace, with terminal multiplexer as the base feature
     "zoxide",               # Shell extension to navigate your filesystem faster
 ] {
-#    install $package $"brew install --quiet ($package)"
+    install $package $"brew install --quiet ($package)"
 }
 
 #
@@ -95,7 +97,7 @@ for package in [
     "visual-studio-code",        # Microsoft Visual Studio Code
     # "vlc",                     # VLC media player
 ] {
-#    install $package $"brew install --cask --quiet ($package)"
+    install $package $"brew install --cask --quiet ($package)"
 }
 
 #
