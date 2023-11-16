@@ -29,3 +29,11 @@ dotfiles config --local status.showUntrackedFiles no
 # Carefully, it'll rewrite some of the configuration files
 dotfiles checkout --forced
 ```
+
+## Install packages
+Requirements:
+- brew
+- nushell
+```sh
+nu ~/.setup/install.nu
+```
