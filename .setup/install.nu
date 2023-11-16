@@ -1,10 +1,27 @@
 #!/usr/bin/env nu
 
+def install_fira_code [] {
+    print "\n=== Installing FiraCode fonts ..."
+    
+    http get --raw https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip | save --raw --force ~/Library/Caches/FiraCode.zip
+
+    cd ~/Library/Caches
+    unzip -o FiraCode.zip -d FiraCode
+    
+    mkdir ~/Library/Fonts/
+    cp --update FiraCode/ttf/FiraCode-* ~/Library/Fonts/
+    
+    rm -rf FiraCode/
+    rm FiraCode.zip
+
+    print "    Done. 🎉"
+}
+
 def install [name: string, cmd: string] {
     print $"\n=== Installing ($name) ..."
     print $"    ($cmd)"
     nu -c $cmd
-    print $"    Done. 🎉"
+    print "    Done. 🎉"
 }
 
 print "Updating brew"
@@ -40,7 +57,7 @@ for package in [
     "zellij",               # Pluggable terminal workspace, with terminal multiplexer as the base feature
     "zoxide",               # Shell extension to navigate your filesystem faster
 ] {
-    install $package $"brew install --quiet ($package)"
+#    install $package $"brew install --quiet ($package)"
 }
 
 #
@@ -78,5 +95,10 @@ for package in [
     "visual-studio-code",        # Microsoft Visual Studio Code
     # "vlc",                     # VLC media player
 ] {
-    install $package $"brew install --cask --quiet ($package)"
+#    install $package $"brew install --cask --quiet ($package)"
 }
+
+#
+# Install fonts
+#
+install_fira_code
