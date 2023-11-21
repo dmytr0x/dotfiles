@@ -1,14 +1,18 @@
 [user]
     name = Dmytro Nakonechnyi
     email = dmytr0x@icloud.com
+
 [core]
     editor = hx
+    pager = less -FX
     excludesfile = ~/.gitignore_global
 
 [diff]
     tool = difftastic
+
 [difftool]
     prompt = false
+
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
 
