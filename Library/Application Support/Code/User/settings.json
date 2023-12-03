@@ -286,6 +286,9 @@
         }
     },
     // files
+    "files.associations" :{
+        "justfile": "makefile",
+    },
     "files.defaultLanguage": "plaintext",
     "files.autoSave": "onFocusChange",
     "files.autoSaveDelay": 1250,
@@ -306,7 +309,7 @@
     "search.sortOrder": "fileNames",
     // git
     "git.openDiffOnClick": false,
-    "git.autofetch": false,
+    "git.autofetch": true,
     "git.confirmSync": false,
     // fix for UI that doing `git pull --tags origin ...` which leads to `! [rejected] ... (would clobber existing tag)`
     "git.pullTags": false,
