@@ -58,6 +58,7 @@ for package in [
     # "watch",              # Executes a program periodically, showing output fullscreen
     "zellij",               # Pluggable terminal workspace, with terminal multiplexer as the base feature
     "zoxide",               # Shell extension to navigate your filesystem faster
+    "hx",                   # Friendly and fast tool for sending HTTP requests
 ] {
     install $package $"brew install --quiet ($package)"
 }
