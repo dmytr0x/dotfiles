@@ -1,8 +1,10 @@
 {
+    // --- EXPERIMENTAL
+    "multiDiffEditor.experimental.enabled": true,
     //
     // --- EXTENSIONS
     //
-    "extensions.autoUpdate": false,
+    "extensions.autoUpdate": "onlySelectedExtensions",
     "extensions.ignoreRecommendations": true,
     // - gitlens
     "gitlens.currentLine.enabled": false,
@@ -12,7 +14,6 @@
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.views.commits.files.layout": "tree",
     "gitlens.views.commits.files.compact": false,
-    "gitlens.views.commitDetails.files.layout": "tree",
     "gitlens.views.commitDetails.files.compact": false,
     "gitlens.views.commitDetails.avatars": false,
     "gitlens.views.repositories.files.compact": false,
@@ -168,6 +169,8 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    // yaml, yml
+    "yaml.format.enable": true,
     // rust
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.lens.enable": false,
@@ -188,8 +191,8 @@
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true,
-            "source.fixAll": true
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
         },
         // "editor.overviewRulerBorder": true,
         // "editor.rulers": [
@@ -286,7 +289,7 @@
         }
     },
     // files
-    "files.associations" :{
+    "files.associations": {
         "justfile": "makefile",
     },
     "files.defaultLanguage": "plaintext",
@@ -392,8 +395,7 @@
         // "titleBar.activeForeground": "#f3f5f7",
         // "titleBar.inactiveBackground": "#085cbd",
         //
-    }, 
-    "workbench.activityBar.location": "top",
+    },
     "workbench.editor.doubleClickTabToToggleEditorGroupSizes": "maximize",
     "workbench.editor.centeredLayoutFixedWidth": true,
     // "workbench.editor.openSideBySideDirection": "down",
@@ -412,7 +414,7 @@
     // editor limits
     "workbench.editor.limit.enabled": true,
     "workbench.editor.limit.perEditorGroup": true,
-    "workbench.editor.limit.value": 15,
+    "workbench.editor.limit.value": 10,
     "workbench.editor.limit.excludeDirty": true,
     // }
     "workbench.list.defaultFindMode": "highlight",
@@ -425,5 +427,5 @@
     //
     // "window.title": "${remoteName}${separator}${rootNameShort}${separator} ${activeFolderMedium}",
     "window.title": " ",
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0.5,
 }
