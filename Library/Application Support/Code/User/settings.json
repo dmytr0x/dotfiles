@@ -233,6 +233,7 @@
     // - notebook
     "notebook.globalToolbarShowLabel": "never",
     "notebook.lineNumbers": "on",
+    "notebook.formatOnSave.enabled": true,
     //
     // --- SETTINGS
     // telemetry & experiments
@@ -240,13 +241,19 @@
     "workbench.enableExperiments": false,
     // lens
     "errorLens.followCursor": "activeLine",
-    // brackets & guides
-    "editor.matchBrackets": "never",
+    // show editor markers
     "editor.guides.bracketPairs": "active",
-    "editor.guides.indentation": false,
+    "editor.guides.indentation": true,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.lineNumbers": "off",
+    "editor.renderLineHighlight": "none",
+    "editor.renderWhitespace": "selection",
+    "editor.wordWrap": "off",
+    "editor.matchBrackets": "never",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
     // rules (show vertical line for 79th symbol)
     "editor.overviewRulerBorder": false,
-    // hints (press and hold ctrl+alt)
+    // hints (press and hold ctrl+alt / ctrl+option)
     "editor.inlayHints.enabled": "offUnlessPressed",
     // suggestions
     "editor.suggestOnTriggerCharacters": false,
@@ -272,12 +279,7 @@
     "editor.accessibilitySupport": "off",
     //
     "editor.formatOnSave": false,
-    "editor.lineNumbers": "interval",
-    "editor.renderLineHighlight": "none",
-    "editor.wordWrap": "off",
-    "editor.renderWhitespace": "all",
     "editor.peekWidgetDefaultFocus": "editor",
-    "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.semanticTokenColorCustomizations": {
         // https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
         //
@@ -385,11 +387,13 @@
             "peekViewEditor.background": "#ffffff",
             "editorGhostText.foreground": "#bababa",
             "editorLineNumber.foreground": "#c3c3c3",
+            "editorIndentGuide.background1": "#ededed"
         },
         "[Default Dark+], [Default Dark Modern]": {
             "peekViewEditor.background": "#1e1e1e",
             "editorGhostText.foreground": "#474747",
             "editorLineNumber.foreground": "#434343",
+            "editorIndentGuide.background1": "#272727"
         },
         // "titleBar.activeBackground": "#0e6bd6",
         // "titleBar.activeForeground": "#f3f5f7",
@@ -427,5 +431,6 @@
     //
     // "window.title": "${remoteName}${separator}${rootNameShort}${separator} ${activeFolderMedium}",
     "window.title": " ",
-    "window.zoomLevel": 0.5,
+    "window.zoomLevel": 1,
+    "workbench.activityBar.location": "hidden",
 }

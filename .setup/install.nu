@@ -57,8 +57,7 @@ for package in [
     "tree",                 # Display directories as trees (with optional color/HTML output)
     # "watch",              # Executes a program periodically, showing output fullscreen
     "zellij",               # Pluggable terminal workspace, with terminal multiplexer as the base feature
-    "zoxide",               # Shell extension to navigate your filesystem faster
-    "hx",                   # Friendly and fast tool for sending HTTP requests
+    "zoxide"                # Shell extension to navigate your filesystem faster
 ] {
     install $package $"brew install --quiet ($package)"
 }
