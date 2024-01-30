@@ -73,6 +73,7 @@ ZSH_THEME=""
 plugins=(
   git
   docker
+  poetry
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
