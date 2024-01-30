@@ -41,8 +41,12 @@ def install_python [] {
     execute "pyenv install --skip-existing 3.10"
     execute "pyenv install --skip-existing 3.11"
     execute "pyenv install --skip-existing 3.12"
-
     nu -c "pyenv global 3.12"
+
+    pipx ensurepath
+    pipx install ipython --python $"($env.HOME)/.pyenv/shims/python3"
+
+    curl -sSL https://install.python-poetry.org | python3 -
 
     group_end $title
 }
