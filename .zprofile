@@ -8,7 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(pyenv init --path)"
 
 # --- rust
-export PATH="$HOME/.cargo/env:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # --- zoxide
 eval "$(zoxide init zsh)"
