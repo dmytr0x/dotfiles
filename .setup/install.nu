@@ -88,6 +88,7 @@ def install_cli_packages [] {
         "starship",             # Cross-shell prompt for astronauts
         "hyperfine"             # Command-line benchmarking tool
         "midnight-commander",   # Terminal-based visual file manager
+        "ollama",               # Create, run, and share large language models (LLMs)
         #"watch",               # Executes a program periodically, showing output fullscreen
         # === programming tools
         "deno",                 # Secure runtime for JavaScript and TypeScript
