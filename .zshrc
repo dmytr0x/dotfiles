@@ -106,24 +106,38 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# --- Additional configuration
-# Useful aliases
-alias vscode='code --new-window --profile="Empty" --disable-extensions'
+
+# ===
+source "$HOME/.setup/sources/zsh/helpers_set.sh"
+
+
+# --- aliases
+alias vscode"code --new-window --profile=Empty"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # --- helix default viewer/editor for midnight commander
 export EDITOR="hx"
-alias mc="PAGER=hx mc"
 
 # --- ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
+# --- midnight commander
+alias mc="PAGER=hx mc"
+
 # --- starship
 eval "$(starship init zsh)"
+
+# --- fzf
+source_exists "/opt/homebrew/opt/fzf/shell/completion.zsh"
+source_exists "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 # --- pyenv
 eval "$(pyenv init -)"
 
 # --- fnm
 eval "$(fnm env --use-on-cd)"
+
+
+# ===
+source "$HOME/.setup/sources/zsh/helpers_unset.sh"
 

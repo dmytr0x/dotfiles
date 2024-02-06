@@ -1,14 +1,25 @@
+# ===
+source "$HOME/.setup/sources/zsh/helpers_set.sh"
+
 # --- brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- local/bin
-export PATH="$HOME/.local/bin:$PATH"
+add_path "$HOME/.local/bin"
 
 # --- pyenv
 eval "$(pyenv init --path)"
 
 # --- rust
-export PATH="$HOME/.cargo/bin:$PATH"
+add_path "$HOME/.cargo/bin"
 
 # --- zoxide
 eval "$(zoxide init zsh)"
+
+# --- fzf
+export FZF_COMPLETION_TRIGGER='~~'
+add_path "/opt/homebrew/opt/fzf/bin"
+
+
+# ===
+source "$HOME/.setup/sources/zsh/helpers_unset.sh"
