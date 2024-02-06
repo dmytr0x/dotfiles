@@ -1,7 +1,7 @@
 theme = "dark_modern"
 
 [editor]
-mouse = false
+mouse = true
 shell = ["zsh", "-c"]
 line-number = "relative"
 bufferline = "always"
@@ -37,6 +37,14 @@ display-inlay-hints = false
 # space-k = show the docs
 #   C-d - scroll down
 #   C-u - scroll up
+
+[keys.insert]
+# C-h = "move_char_left"
+# C-l = "move_char_right"
+# C-j = "move_line_down"
+# C-k = "move_line_up"
+C-o = ["add_newline_below", "move_line_down"]
+C-O = ["add_newline_above", "move_line_up"]
 
 [keys.normal]
 # move the current line up/down

@@ -134,6 +134,8 @@ def install_cask_packages [] {
         "pgadmin4",                  # Administration and development platform for PostgreSQL
         "sloth",                     # Displays all open files and sockets in use by all running processes
         "visual-studio-code",        # Microsoft Visual Studio Code
+        "superkey",                  # Simple and powerful keyboard enhancement on macOS
+        "rectangle-pro",             # Window snapping tool
     ] {
         brew_install_cask $package
     }
