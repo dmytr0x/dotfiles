@@ -108,12 +108,13 @@ source $ZSH/oh-my-zsh.sh
 
 
 # ===
-source "$HOME/.setup/sources/zsh/helpers_set.sh"
+source "$HOME/.setup/sources/zsh/helpers_set.zsh"
 
 
 # --- aliases
 alias vscode"code --new-window --profile=Empty"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+# "fd --full-path --min-depth=3 --max-depth=3 $HOME/Work | fzf --bind 'enter:become(hx {1})'"
 
 # --- helix default viewer/editor for midnight commander
 export EDITOR="hx"
@@ -128,8 +129,20 @@ alias mc="PAGER=hx mc"
 eval "$(starship init zsh)"
 
 # --- fzf
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1"
 source_exists "/opt/homebrew/opt/fzf/shell/completion.zsh"
 source_exists "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+
+# custom keybindings {
+fzf-edit-popular() {
+  work_paths=$(fd --full-path --min-depth=3 --max-depth=3 $HOME/Work)
+  config_paths=$(fd . --type=file --type=symlink $HOME/.config)
+  
+  echo $work_paths '\n' $config_paths | fzf --bind "enter:become(hx {1})"
+}
+bindkey -N fzf-edit-popular
+bindkey -s '\ee' 'fzf-edit-popular \n'
+# }
 
 # --- pyenv
 eval "$(pyenv init -)"
@@ -139,5 +152,5 @@ eval "$(fnm env --use-on-cd)"
 
 
 # ===
-source "$HOME/.setup/sources/zsh/helpers_unset.sh"
+source "$HOME/.setup/sources/zsh/helpers_unset.zsh"
 

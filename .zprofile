@@ -1,5 +1,5 @@
 # ===
-source "$HOME/.setup/sources/zsh/helpers_set.sh"
+source "$HOME/.setup/sources/zsh/helpers_set.zsh"
 
 # --- brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -22,4 +22,4 @@ add_path "/opt/homebrew/opt/fzf/bin"
 
 
 # ===
-source "$HOME/.setup/sources/zsh/helpers_unset.sh"
+source "$HOME/.setup/sources/zsh/helpers_unset.zsh"
