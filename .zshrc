@@ -137,11 +137,15 @@ source_exists "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 fzf-edit-popular() {
   work_paths=$(fd --full-path --min-depth=3 --max-depth=3 $HOME/Work)
   config_paths=$(fd . --type=file --type=symlink $HOME/.config)
+  manual_paths=$(for p (
+    "$HOME/.zshrc"
+    "$HOME/.zprofile"
+  ); do echo $p; done)
   
-  echo $work_paths '\n' $config_paths | fzf --bind "enter:become(hx {1})"
+  echo "$work_paths\n$manual_paths\n$config_paths" | fzf --bind "enter:become(hx {1})"
 }
 bindkey -N fzf-edit-popular
-bindkey -s '\ee' 'fzf-edit-popular \n'
+bindkey -s '\ee' 'fzf-edit-popular\n'
 # }
 
 # --- pyenv
