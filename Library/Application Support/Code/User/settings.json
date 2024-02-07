@@ -278,6 +278,7 @@
     // "accessibility.dimUnfocused.opacity": 0.65,
     "editor.accessibilitySupport": "off",
     //
+    "editor.scrollbar.horizontal": "hidden",
     "editor.formatOnSave": false,
     "editor.peekWidgetDefaultFocus": "editor",
     "editor.semanticTokenColorCustomizations": {
