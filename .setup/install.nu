@@ -7,7 +7,7 @@ def group_start [msg: string] {
 }
 
 def group_end [msg: string] {
-    print $"    Done 🎉 -    ($msg)"
+    print $"    Done 🎉  ($msg)"
 }
 
 def execute [cmd: string] {
@@ -62,8 +62,19 @@ def install_rust [] {
 }
 
 def install_go [] {
-    # TODO: improve the installation process
-    brew_install "go"
+    let title = "installing go"
+    group_start $title
+    cd $CACHE_DIR
+    let last_version = http get https://go.dev/dl/?mode=json | first | get version 
+    let os_type = uname | str downcase
+    let platform_type = uname -m | str downcase
+    http get --raw $"https://go.dev/dl/($last_version).($os_type)-($platform_type).tar.gz" | save --raw --force golang.tar.gz
+    tar -xzf golang.tar.gz
+    mv ./go ~/.golang
+    mkdir ~/.go
+    go install golang.org/x/tools/gopls@latest
+    rm golang.tar.gz
+    group_end $title
 }
 
 def install_bun [] {
@@ -79,6 +90,7 @@ def install_cli_packages [] {
         # === general tools
         "curl",                 # Get a file from an HTTP, HTTPS or FTP server
         "fzf",                  # Command-line fuzzy finder written in Go
+        "bat",                  # Clone of cat command with syntax highlighting and Git integration
         "fd",                   # Simple, fast and user-friendly alternative to find
         "jq"                    # Lightweight and flexible command-line JSON processor
         "tree",                 # Display directories as trees (with optional color/HTML output)

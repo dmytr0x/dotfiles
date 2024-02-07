@@ -13,6 +13,12 @@ eval "$(pyenv init --path)"
 # --- rust
 add_path "$HOME/.cargo/bin"
 
+# --- go
+export GOROOT=$HOME/.golang
+export GOPATH=$HOME/.go
+add_path "$GOROOT/bin"
+add_path "$GOPATH/bin"
+
 # --- zoxide
 eval "$(zoxide init zsh)"
 
