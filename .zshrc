@@ -129,20 +129,21 @@ alias mc="PAGER=hx mc"
 eval "$(starship init zsh)"
 
 # --- fzf
-export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1"
+export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --margin=0 --padding=0"
+export FZF_ALT_C_OPTS="--preview '$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'"
 source_exists "/opt/homebrew/opt/fzf/shell/completion.zsh"
 source_exists "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 # custom keybindings {
 fzf-edit-popular() {
-  work_paths=$(fd --full-path --min-depth=3 --max-depth=3 $HOME/Work)
+  work_paths=$(fd . --type=directory --min-depth=2 --max-depth=2 $HOME/Work)
   config_paths=$(fd . --type=file --type=symlink $HOME/.config)
   manual_paths=$(for p (
     "$HOME/.zshrc"
     "$HOME/.zprofile"
   ); do echo $p; done)
   
-  echo "$work_paths\n$manual_paths\n$config_paths" | fzf --bind "enter:become(hx {1})"
+  echo "$work_paths\n$manual_paths\n$config_paths" | fzf --bind "enter:become(hx {1})" --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
 }
 bindkey -N fzf-edit-popular
 bindkey -s '\ee' 'fzf-edit-popular\n'
