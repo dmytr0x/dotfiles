@@ -1,0 +1,13 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-i": "editor::ShowCompletions",
+      // fixes to be as vscode
+      "alt-up": "editor::MoveLineUp",
+      "alt-down": "editor::MoveLineDown",
+      // handy ones
+      // "ctrl-:": "editor::ToggleInlayHints"
+    }
+  }
+]
