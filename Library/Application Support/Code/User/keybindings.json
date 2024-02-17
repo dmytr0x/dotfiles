@@ -35,7 +35,7 @@
     //  cmd+l - expand line selection
     //  shift+ctrl+right - expand selection
     //  shift+ctrl+left - shrink selection
-    //  shift+alt+cmd+\ - select to bracker
+    //  shift+alt+cmd+\ - select to bracket
     //  cmd+k cmd+b - start anchor selection
     //  cmd+k cmd+k - end anchor selection
     //  cmd+k cmd+d - move last selection to next match find

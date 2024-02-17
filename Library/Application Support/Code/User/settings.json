@@ -187,9 +187,9 @@
     // python
     "python.experiments.enabled": false,
     "[python]": {
-        // "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.defaultFoldingRangeProvider": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit",
             "source.fixAll": "explicit"
@@ -432,6 +432,5 @@
     //
     // "window.title": "${remoteName}${separator}${rootNameShort}${separator} ${activeFolderMedium}",
     "window.title": " ",
-    "window.zoomLevel": 1,
-    "workbench.activityBar.location": "hidden",
+    "window.zoomLevel": 1
 }

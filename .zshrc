@@ -112,7 +112,8 @@ source "$HOME/.setup/sources/zsh/helpers_set.zsh"
 
 
 # --- aliases
-alias vscode"code --new-window --profile=Empty"
+alias cd="z"
+alias vscode="code --new-window --profile=Empty"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # "fd --full-path --min-depth=3 --max-depth=3 $HOME/Work | fzf --bind 'enter:become(hx {1})'"
 

@@ -48,6 +48,6 @@
   "show_completion_documentation": true,
   "show_copilot_suggestions": true,
   "features": {
-    "copilot": false
+    "copilot": true
   }
 }
