@@ -11,6 +11,17 @@
         "key": "alt+\\",
         "command": "editor.action.inlineSuggest.trigger"
     },
+    // fix: remap copilot inline chat
+    {
+        "key": "cmd+i",
+        "command": "-inlineChat.start",
+        "when": "editorFocus && inlineChatHasProvider && !editorReadonly"
+    },
+    {
+        "key": "alt+i",
+        "command": "inlineChat.start",
+        "when": "editorFocus && inlineChatHasProvider && !editorReadonly"
+    },
     //
     // code inspection:
     //  alt+f12 - peed definition (show code in lens)
@@ -238,6 +249,6 @@
     {
         "key": "cmd+k ctrl+e",
         "command": "workbench.files.action.showActiveFileInExplorer",
-    }
+    },
     //
 ]
