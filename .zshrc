@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
+unset ZSH_THEME
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -72,8 +72,15 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  docker
+  python
+  pyenv
+  pip
   poetry
+  golang
+  rust
+  docker
+  docker-compose
+  ripgrep
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -88,11 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='hx'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -112,13 +119,8 @@ source "$HOME/.setup/sources/zsh/helpers_set.zsh"
 
 
 # --- aliases
-alias cd="z"
 alias vscode="code --new-window --profile=Empty"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-# "fd --full-path --min-depth=3 --max-depth=3 $HOME/Work | fzf --bind 'enter:become(hx {1})'"
-
-# --- helix default viewer/editor for midnight commander
-export EDITOR="hx"
 
 # --- ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
@@ -139,12 +141,14 @@ source_exists "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 fzf-edit-popular() {
   work_paths=$(fd . --type=directory --min-depth=2 --max-depth=2 $HOME/Work)
   config_paths=$(fd . --type=file --type=symlink $HOME/.config)
+  setup_paths=$(fd . --type=file --type=symlink $HOME/.setup)
   manual_paths=$(for p (
     "$HOME/.zshrc"
+    "$HOME/.zshenv"
     "$HOME/.zprofile"
   ); do echo $p; done)
   
-  echo "$work_paths\n$manual_paths\n$config_paths" | fzf --bind "enter:become(hx {1})" --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
+  echo "$work_paths\n$manual_paths\n$config_paths\n$setup_paths" | fzf --bind "enter:become(hx {1})" --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
 }
 bindkey -N fzf-edit-popular
 bindkey -s '\ee' 'fzf-edit-popular\n'
