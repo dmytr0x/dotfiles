@@ -117,11 +117,13 @@ fi
 # ===
 source "$HOME/.setup/sources/zsh/helpers_set.zsh"
 
+# --- bat
+export PAGER="bat"
+export BAT_STYLE="changes"
 
 # --- aliases
 alias vscode="code --new-window --profile=Empty"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias ils="br --no-tree --permissions --hidden --sort-by-type-dirs-first"
 
 # --- ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
@@ -133,7 +135,20 @@ alias mc="PAGER=hx mc"
 eval "$(starship init zsh)"
 
 # --- broot
-source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/br"
+function br {
+    local cmd cmd_file code
+    cmd_file=$(mktemp)
+    if broot --outcmd "$cmd_file" "$@"; then
+        cmd=$(<"$cmd_file")
+        command rm -f "$cmd_file"
+        eval "$cmd"
+    else
+        code=$?
+        command rm -f "$cmd_file"
+        return "$code"
+    fi
+}
+alias ils="br --no-tree --permissions --hidden --sort-by-type-dirs-first"
 
 # --- fzf
 export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --margin=0 --padding=0"

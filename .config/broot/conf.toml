@@ -1,0 +1,99 @@
+default_flags = "--hidden --show-git-info --no-tree --sort-by-type-dirs-first"
+# icons?
+icon_theme="nerdfont"
+date_time_format="%d.%m.%y %R"
+
+cols_order = [
+    "mark",
+    "git",
+    "branch",
+    "name",
+    "date",
+    "size",
+    "permission",
+    "count"
+]
+
+[[verbs]]
+key = "left"
+internal = ":parent"
+
+[[verbs]]
+key = "right"
+internal = ":focus"
+
+[[verbs]]
+invocation = "terminal"
+key = "ctrl-t"
+execution = "$SHELL"
+set_working_dir = true
+leave_broot = false
+
+[[verbs]]
+invocation = "new-terminal"
+shortcut = "tr"
+key = "shift-alt-t"
+external = "alacritty --working-directory={directory}"
+leave_broot = false
+auto_exec = true
+
+[[verbs]]
+key = "F3"
+name = "view"
+invocation = "view"
+external = "$PAGER {file}"
+leave_broot = false
+
+[[verbs]]
+invocation = "copy"
+key = "F5"
+external = "cp -r {file} {other-panel-directory}"
+leave_broot = false
+auto_exec = false
+
+[[verbs]]
+invocation = "move"
+key = "F6"
+external = "mv {file} {other-panel-directory}"
+leave_broot = false
+auto_exec = false
+
+[[verbs]]
+invocation = "create-directory {newdir}"
+key = "F7"
+shortcut = "md"
+external = "mkdir {directory}/{newdir}"
+leave_broot = false
+auto_exec = false
+
+[[verbs]]
+invocation = "delete"
+key = "F8"
+shortcut = "rm"
+external = "rm -r {file}"
+leave_broot = false
+auto_exec = false
+
+[[verbs]]
+name = "newfile"
+key = "shift-F4"
+invocation = "create-file {newname}"
+external = "$EDITOR {directory}/{newname}"
+leave_broot = false
+auto_exec = false
+
+[[verbs]]
+invocation = "edit"
+key = "enter"
+shortcut = "e"
+execution = "hx +{line} {file}"
+apply_to = "text_file"
+leave_broot = false
+
+[[verbs]]
+description = "change directory"
+invocation = "focus {newdir}"
+key = "ctrl-f"
+internal = "focus {newdir}"
+auto_exec = false
+
