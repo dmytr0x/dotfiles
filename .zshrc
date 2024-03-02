@@ -117,19 +117,18 @@ fi
 # ===
 source "$HOME/.setup/sources/zsh/helpers_set.zsh"
 
+# --- aliases
+alias vscode="code --new-window --profile=Empty"
+
+# --- dotfiles
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
 # --- bat
 export PAGER="bat"
 export BAT_STYLE="changes"
 
-# --- aliases
-alias vscode="code --new-window --profile=Empty"
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
 # --- ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
-
-# --- midnight commander
-alias mc="PAGER=hx mc"
 
 # --- starship
 eval "$(starship init zsh)"
