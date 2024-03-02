@@ -174,10 +174,21 @@ def install_fira_code [] {
     group_end $title
 }
 
+def setup_macos [] {
+    for cmd in [
+        # Increase keyboard key repeat rate
+        "defaults write -g InitialKeyRepeat -int 10",  # normal minimum is 15 (225 ms)
+        "defaults write -g KeyRepeat -int 1",          # normal minimum is 2 (30 ms) 
+    ] {
+        nu -c $cmd
+    }
+}
 
 # TODO: run these commands before running this script
 # nu -c "source ~/.zprofile"
 # nu -c "source ~/.zshrc"
+
+setup_macos
 
 execute "brew update"
 
