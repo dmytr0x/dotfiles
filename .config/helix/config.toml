@@ -39,10 +39,11 @@ display-inlay-hints = false
 #   C-u - scroll up
 
 [keys.insert]
-# C-h = "move_char_left"
-# C-l = "move_char_right"
-# C-j = "move_line_down"
-# C-k = "move_line_up"
+j = { k = "normal_mode" }
+C-h = "move_char_left"
+C-l = "move_char_right"
+C-j = "move_line_down"
+C-k = "move_line_up"
 C-o = ["add_newline_below", "move_line_down"]
 C-O = ["add_newline_above", "move_line_up"]
 
@@ -63,5 +64,3 @@ C-f = "file_picker_in_current_buffer_directory"
 [keys.normal.'space'.'space']
 r = ":config-reload"
 a = ":toggle-option lsp.display-inlay-hints"
-# selecting non-whitespace characters in the current line
-x = ["goto_first_nonwhitespace", "select_mode", "goto_line_end", "exit_select_mode"]
