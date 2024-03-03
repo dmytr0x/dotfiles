@@ -258,7 +258,7 @@ window-minimum-height: 0
 window-minimum-width: 0
 
 # List of bundle identifiers for applications to either be automatically floating or automatically tiled based on floating-is-blacklist (default []).
-floating: []
+floating: ["com.apple.Preview", "com.apple.systempreferences", "com.bitwarden.desktop", "com.linguee.DeepLCopyTranslator", "com.softissimo.ReversoContext.macosapp", "cc.ffitch.shottr"]
 
 # Boolean flag determining behavior of the floating list. true if the applications should be floating and all others tiled. false if the applications should be tiled and all others floating (default true).
 floating-is-blacklist: true
@@ -273,7 +273,7 @@ float-small-windows: true
 mouse-follows-focus: false
 
 # true if the windows underneath the mouse should become focused as the mouse moves (default false). Note that this is largely incompatible with mouse-follows-focus
-focus-follows-mouse: true
+focus-follows-mouse: false
 
 # true if dragging and dropping windows on to each other should swap their positions (default false).
 mouse-swaps-windows: true
