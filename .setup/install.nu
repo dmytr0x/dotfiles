@@ -143,6 +143,7 @@ def install_cask_packages [] {
         "fork",                      # GIT client
         "iterm2",                    # Terminal emulator as alternative to Apple's Terminal app
         "alacritty",                 # GPU-accelerated terminal emulator
+        "wezterm",                   # GPU-accelerated cross-platform terminal emulator and multiplexer
         "coteditor",                 # Plain-text editor for web pages, program source codes and more
         "pgadmin4",                  # Administration and development platform for PostgreSQL
         "sloth",                     # Displays all open files and sockets in use by all running processes
