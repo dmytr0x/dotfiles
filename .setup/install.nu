@@ -118,8 +118,8 @@ def install_cli_packages [] {
 def install_cask_packages [] {
     for package in [
         # === general tools
-        # "alfred",                  # Application launcher and productivity software
-        # "alt-tab",                 # Enable Windows-like alt-tab
+        "alfred",                    # Application launcher and productivity software
+        "alt-tab",                   # Enable Windows-like alt-tab
         # "anki",                    # Memory training application
         "appcleaner",                # Application uninstaller
         "firefox",                   # Web browser
@@ -140,16 +140,17 @@ def install_cask_packages [] {
         #"iina",                     # Free and open-source media player
         "vlc",                       # VLC media player
         # === programming tools
+        "amethyst"                   # Automatic tiling window manager similar to xmonad
         "fork",                      # GIT client
         "iterm2",                    # Terminal emulator as alternative to Apple's Terminal app
-        "alacritty",                 # GPU-accelerated terminal emulator
         "wezterm",                   # GPU-accelerated cross-platform terminal emulator and multiplexer
+        "alacritty",                 # GPU-accelerated terminal emulator
         "coteditor",                 # Plain-text editor for web pages, program source codes and more
         "pgadmin4",                  # Administration and development platform for PostgreSQL
         "sloth",                     # Displays all open files and sockets in use by all running processes
         "visual-studio-code",        # Microsoft Visual Studio Code
-        "superkey",                  # Simple and powerful keyboard enhancement on macOS
-        "rectangle-pro",             # Window snapping tool
+        # "superkey",                # Simple and powerful keyboard enhancement on macOS
+        # "rectangle-pro",           # Window snapping tool
     ] {
         brew_install_cask $package
     }
