@@ -64,16 +64,21 @@ def install_rust [] {
 def install_go [] {
     let title = "installing go"
     group_start $title
-    cd $CACHE_DIR
-    let last_version = http get https://go.dev/dl/?mode=json | first | get version 
-    let os_type = uname | str downcase
-    let platform_type = uname -m | str downcase
-    http get --raw $"https://go.dev/dl/($last_version).($os_type)-($platform_type).tar.gz" | save --raw --force golang.tar.gz
-    tar -xzf golang.tar.gz
-    mv ./go ~/.golang
-    mkdir ~/.go
-    go install golang.org/x/tools/gopls@latest
-    rm golang.tar.gz
+    let go_dir = '~/.golang'
+    if not ($go_dir | path exists) {
+        # install language
+        cd $CACHE_DIR
+        let last_version = http get https://go.dev/dl/?mode=json | first | get version 
+        let os_type = uname | str downcase
+        let platform_type = uname -m | str downcase
+        http get --raw $"https://go.dev/dl/($last_version).($os_type)-($platform_type).tar.gz" | save --raw --force golang.tar.gz
+        tar -xzf golang.tar.gz
+        rm golang.tar.gz
+        mv ./go $go_dir
+        # install tools
+        mkdir ~/.go
+        go install golang.org/x/tools/gopls@latest
+    }
     group_end $title
 }
 
@@ -186,14 +191,9 @@ def setup_macos [] {
     }
 }
 
-# TODO: run these commands before running this script
-# nu -c "source ~/.zprofile"
-# nu -c "source ~/.zshrc"
-
 setup_macos
 
 execute "brew update"
-
 install_cli_packages
 install_cask_packages
 install_python
