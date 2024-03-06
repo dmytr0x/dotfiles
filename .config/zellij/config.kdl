@@ -218,7 +218,7 @@ plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-default_shell "nu"
+// default_shell ""
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
@@ -318,7 +318,7 @@ theme "darkmodern"
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-scrollback_editor "/opt/homebrew/bin/hx"
+// scrollback_editor ""
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
