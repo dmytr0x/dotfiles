@@ -51,6 +51,8 @@ C-O = ["add_newline_above", "move_line_up"]
 # move the current line up/down
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+# select current word and search it back-and-forth (n | N)
+D = ["move_prev_word_start", "move_next_word_start", "trim_selections", "search_selection"]
 
 [keys.normal.g]
 # go to the definition in a split
@@ -61,6 +63,6 @@ C-j = ["hsplit", "jump_view_down", "goto_definition"]
 q = ":quit"
 C-f = "file_picker_in_current_buffer_directory"
 
-[keys.normal.'space'.'space']
+[keys.normal.space.space]
 r = ":config-reload"
 a = ":toggle-option lsp.display-inlay-hints"
