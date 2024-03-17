@@ -114,9 +114,6 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# ===
-source "$HOME/.setup/sources/zsh/helpers_set.zsh"
-
 # --- aliases
 alias vscode="code --new-window --profile=Empty"
 
@@ -152,8 +149,7 @@ alias ils="br --no-tree --permissions --hidden --sort-by-type-dirs-first"
 # --- fzf
 export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --margin=0 --padding=0"
 export FZF_ALT_C_OPTS="--preview '$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'"
-source_exists "/opt/homebrew/opt/fzf/shell/completion.zsh"
-source_exists "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+eval "$(fzf --zsh)"
 
 # custom keybindings {
 fzf-edit-popular() {
@@ -177,9 +173,4 @@ eval "$(pyenv init -)"
 
 # --- fnm
 eval "$(fnm env --use-on-cd)"
-
-
-# ===
-source "$HOME/.setup/sources/zsh/helpers_unset.zsh"
-
 

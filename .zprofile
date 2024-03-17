@@ -1,31 +1,25 @@
-# ===
-source "$HOME/.setup/sources/zsh/helpers_set.zsh"
-
 # --- brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- local/bin
-add_path "$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # --- pyenv
 eval "$(pyenv init --path)"
 
 # --- rust
-add_path "$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # --- go
 export GOROOT=$HOME/.golang
 export GOPATH=$HOME/.go
-add_path "$GOROOT/bin"
-add_path "$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 # --- zoxide
 eval "$(zoxide init zsh)"
 
 # --- fzf
 export FZF_COMPLETION_TRIGGER='~~'
-add_path "/opt/homebrew/opt/fzf/bin"
+export PATH="$PATH:/opt/homebrew/opt/fzf/bin"
 
-
-# ===
-source "$HOME/.setup/sources/zsh/helpers_unset.zsh"
