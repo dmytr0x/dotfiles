@@ -126,7 +126,7 @@ export BAT_STYLE="changes"
 
 # --- ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.setup/config/ripgrep/ripgreprc"
-alias hrg="rg --hyperlink-format='file://{path}:{line}'"
+alias hrg="rg --hyperlink-format='file://{path}:{line}:{column}'"
 
 # --- starship
 eval "$(starship init zsh)"

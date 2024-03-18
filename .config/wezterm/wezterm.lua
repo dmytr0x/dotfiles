@@ -29,7 +29,7 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 table.insert(
   config.hyperlink_rules,
   {
-    regex = [[file://(\S+):(\d+):]],
+    regex = [[file://\S+:\d+:\d+]],
     format = '',  -- format doesn't work with ripgrep results!
   }
 )
