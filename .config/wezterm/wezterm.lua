@@ -29,27 +29,19 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 table.insert(
   config.hyperlink_rules,
   {
-    regex = [[rgfp://(\S+):(\d+):]],
-    format = '$1:$2',  -- format doesn't work with ripgrep results!
+    regex = [[file://(\S+):(\d+):]],
+    format = '',  -- format doesn't work with ripgrep results!
   }
 )
 
 -- triggers
-function extract_ripgrep_filepath(uri)
-  local start, match_end = uri:find("rgfp://");
-  if start == 1 then
-    local filepath = uri:sub(match_end+1)     -- throw away "rgfp://"
-    return filepath:sub(0, filepath:len()-1)  -- throw away the last ":"
-  end
-  return nil
-end
-
 wezterm.on('open-uri', function(window, pane, uri)
-  local filepath = extract_ripgrep_filepath(uri)
-  if filepath then
-    -- open a new window
-    local action = act{SpawnCommandInNewWindow={ args={'/opt/homebrew/bin/hx', filepath} }};
-    -- and spawn it!
+  local url = wezterm.url.parse(uri)
+  if url.scheme == 'file' then
+    -- open a new window and spawn it!
+    local action = act{
+      SpawnCommandInNewWindow={ args={'/opt/homebrew/bin/hx', url.file_path} }
+    };
     window:perform_action(action, pane);
     -- prevent the default action from opening in a browser
     return false
@@ -120,8 +112,8 @@ config.key_tables = {
 
     { key = 'p', action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
     { key = 'w', action = act.SwitchToWorkspace { name = 'default' } },
-    { key = 't', action = act.SwitchToWorkspace { name = 'earth' } },
-    { key = 'y', action = act.SwitchToWorkspace { name = 'moon' } },
+    { key = 'e', action = act.SwitchToWorkspace { name = 'earth' } },
+    { key = 'm', action = act.SwitchToWorkspace { name = 'moon' } },
 
     { key = 'LeftArrow', action = act.SwitchWorkspaceRelative(1) },
     { key = 'h', action = act.SwitchWorkspaceRelative(1) },
