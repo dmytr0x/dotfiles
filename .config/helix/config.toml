@@ -6,18 +6,29 @@ shell = ["zsh", "-c"]
 line-number = "relative"
 bufferline = "always"
 cursorline = true
+auto-pairs = false
+
+[editor.indent-guides]
+render = false
+character = "┊"
+skip-levels = 1
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.whitespace.render]
+space = "none"
+tab = "none"
+newline = "none"
+
 [editor.file-picker]
 hidden = false
 
 [editor.statusline]
 left = ["mode", "version-control", "spinner"]
-center = ["file-name", "file-modification-indicator"]
+center = ["read-only-indicator", "file-name", "file-modification-indicator"]
 right = ["diagnostics", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
 separator = "╎"
 mode.normal = "NORMAL"
@@ -35,19 +46,18 @@ display-inlay-hints = false
 #   https://github.com/helix-editor/helix/blob/master/helix-term/src/commands.rs
 
 # space-k = show the docs
-#   C-d - scroll down
-#   C-u - scroll up
-
-[keys.insert]
-j = { k = "normal_mode" }
-C-h = "move_char_left"
-C-l = "move_char_right"
-C-j = "move_line_down"
-C-k = "move_line_up"
-C-o = ["add_newline_below", "move_line_down"]
-C-O = ["add_newline_above", "move_line_up"]
+#   C-d -> scroll down
+#   C-u -> scroll up
+# space-? = command palette
+#   C-t -> toggle right window 
 
 [keys.normal]
+H = ":buffer-previous"
+L = ":buffer-next"
+"{" = ["goto_prev_paragraph", "collapse_selection"]
+"}" = ["goto_next_paragraph", "collapse_selection"]
+i = ["insert_mode", "collapse_selection"]
+a = ["append_mode", "collapse_selection"]
 # move the current line up/down
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
@@ -62,7 +72,25 @@ C-j = ["hsplit", "jump_view_down", "goto_definition"]
 [keys.normal.space]
 q = ":quit"
 C-f = "file_picker_in_current_buffer_directory"
+# Think about :pipe
+# l = """:pipe python3 -c "print('Hello')""""
 
 [keys.normal.space.space]
 r = ":config-reload"
+w = "wonly"
+b = ":buffer-close-others"
 a = ":toggle-option lsp.display-inlay-hints"
+i = ":toggle-option indent-guides.render"
+s = ":toggle-option soft-wrap.enable"
+# waiting for new version!
+# x = ":toggle whitespace.render all none"
+
+[keys.insert]
+j = { k = "normal_mode" }
+# C-h = "move_char_left"
+# C-l = "move_char_right"
+# C-j = "move_line_down"
+# C-k = "move_line_up"
+C-o = ["add_newline_below", "move_line_down"]
+C-O = ["add_newline_above", "move_line_up"]
+
