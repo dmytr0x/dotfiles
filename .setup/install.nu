@@ -151,9 +151,9 @@ def install_cask_packages [] {
         "wezterm",                   # GPU-accelerated cross-platform terminal emulator and multiplexer
         # "alacritty",               # GPU-accelerated terminal emulator
         "coteditor",                 # Plain-text editor for web pages, program source codes and more
-        "pgadmin4",                  # Administration and development platform for PostgreSQL
-        "sloth",                     # Displays all open files and sockets in use by all running processes
         "visual-studio-code",        # Microsoft Visual Studio Code
+        "pgadmin4",                  # Administration and development platform for PostgreSQL
+        # "sloth",                   # Displays all open files and sockets in use by all running processes
         "hyperkey",                  # Convert your caps lock key or any of your modifier keys to the hyper key
         "rectangle-pro",             # Window snapping tool
     ] {
