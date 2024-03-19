@@ -27,7 +27,7 @@ git clone --bare https://github.com/dmytr0x/dotfiles.git $HOME/.dotfiles
 dotfiles config --local status.showUntrackedFiles no
 
 # Carefully, it'll rewrite some of the configuration files
-dotfiles checkout --forced
+dotfiles checkout --force
 ```
 
 ## Install packages
