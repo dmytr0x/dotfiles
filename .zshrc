@@ -125,7 +125,7 @@ export PAGER="bat"
 export BAT_STYLE="changes"
 
 # --- ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.setup/config/ripgrep/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 alias hrg="rg --hyperlink-format='file://{path}:{line}:{column}'"
 
 # --- starship
