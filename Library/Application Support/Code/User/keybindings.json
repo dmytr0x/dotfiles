@@ -77,7 +77,7 @@
     {
         "key": "alt alt",
         "command": "workbench.action.openView"
-    },    
+    },
     //
     // look & feel:
     {
@@ -170,6 +170,27 @@
     {
         "key": "cmd+k shift+cmd+left",
         "command": "workbench.action.moveEditorToLeftGroup"
+    },
+    // edit current file in helix editor
+    {
+        "key": "ctrl+alt+cmd+h",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                {
+                    "command": "workbench.action.terminal.new"
+                },
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        "text": "hx --working-dir '${workspaceFolder}' '${file}:${lineNumber}'\u000D"
+                    }
+                },
+                {
+                    "command": "workbench.action.terminal.moveToEditor"
+                }
+            ]
+        }
     },
     //
     //  source: https://code.visualstudio.com/api/references/commands
