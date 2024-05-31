@@ -54,7 +54,7 @@ local config = {
   -- window_close_confirmation = "NeverPrompt",
   window_background_opacity = 0.9,
   window_frame = {
-    font = wezterm.font { family = 'Fira Code', weight = 'Bold' },
+    font = wezterm.font { family = 'Fira Code', weight = 'Regular' },
   },
   window_padding = {
     left = 10,
@@ -74,7 +74,7 @@ local config = {
   },
 
   -- hyperlinks
-  hyperlink_rules = hyperlink_rules
+  hyperlink_rules = hyperlink_rules,
 
   -- key bindings
   disable_default_key_bindings = false,
