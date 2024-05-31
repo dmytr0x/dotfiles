@@ -15,23 +15,22 @@
 
 # layouts - Ordered list of layouts to use by layout key (default tall, wide, fullscreen, and column).
 layouts:
-  # - tall
-  - two-pane
-  - tall-right
-  - floating
-  - middle-wide
+  # - bsp
+  - widescreen-tall
+  # - widescreen-tall-right
   - wide
   - fullscreen
+  - two-pane
+  - middle-wide
+  # - floating
   # - 3column-left
-  # - middle-wide # The legacy name of "3column-middle"
   # - 3column-right
   # - 4column-left
   # - 4column-right
-  - column
-  - row
-  # - widescreen-tall
-  # - widescreen-tall-right
-  - bsp
+  # - column
+  # - row
+  # - tall
+  # - tall-right
 
 # First mod (default option + shift).
 mod1:
@@ -123,24 +122,24 @@ focus-main:
   key: m
 
 # Focus the next screen in the list going counter-clockwise.
-focus-screen-ccw:
-  mod: mod1
-  key: p
+# focus-screen-ccw:
+#   mod: mod1
+#   key: p
 
 # Focus the next screen in the list going clockwise.
-focus-screen-cw:
-  mod: mod1
-  key: n
+# focus-screen-cw:
+#   mod: mod1
+#   key: n
 
 # Move the currently focused window onto the next screen in the list going counter-clockwise.
-swap-screen-ccw:
-  mod: mod2
-  key: h
+# swap-screen-ccw:
+#   mod: mod2
+#   key: h
 
 # Move the currently focused window onto the next screen in the list going clockwise.
-swap-screen-cw:
-  mod: mod2
-  key: l
+# swap-screen-cw:
+#   mod: mod2
+#   key: l
 
 # Swap the position of the currently focused window with the next window in the list going counter-clockwise.
 swap-ccw:
@@ -157,40 +156,30 @@ swap-main:
   mod: mod1
   key: enter
 
-# Move focus to the n-th screen in the list; e.g., focus-screen-3 will move mouse focus to the 3rd screen. Note that the main window in the given screen will be focused.
-#focus-screen-n:
-# focus-screen-<screen-number>:
-#   mod: mod1
-#   key: y
-# Move the currently focused window to the n-th screen; e.g., throw-screen-3 will move the window to the 3rd screen.
-# throw-screen-n:
-# throw-screen-<screen-number>:
-#   mod: mod1
-#   key: u
-# Move the currently focused window to the n-th space; e.g., throw-space-3 will move the window to the 3rd space.
-# throw-space-<screen-number>:
-#   mod: mod1
-#   key: i
-
-# Select tall layout
-select-tall-layout:
-  mod: mod1
+# Select widescreen-tall layout
+select-widescreen-tall-layout:
+  mod: mod2
   key: a
 
 # Select wide layout
 select-wide-layout:
-  mod: mod1
+  mod: mod2
   key: s
 
 # Select fullscreen layout
 select-fullscreen-layout:
-  mod: mod1
+  mod: mod2
   key: d
 
-# Select column layout
-select-column-layout:
-  mod: mod1
+# Select two pane layout
+select-two-pane-layout:
+  mod: mod2
   key: f
+
+# Select middle-wide (three-column-middle) layout
+select-middle-wide-layout:
+  mod: mod2
+  key: g
 
 # Move the currently focused window to the space to the left.
 throw-space-left:
@@ -214,7 +203,7 @@ display-current-layout:
 
 # Turn on or off tiling entirely.
 toggle-tiling:
-  mod: mod1
+  mod: mod2
   key: t
 
 # Rerun the current layout's algorithm.
@@ -239,7 +228,7 @@ disable-padding-on-builtin-display: false
 window-margins: true
 
 # Boolean flag for whether or not to set window margins if there is only one window on the screen, assuming window margins are enabled (default false).
-smart-window-margins: false
+smart-window-margins: true
 
 # # Add 10px margin between windows
 # window-margins: true
@@ -249,7 +238,7 @@ window-margin-size: 5
 
 # The max number of windows that may be visible on a screen at one time before
 # additional windows are minimized. A value of 0 disables the feature.
-window-max-count: 0
+window-max-count: 3
 
 # The smallest height that a window can be sized to regardless of its layout frame (in px, default 0).
 window-minimum-height: 0
@@ -291,7 +280,7 @@ enables-layout-hud-on-space-change: false
 use-canary-build: false
 
 # true to insert new windows into the first position and false to insert new windows into the last position (default false).
-new-windows-to-main: true
+new-windows-to-main: false
 
 # true to automatically move to a space when throwing a window to it (default true).
 follow-space-thrown-windows: true
