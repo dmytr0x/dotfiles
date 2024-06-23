@@ -96,9 +96,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='hx'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -116,9 +116,8 @@ fi
 
 # --- aliases
 alias vscode="code --new-window --profile=Empty"
-
-# --- dotfiles
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias v="nvim"
 
 # --- bat
 export PAGER="bat"
@@ -163,7 +162,7 @@ fzf-edit-popular() {
     "$HOME/.zprofile"
   ); do echo $p; done)
   
-  echo "$work_paths\n$manual_paths\n$config_paths\n$setup_paths" | fzf --bind "enter:become(hx {1})" --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
+  echo "$work_paths\n$manual_paths\n$config_paths\n$setup_paths" | fzf --bind "enter:become(nvim {1})" --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
 }
 bindkey -N fzf-edit-popular
 bindkey -s '\ee' 'fzf-edit-popular\n'
