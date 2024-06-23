@@ -89,23 +89,6 @@ decrease-main:
   mod: mod1
   key: '.'
 
-# General purpose command for custom layouts. Functionality is layout-dependent.
-# command1:
-#   mod: <NONE>
-#   key: <NONE>
-# General purpose command for custom layouts. Functionality is layout-dependent.
-# command2:
-#   mod: <NONE>
-#   key: <NONE>
-# General purpose command for custom layouts. Functionality is layout-dependent.
-# command3:
-#   mod: <NONE>
-#   key: <NONE>
-# General purpose command for custom layouts. Functionality is layout-dependent.
-# command4:
-#   mod: <NONE>
-#   key: <NONE>
-
 # Focus the next window in the list going counter-clockwise.
 focus-ccw:
   mod: mod1
@@ -286,7 +269,7 @@ new-windows-to-main: false
 follow-space-thrown-windows: true
 
 # The integer percentage of the screen dimension to increment and decrement main pane ratios by (default 5).
-window-resize-step: 5
+window-resize-step: 2.5
 
 # Padding to apply between windows and the left edge of the screen (in px, default 0).
 screen-padding-left: 0
