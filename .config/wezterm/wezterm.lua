@@ -19,14 +19,14 @@ local config = {
   -- look & feel
   color_scheme = "Muse (terminal.sexy)",
   font = wezterm.font("Fira Code"),
-  font_size = 14.0,
+  font_size = 13.0,
   line_height = 1.1,
   text_background_opacity = 1.0,
   -- disable ligatures
   harfbuzz_features = { "calt=0" },
 
   -- command palet
-  command_palette_font_size = 16,
+  command_palette_font_size = 13,
 
   -- tab bar
   enable_tab_bar = true,
@@ -35,7 +35,7 @@ local config = {
   -- window
   window_decorations = "RESIZE",
   -- window_close_confirmation = "NeverPrompt",
-  window_background_opacity = 0.9,
+  window_background_opacity = 0.75,
   window_frame = {
     font = wezterm.font({ family = "Fira Code", weight = "Regular" }),
   },
