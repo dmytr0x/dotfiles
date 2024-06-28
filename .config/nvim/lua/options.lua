@@ -62,6 +62,17 @@ vim.opt.cursorline = false
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
 
+-- No wrap words
 vim.opt.wrap = false
+
+-- Enable spell checker
+vim.opt.spelllang = "en_gb"
+vim.opt.spell = true
+
+-- Hide command line
+vim.opt.cmdheight = 0
+
+-- Stop creating the backup files
+vim.opt.backup = false
 
 -- vim: ts=2 sts=2 sw=2 et

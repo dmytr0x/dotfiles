@@ -1,27 +1,26 @@
-return { -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command in the config to whatever the name of that colorscheme is.
-  --
-  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  'tomasiser/vim-code-dark',
-  priority = 1000, -- Make sure to load this before all the other start plugins.
-  -- opts = {
-  --   transparent = true,
-  --   styles = {
-  --     sidebars = 'transparent',
-  --     floats = 'transparent',
-  --   },
-  -- },
-  config = function()
-    vim.g.codedark_transparent = 1
-    -- vim.g.codedark_conservative = 1
+return {
+  {
+    "tomasiser/vim-code-dark",
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    config = function()
+      vim.g.codedark_transparent = 1
+      vim.cmd.colorscheme("codedark")
 
-    -- Load the colorscheme here.
-    -- Like many other themes, this one has different styles, and you could load
-    -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    vim.cmd.colorscheme 'codedark'
+      -- diff Added line
+      vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#383E2B" })
+      -- diff Deleted line
+      vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#4E211E" })
+      -- diff Changed line
+      -- vim.api.nvim_set_hl(0, "DiffChange", { bg = "#00ff00" })
+      -- diff Changed text within a changed line
+      -- vim.api.nvim_set_hl(0, "Difftext", { bg = "#00ff00", fg = "#00ff00" })
 
-    -- You can configure highlights by doing something like:
-    vim.cmd.hi 'Comment gui=none'
-  end,
+      -- GitSigns plugin
+      vim.api.nvim_set_hl(0, "GitSignsAddInline", { bg = "#4C5C2D" })
+      vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = "#72201D" })
+      -- vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = "#00ff00" })
+      -- vim.api.nvim_set_hl(0, "Difftext", { bg = "#00ff00", fg = "#00ff00" })
+    end,
+  },
+  { "folke/tokyonight.nvim" },
 }
