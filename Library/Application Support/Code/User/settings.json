@@ -124,9 +124,6 @@
         "--profile",
         "black"
     ],
-    // tabnine
-    "tabnine.experimentalAutoImports": false,
-    "tabnine.useProxySupport": false,
     // sourcery
     "sourcery.codeLens": false,
     // copilot
@@ -154,6 +151,10 @@
     ],
     "cSpell.ignoreWords": [],
     "cSpell.showCommandsInEditorContextMenu": false,
+    // ruff
+    "ruff.interpreter": ["python"],
+    "ruff.nativeServer": true, // function in beta
+    "ruff.lineLength": 120,
     //
     // --- LANGUAGES
     //
@@ -423,5 +424,5 @@
     //
     // "window.title": "${remoteName}${separator}${rootNameShort}${separator} ${activeFolderMedium}",
     "window.title": " ",
-    "window.zoomLevel": 1
+    "window.zoomLevel": 0.5
 }
