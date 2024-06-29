@@ -117,6 +117,7 @@ fi
 # --- aliases
 alias vscode="code --new-window --profile=Empty"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias vim="nvim"
 alias v="nvim"
 
 # --- bat
