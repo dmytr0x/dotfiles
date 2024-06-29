@@ -1,20 +1,22 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
+-- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", function()
+  vim.cmd("nohlsearch") -- Stop the highlighting for the 'hlsearch' option
+  vim.cmd("NoiceDismiss") -- Dismiss Noice message (plug-in)
+end)
 
--- Turn off inline diagnostic messages
+-- Turn off in-line diagnostic messages
 vim.diagnostic.config({
   virtual_text = false,
 })
 
--- Diagnostic keymaps
+-- Diagnostic key maps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -89,13 +91,15 @@ vim.keymap.set("n", "<leader>ef", function()
   vim.fn.system("fork --git-dir=" .. vim.fn.getcwd())
 end)
 
--- disable <enter> keymap (replace current word)
+-- Disable <enter> keymap (replace current word)
 vim.keymap.set("n", "<CR>", function() end)
 
--- add a little bit of consistency for closing behaviour
-vim.keymap.set("n", "<c-c>", ":q<CR>")
+-- Handy
+vim.keymap.set("n", "<Space>q", ":q<CR>")
+vim.keymap.set("n", "<Space>Q", ":q!<CR>")
+vim.keymap.set("n", "<c-c>", ":q!<CR>")
 
--- scroll to the middle after jump to the line jump
-vim.keymap.set("n", "<s-g>", "Gzt")
+-- Scroll to the middle after jump to the line jump
+vim.keymap.set("n", "<s-g>", "Gzz")
 
 -- vim: ts=2 sts=2 sw=2 et

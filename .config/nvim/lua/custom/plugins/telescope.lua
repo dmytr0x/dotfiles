@@ -148,6 +148,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require("telescope").load_extension, "fzf")
     pcall(require("telescope").load_extension, "ui-select")
     pcall(require("telescope").load_extension, "live_grep_args")
+    -- Show all messages from Noice by using :Telescope noice
+    pcall(require("telescope").load_extension, "noice")
+    -- test
 
     -- See `:help telescope.builtin`
     local builtin = require("telescope.builtin")
