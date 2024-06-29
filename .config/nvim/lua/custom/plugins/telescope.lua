@@ -54,8 +54,89 @@ return { -- Fuzzy Finder (files, lsp, etc)
         mappings = {
           i = { ["<c-f>"] = "to_fuzzy_refine" },
         },
+        -- new defaults
+        layout_strategy = "bottom_pane",
+        layout_config = {
+          prompt_position = "top",
+          center = {
+            mirror = true,
+          },
+          horizontal = {
+            anchor = "NE",
+            height = 0.99,
+            width = 0.66,
+            preview_width = 0.55,
+          },
+          vertical = {
+            anchor = "NE",
+            width = 0.95,
+            height = 0.95,
+            preview_cutoff = 4,
+            preview_height = 0.45,
+            mirror = true,
+          },
+        },
       },
-      -- pickers = {},
+      pickers = {
+        -- layout strategy = vertical
+        live_grep = {
+          layout_strategy = "vertical",
+        },
+        grep_string = {
+          layout_strategy = "vertical",
+        },
+        diagnostics = {
+          layout_strategy = "vertical",
+        },
+        find_files = {
+          layout_strategy = "vertical",
+          -- find_command = { 'fd', '--exclude', '.git/' },
+          -- follow = true,
+          -- hidden = true,
+          -- no_ignore = false,
+        },
+        help_tags = {
+          layout_strategy = "vertical",
+        },
+        oldfiles = {
+          layout_strategy = "vertical",
+          previewer = false,
+        },
+        git_branches = {
+          layout_strategy = "vertical",
+        },
+        lsp_declarations = {
+          layout_strategy = "vertical",
+        },
+        lsp_definitions = {
+          layout_strategy = "vertical",
+        },
+        lsp_implementations = {
+          layout_strategy = "vertical",
+        },
+        lsp_references = {
+          layout_strategy = "vertical",
+        },
+        -- theme = dropdown
+        builtin = {
+          theme = "dropdown",
+          previewer = false,
+        },
+        colorscheme = {
+          theme = "dropdown",
+          enable_preview = true,
+        },
+        filetypes = {
+          theme = "dropdown",
+        },
+        -- theme cursor
+        spell_suggest = {
+          theme = "cursor",
+          layout_config = {
+            height = 14,
+          },
+        },
+      },
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown(),
@@ -75,12 +156,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
     vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
     vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-    -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
     vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set("n", "z=", builtin.spell_suggest, { desc = "[ ] Spell Suggestions" })
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-    -- telescope.extensions
+    -- vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>sg", function()
       require("telescope").extensions.live_grep_args.live_grep_args({ layout_strategy = "vertical" })
     end)
@@ -88,10 +169,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set("n", "<leader>/", function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-      builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-        winblend = 10,
-        previewer = false,
-      }))
+      builtin.current_buffer_fuzzy_find({
+        layout_strategy = "vertical",
+        previewer = true,
+      })
     end, { desc = "[/] Fuzzily search in current buffer" })
 
     -- It's also possible to pass additional configuration options.
