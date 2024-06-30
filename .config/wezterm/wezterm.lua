@@ -63,6 +63,9 @@ local config = {
 
   -- key bindings
   disable_default_key_bindings = false,
+  -- cmd key fix - using the kitty keyboard protocol over the csi-u protocol
+  enable_kitty_keyboard = true,
+  enable_csi_u_key_encoding = false,
 
   leader = {
     key = "Space",
