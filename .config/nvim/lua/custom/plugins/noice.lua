@@ -10,6 +10,8 @@ return {
       presets = {
         -- long messages will be sent to a split
         long_message_to_split = true,
+        command_palette = false,
+        lsp_doc_border = true,
       },
       -- it seems that it does not work
       routes = {
