@@ -65,9 +65,6 @@ vim.keymap.set("v", "P", '"_dP')
 vim.keymap.set({ "n", "v" }, "H", "^", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "L", "g_", { noremap = true, silent = true })
 
--- Map enter to ciw in normal mode
-vim.keymap.set("n", "<CR>", "ciw", { noremap = true, silent = true })
-
 -- Select all
 vim.keymap.set("n", "<S-C-a>", "ggVG", { noremap = true, silent = true })
 
@@ -91,9 +88,6 @@ vim.keymap.set("n", "<leader>ef", function()
   vim.fn.system("fork --git-dir=" .. vim.fn.getcwd())
 end)
 
--- Disable <enter> keymap (replace current word)
-vim.keymap.set("n", "<CR>", function() end)
-
 -- Handy
 vim.keymap.set("n", "<Space>q", ":q<CR>")
 vim.keymap.set("n", "<Space>Q", ":q!<CR>")
@@ -101,5 +95,9 @@ vim.keymap.set("n", "<c-c>", ":q!<CR>")
 
 -- Scroll to the middle after jump to the line jump
 vim.keymap.set("n", "<s-g>", "Gzz")
+
+-- Moving through quickfix list
+vim.keymap.set("n", "]q", ":cnext<enter>", { desc = "Next [Q]uickfix List" })
+vim.keymap.set("n", "[q", ":cprev<enter>", { desc = "Previous [Q]uickfix List" })
 
 -- vim: ts=2 sts=2 sw=2 et
