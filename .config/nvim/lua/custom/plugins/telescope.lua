@@ -167,7 +167,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       require("telescope").extensions.live_grep_args.live_grep_args({ layout_strategy = "vertical" })
     end)
 
-    -- Slightly advanced example of overriding default behavior and theme
+    -- Slightly advanced example of overriding default behaviour and theme
     vim.keymap.set("n", "<leader>/", function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find({

@@ -197,8 +197,23 @@ return { -- LSP Configuration & Plugins
       ruff = {},
       ruff_lsp = {},
 
-      -- JavaScript / TypeScript
-      tsserver = {},
+      --> html <--
+      html = {},
+
+      -- javascript / typescript
+      tsserver = {
+        init_options = {
+          -- preferences = {
+          --   disableSuggestions = true,
+          -- },
+        },
+        on_init = function(client)
+          -- Disable formatting
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentFormattingRangeProvider = false
+        end,
+      },
+      prettier = {},
 
       -- Lua
       stylua = {}, -- Used to format Lua code
