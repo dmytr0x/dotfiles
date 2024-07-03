@@ -199,26 +199,6 @@ return { -- LSP Configuration & Plugins
 
       -- JavaScript / TypeScript
       tsserver = {},
-      --
-      -- denols = {
-      --   filetypes = {
-      --     "javascript",
-      --     "javascriptreact",
-      --     "javascript.jsx",
-      --     --
-      --     "typescript",
-      --     "typescriptreact",
-      --     "typescript.tsx",
-      --     --
-      --     "markdown",
-      --   },
-      --   init_options = {
-      --     -- config = "./deno.jsonc",
-      --     lint = true,
-      --
-      --   },
-      -- },
-      --
 
       -- Lua
       stylua = {}, -- Used to format Lua code
