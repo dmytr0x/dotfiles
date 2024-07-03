@@ -73,7 +73,14 @@ return { -- Autocompletion
           luasnip.lsp_expand(args.body)
         end,
       },
-      completion = { autocomplete = false, completeopt = "menu,menuone,noinsert" },
+      completion = {
+        autocomplete = false,
+        completeopt = "menu,menuone,noinsert",
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
 
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
@@ -130,6 +137,7 @@ return { -- Autocompletion
       }),
       sources = {
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
         { name = "luasnip", keyword_length = 2 },
         { name = "buffer", keyword_length = 3 },
         { name = "path" },

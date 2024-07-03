@@ -1,14 +1,14 @@
 return { -- Autoformat
-  'stevearc/conform.nvim',
+  "stevearc/conform.nvim",
   lazy = false,
   keys = {
     {
-      '<leader>f',
+      "<leader>f",
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require("conform").format({ async = true, lsp_fallback = true })
       end,
-      mode = '',
-      desc = '[F]ormat buffer',
+      mode = { "n", "v" },
+      desc = "[F]ormat buffer",
     },
   },
   opts = {
@@ -24,9 +24,9 @@ return { -- Autoformat
       }
     end,
     formatters_by_ft = {
-      lua = { 'stylua' },
+      lua = { "stylua" },
       -- Conform can also run multiple formatters sequentially
-      python = { 'ruff_format' },
+      python = { "ruff_format" },
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
@@ -34,7 +34,7 @@ return { -- Autoformat
     },
     formatters = {
       stylua = {
-        prepend_args = { '--indent-type=Spaces', '--indent-width=2' },
+        prepend_args = { "--indent-type=Spaces", "--indent-width=2" },
       },
     },
   },

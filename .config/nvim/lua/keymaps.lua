@@ -11,6 +11,7 @@ end)
 -- Turn off in-line diagnostic messages
 vim.diagnostic.config({
   virtual_text = false,
+  float = { border = "single" },
 })
 
 -- Diagnostic key maps
