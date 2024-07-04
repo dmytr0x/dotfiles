@@ -51,6 +51,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       defaults = {
+        file_ignore_patterns = {
+          "node_modules",
+        },
         mappings = {
           i = { ["<c-f>"] = "to_fuzzy_refine" },
         },
