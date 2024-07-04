@@ -15,11 +15,11 @@
 
 # layouts - Ordered list of layouts to use by layout key (default tall, wide, fullscreen, and column).
 layouts:
+  - fullscreen
   # - bsp
   - widescreen-tall
   # - widescreen-tall-right
   - wide
-  - fullscreen
   - two-pane
   - middle-wide
   # - floating
@@ -82,12 +82,12 @@ expand-main:
 # Increase the number of windows in the main pane. Note that not all layouts respond to this command.
 increase-main:
   mod: mod1
-  key: ','
+  key: ","
 
 # Decrease the number of windows in the main pane. Note that not all layouts respond to this command.
 decrease-main:
   mod: mod1
-  key: '.'
+  key: "."
 
 # Focus the next window in the list going counter-clockwise.
 focus-ccw:
@@ -230,7 +230,16 @@ window-minimum-height: 0
 window-minimum-width: 0
 
 # List of bundle identifiers for applications to either be automatically floating or automatically tiled based on floating-is-blacklist (default []).
-floating: ["com.apple.Preview", "com.apple.systempreferences", "com.apple.Music", "com.bitwarden.desktop", "com.linguee.DeepLCopyTranslator", "com.softissimo.ReversoContext.macosapp", "cc.ffitch.shottr"]
+floating:
+  [
+    "com.apple.Preview",
+    "com.apple.systempreferences",
+    "com.apple.Music",
+    "com.bitwarden.desktop",
+    "com.linguee.DeepLCopyTranslator",
+    "com.softissimo.ReversoContext.macosapp",
+    "cc.ffitch.shottr",
+  ]
 
 # Boolean flag determining behavior of the floating list. true if the applications should be floating and all others tiled. false if the applications should be tiled and all others floating (default true).
 floating-is-blacklist: true
