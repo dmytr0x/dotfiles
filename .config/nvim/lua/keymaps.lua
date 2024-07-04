@@ -90,16 +90,17 @@ vim.keymap.set("n", "<leader>ef", function()
 end)
 
 -- Handy
-vim.keymap.set("n", "<Space>q", ":q<enter>", { desc = "[Q]uit" })
-vim.keymap.set("n", "<Space>Q", ":q!<enter>", { desc = "[Q]uit force" })
-vim.keymap.set("n", "<Space>w", ":w<enter>", { desc = "[W]rite" })
-vim.keymap.set("n", "<c-c>", ":q!<enter>", { desc = "[Q]uit force" })
+-- vim.keymap.set("i", "jk", "<esc>")
+vim.keymap.set("n", "<Space>q", "<cmd>q<enter>", { desc = "[Q]uit" })
+vim.keymap.set("n", "<Space>Q", "<cmd>q!<enter>", { desc = "[Q]uit force" })
+vim.keymap.set("n", "<Space>w", "<cmd>w<enter>", { desc = "[W]rite" })
+vim.keymap.set("n", "<c-c>", "<cmd>q!<enter>", { desc = "[Q]uit force" })
 
 -- Scroll to the middle after jump to the line jump
 vim.keymap.set("n", "<s-g>", "Gzz")
 
 -- Moving through quickfix list
-vim.keymap.set("n", "]q", ":cnext<enter>", { desc = "Next [Q]uickfix List" })
-vim.keymap.set("n", "[q", ":cprev<enter>", { desc = "Previous [Q]uickfix List" })
+vim.keymap.set("n", "]q", "<cmd>cnext<enter>", { desc = "Next [Q]uickfix List" })
+vim.keymap.set("n", "[q", "<cmd>cprev<enter>", { desc = "Previous [Q]uickfix List" })
 
 -- vim: ts=2 sts=2 sw=2 et
