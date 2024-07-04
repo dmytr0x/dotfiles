@@ -84,15 +84,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- External Apps
-vim.keymap.set("n", "<leader>ez", "<cmd>!zed % &<CR>")
+vim.keymap.set("n", "<leader>ez", "<cmd>!zed % &<enter>")
 vim.keymap.set("n", "<leader>ef", function()
   vim.fn.system("fork --git-dir=" .. vim.fn.getcwd())
 end)
 
 -- Handy
-vim.keymap.set("n", "<Space>q", ":q<CR>")
-vim.keymap.set("n", "<Space>Q", ":q!<CR>")
-vim.keymap.set("n", "<c-c>", ":q!<CR>")
+vim.keymap.set("n", "<Space>q", ":q<enter>", { desc = "[Q]uit" })
+vim.keymap.set("n", "<Space>Q", ":q!<enter>", { desc = "[Q]uit force" })
+vim.keymap.set("n", "<Space>w", ":w<enter>", { desc = "[W]rite" })
+vim.keymap.set("n", "<c-c>", ":q!<enter>", { desc = "[Q]uit force" })
 
 -- Scroll to the middle after jump to the line jump
 vim.keymap.set("n", "<s-g>", "Gzz")
