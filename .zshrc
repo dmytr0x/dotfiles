@@ -148,22 +148,62 @@ function br {
 alias ils="br --no-tree --permissions --hidden --sort-by-type-dirs-first"
 
 # --- fzf
-export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --margin=0 --padding=0"
-export FZF_ALT_C_OPTS="--preview '$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'"
+export FZF_SKIP=".git,.npm,node_modules"
+export FZF_COMPLETION_TRIGGER="~~"
+export FZF_DEFAULT_OPTS="
+  --height=80%
+  --layout=reverse
+  --info=inline
+  --margin=0
+  --padding=0
+"
+export FZF_CTRL_T_OPTS="
+  --walker-skip $FZF_SKIP
+  --preview '$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_ALT_C_OPTS="
+  --walker-skip $FZF_SKIP
+  --preview '$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 eval "$(fzf --zsh)"
 
-# custom keybindings {
+# custom key binding's {
 fzf-edit-popular() {
-  work_paths=$(fd . --type=directory --min-depth=2 --max-depth=2 $HOME/Work)
-  config_paths=$(fd . --type=file --type=symlink $HOME/.config)
-  setup_paths=$(fd . --type=file --type=symlink $HOME/.setup)
-  manual_paths=$(for p (
+  files=$(for p (
     "$HOME/.zshrc"
     "$HOME/.zshenv"
     "$HOME/.zprofile"
   ); do echo $p; done)
-  
-  echo "$work_paths\n$manual_paths\n$config_paths\n$setup_paths" | fzf --bind "enter:become(nvim {1})" --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
+
+  projects=$(fd \
+    --base-directory "$HOME" \
+    --search-path "$HOME/Work" \
+    --type dir \
+    --min-depth 2 \
+    --max-depth 2 \
+    --exclude .git \
+    --exclude node_modules \
+    --color always
+  )
+
+  configs=$(fd \
+    --base-directory "$HOME" \
+    --search-path "$HOME/.config" \
+    --search-path "$HOME/.setup" \
+    --type file \
+    --type dir \
+    --type symlink \
+    --exclude .git \
+    --exclude node_modules \
+    --color always
+  )
+
+  echo "$files\n$configs\n$projects" | \
+    fzf \
+    --ansi \
+    --bind "enter:become(nvim {1})" \
+    --bind 'ctrl-/:change-preview-window(down|hidden|)' \
+    --preview "$HOME/.setup/scripts/zsh/fzf-preview.zsh {}"
 }
 bindkey -N fzf-edit-popular
 bindkey -s '\ee' 'fzf-edit-popular\n'
