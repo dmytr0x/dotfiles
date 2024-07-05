@@ -21,7 +21,7 @@ style = 'golden-yellow'
 truncation_length = 0
 
 [git_branch]
-format = '[$branch]($style)'
+format = '[\[$branch\] ]($style)'
 style = 'white'
 
 [git_status]
