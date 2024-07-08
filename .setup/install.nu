@@ -95,7 +95,6 @@ def install_cli_packages [] {
         # === general tools
         "curl",                 # Get a file from an HTTP, HTTPS or FTP server
         "fzf",                  # Command-line fuzzy finder written in Go
-        "broot"                 # New way to see and navigate directory trees
         "bat",                  # Clone of cat command with syntax highlighting and Git integration
         "fd",                   # Simple, fast and user-friendly alternative to find
         "jq"                    # Lightweight and flexible command-line JSON processor

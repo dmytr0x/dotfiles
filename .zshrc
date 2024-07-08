@@ -131,22 +131,6 @@ alias hrg="rg --hyperlink-format='file://{path}:{line}:{column}'"
 # --- starship
 eval "$(starship init zsh)"
 
-# --- broot
-function br {
-    local cmd cmd_file code
-    cmd_file=$(mktemp)
-    if broot --outcmd "$cmd_file" "$@"; then
-        cmd=$(<"$cmd_file")
-        command rm -f "$cmd_file"
-        eval "$cmd"
-    else
-        code=$?
-        command rm -f "$cmd_file"
-        return "$code"
-    fi
-}
-alias ils="br --no-tree --permissions --hidden --sort-by-type-dirs-first"
-
 # --- fzf
 export FZF_SKIP=".git,.npm,node_modules"
 export FZF_COMPLETION_TRIGGER="~~"
