@@ -22,5 +22,5 @@ return {
       -- vim.api.nvim_set_hl(0, "Difftext", { bg = "#00ff00", fg = "#00ff00" })
     end,
   },
-  { "folke/tokyonight.nvim" },
+  -- { "folke/tokyonight.nvim" },
 }

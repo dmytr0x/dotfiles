@@ -65,13 +65,15 @@ return { -- LSP Configuration & Plugins
           })
         end, "[G]oto [D]efinition")
 
-        vim.keymap.set("n", "gh", function()
+        map("gD", function()
           vim.cmd("split")
           require("telescope.builtin").lsp_definitions({
             layout_strategy = "vertical",
           })
           vim.cmd.normal("zt")
-        end)
+        end, "[G]oto [D]efinition Split")
+
+        map("gc", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
         -- Find references for the word under your cursor.
         map("gr", function()
@@ -82,7 +84,7 @@ return { -- LSP Configuration & Plugins
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
-        map("gI", function()
+        map("gi", function()
           require("telescope.builtin").lsp_implementations({
             layout_strategy = "vertical",
           })
@@ -124,10 +126,6 @@ return { -- LSP Configuration & Plugins
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap.
         map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header.
-        map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
