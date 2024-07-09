@@ -91,12 +91,12 @@ decrease-main:
 
 # Focus the next window in the list going counter-clockwise.
 focus-ccw:
-  mod: mod1
+  mod: mod2
   key: j
 
 # Focus the next window in the list going clockwise.
 focus-cw:
-  mod: mod1
+  mod: mod2
   key: k
 
 # Focus the main window in the list.
@@ -176,8 +176,8 @@ select-wide-layout:
 
 # Toggle the floating state of the currently focused window; i.e., if it was floating make it tiled and if it was tiled make it floating.
 toggle-float:
-  mod: mod1
-  key: t
+  mod: mod2
+  key: f
 
 # Display the layout HUD with the current layout on each screen.
 display-current-layout:
