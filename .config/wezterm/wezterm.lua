@@ -41,7 +41,7 @@ local config = {
   -- window
   window_decorations = "RESIZE",
   -- window_close_confirmation = "NeverPrompt",
-  window_background_opacity = 0.75,
+  window_background_opacity = 0.85,
   window_frame = {
     font = wezterm.font({ family = "FiraCode Nerd Font Mono", weight = "Regular" }),
   },
