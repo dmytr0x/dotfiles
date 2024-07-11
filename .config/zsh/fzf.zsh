@@ -69,6 +69,8 @@ fzf-edit-popular() {
     "$HOME/.zshrc"
     "$HOME/.zshenv"
     "$HOME/.zprofile"
+    "$HOME/.gitconfig"
+    "$HOME/.gitignore_global"
   ); do echo $p; done)
 
   projects=$(fd \

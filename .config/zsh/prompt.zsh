@@ -1,3 +1,3 @@
-export STARSHIP_CONFIG=~/.config/starship.toml
+export STARSHIP_CONFIG=$HOME/.config/starship.toml
 eval "$(starship init zsh)"
 

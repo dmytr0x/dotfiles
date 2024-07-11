@@ -26,6 +26,7 @@ alias vim="nvim"
 alias vscode="code --new-window --profile=Empty"
 
 # Shortcuts
+alias tree="eza --tree"
 alias ls="eza"
 alias ll="ls --long --no-user --header --grid --git"
 alias llt="ls --tree --git-ignore"
