@@ -96,6 +96,9 @@ vim.keymap.set("n", "<Space>Q", "<cmd>q!<enter>", { desc = "[Q]uit force" })
 vim.keymap.set("n", "<Space>w", "<cmd>w<enter>", { desc = "[W]rite" })
 vim.keymap.set("n", "<c-c>", "<cmd>q!<enter>", { desc = "[Q]uit force" })
 vim.keymap.set("v", "<Space>'", '"_', { desc = "Activate wormhole register" })
+-- Easy way to record and replay macro
+vim.keymap.set("n", "Q", "qj")
+vim.keymap.set("x", "Q", ":norm @j<CR>")
 
 -- Scroll to the middle after jump to the line jump
 vim.keymap.set("n", "<s-g>", "Gzz")
