@@ -1,55 +1,68 @@
 [user]
-    name = Dmytro Nakonechnyi
-    email = dmytr0x@icloud.com
+  name = Dmytro Nakonechnyi
+  email = dmytr0x@icloud.com
 
 [core]
-    editor = hx
-    pager = less -FX
-    excludesfile = ~/.gitignore_global
+  editor = nvim
+  pager = delta
+  excludesfile = ~/.gitignore_global
 
-[diff]
-    tool = difftastic
+[interactive]
+  diffFilter = delta --color-only
 
-[difftool]
-    prompt = false
+[fetch]
+  prune = true
 
-[difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE"
-
-[merge]
-    conflictstyle = diff3
+[status]
+  short = true
 
 [pager]
-    difftool = true
+  ; https://github.com/dandavison/delta
+  difftool = true
+
+[diff]
+  ; https://github.com/git/git/blob/master/Documentation/config/diff.txt
+  algorithm = minimal
+  compactionHeuristic = true
+
+[difftool]
+  colorMoved = default
+
+[merge]
+  conflictstyle = diff3
+
+[delta]
+  side-by-side = true
+  navigate = true    # use n and N to move between diff sections
 
 [alias]
-    branch-name = !git rev-parse --abbrev-ref HEAD
+  branch-name = !git rev-parse --abbrev-ref HEAD
 
-    st = status
-    cm = commit
-    ch = checkout
-    br = branch
-    df = diff
-    dft = difftool
-    mt = mergetool
-    sw = switch
+  st = status
+  cm = commit
+  ch = checkout
+  br = branch
+  df = diff
+  dft = difftool
+  mt = mergetool
+  sw = switch
 
-    ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    hist = ll --graph --decorate
-    lls = ll --numstat
-    llg = ll -E -i --grep
+  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  hist = ll --graph --decorate
+  lls = ll --numstat
+  llg = ll -E -i --grep
 
-    bch = !git branch | fzf | xargs git checkout
-    bll = !git ll master..$(git branch-name)
-    bdf = !git diff master $(git branch-name)
-    bp = !git push origin $(git branch-name)
-    bpf = !git push --force-with-lease origin $(git branch-name)
+  bch = !git branch | fzf | xargs git checkout
+  bll = !git ll master..$(git branch-name)
+  bdf = !git diff master $(git branch-name)
+  bp = !git push origin $(git branch-name)
+  bpf = !git push --force-with-lease origin $(git branch-name)
 
-    undo = !git reset --hard HEAD^
-    uncommit = !git reset --mixed HEAD^
-    unstage = !git reset
+  undo = !git reset --hard HEAD^
+  uncommit = !git reset --mixed HEAD^
+  unstage = !git reset
 
-    # Commits everything in my working directory and then does a hard reset to remove that commit.
-    # You can reach that commit later in 'git reflog'
-    wipe = !git add -A && git commit --no-verify -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-    
+  # Commits everything in my working directory and then does a hard reset to remove that commit.
+  # You can reach that commit later in 'git reflog'
+  wipe = !git add -A && git commit --no-verify -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
