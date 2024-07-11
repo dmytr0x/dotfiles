@@ -95,24 +95,23 @@ def install_cli_packages [] {
         # === general tools
         "curl",                 # Get a file from an HTTP, HTTPS or FTP server
         "fzf",                  # Command-line fuzzy finder written in Go
+        "eza",                  # A modern, maintained replacement for ls
         "bat",                  # Clone of cat command with syntax highlighting and Git integration
         "fd",                   # Simple, fast and user-friendly alternative to find
-        "jq"                    # Lightweight and flexible command-line JSON processor
-        "tree",                 # Display directories as trees (with optional color/HTML output)
-        "zoxide"                # Shell extension to navigate your filesystem faster
-        "zellij",               # Pluggable terminal workspace, with terminal multiplexer as the base feature
+        "jq",                   # Lightweight and flexible command-line JSON processor
+        "zoxide",               # Shell extension to navigate your filesystem faster
         "ripgrep",              # Search tool like grep and The Silver Searcher
         "starship",             # Cross-shell prompt for astronauts
-        "hyperfine"             # Command-line benchmarking tool
-        "midnight-commander",   # Terminal-based visual file manager
+        "hyperfine",            # Command-line benchmarking tool
+        "yazi",                 # Blazing fast terminal file manager written in Rust, based on async I/O
         "ollama",               # Create, run, and share large language models (LLMs)
-        #"watch",               # Executes a program periodically, showing output fullscreen
+        # "watch",              # Executes a program periodically, showing output fullscreen
         # === programming tools
         "deno",                 # Secure runtime for JavaScript and TypeScript
-        "helix",                # Post-modern modal text editor
+        "neovim",               # Ambitious Vim-fork focused on extensibility and agility
         "fnm",                  # Fast and simple Node.js version manager
-        #"gum",                 # Tool for glamorous shell scripts
-        "just",                 # Handy way to save and run project-specific commands
+        # "gum",                # Tool for glamorous shell scripts
+        # "just",               # Handy way to save and run project-specific commands
         "difftastic",           # Diff that understands syntax
     ] {
         brew_install $package
