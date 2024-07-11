@@ -36,6 +36,8 @@
   navigate = true    # use n and N to move between diff sections
 
 [alias]
+  ; credits: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
+  ;
   branch-name = !git rev-parse --abbrev-ref HEAD
 
   st = status

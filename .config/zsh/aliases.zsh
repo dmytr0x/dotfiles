@@ -27,7 +27,7 @@ alias vscode="code --new-window --profile=Empty"
 
 # Shortcuts
 alias tree="eza --tree"
-alias ls="eza"
+alias ls="eza --width=1"
 alias ll="ls --long --no-user --header --grid --git"
 alias llt="ls --tree --git-ignore"
 alias yy="yazi"
