@@ -201,9 +201,18 @@ return { -- LSP Configuration & Plugins
       -- javascript / typescript
       tsserver = {
         init_options = {
-          -- preferences = {
-          --   disableSuggestions = true,
-          -- },
+          preferences = {
+            --   disableSuggestions = true,
+            -- inlay hints
+            includeInlayParameterNameHints = "literals",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
         },
         on_init = function(client)
           -- Disable formatting
