@@ -32,14 +32,15 @@ layouts:
   # - tall
   # - tall-right
 
-# First mod (default option + shift).
+# --------------------
+# The default keymaps: https://github.com/ianyh/Amethyst/blob/development/.amethyst.sample.yml
+# --------------------
+
 mod1:
   - option
   - shift
-  # - control
-  # - command
 
-# Second mod (default option + shift + control).
+# Hyper key
 mod2:
   - option
   # - shift
@@ -61,13 +62,13 @@ mod2:
 
 # Move to the next layout in the list.
 cycle-layout:
-  mod: mod2
+  mod: mod1
   key: space
 
 # Move to the previous layout in the list.
-# cycle-layout-backward:
-#   mod: mod2
-#   key: space
+cycle-layout-backward:
+  mod: ""
+  key: ""
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:
@@ -105,74 +106,69 @@ focus-main:
   key: m
 
 # Focus the next screen in the list going counter-clockwise.
-# focus-screen-ccw:
-#   mod: mod1
-#   key: p
+focus-screen-ccw:
+  mod: ""
+  key: ""
 
 # Focus the next screen in the list going clockwise.
-# focus-screen-cw:
-#   mod: mod1
-#   key: n
+focus-screen-cw:
+  mod: ""
+  key: ""
 
 # Move the currently focused window onto the next screen in the list going counter-clockwise.
-# swap-screen-ccw:
-#   mod: mod2
-#   key: h
+swap-screen-ccw:
+  mod: ""
+  key: ""
 
 # Move the currently focused window onto the next screen in the list going clockwise.
-# swap-screen-cw:
-#   mod: mod2
-#   key: l
+swap-screen-cw:
+  mod: ""
+  key: ""
 
 # Swap the position of the currently focused window with the next window in the list going counter-clockwise.
-# swap-ccw:
-#   mod: mod2
-#   key: j
+swap-ccw:
+  mod: ""
+  key: ""
 
 # Swap the position of the currently focused window with the next window in the list going clockwise.
-# swap-cw:
-#   mod: mod2
-#   key: k
+swap-cw:
+  mod: ""
+  key: ""
 
 # Swap the position of the currently focused window with the main window in the list.
 swap-main:
   mod: mod1
   key: enter
 
-# Select fullscreen layout
-select-fullscreen-layout:
-  mod: mod2
-  key: a
-
-# Select two pane layout
-select-two-pane-layout:
-  mod: mod2
-  key: s
+# Select tall layout
+select-tall-layout:
+  mod: ""
+  key: ""
 
 # Select wide layout
 select-wide-layout:
   mod: mod2
   key: d
 
-  # Select widescreen-tall layout
-  # select-widescreen-tall-layout:
-  #   mod: mod2
-  #   key: a
+# Select full screen layout
+select-fullscreen-layout:
+  mod: mod2
+  key: a
 
-# Select middle-wide (three-column-middle) layout
-# select-middle-wide-layout:
-#   mod: mod2
-#   key: g
+# Select column layout
+select-column-layout:
+  mod: ""
+  key: ""
 
 # Move the currently focused window to the space to the left.
-# throw-space-left:
-#   mod: mod2
-#   key: left
+throw-space-left:
+  mod: ""
+  key: ""
 
 # Move currently the focused window to the space to the right.
-# throw-space-right:
-#   mod: mod2
-#   key: right
+throw-space-right:
+  mod: ""
+  key: ""
 
 # Toggle the floating state of the currently focused window; i.e., if it was floating make it tiled and if it was tiled make it floating.
 toggle-float:
@@ -195,14 +191,29 @@ reevaluate-windows:
   key: z
 
 # Turn on or off focus-follows-mouse.
-# toggle-focus-follows-mouse:
-#   mod: mod2
-#   key: x
+toggle-focus-follows-mouse:
+  mod: ""
+  key: ""
 
 # Automatically quit and reopen Amethyst.
-# relaunch-amethyst:
-#   mod: mod2
-#   key: r
+relaunch-amethyst:
+  mod: ""
+  key: ""
+
+# Select two pane layout
+select-two-pane-layout:
+  mod: mod2
+  key: s
+
+# Select widescreen-tall layout
+select-widescreen-tall-layout:
+  mod: ""
+  key: ""
+
+# Select middle-wide (three-column-middle) layout
+select-middle-wide-layout:
+  mod: ""
+  key: ""
 
 # disable screen padding on builtin display
 disable-padding-on-builtin-display: false
