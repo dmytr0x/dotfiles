@@ -129,10 +129,10 @@ local config = {
       { key = "l", action = act.ActivatePaneDirection("Right") },
       { key = "k", action = act.ActivatePaneDirection("Up") },
       { key = "j", action = act.ActivatePaneDirection("Down") },
-      { key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
-      { key = "RightArrow", action = act.ActivatePaneDirection("Right") },
-      { key = "UpArrow", action = act.ActivatePaneDirection("Up") },
-      { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
+      -- { key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
+      -- { key = "RightArrow", action = act.ActivatePaneDirection("Right") },
+      -- { key = "UpArrow", action = act.ActivatePaneDirection("Up") },
+      -- { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
     },
 
     workspaces = {
