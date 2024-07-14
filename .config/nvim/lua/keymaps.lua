@@ -121,4 +121,7 @@ map("n", "[b", ":bprev<enter>", "Previous [B]uffer")
 map("n", "[<space>", "O<esc>j", "Insert line above")
 map("n", "]<space>", "o<esc>k", "Insert line below")
 
+-- Show useful information to use with treesitter
+map("n", "<leader><leader>sh", vim.show_pos, "Show [H]ighlight")
+
 -- vim: ts=2 sts=2 sw=2 et
