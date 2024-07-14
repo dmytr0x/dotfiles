@@ -1,6 +1,10 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- INFO:
+-- How to remove keybind:
+--   vim.keymap.set("n", key, "<nop>")
+
 -- Set highlight on search
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", function()
@@ -14,10 +18,21 @@ vim.diagnostic.config({
   float = { border = "single" },
 })
 
+local default_options = {
+  noremap = true,
+  silent = false,
+}
+
+local function map(modes, keys, func, description, options)
+  opt = vim.tbl_deep_extend("force", default_options, options or {})
+  opt.desc = description
+  vim.keymap.set(modes, keys, func, opt)
+end
+
 -- Diagnostic key maps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+map("n", "[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
+map("n", "]d", vim.diagnostic.goto_next, "Go to next [D]iagnostic message")
+map("n", "<leader>e", vim.diagnostic.open_float, "Show Diagnostic M[e]ssages")
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -25,7 +40,7 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -33,41 +48,39 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
+-- Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+map("n", "<C-h>", "<C-w><C-h>", "Move focus to the left window")
+map("n", "<C-l>", "<C-w><C-l>", "Move focus to the right window")
+map("n", "<C-j>", "<C-w><C-j>", "Move focus to the lower window")
+map("n", "<C-k>", "<C-w><C-k>", "Move focus to the upper window")
 
--- Use "black hole register" (Delete without yanking):
-vim.keymap.set({ "n", "v" }, "x", '"_x')
-vim.keymap.set({ "n", "v" }, "X", '"_X')
+-- Use "Black hole register" (Deleting without yanking):
+map({ "n", "v" }, "x", '"_x')
+map({ "n", "v" }, "X", '"_X')
 
--- Keep cursor centered when scrolling
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+-- Keep cursor centred when scrolling
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
 
 -- Move selected line / block of text
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+map("x", "J", ":m '>+1<CR>gv=gv")
+map("x", "K", ":m '<-2<CR>gv=gv")
 
 -- Better indenting
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+map("x", "<", "<gv")
+map("x", ">", ">gv")
 
 -- Paste over currently selected text without yanking it
-vim.keymap.set("v", "p", '"_dp')
-vim.keymap.set("v", "P", '"_dP')
+map("v", "p", '"_dp')
+map("v", "P", '"_dP')
 
 -- Move to start/end of line
-vim.keymap.set({ "n", "v" }, "H", "^", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "L", "g_", { noremap = true, silent = true })
+map({ "n", "x" }, "H", "^")
+map({ "n", "x" }, "L", "g_")
 
 -- Select all
-vim.keymap.set("n", "<S-C-a>", "ggVG", { noremap = true, silent = true })
+map("n", "<S-C-a>", "ggVG")
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -84,27 +97,37 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- External Apps
-vim.keymap.set("n", "<leader>ez", "<cmd>!zed % &<enter>")
-vim.keymap.set("n", "<leader>ef", function()
+-- Text Editor
+map("n", "<leader>ez", "<cmd>!zed % &<enter>", "Launch Zed")
+-- Git Client
+map("n", "<leader>ef", function()
   vim.fn.system("fork --git-dir=" .. vim.fn.getcwd())
-end)
+end, "Launch Fork")
 
 -- Handy
 -- vim.keymap.set("i", "jk", "<esc>")
-vim.keymap.set("n", "<Space>q", "<cmd>q<enter>", { desc = "[Q]uit" })
-vim.keymap.set("n", "<Space>Q", "<cmd>q!<enter>", { desc = "[Q]uit force" })
-vim.keymap.set("n", "<Space>w", "<cmd>w<enter>", { desc = "[W]rite" })
-vim.keymap.set("n", "<c-c>", "<cmd>q!<enter>", { desc = "[Q]uit force" })
-vim.keymap.set("v", "<Space>'", '"_', { desc = "Activate wormhole register" })
+map("n", "<Space>q", "<cmd>q<enter>", "[Q]uit")
+map("n", "<Space>Q", "<cmd>q!<enter>", "[Q]uit force")
+map("n", "<Space>w", "<cmd>w<enter>", "[W]rite")
+map("n", "<c-c>", "<cmd>q!<enter>", "[Q]uit force")
+map("x", "<Space>'", '"_', "Activate wormhole register")
 -- Easy way to record and replay macro
-vim.keymap.set("n", "Q", "qj")
-vim.keymap.set("x", "Q", ":norm @j<CR>")
+map("n", "Q", "qj")
+map("x", "Q", ":norm @j<CR>")
 
 -- Scroll to the middle after jump to the line jump
-vim.keymap.set("n", "<s-g>", "Gzz")
+map("n", "<s-g>", "Gzz")
 
 -- Moving through quickfix list
-vim.keymap.set("n", "]q", "<cmd>cnext<enter>", { desc = "Next [Q]uickfix List" })
-vim.keymap.set("n", "[q", "<cmd>cprev<enter>", { desc = "Previous [Q]uickfix List" })
+map("n", "]q", "<cmd>cnext<enter>", "Next [Q]uickfix List")
+map("n", "[q", "<cmd>cprev<enter>", "Previous [Q]uickfix List")
+
+-- Moving through buffers
+map("n", "]b", ":bnext<enter>", "Next [B]uffer")
+map("n", "[b", ":bprev<enter>", "Previous [B]uffer")
+
+-- Insert new line
+map("n", "[<space>", "O<esc>j", "Insert line above")
+map("n", "]<space>", "o<esc>k", "Insert line below")
 
 -- vim: ts=2 sts=2 sw=2 et

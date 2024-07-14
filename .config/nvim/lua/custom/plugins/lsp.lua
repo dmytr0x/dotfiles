@@ -47,13 +47,13 @@ return { -- LSP Configuration & Plugins
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
-        -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-        -- to define small helper and utility functions so you don't have to repeat yourself.
-        --
-        -- In this case, we create a function that lets us more easily define mappings specific
-        -- for LSP related items. It sets the mode, buffer and description for us each time.
         local map = function(keys, func, desc)
-          vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+          vim.keymap.set("n", keys, func, {
+            noremap = true,
+            silent = true,
+            buffer = event.buf,
+            desc = "LSP: " .. desc,
+          })
         end
 
         -- Jump to the definition of the word under your cursor.
@@ -63,24 +63,24 @@ return { -- LSP Configuration & Plugins
           require("telescope.builtin").lsp_definitions({
             layout_strategy = "vertical",
           })
-        end, "[G]oto [D]efinition")
+        end, "Goto [D]efinition")
 
-        map("gD", function()
+        map("gh", function()
           vim.cmd("split")
           require("telescope.builtin").lsp_definitions({
             layout_strategy = "vertical",
           })
           vim.cmd.normal("zt")
-        end, "[G]oto [D]efinition Split")
+        end, "Goto [D]efinition Split")
 
-        map("gc", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+        map("gD", vim.lsp.buf.declaration, "Goto [D]eclaration")
 
         -- Find references for the word under your cursor.
-        map("gr", function()
+        map("gf", function()
           require("telescope.builtin").lsp_references({
             layout_strategy = "vertical",
           })
-        end, "[G]oto [R]eferences")
+        end, "Goto Re[f]erences")
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
@@ -88,44 +88,61 @@ return { -- LSP Configuration & Plugins
           require("telescope.builtin").lsp_implementations({
             layout_strategy = "vertical",
           })
-        end, "[G]oto [I]mplementation")
+        end, "Goto [I]mplementation")
 
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        map("<leader>D", function()
+        map("gt", function()
           require("telescope.builtin").lsp_type_definitions({
             layout_strategy = "vertical",
           })
-        end, "Type [D]efinition")
+        end, "Goto [T]ype Definition")
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map("<leader>ds", function()
+        map("gs", function()
           require("telescope.builtin").lsp_document_symbols({
             layout_strategy = "vertical",
           })
-        end, "[D]ocument [S]ymbols")
+        end, "Document [S]ymbols")
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map("<leader>ws", function()
+        map("gS", function()
           require("telescope.builtin").lsp_dynamic_workspace_symbols({
             layout_strategy = "vertical",
           })
-        end, "[W]orkspace [S]ymbols")
+        end, "Workspace [S]ymbols")
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+        map("<leader>cr", vim.lsp.buf.rename, "[R]ename")
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+        map("<leader>ca", vim.lsp.buf.code_action, "[A]ction")
 
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap.
-        map("K", vim.lsp.buf.hover, "Hover Documentation")
+        map("K", vim.lsp.buf.hover, "Hover Do[c]umentation")
+
+        -- The following autocommand is used to enable inlay hints in your
+        -- code, if the language server you are using supports them
+        --
+        -- This may be unwanted, since they displace some of your code
+        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+          map("<leader>th", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end, "Inlay [H]ints")
+        end
+
+        -- Change the Diagnostic symbols in the sign column (gutter)
+        local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+        for type, icon in pairs(signs) do
+          local hl = "DiagnosticSign" .. type
+          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -154,16 +171,6 @@ return { -- LSP Configuration & Plugins
               vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
             end,
           })
-        end
-
-        -- The following autocommand is used to enable inlay hints in your
-        -- code, if the language server you are using supports them
-        --
-        -- This may be unwanted, since they displace some of your code
-        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map("<leader>th", function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, "[T]oggle Inlay [H]ints")
         end
       end,
     })

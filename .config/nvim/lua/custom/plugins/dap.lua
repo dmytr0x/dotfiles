@@ -42,27 +42,25 @@ return {
       },
     })
 
-    local map = function(keys, func, desc)
-      vim.keymap.set("n", keys, func, { desc = "Debug: " .. desc })
-    end
-
     -- Basic debugging keymaps, feel free to change to your liking!
-    map("<F5>", dap.continue, "Start/Continue")
-    map("<F10>", dap.step_over, "Step Over")
-    map("<F11>", dap.step_into, "Step Into")
-    map("<F12>", dap.step_out, "Step Out")
-    map("<F9>", dap.toggle_breakpoint, "Toggle Breakpoint")
-    map("<space>dd", dap.run_to_cursor, "Run to Cursor") -- [B]reakpoint [H]ere
+    vim.keymap.set("n", "<leader>d<F5>", dap.continue, { desc = "Start/Continue" })
+    vim.keymap.set("n", "<leader>d<F10>", dap.step_over, { desc = "Step Over" })
+    vim.keymap.set("n", "<leader>d<F11>", dap.step_into, { desc = "Step Into" })
+    vim.keymap.set("n", "<leader>d<F12>", dap.step_out, { desc = "Step Out" })
+    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle [B]reakpoint" })
+    vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { desc = "Run to [C]ursor" }) -- [B]reakpoint [H]ere
 
-    map("<space>dc", function()
+    vim.keymap.set("n", "<space>dB", function()
       dap.set_breakpoint(vim.fn.input("Breakpoint Condition: "))
-    end, "Set Breakpoint Con[d]ition")
-    map("<space>dl", function()
-      require("dap").set_breakpoint(nil, nil, vim.fn.input("Debug: Log point message: "))
-    end, "Set Breakpint Message")
-    map("<space>?", function()
+    end, { desc = "Set [B]reakpoint [C]ondition" })
+
+    vim.keymap.set("n", "<leader>dm", function()
+      require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+    end, { desc = "Set Breakpint [M]essage" })
+
+    vim.keymap.set("n", "<leader>de", function()
       require("dapui").eval(nil, { enter = false })
-    end, "Eval Under Cursor")
+    end, { desc = "[E]val Under Cursor" })
 
     -- Load the .vscode/launch.json
     if vim.fn.filereadable(".vscode/launch.json") then
@@ -77,7 +75,7 @@ return {
     require("dap-python").setup("python")
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
+    vim.keymap.set("n", "<leader>d<F7>", dapui.toggle, { desc = "See last session result." })
 
     dap.listeners.after.event_initialized["dapui_config"] = dapui.open
     dap.listeners.before.event_terminated["dapui_config"] = dapui.close
