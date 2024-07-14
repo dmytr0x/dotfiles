@@ -5,6 +5,8 @@
 -- How to remove keybind:
 --   vim.keymap.set("n", key, "<nop>")
 
+local map = require("core.keymap").map
+
 -- Set highlight on search
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", function()
@@ -17,17 +19,6 @@ vim.diagnostic.config({
   virtual_text = false,
   float = { border = "single" },
 })
-
-local default_options = {
-  noremap = true,
-  silent = false,
-}
-
-local function map(modes, keys, func, description, options)
-  opt = vim.tbl_deep_extend("force", default_options, options or {})
-  opt.desc = description
-  vim.keymap.set(modes, keys, func, opt)
-end
 
 -- Diagnostic key maps
 map("n", "[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")

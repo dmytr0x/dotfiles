@@ -4,6 +4,8 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
+local map = require("core.keymap").map
+
 return {
   -- NOTE: Yes, you can install new plugins here!
   "mfussenegger/nvim-dap",
@@ -43,24 +45,25 @@ return {
     })
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set("n", "<leader>d<F5>", dap.continue, { desc = "Start/Continue" })
-    vim.keymap.set("n", "<leader>d<F10>", dap.step_over, { desc = "Step Over" })
-    vim.keymap.set("n", "<leader>d<F11>", dap.step_into, { desc = "Step Into" })
-    vim.keymap.set("n", "<leader>d<F12>", dap.step_out, { desc = "Step Out" })
-    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle [B]reakpoint" })
-    vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { desc = "Run to [C]ursor" }) -- [B]reakpoint [H]ere
+    map("n", "<leader>d<F5>", dap.continue, "Start/Continue")
+    map("n", "<leader>d<F10>", dap.step_over, "Step Over")
+    map("n", "<leader>d<F11>", dap.step_into, "Step Into")
+    map("n", "<leader>d<F12>", dap.step_out, "Step Out")
+    map("n", "<leader>db", dap.toggle_breakpoint, "Toggle [B]reakpoint")
+    map("n", "<leader>dc", dap.run_to_cursor, "Run to [C]ursor") -- [B]reakpoint [H]ere
 
-    vim.keymap.set("n", "<space>dB", function()
+    map("n", "<space>dB", function()
       dap.set_breakpoint(vim.fn.input("Breakpoint Condition: "))
-    end, { desc = "Set [B]reakpoint [C]ondition" })
+    end, "Set [B]reakpoint [C]ondition")
 
-    vim.keymap.set("n", "<leader>dm", function()
+    map("n", "<leader>dm", function()
       require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-    end, { desc = "Set Breakpint [M]essage" })
+    end, "Set Breakpint [M]essage")
 
-    vim.keymap.set("n", "<leader>de", function()
+    map("n", "<leader>de", function()
+      ---@diagnostic disable-next-line: missing-fields
       require("dapui").eval(nil, { enter = false })
-    end, { desc = "[E]val Under Cursor" })
+    end, "[E]val Under Cursor")
 
     -- Load the .vscode/launch.json
     if vim.fn.filereadable(".vscode/launch.json") then
@@ -75,7 +78,7 @@ return {
     require("dap-python").setup("python")
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set("n", "<leader>d<F7>", dapui.toggle, { desc = "See last session result." })
+    map("n", "<leader>d<F7>", dapui.toggle, "See last session result.")
 
     dap.listeners.after.event_initialized["dapui_config"] = dapui.open
     dap.listeners.before.event_terminated["dapui_config"] = dapui.close
