@@ -42,7 +42,7 @@ mod1:
 # Second mod (default option + shift + control).
 mod2:
   - option
-  - shift
+  # - shift
   - control
   - command
 
@@ -61,7 +61,7 @@ mod2:
 
 # Move to the next layout in the list.
 cycle-layout:
-  mod: mod1
+  mod: mod2
   key: space
 
 # Move to the previous layout in the list.
