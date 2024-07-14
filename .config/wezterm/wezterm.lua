@@ -42,6 +42,7 @@ local config = {
   window_decorations = "RESIZE",
   -- window_close_confirmation = "NeverPrompt",
   window_background_opacity = 0.85,
+  macos_window_background_blur = 5,
   window_frame = {
     font = wezterm.font({ family = "FiraCode Nerd Font Mono", weight = "Regular" }),
   },
