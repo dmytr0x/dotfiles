@@ -68,12 +68,13 @@ gui:
   theme:
     # Border color of focused window
     activeBorderColor:
-      - green
+      - "#4993DD"
       - bold
 
     # Border color of non-focused windows
     inactiveBorderColor:
-      - default
+      - black
+      # - "#4a4a4a"
 
     # Border color of focused window when searching in that window
     searchingActiveBorderColor:
@@ -82,16 +83,16 @@ gui:
 
     # Color of keybindings help text in the bottom line
     optionsTextColor:
-      - blue
+      - "#D7D7D7"
 
     # Background color of selected line.
     # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#highlighting-the-selected-line
     selectedLineBgColor:
-      - blue
+      - "#264F78"
 
     # Background color of selected line when view doesn't have focus.
     inactiveViewSelectedLineBgColor:
-      - bold
+      - red
 
     # Foreground color of copied commit
     cherryPickedCommitFgColor:
@@ -142,7 +143,7 @@ gui:
   showPanelJumps: true
 
   # Deprecated: use nerdFontsVersion instead
-  showIcons: false
+  showIcons: true
 
   # Nerd fonts version to use.
   # One of: '2' | '3' | empty string (default)
@@ -218,11 +219,7 @@ git:
     # Value of the --color arg in the git diff command. Some pagers want this to be set to 'always' and some want it set to 'never'
     colorArg: always
 
-    # e.g.
-    # diff-so-fancy
-    # delta --dark --paging=never
-    # ydiff -p cat -s --wrap --width={{columnWidth}}
-    pager: "delta --dark --paging=never"
+    pager: "delta --paging=never"
 
     # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
     useConfig: false
@@ -375,11 +372,11 @@ os:
   # Deprecated: use Edit instead. Note that semantics are different:
   # EditCommand is just the command itself, whereas Edit contains a
   # "{{filename}}" variable.
-  editCommand: ""
+  editCommand: "nvim"
 
   # EditCommandTemplate is the command template for editing a file
   # Deprecated: use EditAtLine instead.
-  editCommandTemplate: ""
+  editCommandTemplate: "{{editor}} {{filename}}"
 
   # OpenCommand is the command for opening a file
   # Deprecated: use Open instead.
