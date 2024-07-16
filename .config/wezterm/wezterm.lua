@@ -93,7 +93,7 @@ local config = {
       action = act.PaneSelect({ mode = "SwapWithActive" }),
     },
 
-    -- Tab
+    -- Tabs & Panes
     {
       key = "w",
       mods = "LEADER",
@@ -112,10 +112,12 @@ local config = {
     tab = {
 
       -- Tabs
+      { key = "Q", action = act.CloseCurrentTab({ confirm = true }) },
       { key = "n", action = act.SpawnTab("DefaultDomain") },
       { key = "N", action = act.SpawnWindow },
-      { key = "Q", action = act.CloseCurrentTab({ confirm = true }) },
       { key = "w", action = act.ShowTabNavigator },
+      { key = "[", action = act.ActivateTabRelative(-1) },
+      { key = "]", action = act.ActivateTabRelative(1) },
 
       -- Pane
       { key = "q", action = act.CloseCurrentPane({ confirm = true }) },
