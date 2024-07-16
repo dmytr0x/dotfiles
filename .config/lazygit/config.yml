@@ -33,7 +33,7 @@ gui:
   sidePanelWidth: 0.3333
 
   # If true, increase the height of the focused side window; creating an accordion effect.
-  expandFocusedSidePanel: false
+  expandFocusedSidePanel: true
 
   # The weight of the expanded side panel, relative to the other panels. 2 means
   # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
@@ -44,7 +44,7 @@ gui:
   # - 'horizontal': split the window horizontally
   # - 'vertical': split the window vertically
   # - 'flexible': (default) split the window horizontally if the window is wide enough, otherwise split vertically
-  mainPanelSplitMode: flexible
+  mainPanelSplitMode: vertical
 
   # How the window is split when in half screen mode (i.e. after hitting '+' once).
   # Possible values:
@@ -53,7 +53,7 @@ gui:
   enlargedSideViewLocation: left
 
   # One of 'auto' (default) | 'en' | 'zh-CN' | 'zh-TW' | 'pl' | 'nl' | 'ja' | 'ko' | 'ru'
-  language: auto
+  language: en
 
   # Format used when displaying time e.g. commit time.
   # Uses Go's time format syntax: https://pkg.go.dev/time#Time.Format
@@ -131,24 +131,21 @@ gui:
   showFileTree: true
 
   # If true, show a random tip in the command log when Lazygit starts
-  showRandomTip: true
+  showRandomTip: false
 
   # If true, show the command log
-  showCommandLog: true
+  showCommandLog: false
 
   # If true, show the bottom line that contains keybinding info and useful buttons. If false, this line will be hidden except to display a loader for an in-progress action.
-  showBottomLine: true
+  showBottomLine: false
 
   # If true, show jump-to-window keybindings in window titles.
   showPanelJumps: true
 
-  # Deprecated: use nerdFontsVersion instead
-  showIcons: true
-
   # Nerd fonts version to use.
   # One of: '2' | '3' | empty string (default)
   # If empty, do not show icons.
-  nerdFontsVersion: ""
+  nerdFontsVersion: "3"
 
   # If true (default), file icons are shown in the file views. Only relevant if NerdFontsVersion is not empty.
   showFileIcons: true
@@ -183,6 +180,7 @@ gui:
 
   # Window border style.
   # One of 'rounded' (default) | 'single' | 'double' | 'hidden'
+  # border: rounded
   border: rounded
 
   # If true, show a seriously epic explosion animation when nuking the working tree.
@@ -190,7 +188,7 @@ gui:
 
   # Whether to stack UI components on top of each other.
   # One of 'auto' (default) | 'always' | 'never'
-  portraitMode: auto
+  portraitMode: always
 
   # How things are filtered when typing '/'.
   # One of 'substring' (default) | 'fuzzy'
@@ -252,8 +250,8 @@ git:
 
   # list of branches that are considered 'main' branches, used when displaying commits
   mainBranches:
-    - master
     - main
+    - master
 
   # Prefix to use when skipping hooks. E.g. if set to 'WIP', then pre-commit hooks will be skipped when the commit message starts with 'WIP'
   skipHookPrefix: WIP
@@ -269,10 +267,6 @@ git:
 
   # Command used when displaying the current branch git log in the main window
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
-
-  # Command used to display git log of all branches in the main window.
-  # Deprecated: User `allBranchesLogCmds` instead.
-  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
 
   # If true, do not spawn a separate process when using GPG
   overrideGpg: false
@@ -297,19 +291,6 @@ git:
 
   # Config for showing the log in the commits view
   log:
-    # One of: 'date-order' | 'author-date-order' | 'topo-order' | 'default'
-    # 'topo-order' makes it easier to read the git log graph, but commits may not
-    # appear chronologically. See https://git-scm.com/docs/
-    #
-    # Deprecated: Configure this with `Log menu -> Commit sort order` (<c-l> in the commits window by default).
-    order: topo-order
-
-    # This determines whether the git graph is rendered in the commits panel
-    # One of 'always' | 'never' | 'when-maximised'
-    #
-    # Deprecated: Configure this with `Log menu -> Show git graph` (<c-l> in the commits window by default).
-    showGraph: always
-
     # displays the whole git graph by default in the commits view (equivalent to passing the `--all` argument to `git log`)
     showWholeGraph: false
 
@@ -320,10 +301,7 @@ git:
 # Periodic update checks
 update:
   # One of: 'prompt' (default) | 'background' | 'never'
-  method: prompt
-
-  # Period in days between update checks
-  days: 14
+  method: never
 
 # Background refreshes
 refresher:
@@ -344,7 +322,7 @@ quitOnTopLevelReturn: false
 # Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
 os:
   # Command for editing a file. Should contain "{{filename}}".
-  edit: ""
+  edit: "nvim {{filename}}"
 
   # Command for editing a file at a given line number. Should contain
   # "{{filename}}", and may optionally contain "{{line}}".
@@ -363,28 +341,10 @@ os:
 
   # Command for opening a file, as if the file is double-clicked. Should
   # contain "{{filename}}", but doesn't support "{{line}}".
-  open: ""
+  open: "nvim {{filename}}"
 
   # Command for opening a link. Should contain "{{link}}".
   openLink: ""
-
-  # EditCommand is the command for editing a file.
-  # Deprecated: use Edit instead. Note that semantics are different:
-  # EditCommand is just the command itself, whereas Edit contains a
-  # "{{filename}}" variable.
-  editCommand: "nvim"
-
-  # EditCommandTemplate is the command template for editing a file
-  # Deprecated: use EditAtLine instead.
-  editCommandTemplate: "{{editor}} {{filename}}"
-
-  # OpenCommand is the command for opening a file
-  # Deprecated: use Open instead.
-  openCommand: ""
-
-  # OpenLinkCommand is the command for opening a link
-  # Deprecated: use OpenLink instead.
-  openLinkCommand: ""
 
   # CopyToClipboardCmd is the command for copying to clipboard.
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-command-for-copying-to-and-pasting-from-clipboard
@@ -395,7 +355,7 @@ os:
   readFromClipboardCmd: ""
 
 # If true, don't display introductory popups upon opening Lazygit.
-disableStartupPopups: false
+disableStartupPopups: true
 
 # What to do when opening Lazygit outside of a git repo.
 # - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo
