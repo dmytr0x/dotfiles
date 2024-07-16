@@ -25,6 +25,9 @@ alias v="nvim"
 alias vim="nvim"
 alias vscode="code --new-window --profile=Empty"
 
+# Setup partial parameters
+alias lazygit="lazygit --use-config-dir=$HOME/.config/lazygit"
+
 # Shortcuts
 alias tree="eza --tree"
 alias ls="eza --width=1"
