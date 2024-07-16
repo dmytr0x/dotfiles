@@ -112,9 +112,5 @@ return {
         },
       },
     })
-
-    local map = require("core.keymap").map
-
-    map("n", "<leader><leader>tt", vim.treesitter.inspect_tree, "Treesitter Highlight [T]ree")
   end,
 }

@@ -15,8 +15,9 @@ vim.keymap.set("n", "<Esc>", function()
 end)
 
 -- Turn off in-line diagnostic messages
+vim.g.diagnostic_virtual_text = false
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = vim.g.diagnostic_virtual_text,
   float = { border = "single" },
 })
 
@@ -121,7 +122,16 @@ map("n", "[b", ":bprev<enter>", "Previous [B]uffer")
 map("n", "[<space>", "O<esc>j", "Insert line above")
 map("n", "]<space>", "o<esc>k", "Insert line below")
 
--- Show useful information to use with treesitter
-map("n", "<leader><leader>sh", vim.show_pos, "Show [H]ighlight")
+-- Which-key menus:
+--
+-- [Show]
+map("n", "<leader><leader>sh", vim.show_pos, "Treesitter: [H]ighlight")
+map("n", "<leader><leader>st", vim.treesitter.inspect_tree, "Treesitter: [T]ree")
+--
+-- [Toggle]
+map("n", "<leader><leader>tv", function()
+  vim.g.diagnostic_virtual_text = not vim.g.diagnostic_virtual_text
+  vim.diagnostic.config({ virtual_text = vim.g.diagnostic_virtual_text })
+end, "LSP: [V]irtual Text")
 
 -- vim: ts=2 sts=2 sw=2 et

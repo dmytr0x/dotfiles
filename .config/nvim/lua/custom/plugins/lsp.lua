@@ -127,18 +127,13 @@ return { -- LSP Configuration & Plugins
         --  See `:help K` for why this keymap.
         map("K", vim.lsp.buf.hover, "Hover Do[c]umentation")
 
-        -- The following autocommand is used to enable inlay hints in your
-        -- code, if the language server you are using supports them
-        --
-        -- This may be unwanted, since they displace some of your code
-        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map("<leader>th", function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, "Inlay [H]ints")
-        end
-
         -- Change the Diagnostic symbols in the sign column (gutter)
-        local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+        local signs = {
+          Error = " ",
+          Warn = " ",
+          Hint = "󰠠 ",
+          Info = " ",
+        }
         for type, icon in pairs(signs) do
           local hl = "DiagnosticSign" .. type
           vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -172,6 +167,21 @@ return { -- LSP Configuration & Plugins
             end,
           })
         end
+
+        -- The following autocommand is used to enable inlay hints in your
+        -- code, if the language server you are using supports them
+        --
+        -- This may be unwanted, since they displace some of your code
+        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+          map("<leader><leader>ti", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end, "[I]nlay Hints")
+        end
+
+        map("<leader><leader>tv", function()
+          vim.g.diagnostic_virtual_text = not vim.g.diagnostic_virtual_text
+          vim.diagnostic.config({ virtual_text = vim.g.diagnostic_virtual_text })
+        end, "[V]irtual Text")
       end,
     })
 
