@@ -13,10 +13,11 @@ return {
         command_palette = false,
         lsp_doc_border = true,
       },
-      -- it seems that it does not work
       routes = {
-        filter = { event = "notify", find = "No information available" },
-        opts = { skip = true },
+        {
+          filter = { event = "notify", find = "No information available" },
+          opts = { skip = true },
+        },
       },
     })
 
