@@ -12,7 +12,25 @@ table.insert(
   }
 )
 
+-- toggle opacity
+-- TODO: refactor this to
+-- local default...
+-- config.window_background_opacity = default...
+local default_background_opacity = 0.85
+
+wezterm.on("toggle-opacity", function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  if overrides.window_background_opacity == 1.0 then
+    overrides.window_background_opacity = default_background_opacity
+  else
+    overrides.window_background_opacity = 1.0
+  end
+  window:set_config_overrides(overrides)
+end)
+
+--
 -- local config = wezterm.config_builder()
+--
 local config = {
   default_prog = { "/opt/homebrew/bin/zsh", "--login" },
 
@@ -81,12 +99,20 @@ local config = {
       action = act.ActivateCommandPalette,
     },
 
+    -- Custom events
+    {
+      key = "e",
+      mods = "LEADER",
+      action = act.ActivateKeyTable({ name = "events", timeout_milliseconds = 1000 }),
+    },
+
     -- Pane
     {
       key = "b",
       mods = "LEADER",
       action = act.PaneSelect,
     },
+
     {
       key = "B",
       mods = "LEADER",
@@ -97,7 +123,7 @@ local config = {
     {
       key = "w",
       mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "tab", timeout_milliseconds = 1000 }),
+      action = act.ActivateKeyTable({ name = "tabs", timeout_milliseconds = 1000 }),
     },
 
     -- Workspace
@@ -109,7 +135,7 @@ local config = {
   },
 
   key_tables = {
-    tab = {
+    tabs = {
 
       -- Tabs
       { key = "Q", action = act.CloseCurrentTab({ confirm = true }) },
@@ -135,6 +161,10 @@ local config = {
       -- { key = "RightArrow", action = act.ActivatePaneDirection("Right") },
       -- { key = "UpArrow", action = act.ActivatePaneDirection("Up") },
       -- { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
+    },
+
+    events = {
+      { key = "o", action = wezterm.action.EmitEvent("toggle-opacity") },
     },
 
     workspaces = {
