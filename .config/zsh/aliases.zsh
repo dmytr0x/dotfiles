@@ -27,6 +27,7 @@ alias vscode="code --new-window --profile=Empty"
 
 # Setup partial parameters
 alias lazygit="lazygit --use-config-dir=$HOME/.config/lazygit"
+alias lg="lazygit"
 
 # Shortcuts
 alias tree="eza --tree"
