@@ -36,7 +36,7 @@
   whitespace-error-style = 22 reverse
   features = unobtrusive-line-numbers decorations
   navigate = true    # use n and N to move between diff sections
-  ; side-by-side = true
+  side-by-side = false
 
 [delta "unobtrusive-line-numbers"]
     line-numbers = true
