@@ -90,11 +90,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- External Apps
 -- Text Editor
-map("n", "<leader>ez", "<cmd>!zed % &<enter>", "Launch Zed")
+map("n", "<leader>lz", "<cmd>!zed % &<enter>", "[Z]ed")
 -- Git Client
-map("n", "<leader>ef", function()
+map("n", "<leader>lf", function()
   vim.fn.system("fork --git-dir=" .. vim.fn.getcwd())
-end, "Launch Fork")
+end, "[F]ork")
 
 -- Handy
 -- vim.keymap.set("i", "jk", "<esc>")

@@ -32,6 +32,7 @@ return { -- Useful plugin to show you pending keybinds.
       { "<leader>h", group = "Harpoon" }, -- Git as well?
       { "<leader>d", group = "Debug" },
       { "<leader>s", group = "Search" },
+      { "<leader>l", group = "Launch" },
       { "<leader><leader>t", group = "Toggle" },
       { "<leader><leader>s", group = "Show" },
       { "g", group = "Go To" },
