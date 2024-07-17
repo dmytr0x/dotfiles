@@ -1,3 +1,7 @@
+#
+# Source: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+#
+
 # Config relating to the Lazygit UI
 gui:
   # The number of lines you scroll by when scrolling the main window
@@ -73,8 +77,7 @@ gui:
 
     # Border color of non-focused windows
     inactiveBorderColor:
-      - black
-      # - "#4a4a4a"
+      - "#4a4a4a"
 
     # Border color of focused window when searching in that window
     searchingActiveBorderColor:
@@ -326,14 +329,14 @@ os:
 
   # Command for editing a file at a given line number. Should contain
   # "{{filename}}", and may optionally contain "{{line}}".
-  editAtLine: ""
+  editAtLine: "nvim +{{line}} {{filename}}"
 
   # Same as EditAtLine, except that the command needs to wait until the
   # window is closed.
-  editAtLineAndWait: ""
+  editAtLineAndWait: "nvim +{{line}} {{filename}}"
 
   # For opening a directory in an editor
-  openDirInEditor: ""
+  openDirInEditor: "nvim {{dir}}"
 
   # A built-in preset that sets all of the above settings. Supported presets
   # are defined in the getPreset function in editor_presets.go.
@@ -341,7 +344,7 @@ os:
 
   # Command for opening a file, as if the file is double-clicked. Should
   # contain "{{filename}}", but doesn't support "{{line}}".
-  open: "nvim {{filename}}"
+  open: "open {{filename}}"
 
   # Command for opening a link. Should contain "{{link}}".
   openLink: ""
