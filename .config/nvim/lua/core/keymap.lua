@@ -2,7 +2,7 @@ local core = {}
 
 local default_keymap_options = {
   noremap = true,
-  silent = false,
+  silent = true,
 }
 
 function core.map(modes, keys, func, description, options)

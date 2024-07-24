@@ -40,6 +40,8 @@ return { -- LSP Configuration & Plugins
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
     -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+    local keymap = require("core.keymap")
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -47,25 +49,22 @@ return { -- LSP Configuration & Plugins
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
-        local map = function(keys, func, desc)
-          vim.keymap.set("n", keys, func, {
-            noremap = true,
-            silent = true,
+        function map(modes, keys, func, desc)
+          keymap.map(modes, keys, func, "LSP: " .. desc, {
             buffer = event.buf,
-            desc = "LSP: " .. desc,
           })
         end
 
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
-        map("gd", function()
+        map("n", "gd", function()
           require("telescope.builtin").lsp_definitions({
             layout_strategy = "vertical",
           })
         end, "Goto [D]efinition")
 
-        map("gh", function()
+        map("n", "gh", function()
           vim.cmd("split")
           require("telescope.builtin").lsp_definitions({
             layout_strategy = "vertical",
@@ -73,10 +72,10 @@ return { -- LSP Configuration & Plugins
           vim.cmd.normal("zt")
         end, "Goto [D]efinition Split")
 
-        map("gD", vim.lsp.buf.declaration, "Goto [D]eclaration")
+        map("n", "gD", vim.lsp.buf.declaration, "Goto [D]eclaration")
 
         -- Find references for the word under your cursor.
-        map("gf", function()
+        map("n", "gf", function()
           require("telescope.builtin").lsp_references({
             layout_strategy = "vertical",
           })
@@ -84,7 +83,7 @@ return { -- LSP Configuration & Plugins
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
-        map("gi", function()
+        map("n", "gi", function()
           require("telescope.builtin").lsp_implementations({
             layout_strategy = "vertical",
           })
@@ -93,7 +92,7 @@ return { -- LSP Configuration & Plugins
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        map("gt", function()
+        map("n", "gt", function()
           require("telescope.builtin").lsp_type_definitions({
             layout_strategy = "vertical",
           })
@@ -101,7 +100,7 @@ return { -- LSP Configuration & Plugins
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map("gs", function()
+        map("n", "gs", function()
           require("telescope.builtin").lsp_document_symbols({
             layout_strategy = "vertical",
           })
@@ -109,7 +108,7 @@ return { -- LSP Configuration & Plugins
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map("gS", function()
+        map("n", "gS", function()
           require("telescope.builtin").lsp_dynamic_workspace_symbols({
             layout_strategy = "vertical",
           })
@@ -117,15 +116,21 @@ return { -- LSP Configuration & Plugins
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map("<leader>cr", vim.lsp.buf.rename, "[R]ename")
+        map("n", "<leader>cr", vim.lsp.buf.rename, "[R]ename")
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        map("<leader>ca", vim.lsp.buf.code_action, "[A]ction")
+        map("n", "<leader>ca", vim.lsp.buf.code_action, "[A]ction")
 
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap.
-        map("K", vim.lsp.buf.hover, "Hover Do[c]umentation")
+        map("n", "K", vim.lsp.buf.hover, "Hover Do[c]umentation")
+
+        --- Displays signature information about the symbol under the cursor in a
+        --- floating window.
+        map("i", "<S-C-k>", function()
+          vim.lsp.buf.signature_help()
+        end, "Signature [H]elp")
 
         -- Change the Diagnostic symbols in the sign column (gutter)
         local signs = {
@@ -173,12 +178,12 @@ return { -- LSP Configuration & Plugins
         --
         -- This may be unwanted, since they displace some of your code
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map("<leader><leader>ti", function()
+          map("n", "<leader><leader>ti", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
           end, "[I]nlay Hints")
         end
 
-        map("<leader><leader>tv", function()
+        map("n", "<leader><leader>tv", function()
           vim.g.diagnostic_virtual_text = not vim.g.diagnostic_virtual_text
           vim.diagnostic.config({ virtual_text = vim.g.diagnostic_virtual_text })
         end, "[V]irtual Text")
@@ -212,8 +217,11 @@ return { -- LSP Configuration & Plugins
       ruff = {},
       ruff_lsp = {},
 
-      --> html <--
+      --> ... <--
       html = {},
+      jsonls = {},
+      dockerls = {},
+      bashls = {},
 
       -- javascript / typescript
       tsserver = {

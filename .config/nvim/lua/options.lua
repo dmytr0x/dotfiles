@@ -83,4 +83,12 @@ vim.opt.tabstop = 2
 -- vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
+-- Folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.opt.foldcolumn = "0"
+-- vim.opt.signcolumn = "yes"
+
 -- vim: ts=2 sts=2 sw=2 et
