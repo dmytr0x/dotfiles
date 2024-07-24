@@ -54,8 +54,8 @@ local config = {
 
   -- tab bar
   enable_tab_bar = true,
+  use_fancy_tab_bar = true,
   hide_tab_bar_if_only_one_tab = true,
-
   -- window
   window_decorations = "RESIZE",
   -- window_close_confirmation = "NeverPrompt",
@@ -63,6 +63,7 @@ local config = {
   macos_window_background_blur = 5,
   window_frame = {
     font = wezterm.font({ family = "FiraCode Nerd Font Mono", weight = "Regular" }),
+    font_size = 12.0,
   },
   window_padding = {
     left = 10,
