@@ -1,14 +1,26 @@
-# start
+# Kanata - Improve keyboard comfort and usability with advanced customization
 
-# move plist file
+source: https://github.com/jtroo/kanata
+
+
+## How to install
+
+Move plist file
+```sh
 sudo mv ./com.kanata.daemon.plist /Library/LaunchDaemons/
 sudo chmod root:wheel /Library/LaunchDaemons/com.kanata.daemon.plist
+```
 
-# register daemon
+Register daemon in MacOS
+```sh
 sudo launchctl bootstrap system /Library/LaunchDaemons/com.kanata.daemon.plist
 sudo launchctl enable system/com.kanata.daemon
 sudo reboot
+```
 
-# end
+## How to uninstall
+```sh
 sudo launchctl bootout system /Library/LaunchDaemons/com.kanata.daemon.plist
 sudo launchctl disable system/com.kanata.daemon
+sudo reboot
+```
