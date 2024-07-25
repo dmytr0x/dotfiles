@@ -1,0 +1,69 @@
+;; global configuration options
+(defcfg
+  process-unmapped-keys yes
+  log-layer-changes no
+)
+
+;; only one defsrc is allowed.
+;;
+;; defsrc defines the keys that will be intercepted by kanata. The order of the
+;; keys matches with deflayer declarations and all deflayer declarations must
+;; have the same number of keys as defsrc. Any keys not listed in defsrc will
+;; be passed straight to the operating system.
+(defsrc
+  esc     f1      f2      f3      f4      f5      f6      f7      f8      f9      f10       f11     f12
+  grv      1       2       3       4       5       6       7       8       9        0        -       =       brdn
+  tab      q       w       e       r       t       y       u       i       o        p        [       ]       \
+  caps     a       s       d       f       g       h       j       k       l        ;        '       ret
+  lsft     z       x       c       v       b       n       m       ,       .        /        rsft
+  lctl     lalt    lmet                spc                     rmet     ralt    fn      rctl
+)
+
+;; In this entry, you can introduce a shortcut label for an arbitrary string or list.
+(defvar
+  tap-time 100
+  hold-time 200
+)
+
+;; In this entry, you can introduce a shortcut label for an action.
+(defalias
+  ;; toggle layer aliases
+  fn (layer-toggle function)
+  extra (layer-toggle extra)
+
+  ;; key combos
+  hyperkey (multi lctl lalt lmeta)
+
+  ;; caps for esc, and hyperkey when hold
+  caps (tap-hold-release $tap-time $hold-time esc @hyperkey)
+
+  ;; '`' for '`', and layer change when hold
+  grl (tap-hold-release $tap-time $hold-time grv @extra)
+)
+
+(deflayer default
+  _         f1      f2      f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  @grl       _       _     _      _       _       _       _       _       _       _       _       _      _
+  _          _       _     _      _       _       _       _       _       _       _       _       _      _
+  @caps      _       _     _      _       _       _       _       _       _       _       _       _
+  _          _       _     _      _       _       _       _       _       _       _       _
+  _          _       _                    _                       _       _       @fn     _
+)
+
+(deflayer function
+  _       brdn    brup      _     _   bldn    blup    prev     pp      next    mute    vold    volu
+  _         _       _       _     _     _     _     _     _     _     _     _     _     _
+  _         _       _       _     _     _     _     _     _     _     _     _     _     _
+  _         _       _       _     _     _     _     _     _     _     _     _     _
+  _         _       _       _     _     _     _     _     _     _     _     _
+  _         _       _                   _                 _     _     _     _
+)
+
+(deflayer extra
+  _         _       _       _     _     _     _       _       _     _     _     _     _
+  _         _       _       _     _     _     _       _       _     _     _     _     _     _
+  _         _       _       _     _     _     _       _       _     _     _     _     _     _
+  _         _       _       _     _     _     left    down    up  rght    _     _     _
+  _         _       _       _     _     _     _       _       _     _     _     _
+  _         _       _                   _                     _     _     _     _
+)
