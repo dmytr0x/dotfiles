@@ -1,0 +1,14 @@
+# start
+
+# move plist file
+sudo mv ./com.kanata.daemon.plist /Library/LaunchDaemons/
+sudo chmod root:wheel /Library/LaunchDaemons/com.kanata.daemon.plist
+
+# register daemon
+sudo launchctl bootstrap system /Library/LaunchDaemons/com.kanata.daemon.plist
+sudo launchctl enable system/com.kanata.daemon
+sudo reboot
+
+# end
+sudo launchctl bootout system /Library/LaunchDaemons/com.kanata.daemon.plist
+sudo launchctl disable system/com.kanata.daemon
