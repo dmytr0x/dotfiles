@@ -81,13 +81,13 @@ expand-main:
 
 # Increase the number of windows in the main pane. Note that not all layouts respond to this command.
 increase-main:
-  mod: mod1
-  key: ","
+  mod: ""
+  key: ""
 
 # Decrease the number of windows in the main pane. Note that not all layouts respond to this command.
 decrease-main:
-  mod: mod1
-  key: "."
+  mod: ""
+  key: ""
 
 # Focus the next window in the list going counter-clockwise.
 focus-ccw:
