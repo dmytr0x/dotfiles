@@ -36,6 +36,7 @@ local config = {
 
   -- look & feel
   front_end = "WebGpu",
+  webgpu_preferred_adapter = wezterm.gui.enumerate_gpus()[1],
   prefer_egl = true,
   term = "xterm-256color",
   color_scheme = "Muse (terminal.sexy)",
@@ -93,6 +94,8 @@ local config = {
     timeout_milliseconds = 2000,
   },
 
+  -- INFO: In the Debug Overlay (default: CTRL + SHIFT + L) you can interactively with lua code.
+  --
   keys = {
     {
       key = "p",
@@ -139,9 +142,9 @@ local config = {
     tabs = {
 
       -- Tabs
-      { key = "Q", action = act.CloseCurrentTab({ confirm = true }) },
-      { key = "n", action = act.SpawnTab("DefaultDomain") },
-      { key = "N", action = act.SpawnWindow },
+      -- { key = "Q", action = act.CloseCurrentTab({ confirm = true }) },
+      -- { key = "n", action = act.SpawnTab("DefaultDomain") },
+      -- { key = "N", action = act.SpawnWindow },
       { key = "w", action = act.ShowTabNavigator },
       { key = "[", action = act.ActivateTabRelative(-1) },
       { key = "]", action = act.ActivateTabRelative(1) },
@@ -158,10 +161,6 @@ local config = {
       { key = "l", action = act.ActivatePaneDirection("Right") },
       { key = "k", action = act.ActivatePaneDirection("Up") },
       { key = "j", action = act.ActivatePaneDirection("Down") },
-      -- { key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
-      -- { key = "RightArrow", action = act.ActivatePaneDirection("Right") },
-      -- { key = "UpArrow", action = act.ActivatePaneDirection("Up") },
-      -- { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
     },
 
     events = {
@@ -190,8 +189,8 @@ local config = {
       },
 
       { key = "o", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-      { key = "LeftArrow", action = act.SwitchWorkspaceRelative(1) },
-      { key = "RightArrow", action = act.SwitchWorkspaceRelative(-1) },
+      -- { key = "LeftArrow", action = act.SwitchWorkspaceRelative(1) },
+      -- { key = "RightArrow", action = act.SwitchWorkspaceRelative(-1) },
       { key = "h", action = act.SwitchWorkspaceRelative(1) },
       { key = "l", action = act.SwitchWorkspaceRelative(-1) },
     },
