@@ -37,6 +37,17 @@ alias llt="ls --tree --git-ignore"
 alias yy="yazi"
 alias -- +x="chmod +x"
 
+# Terminal
+function get-term-colors() {
+  reset="\033[39m\\033[49m"
+
+  echo "$reset \nBackground colors:\n"
+  for i in {0..255}; do printf '\e[48;5;%dm%3d ' $i $i; (((i+3) % 18)) || printf '\e[0m\n'; done
+
+  echo "$reset \n\nForeground colors:\n"
+  for i in {0..255}; do printf '\e[38;5;%dm%3d ' $i $i; (((i+3) % 18)) || printf '\e[0m\n'; done
+}
+
 # Download file and save it with the name of the remote file in the current working directory
 # Usage: get <URL>
 alias get="curl -O -L"
