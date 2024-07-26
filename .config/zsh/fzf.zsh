@@ -63,6 +63,19 @@ export FZF_COMPLETION_OPTS=$FZF_DEFAULT_OPTS
 #       --layout=reverse
 # "
 
+# Display shortcuts
+fzf-show-shortcuts() {
+  cat ~/.config/zsh/shortcuts | \
+    fzf \
+    --prompt 'Phrase> ' \
+    --ansi \
+    --no-preview \
+    --layout=reverse --info=inline --border --margin=1 --padding=1 \
+    --header="Shortcuts" \
+    --header-lines=0 \
+    --bind 'enter:become()'
+}
+
 # Edit popular file/directory {
 fzf-edit-popular() {
   files=$(for p (
