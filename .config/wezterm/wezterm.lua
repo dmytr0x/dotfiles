@@ -90,17 +90,39 @@ local config = {
 
   leader = {
     key = "Space",
-    mods = "ALT",
-    timeout_milliseconds = 2000,
+    mods = "CTRL|ALT|CMD",
+    timeout_milliseconds = 1000,
   },
 
-  -- INFO: In the Debug Overlay (default: CTRL + SHIFT + L) you can interactively with lua code.
-  --
   keys = {
+    -- Pane
+    { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+    { key = "s", mods = "LEADER", action = act.SplitHorizontal({}) },
+    { key = "v", mods = "LEADER", action = act.SplitVertical({}) },
+    { key = "r", mods = "LEADER", action = act.RotatePanes("Clockwise") },
+    { key = "R", mods = "LEADER", action = act.RotatePanes("CounterClockwise") },
+    { key = "S", mods = "LEADER", action = act.PaneSelect({ mode = "SwapWithActive" }) },
+
+    -- Pane navigation
+    { key = "p", mods = "LEADER", action = act.PaneSelect },
+    { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+    { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+    { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+    { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+
+    -- Tabs
+    { key = "t", mods = "LEADER", action = act.SpawnTab("DefaultDomain") },
+    { key = "T", mods = "LEADER", action = act.ShowTabNavigator },
+    { key = "Q", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
+    { key = "n", mods = "LEADER", action = act.SpawnWindow },
+    { key = "H", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+    { key = "L", mods = "LEADER", action = act.ActivateTabRelative(1) },
+
+    -- Workspaces
     {
-      key = "p",
-      mods = "CTRL|SHIFT",
-      action = act.ActivateCommandPalette,
+      key = "w",
+      mods = "LEADER",
+      action = act.ActivateKeyTable({ name = "workspaces", timeout_milliseconds = 1000 }),
     },
 
     -- Custom events
@@ -110,65 +132,20 @@ local config = {
       action = act.ActivateKeyTable({ name = "events", timeout_milliseconds = 1000 }),
     },
 
-    -- Pane
-    {
-      key = "b",
-      mods = "LEADER",
-      action = act.PaneSelect,
-    },
-
-    {
-      key = "B",
-      mods = "LEADER",
-      action = act.PaneSelect({ mode = "SwapWithActive" }),
-    },
-
-    -- Tabs & Panes
-    {
-      key = "w",
-      mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "tabs", timeout_milliseconds = 1000 }),
-    },
-
-    -- Workspace
-    {
-      key = "o",
-      mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "workspaces", timeout_milliseconds = 1000 }),
-    },
+    -- Functionality
+    -- INFO: In the Debug Overlay (default: CTRL + SHIFT + L) you can interactively with lua code.
+    --
+    { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
   },
 
   key_tables = {
-    tabs = {
-
-      -- Tabs
-      -- { key = "Q", action = act.CloseCurrentTab({ confirm = true }) },
-      -- { key = "n", action = act.SpawnTab("DefaultDomain") },
-      -- { key = "N", action = act.SpawnWindow },
-      { key = "w", action = act.ShowTabNavigator },
-      { key = "[", action = act.ActivateTabRelative(-1) },
-      { key = "]", action = act.ActivateTabRelative(1) },
-
-      -- Pane
-      { key = "q", action = act.CloseCurrentPane({ confirm = true }) },
-      { key = "s", action = act.SplitHorizontal({}) },
-      { key = "v", action = act.SplitVertical({}) },
-      { key = "t", action = act.RotatePanes("Clockwise") },
-      { key = "T", action = act.RotatePanes("CounterClockwise") },
-
-      -- Navigation
-      { key = "h", action = act.ActivatePaneDirection("Left") },
-      { key = "l", action = act.ActivatePaneDirection("Right") },
-      { key = "k", action = act.ActivatePaneDirection("Up") },
-      { key = "j", action = act.ActivatePaneDirection("Down") },
-    },
 
     events = {
-      { key = "o", action = wezterm.action.EmitEvent("toggle-opacity") },
+      { key = "o", action = act.EmitEvent("toggle-opacity") },
     },
 
     workspaces = {
-      -- Create new workspace
+      -- Create new
       {
         key = "n",
         action = act.PromptInputLine({
@@ -188,11 +165,12 @@ local config = {
         }),
       },
 
-      { key = "o", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-      -- { key = "LeftArrow", action = act.SwitchWorkspaceRelative(1) },
-      -- { key = "RightArrow", action = act.SwitchWorkspaceRelative(-1) },
+      -- Navigation
       { key = "h", action = act.SwitchWorkspaceRelative(1) },
       { key = "l", action = act.SwitchWorkspaceRelative(-1) },
+
+      -- Open
+      { key = "o", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
     },
   },
 }
@@ -212,11 +190,6 @@ wezterm.on("open-uri", function(window, pane, uri)
     return false
   end
 end)
-
--- wezterm.on('gui-startup', function(cmd)
---   local tab, pane, window = mux.spawn_window(cmd or {})
---   window:gui_window():maximize()
--- end)
 
 wezterm.on("update-right-status", function(window, pane)
   -- change the content that is displayed in the right side of tab bar
