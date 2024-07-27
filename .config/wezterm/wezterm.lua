@@ -84,6 +84,9 @@ local config = {
 
   -- key bindings
   disable_default_key_bindings = false,
+  -- make alt keys (left/right) work
+  send_composed_key_when_left_alt_is_pressed = false,
+  send_composed_key_when_right_alt_is_pressed = false,
   -- cmd key fix - using the kitty keyboard protocol over the csi-u protocol
   enable_kitty_keyboard = true,
   enable_csi_u_key_encoding = false,
