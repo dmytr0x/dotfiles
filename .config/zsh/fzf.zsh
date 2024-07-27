@@ -55,14 +55,6 @@ export FZF_CTRL_R_OPTS="
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_COMPLETION_OPTS=$FZF_DEFAULT_OPTS
 
-# List of processes with reloading key binding
-# alias fps="ps -ef |
-#   fzf --bind 'ctrl-r:reload(ps -ef)' \
-#       --header 'Press CTRL-R to reload' \
-#       --header-lines=1 \
-#       --layout=reverse
-# "
-
 # Display shortcuts
 fzf-show-shortcuts() {
   cat ~/.config/zsh/shortcuts | \
@@ -70,11 +62,35 @@ fzf-show-shortcuts() {
     --prompt 'Phrase> ' \
     --ansi \
     --no-preview \
-    --layout=reverse --info=inline --border --margin=1 --padding=1 \
+    --layout=reverse \
+    --info=inline \
+    --border \
+    --margin=1 \
+    --padding=1 \
     --header="Shortcuts" \
     --header-lines=0 \
     --bind 'enter:become()'
 }
+
+# Favourite commands {
+fzf-favourites() {
+  print -z $(
+    cat ~/.config/zsh/favourites | fzf \
+      --prompt 'Command> ' \
+      --ansi \
+      --no-preview \
+      --layout=reverse \
+      --info=inline \
+      --border \
+      --margin=1 \
+      --padding=1 \
+      --header="Favourites" \
+      --header-lines=0
+  )
+}
+bindkey -N fzf-favourites
+bindkey -s "^[f" "fzf-favourites\n"
+# }
 
 # Edit popular file/directory {
 fzf-edit-popular() {
@@ -117,7 +133,7 @@ fzf-edit-popular() {
 }
 
 bindkey -N fzf-edit-popular
-bindkey -s '\ee' 'fzf-edit-popular\n'
+bindkey -s "^[e" "fzf-edit-popular\n"
 # }
 
 # Advanced customization of fzf options via _fzf_comprun function
