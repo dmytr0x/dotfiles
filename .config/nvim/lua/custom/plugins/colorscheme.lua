@@ -20,6 +20,9 @@ return {
       vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = "#72201D" })
       -- vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = "#00ff00" })
       -- vim.api.nvim_set_hl(0, "Difftext", { bg = "#00ff00", fg = "#00ff00" })
+
+      -- Make PopUp transparent
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
     end,
   },
   -- { "folke/tokyonight.nvim" },
