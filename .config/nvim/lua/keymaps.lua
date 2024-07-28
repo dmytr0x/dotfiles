@@ -98,8 +98,8 @@ end, "[F]ork")
 
 -- Handy
 -- vim.keymap.set("i", "jk", "<esc>")
-map("n", "<Space>q", "<cmd>q<enter>", "[Q]uit")
-map("n", "<Space>Q", "<cmd>q!<enter>", "[Q]uit force")
+map("n", "<Space>q", "<cmd>q<enter>", "[Q]uit window")
+map("n", "<Space>Q", "<cmd>bdelete<enter>", "[Q]uit buffer")
 map("n", "<Space>w", "<cmd>w<enter>", "[W]rite")
 map("n", "<c-c>", "<cmd>q!<enter>", "[Q]uit force")
 map("x", "<Space>'", '"_', "Activate wormhole register")
