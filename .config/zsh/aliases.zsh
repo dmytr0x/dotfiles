@@ -2,7 +2,6 @@
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # Easier navigation
-alias .='pwd'
 alias ..='cd ..'
 alias 2..='cd ../..'
 alias 3..='cd ../../..'
