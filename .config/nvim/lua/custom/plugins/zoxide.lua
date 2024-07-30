@@ -1,6 +1,7 @@
 return {
   "jvgrootveld/telescope-zoxide",
   config = function()
-    vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)
+    local map = require("core.keymap").map
+    map("n", "<leader>cd", require("telescope").extensions.zoxide.list, "c[d] to directory")
   end,
 }
