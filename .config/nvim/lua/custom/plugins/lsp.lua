@@ -134,10 +134,10 @@ return { -- LSP Configuration & Plugins
 
         -- Change the Diagnostic symbols in the sign column (gutter)
         local signs = {
-          Error = " ",
-          Warn = " ",
-          Hint = "󰠠 ",
-          Info = " ",
+          Error = "e",
+          Warn = "!",
+          Hint = "?",
+          Info = "i",
         }
         for type, icon in pairs(signs) do
           local hl = "DiagnosticSign" .. type
