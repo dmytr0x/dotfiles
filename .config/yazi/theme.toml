@@ -3,3 +3,9 @@
 [flavor]
 use = "catppuccin-frappe"
 
+
+[icon]
+prepend_rules = [
+	{ name = "*", text = "" },
+]
+
