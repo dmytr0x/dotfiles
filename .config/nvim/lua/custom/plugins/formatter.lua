@@ -1,4 +1,5 @@
-return { -- Autoformat
+return {
+  -- Autoformat
   "stevearc/conform.nvim",
   lazy = false,
   keys = {
@@ -32,15 +33,15 @@ return { -- Autoformat
       --
       lua = { "stylua" },
       python = { "ruff_format" },
-      javascript = { "prettier" },
-      typescript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescriptreact = { "prettier" },
-      css = { "prettier" },
-      html = { "prettier" },
-      json = { "prettier" },
-      yaml = { "prettier" },
-      markdown = { "prettier" },
+      javascript = { "prettierd" },
+      typescript = { "prettierd" },
+      javascriptreact = { "prettierd" },
+      typescriptreact = { "prettierd" },
+      css = { "prettierd" },
+      html = { "prettierd" },
+      json = { "prettierd" },
+      yaml = { "prettierd" },
+      markdown = { "prettierd" },
     },
     formatters = {
       stylua = {

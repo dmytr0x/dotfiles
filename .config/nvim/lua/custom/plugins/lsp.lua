@@ -245,7 +245,9 @@ return { -- LSP Configuration & Plugins
           client.server_capabilities.documentFormattingRangeProvider = false
         end,
       },
-      prettier = {},
+      eslint_d = {},
+      ["eslint-lsp"] = {},
+      prettierd = {},
 
       -- Lua
       stylua = {}, -- Used to format Lua code
