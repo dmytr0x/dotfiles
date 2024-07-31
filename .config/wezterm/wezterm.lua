@@ -41,13 +41,12 @@ local config = {
   term = "xterm-256color",
   color_scheme = "Muse (terminal.sexy)",
   font = wezterm.font_with_fallback({
-    { family = "Fira Code" },
-    { family = "FiraCode Nerd Font Mono" },
+    { family = "Anonymous Pro", weight = "Regular", italic = true },
   }),
-  font_size = 13.0,
-  line_height = 1.1,
+  font_size = 15.0,
+  line_height = 1.05,
   text_background_opacity = 1.0,
-  -- disable ligatures
+  -- disable ligatures for all fonts
   harfbuzz_features = { "calt=0" },
 
   -- command pallet
@@ -63,8 +62,8 @@ local config = {
   window_background_opacity = 0.85,
   macos_window_background_blur = 5,
   window_frame = {
-    font = wezterm.font({ family = "FiraCode Nerd Font Mono", weight = "Regular" }),
-    font_size = 12.0,
+    font = wezterm.font({ family = "Anonymous Pro", weight = "Regular", italic = true }),
+    font_size = 15.0,
   },
   window_padding = {
     left = 10,
