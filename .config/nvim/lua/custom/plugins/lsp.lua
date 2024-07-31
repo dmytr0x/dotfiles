@@ -227,8 +227,8 @@ return { -- LSP Configuration & Plugins
       tsserver = {
         init_options = {
           preferences = {
-            --   disableSuggestions = true,
-            -- inlay hints
+            -- disableSuggestions = true,
+            -- Enable inlay hints
             includeInlayParameterNameHints = "literals",
             includeInlayParameterNameHintsWhenArgumentMatchesName = true,
             includeInlayFunctionParameterTypeHints = true,
@@ -245,9 +245,11 @@ return { -- LSP Configuration & Plugins
           client.server_capabilities.documentFormattingRangeProvider = false
         end,
       },
-      eslint_d = {},
       ["eslint-lsp"] = {},
       prettierd = {},
+
+      -- CSS
+      ["tailwindcss-language-server"] = {},
 
       -- Lua
       stylua = {}, -- Used to format Lua code
