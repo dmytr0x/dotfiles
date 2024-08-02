@@ -5,7 +5,7 @@ use = "catppuccin-frappe"
 
 
 [icon]
-prepend_rules = [
-	{ name = "*", text = "" },
-]
+files = []
+exts = []
+dirs = []
 
