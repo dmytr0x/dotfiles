@@ -3,27 +3,27 @@
 <plist version="1.0">
   <dict>
 
-    <key>KeepAlive</key>
-    <false/>
-
     <key>Label</key>
     <string>com.kanata.daemon</string>
 
     <key>ProcessType</key>
     <string>Background</string>
 
-    <key>Program</key>
-    <string>/usr/local/bin/kanata</string>
-
     <key>ProgramArguments</key>
     <array>
-      <string>/usr/local/bin/kanata</string>
+      <string>/opt/kanata/kanata</string>
       <string>--cfg</string>
       <string>/opt/kanata/kanata.kbd</string>
     </array>
 
     <key>RunAtLoad</key>
-    <true/>
+    <false/>
+    
+    <key>StandardOutPath</key>
+    <string>/Library/Logs/kanata.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Library/Logs/kanata.log</string>
 
   </dict>
 </plist>
