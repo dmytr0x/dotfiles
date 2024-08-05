@@ -6,6 +6,14 @@ INFO: You may forcefully exit kanata by pressing lctl+spc+esc at any time
 
 ## How to install
 
+```sh
+# install Karabiner Virtual HID Device Manager for kanata version 1.6.1:
+https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/blob/main/dist/Karabiner-DriverKit-VirtualHIDDevice-3.1.0.pkg
+
+# activate
+/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate
+```
+
 Move plist file
 
 ```sh
