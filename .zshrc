@@ -34,7 +34,6 @@ plugins=(
   rust
   docker
   docker-compose
-  ripgrep
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
