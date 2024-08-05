@@ -218,10 +218,11 @@ return { -- LSP Configuration & Plugins
       ruff_lsp = {},
 
       --> ... <--
-      html = {},
-      jsonls = {},
-      dockerls = {},
       bashls = {},
+      jsonls = {},
+      markdownlint = {},
+      html = {},
+      dockerls = {},
 
       -- javascript / typescript
       tsserver = {

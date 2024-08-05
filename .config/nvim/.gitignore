@@ -1,2 +1,7 @@
+spell/*.spl
+
+.luarc.json
+
+lazyvim.json
 lazy-lock.json
 

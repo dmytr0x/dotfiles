@@ -9,13 +9,19 @@ return { -- Autocompletion
       dependencies = {
         -- `friendly-snippets` contains a variety of premade snippets.
         --    See the README about individual language/framework/plugin snippets:
-        --    https://github.com/rafamadriz/friendly-snippets
+        --    https://github.com/rafamadriz/friendly-snippets/tree/main/snippets
         {
           "rafamadriz/friendly-snippets",
           config = function()
             -- Use JavaScript snippets in TypeScript code
             require("luasnip").filetype_extend("typescript", { "javascript" })
 
+            -- my snippets and rewritings
+            require("luasnip.loaders.from_vscode").lazy_load({
+              paths = vim.fn.stdpath("config") .. "/snippets/",
+            })
+
+            -- popular snippets
             require("luasnip.loaders.from_vscode").lazy_load()
           end,
         },
@@ -86,9 +92,8 @@ return { -- Autocompletion
       --
       -- No, but seriously. Please read `:help ins-completion`, it is really good!
       mapping = cmp.mapping.preset.insert({
-        -- Select the [n]ext item
+        -- Select the [n]ext / [p]revious item
         ["<C-n>"] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
         ["<C-p>"] = cmp.mapping.select_prev_item(),
 
         -- Scroll the documentation window [b]ack / [f]orward
@@ -96,20 +101,9 @@ return { -- Autocompletion
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
         -- Accept ([y]es) the completion.
-        --  This will auto-import if your LSP supports it.
-        --  This will expand snippets if the LSP sent a snippet.
-        -- ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping.confirm({ select = true }),
 
-        -- If you prefer more traditional completion keymaps,
-        -- you can uncomment the following lines
-        --['<CR>'] = cmp.mapping.confirm { select = true },
-        --['<Tab>'] = cmp.mapping.select_next_item(),
-        --['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
         -- Manually trigger a completion from nvim-cmp.
-        --  Generally you don't need this, because nvim-cmp will display
-        --  completions whenever it has completion options available.
         ["<D-i>"] = cmp.mapping.complete({}),
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
