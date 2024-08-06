@@ -91,4 +91,9 @@ vim.opt.foldlevel = 99
 vim.opt.foldcolumn = "0"
 -- vim.opt.signcolumn = "yes"
 
+-- a.k.a "Auto save"
+vim.opt.hidden = false
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+
 -- vim: ts=2 sts=2 sw=2 et
