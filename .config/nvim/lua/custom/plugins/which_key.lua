@@ -35,6 +35,7 @@ return { -- Useful plugin to show you pending keybinds.
       { "<leader>l", group = "Launch" },
       { "<leader><leader>t", group = "Toggle" },
       { "<leader><leader>s", group = "Show" },
+      { "<leader><leader>r", group = "Reload" },
       { "g", group = "Go To" },
     })
   end,
