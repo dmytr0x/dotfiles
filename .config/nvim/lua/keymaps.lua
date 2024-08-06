@@ -26,14 +26,6 @@ map("n", "[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
 map("n", "]d", vim.diagnostic.goto_next, "Go to next [D]iagnostic message")
 map("n", "<leader>e", vim.diagnostic.open_float, "Show Diagnostic M[e]ssages")
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-map("t", "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
-
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -115,8 +107,9 @@ map("n", "]q", "<cmd>cnext<enter>", "Next [Q]uickfix List")
 map("n", "[q", "<cmd>cprev<enter>", "Previous [Q]uickfix List")
 
 -- Moving through buffers
-map("n", "]b", ":bnext<enter>", "Next [B]uffer")
-map("n", "[b", ":bprev<enter>", "Previous [B]uffer")
+map("n", "]b", ":bnext<enter>", "Next [B]uffer (by order)")
+map("n", "[b", ":bprev<enter>", "Previous [B]uffer (by order)")
+map("n", "[o", ":b#<enter>", "Previous [O]pened buffer")
 
 -- Insert new line
 map("n", "[<space>", "O<esc>j", "Insert line above")
