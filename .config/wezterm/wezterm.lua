@@ -1,6 +1,5 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
--- local mux = wezterm.mux
 
 local hyperlink_rules = wezterm.default_hyperlink_rules()
 table.insert(
@@ -76,7 +75,7 @@ local config = {
   enable_scroll_bar = true,
   -- CTRL-SHIFT-K and CMD-K will trigger the ClearScrollback action and discard
   -- the contents of the scrollback buffer.
-  scrollback_lines = 3500,
+  scrollback_lines = 10000,
 
   -- hyperlinks
   hyperlink_rules = hyperlink_rules,
@@ -97,28 +96,49 @@ local config = {
   },
 
   keys = {
-    -- Pane
+    -- Common
     { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
-    { key = "s", mods = "LEADER", action = act.SplitHorizontal({}) },
-    { key = "v", mods = "LEADER", action = act.SplitVertical({}) },
-    { key = "r", mods = "LEADER", action = act.RotatePanes("Clockwise") },
-    { key = "R", mods = "LEADER", action = act.RotatePanes("CounterClockwise") },
-    { key = "S", mods = "LEADER", action = act.PaneSelect({ mode = "SwapWithActive" }) },
+    { key = "Q", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
 
-    -- Pane navigation
-    { key = "p", mods = "LEADER", action = act.PaneSelect },
-    { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-    { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
-    { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-    { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+    { key = "j", mods = "LEADER", action = act.SplitVertical({}) }, -- down
+    { key = "l", mods = "LEADER", action = act.SplitHorizontal({}) }, -- right
 
-    -- Tabs
+    { key = "n", mods = "LEADER", action = act.SpawnWindow },
     { key = "t", mods = "LEADER", action = act.SpawnTab("DefaultDomain") },
     { key = "T", mods = "LEADER", action = act.ShowTabNavigator },
-    { key = "Q", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
-    { key = "n", mods = "LEADER", action = act.SpawnWindow },
     { key = "H", mods = "LEADER", action = act.ActivateTabRelative(-1) },
     { key = "L", mods = "LEADER", action = act.ActivateTabRelative(1) },
+
+    { key = "g", mods = "LEADER", action = act.PaneSelect },
+    { key = "G", mods = "LEADER", action = act.PaneSelect({ mode = "SwapWithActive" }) },
+
+    -- Scrolling pane
+    {
+      key = "s",
+      mods = "LEADER",
+      action = act.ActivateKeyTable({ name = "scroll_pane", one_shot = false }),
+    },
+
+    -- Adjust pane size
+    {
+      key = "a",
+      mods = "LEADER",
+      action = act.ActivateKeyTable({ name = "adjust_pane_size", one_shot = false }),
+    },
+
+    -- Rotate panes
+    {
+      key = "r",
+      mods = "LEADER",
+      action = act.ActivateKeyTable({ name = "rotate_panes", one_shot = false }),
+    },
+
+    -- Pane actions
+    {
+      key = "p",
+      mods = "LEADER",
+      action = act.ActivateKeyTable({ name = "pane_actions", one_shot = true }),
+    },
 
     -- Workspaces
     {
@@ -141,6 +161,57 @@ local config = {
   },
 
   key_tables = {
+
+    pane_actions = {
+
+      { key = "h", action = act.ActivatePaneDirection("Left") },
+      { key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
+
+      { key = "l", action = act.ActivatePaneDirection("Right") },
+      { key = "RightArrow", action = act.ActivatePaneDirection("Right") },
+
+      { key = "k", action = act.ActivatePaneDirection("Up") },
+      { key = "UpArrow", action = act.ActivatePaneDirection("Up") },
+
+      { key = "j", action = act.ActivatePaneDirection("Down") },
+      { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
+    },
+
+    adjust_pane_size = {
+      { key = "LeftArrow", action = act.AdjustPaneSize({ "Left", 1 }) },
+      { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
+
+      { key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
+      { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
+
+      { key = "UpArrow", action = act.AdjustPaneSize({ "Up", 1 }) },
+      { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
+
+      { key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
+      { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
+
+      { key = "Escape", action = "PopKeyTable" },
+    },
+
+    scroll_pane = {
+      { key = "b", action = act.ScrollByPage(-1) }, -- backward page
+      { key = "f", action = act.ScrollByPage(1) }, -- forward page
+      { key = "u", action = act.ScrollByPage(-0.5) }, -- backward half of the page
+      { key = "d", action = act.ScrollByPage(0.5) }, -- forward half of the page
+
+      { key = "Escape", action = "PopKeyTable" },
+    },
+
+    rotate_panes = {
+
+      { key = "h", action = act.RotatePanes("Clockwise") },
+      { key = "LeftArrow", action = act.RotatePanes("Clockwise") },
+
+      { key = "l", action = act.RotatePanes("CounterClockwise") },
+      { key = "RightArrow", action = act.RotatePanes("CounterClockwise") },
+
+      { key = "Escape", action = "PopKeyTable" },
+    },
 
     events = {
       { key = "o", action = act.EmitEvent("toggle-opacity") },
@@ -194,8 +265,14 @@ wezterm.on("open-uri", function(window, pane, uri)
 end)
 
 wezterm.on("update-right-status", function(window, pane)
-  -- change the content that is displayed in the right side of tab bar
-  window:set_right_status(window:active_workspace())
+  local key_table = window:active_key_table()
+  local workspace = window:active_workspace()
+
+  local status = workspace
+  if key_table then
+    status = status .. ":" .. key_table
+  end
+  window:set_right_status(status)
 end)
 
 return config
