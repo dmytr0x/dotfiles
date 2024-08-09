@@ -1,6 +1,7 @@
 MacOS [38;5;220m ctrl+alt+cmd [0m - The Hyper key (caps)
 MacOS [38;5;220m shift+hyper+d [0m - Toggle Dock focus
 MacOS [38;5;220m alt+cmd+d [0m - Toggle Dock hiding
+MacOS [38;5;220m alt+cmd+m [0m - Toggle OS status menu
 MacOS [38;5;220m ctrl+up [0m - Mission control
 MacOS [38;5;220m ctrl+down [0m - Application windows
 MacOS [38;5;220m hyper+h [0m - Move left a space

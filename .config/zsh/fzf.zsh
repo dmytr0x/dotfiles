@@ -69,7 +69,8 @@ fzf-show-shortcuts() {
     --padding=1 \
     --header="Shortcuts" \
     --header-lines=0 \
-    --bind 'enter:become()'
+    --bind 'enter:become()' \
+    --bind 'ctrl-e:become(nvim ~/.config/zsh/shortcuts)'
 }
 
 # Favourite commands {
