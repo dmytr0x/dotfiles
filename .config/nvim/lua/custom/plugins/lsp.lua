@@ -141,23 +141,6 @@ return {
             end,
           })
         end
-
-        -- The following autocommand is used to enable inlay hints in your
-        -- code, if the language server you are using supports them
-        --
-        -- This may be unwanted, since they displace some of your code
-        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map("n", "<leader><leader>ti", function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, "[I]nlay Hints")
-        end
-
-        map("n", "<leader><leader>tv", function()
-          vim.g.diagnostic_virtual_text = not vim.g.diagnostic_virtual_text
-          vim.diagnostic.config({ virtual_text = vim.g.diagnostic_virtual_text })
-        end, "[V]irtual Text")
-
-        map("n", "<leader><leader>rl", "<cmd>LspRestart<enter>", "[L]sp")
       end,
     })
 

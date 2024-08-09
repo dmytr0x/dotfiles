@@ -16,10 +16,6 @@ return {
       -- Ensure these language parsers are installed
       ensure_installed = {
         "lua",
-        "luadoc",
-        "vim",
-        "vimdoc",
-        "query",
         "json",
         "yaml",
         "markdown",
@@ -48,6 +44,7 @@ return {
           node_decremental = "<BS>",
         },
       },
+
       -- nvim-treesitter-textobjects
       textobjects = {
         select = {

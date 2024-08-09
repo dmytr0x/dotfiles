@@ -26,6 +26,7 @@ return { -- Useful plugin to show you pending keybinds.
     })
 
     wk.add({
+      { "g", group = "Go To" },
       { "<leader>", group = "Main" },
       { "<leader>c", group = "Code" },
       { "<leader>t", group = "Toggle" },
@@ -33,10 +34,7 @@ return { -- Useful plugin to show you pending keybinds.
       { "<leader>d", group = "Debug" },
       { "<leader>s", group = "Search" },
       { "<leader>l", group = "Launch" },
-      { "<leader><leader>t", group = "Toggle" },
-      { "<leader><leader>s", group = "Show" },
-      { "<leader><leader>r", group = "Reload" },
-      { "g", group = "Go To" },
+      { "<leader><leader>", group = "Command Palette" },
     })
   end,
 }

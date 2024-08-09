@@ -14,12 +14,12 @@ vim.keymap.set("n", "<Esc>", function()
   vim.cmd("NoiceDismiss") -- Dismiss Noice message (plug-in)
 end)
 
--- Turn off in-line diagnostic messages
-vim.g.diagnostic_virtual_text = false
-vim.diagnostic.config({
-  virtual_text = vim.g.diagnostic_virtual_text,
-  float = { border = "single" },
-})
+-- -- Turn off in-line diagnostic messages
+-- vim.g.diagnostic_virtual_text = false
+-- vim.diagnostic.config({
+--   virtual_text = vim.g.diagnostic_virtual_text,
+--   float = { border = "single" },
+-- })
 
 -- Diagnostic key maps
 map("n", "[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
@@ -114,17 +114,5 @@ map("n", "[o", ":b#<enter>", "Previous [O]pened buffer")
 -- Insert new line
 map("n", "[<space>", "O<esc>j", "Insert line above")
 map("n", "]<space>", "o<esc>k", "Insert line below")
-
--- Which-key menus:
---
--- [Show]
-map("n", "<leader><leader>sh", vim.show_pos, "Treesitter: [H]ighlight")
-map("n", "<leader><leader>st", vim.treesitter.inspect_tree, "Treesitter: [T]ree")
---
--- [Toggle]
-map("n", "<leader><leader>tv", function()
-  vim.g.diagnostic_virtual_text = not vim.g.diagnostic_virtual_text
-  vim.diagnostic.config({ virtual_text = vim.g.diagnostic_virtual_text })
-end, "LSP: [V]irtual Text")
 
 -- vim: ts=2 sts=2 sw=2 et
