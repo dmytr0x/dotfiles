@@ -30,11 +30,15 @@ alias lg="lazygit"
 
 # Shortcuts
 alias tree="eza --tree"
-alias ls="eza --width=1"
+alias ls="eza --all --width=1"
 alias ll="ls --long --group --header --grid --git"
 alias llt="ls --tree --git-ignore"
 alias yy="yazi"
 alias -- +x="chmod +x"
+
+# Dev Tools
+alias pn="pnpm"
+alias pnd="pnpm dlx"
 
 # Terminal
 function get-term-colors() {
