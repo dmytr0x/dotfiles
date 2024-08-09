@@ -103,11 +103,20 @@ local config = {
     { key = "v", mods = "LEADER", action = act.ActivateCopyMode },
 
     -- Common
+    { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+    { key = "LeftArrow", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+    { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+    { key = "RightArrow", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+    { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+    { key = "UpArrow", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+    { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+    { key = "DownArrow", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+
     { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
     { key = "Q", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
 
-    { key = "j", mods = "LEADER", action = act.SplitVertical({}) }, -- down
-    { key = "l", mods = "LEADER", action = act.SplitHorizontal({}) }, -- right
+    { key = "s", mods = "LEADER", action = act.SplitHorizontal({}) }, -- right
+    { key = "S", mods = "LEADER", action = act.SplitVertical({}) }, -- down
 
     { key = "n", mods = "LEADER", action = act.SpawnWindow },
 
@@ -157,21 +166,7 @@ local config = {
   key_tables = {
 
     pane_actions = {
-
-      { key = "h", action = act.ActivatePaneDirection("Left") },
-      { key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
-
-      { key = "l", action = act.ActivatePaneDirection("Right") },
-      { key = "RightArrow", action = act.ActivatePaneDirection("Right") },
-
-      { key = "k", action = act.ActivatePaneDirection("Up") },
-      { key = "UpArrow", action = act.ActivatePaneDirection("Up") },
-
-      { key = "j", action = act.ActivatePaneDirection("Down") },
-      { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
-
       { key = "f", action = act.TogglePaneZoomState },
-
       {
         key = "g",
         action = act.PaneSelect({ alphabet = "1234567890", mode = "Activate", show_pane_ids = false }),
