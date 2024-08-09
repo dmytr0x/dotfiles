@@ -17,7 +17,7 @@ table.insert(
 -- config.window_background_opacity = default...
 local default_background_opacity = 0.85
 
-wezterm.on("toggle-opacity", function(window, pane)
+wezterm.on("opacity-toggle", function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if overrides.window_background_opacity == 1.0 then
     overrides.window_background_opacity = default_background_opacity
@@ -96,6 +96,12 @@ local config = {
   },
 
   keys = {
+    -- Functionality
+    -- INFO: In the Debug Overlay (default: CTRL + SHIFT + L) you can interactively with lua code.
+    --
+    { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
+    { key = "v", mods = "LEADER", action = act.ActivateCopyMode },
+
     -- Common
     { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
     { key = "Q", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
@@ -104,19 +110,19 @@ local config = {
     { key = "l", mods = "LEADER", action = act.SplitHorizontal({}) }, -- right
 
     { key = "n", mods = "LEADER", action = act.SpawnWindow },
+
     { key = "t", mods = "LEADER", action = act.SpawnTab("DefaultDomain") },
     { key = "T", mods = "LEADER", action = act.ShowTabNavigator },
     { key = "H", mods = "LEADER", action = act.ActivateTabRelative(-1) },
     { key = "L", mods = "LEADER", action = act.ActivateTabRelative(1) },
 
-    { key = "g", mods = "LEADER", action = act.PaneSelect },
-    { key = "G", mods = "LEADER", action = act.PaneSelect({ mode = "SwapWithActive" }) },
+    { key = "/", mods = "LEADER", action = act.Search({ CaseInSensitiveString = "hash" }) },
 
-    -- Scrolling pane
+    -- Pane actions
     {
-      key = "s",
+      key = "p",
       mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "scroll_pane", one_shot = false }),
+      action = act.ActivateKeyTable({ name = "pane_actions", timeout_milliseconds = 2000 }),
     },
 
     -- Adjust pane size
@@ -133,31 +139,19 @@ local config = {
       action = act.ActivateKeyTable({ name = "rotate_panes", one_shot = false }),
     },
 
-    -- Pane actions
-    {
-      key = "p",
-      mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "pane_actions", one_shot = true }),
-    },
-
     -- Workspaces
     {
       key = "w",
       mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "workspaces", timeout_milliseconds = 1000 }),
+      action = act.ActivateKeyTable({ name = "workspaces", timeout_milliseconds = 2000 }),
     },
 
     -- Custom events
     {
-      key = "e",
+      key = "Enter",
       mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "events", timeout_milliseconds = 1000 }),
+      action = act.ActivateKeyTable({ name = "events", timeout_milliseconds = 2000 }),
     },
-
-    -- Functionality
-    -- INFO: In the Debug Overlay (default: CTRL + SHIFT + L) you can interactively with lua code.
-    --
-    { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
   },
 
   key_tables = {
@@ -175,6 +169,17 @@ local config = {
 
       { key = "j", action = act.ActivatePaneDirection("Down") },
       { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
+
+      { key = "f", action = act.TogglePaneZoomState },
+
+      {
+        key = "g",
+        action = act.PaneSelect({ alphabet = "1234567890", mode = "Activate", show_pane_ids = false }),
+      },
+      {
+        key = "s",
+        action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActive", show_pane_ids = false }),
+      },
     },
 
     adjust_pane_size = {
@@ -193,15 +198,6 @@ local config = {
       { key = "Escape", action = "PopKeyTable" },
     },
 
-    scroll_pane = {
-      { key = "b", action = act.ScrollByPage(-1) }, -- backward page
-      { key = "f", action = act.ScrollByPage(1) }, -- forward page
-      { key = "u", action = act.ScrollByPage(-0.5) }, -- backward half of the page
-      { key = "d", action = act.ScrollByPage(0.5) }, -- forward half of the page
-
-      { key = "Escape", action = "PopKeyTable" },
-    },
-
     rotate_panes = {
 
       { key = "h", action = act.RotatePanes("Clockwise") },
@@ -214,7 +210,7 @@ local config = {
     },
 
     events = {
-      { key = "o", action = act.EmitEvent("toggle-opacity") },
+      { key = "o", action = act.EmitEvent("opacity-toggle") },
     },
 
     workspaces = {
