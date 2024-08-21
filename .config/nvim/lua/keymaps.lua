@@ -1,10 +1,23 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- INFO:
--- How to remove keybind:
---   vim.keymap.set("n", key, "<nop>")
+-- TIPS:
+--
+--  ** How to remove keybind:
+-- vim.keymap.set("n", key, "<nop>")
+--
+--  ** How to close all windows except the current one
+--  :on[ly]
+--
 
+-- DEFAULT KEY MAPS:
+--
+--  ** Resize windows
+-- ctrl + w |     - Expand window vertically
+-- ctrl + w _     - Expand window horizontally - press Ctrl + w and then press "_"
+-- ctrl + w =     - This will resize all the windows and make them equal.
+
+--
 local map = require("core.keymap").map
 
 -- Set highlight on search
@@ -94,7 +107,7 @@ map("n", "<Space>q", "<cmd>q<enter>", "[Q]uit window")
 map("n", "<Space>Q", "<cmd>bdelete<enter>", "[Q]uit buffer")
 map("n", "<Space>w", "<cmd>w<enter>", "[W]rite")
 map("n", "<c-c>", "<cmd>q!<enter>", "[Q]uit force")
-map("x", "<Space>'", '"_', "Activate wormhole register")
+map({ "n", "x" }, "<Space>'", '"_', "Activate wormhole register")
 -- Easy way to record and replay macro
 map("n", "Q", "qj")
 map("x", "Q", ":norm @j<CR>")
