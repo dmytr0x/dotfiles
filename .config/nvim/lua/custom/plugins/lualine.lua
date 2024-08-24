@@ -2,6 +2,38 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
+    local function show_macro_recording()
+      local recording_register = vim.fn.reg_recording()
+      if recording_register == "" then
+        return ""
+      else
+        return "REC @" .. recording_register
+      end
+    end
+
+    vim.api.nvim_create_autocmd("RecordingEnter", {
+      callback = function()
+        require("lualine").refresh({
+          place = { "statusline" },
+        })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("RecordingLeave", {
+      callback = function()
+        local timer = vim.loop.new_timer()
+        timer:start(
+          50,
+          0,
+          vim.schedule_wrap(function()
+            require("lualine").refresh({
+              place = { "statusline" },
+            })
+          end)
+        )
+      end,
+    })
+
     require("lualine").setup({
       options = {
         icons_enabled = false,
@@ -23,11 +55,16 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_b = {
+          "branch",
+          "diff",
+          "diagnostics",
+        },
         lualine_c = {
           { "filename", path = 1, shorting_target = 40 },
         },
         lualine_x = {
+          { show_macro_recording },
           "encoding",
           "fileformat",
           { "filetype", color = { fg = "#eba0ac" } },
