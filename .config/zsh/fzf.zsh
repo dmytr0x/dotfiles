@@ -62,7 +62,7 @@ export FZF_COMPLETION_OPTS=$FZF_DEFAULT_OPTS
 fzf-show-shortcuts() {
   cat ~/.config/zsh/shortcuts | \
     fzf \
-    --prompt 'Phrase> ' \
+    --prompt "Phrase> " \
     --ansi \
     --no-preview \
     --layout=reverse \
@@ -72,15 +72,15 @@ fzf-show-shortcuts() {
     --padding=1 \
     --header="Shortcuts" \
     --header-lines=0 \
-    --bind 'enter:become()' \
-    --bind 'ctrl-e:become(nvim ~/.config/zsh/shortcuts)'
+    --bind "enter:become()" \
+    --bind "ctrl-e:become(nvim ~/.config/zsh/shortcuts)"
 }
 
 # Favourite commands {
 fzf-favourites() {
   print -z $(
     cat ~/.config/zsh/favourites | fzf \
-      --prompt 'Command> ' \
+      --prompt "Command> " \
       --ansi \
       --no-preview \
       --layout=reverse \
