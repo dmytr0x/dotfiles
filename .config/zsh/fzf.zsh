@@ -1,33 +1,36 @@
 # theme colours
+
+# Catppuccin Mocha
 FZF_COLORS="\
-bg+:-1,\
-bg:-1,\
-border:#6b6b6b,\
-spinner:#98bc99,\
-hl:#719872,\
-fg:#d9d9d9,\
-header:italic:#719872,\
-info:#bdbb72,\
-pointer:#e12672,\
-marker:#e17899,\
-fg+:#d9d9d9,\
+bg+:#313244,\
+bg+:#1e1e2e,\
 preview-bg:-1,\
-prompt:#98bede,\
-hl+:#98bc99\
+selected-bg:#45475a,\
+border:#6b6b6b,\
+spinner:#f5e0dc,\
+hl:#f38ba8,\
+fg:#cdd6f4,\
+header:#f38ba8,\
+info:#cba6f7,\
+pointer:#f5e0dc,\
+marker:#b4befe,\
+fg+:#cdd6f4,\
+prompt:#cba6f7,\
+hl+:#f38ba8\
 "
 
 export FZF_SKIP=".git,.npm,node_modules"
 export FZF_DEFAULT_OPTS="
-  --height=90%
-  --layout=reverse
-  --info=inline
-  --margin=0
-  --padding=0
-  --walker-skip=$FZF_SKIP
-  --preview-window=down:50%
-  --preview='$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'
-  --bind 'ctrl-/:change-preview-window(right:50%|hidden|down:50%)'
-  --color='$FZF_COLORS'
+ --height=90%
+ --layout=reverse
+ --info=inline
+ --margin=0
+ --padding=0
+ --walker-skip=$FZF_SKIP
+ --preview-window=down:50%
+ --preview='$HOME/.setup/scripts/zsh/fzf-preview.zsh {}'
+ --bind 'ctrl-/:change-preview-window(right:50%|hidden|down:50%)' 
+ --color='$FZF_COLORS'
 "
 
 # CTRL-T: Paste the selected files onto the command-line.
