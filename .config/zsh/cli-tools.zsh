@@ -1,8 +1,3 @@
-# --- bat: https://github.com/sharkdp/bat
-export BAT_STYLE="changes"
-# highlighting theme: https://github.com/sharkdp/bat?tab=readme-ov-file#adding-new-themes
-export BAT_THEME="Visual Studio Dark+"
-
 # --- ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 alias hrg="rg --hyperlink-format='file://{path}:{line}:{column}'"
