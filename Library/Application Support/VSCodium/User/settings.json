@@ -243,6 +243,7 @@
     "editor.guides.highlightActiveIndentation": true,
     "editor.lineNumbers": "off",
     "editor.renderLineHighlight": "none",
+    "editor.semanticHighlighting.enabled": true,
     "editor.renderWhitespace": "selection",
     "editor.wordWrap": "off",
     "editor.matchBrackets": "never",
@@ -329,6 +330,7 @@
     "terminal.integrated.cursorWidth": 2,
     "terminal.integrated.defaultProfile.osx": "zsh",
     "terminal.integrated.hideOnStartup": "whenEmpty",
+    "terminal.integrated.minimumContrastRatio": 1,
     // problems
     "problems.decorations.enabled": false,
     // screencast mode
@@ -419,10 +421,13 @@
     // look & feel
     "window.commandCenter": false,
     "window.autoDetectColorScheme": true,
-    "workbench.preferredDarkColorTheme": "Default Dark Modern",
-    "workbench.preferredLightColorTheme": "Default Light Modern",
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
     //
     // "window.title": "${remoteName}${separator}${rootNameShort}${separator} ${activeFolderMedium}",
     "window.title": " ",
-    "window.zoomLevel": 0.5
+    "window.zoomLevel": 0.5,
+    "workbench.editorAssociations": {
+        "*.html": "default"
+    }
 }
