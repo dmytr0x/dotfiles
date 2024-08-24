@@ -1,0 +1,6 @@
+fzf-show-shortcuts
+codium --list-extensions --show-versions
+codium --install-extension 
+codium --uninstall-extension 
+codium --update-extensions
+
