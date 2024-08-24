@@ -55,4 +55,4 @@ source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/options.zsh
 source ~/.config/zsh/prompt.zsh
 source ~/.config/zsh/cli-tools.zsh
-
+source ~/.config/zsh/completions.zsh
