@@ -1,6 +1,6 @@
-# theme colours
-
 # Catppuccin Mocha
+# Source: https://github.com/catppuccin/fzf
+#
 FZF_COLORS="\
 bg+:#313244,\
 bg+:#1e1e2e,\
