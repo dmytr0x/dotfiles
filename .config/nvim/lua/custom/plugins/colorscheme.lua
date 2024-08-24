@@ -1,29 +1,57 @@
 return {
   {
-    "tomasiser/vim-code-dark",
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
     config = function()
-      vim.g.codedark_transparent = 1
-      vim.cmd.colorscheme("codedark")
-
-      -- diff Added line
-      vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#383E2B" })
-      -- diff Deleted line
-      vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#4E211E" })
-      -- diff Changed line
-      -- vim.api.nvim_set_hl(0, "DiffChange", { bg = "#00ff00" })
-      -- diff Changed text within a changed line
-      -- vim.api.nvim_set_hl(0, "Difftext", { bg = "#00ff00", fg = "#00ff00" })
-
-      -- GitSigns plugin
-      vim.api.nvim_set_hl(0, "GitSignsAddInline", { bg = "#4C5C2D" })
-      vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = "#72201D" })
-      -- vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = "#00ff00" })
-      -- vim.api.nvim_set_hl(0, "Difftext", { bg = "#00ff00", fg = "#00ff00" })
-
-      -- Make PopUp transparent
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+      require("catppuccin").setup({
+        -- flavour = "auto", -- latte, frappe, macchiato, mocha
+        -- background = { -- :h background
+        --   light = "latte",
+        --   dark = "mocha",
+        -- },
+        transparent_background = true, -- disables setting the background color.
+        -- show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+        -- term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+        -- dim_inactive = {
+        --   enabled = false, -- dims the background color of inactive window
+        --   shade = "dark",
+        --   percentage = 0.15, -- percentage of the shade to apply to the inactive window
+        -- },
+        -- no_italic = false, -- Force no italic
+        -- no_bold = false, -- Force no bold
+        -- no_underline = false, -- Force no underline
+        -- styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        --   comments = { "italic" }, -- Change the style of comments
+        --   conditionals = { "italic" },
+        --   loops = {},
+        --   functions = {},
+        --   keywords = {},
+        --   strings = {},
+        --   variables = {},
+        --   numbers = {},
+        --   booleans = {},
+        --   properties = {},
+        --   types = {},
+        --   operators = {},
+        --   -- miscs = {}, -- Uncomment to turn off hard-coded styles
+        -- },
+        -- color_overrides = {},
+        -- custom_highlights = {},
+        -- default_integrations = true,
+        -- integrations = {
+        --   cmp = true,
+        --   gitsigns = true,
+        --   nvimtree = true,
+        --   treesitter = true,
+        --   notify = false,
+        --   mini = {
+        --     enabled = true,
+        --     indentscope_color = "",
+        --   },
+        --   -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        -- },
+      })
     end,
   },
-  -- { "folke/tokyonight.nvim" },
 }
