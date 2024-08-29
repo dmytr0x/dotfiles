@@ -1,0 +1,11 @@
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[flavor]
+use = "catppuccin-mocha"
+
+
+[icon]
+files = []
+exts = []
+dirs = []
+

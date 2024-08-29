@@ -1,0 +1,6 @@
+## Dependences
+
+```sh
+curl
+jq
+```

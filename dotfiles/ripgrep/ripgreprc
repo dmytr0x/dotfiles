@@ -1,0 +1,12 @@
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=100
+--max-columns-preview
+
+# excludes:
+--glob=!.git/*
+--glob=!.venv/*
+
+
+# Don't group matches by each file
+--no-heading
+

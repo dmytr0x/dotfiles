@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]; then
+  echo "Error: At least two parameters are required."
+  echo ""
+  echo "Usage examples:"
+  echo "$0 create py"
+  echo "$0 remove py"
+  echo "$0 install-extension workspace-name extension-id"
+  echo "$0 install-extension workspace-name extension-id@1.2.3"
+  echo "$0 update-extention workspace-name extension-id"
+  echo "$0 update-extention workspace-name extension-id@1.2.4"
+  echo "$0 update-extensions workspace-name"
+  echo "$0 uninstall-extention workspace-name extension-id"
+
+  exit 1
+fi
+
+COMMAND=$1
+WORKSPACE=$2
+
+EXEC="vscode --user-data-dir=\$HOME/.config/vscode/workspaces/$WORKSPACE/user --extensions-dir=\$HOME/.config/vscode/workspaces/$WORKSPACE/extensions"
+
+case "$COMMAND" in
+
+create)
+  echo "Creating workspace $WORKSPACE ..."
+
+  mkdir -p ./workspaces/$WORKSPACE/user/User
+  mkdir -p ./workspaces/$WORKSPACE/extensions
+
+  ln -s $DOTFILES/dotfiles/vscode/core/settings.json $HOME/.config/vscode/workspaces/$WORKSPACE/user/User/settings.json
+  ln -s $DOTFILES/dotfiles/vscode/core/keybindings.json $HOME/.config/vscode/workspaces/$WORKSPACE/user/User/keybindings.json
+
+  echo "⚠️ Add line to your .zshrc
+alias code$WORKSPACE=\"$EXEC\"
+"
+  ;;
+
+remove)
+  echo "Removing workspace $WORKSPACE ..."
+  rm -rf ./workspaces/$WORKSPACE
+  ;;
+
+install-extension | update-extension | uninstall-extension)
+  EXTENSION=$3
+  if [ -z "$EXTENSION" ]; then
+    echo "Provide an extension ID"
+    exit 1
+  fi
+
+  case $COMMAND in
+  install-extension)
+    CMD="$EXEC --install-extension $EXTENSION"
+    eval $CMD
+    ;;
+  update-extension)
+    # same as install
+    CMD="$EXEC --install-extension $EXTENSION"
+    eval $CMD
+    ;;
+  uninstall-extension)
+    CMD="$EXEC --uninstall-extension $EXTENSION"
+    eval $CMD
+    ;;
+  esac
+  ;;
+
+update-extensions)
+  CMD="$EXEC --update-extensions"
+  eval $CMD
+  ;;
+
+list-extensions)
+  CMD="$EXEC --list-extensions --show-versions"
+  eval $CMD
+  ;;
+
+*)
+  echo "Unknown command"
+  exit 1
+  ;;
+esac

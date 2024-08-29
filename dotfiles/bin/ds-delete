@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Delete all `.DS_Store` files in the current directory and its subdirectories.
+#
+# - Clean up from `.DS_Store`:
+#
+# `ds-delete`
+#
+# ---
+# Author: Nick Plekhanov, https://nikkhan.com/
+# License: MIT
+# https://github.com/nicksp/dotfiles
+
+set -e
+set -u
+set -o pipefail
+
+find . -name .DS_Store -delete

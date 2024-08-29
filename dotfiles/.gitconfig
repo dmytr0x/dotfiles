@@ -1,0 +1,91 @@
+[user]
+  name = Dmytro Nakonechnyi
+  email = dmytr0x@icloud.com
+
+[core]
+  editor = hx
+  pager = delta
+  excludesfile = ~/.gitignore_global
+
+[interactive]
+  diffFilter = delta --color-only
+
+[fetch]
+  prune = true
+
+[status]
+  short = true
+
+[pager]
+  ; https://github.com/dandavison/delta
+  difftool = true
+
+[diff]
+  ; https://github.com/git/git/blob/master/Documentation/config/diff.txt
+  algorithm = minimal
+  compactionHeuristic = true
+
+[difftool]
+  colorMoved = default
+
+[merge]
+  conflictstyle = diff3
+
+[delta]
+  syntax-theme = "Visual Studio Dark+"
+  whitespace-error-style = 22 reverse
+  features = unobtrusive-line-numbers decorations
+  navigate = true    # use n and N to move between diff sections
+  side-by-side = false
+
+[delta "unobtrusive-line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = "#444444"
+    line-numbers-zero-style = "#444444"
+    line-numbers-plus-style = "#444444"
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = blue
+    line-numbers-right-style = blue
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+  hunk-header-decoration-style = yellow box
+
+[alias]
+  ; credits: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
+  ;
+  branch-name = !git rev-parse --abbrev-ref HEAD
+
+  st = status
+  cm = commit
+  ch = checkout
+  br = branch
+  df = diff
+  dft = difftool
+  mt = mergetool
+  sw = switch
+
+  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  hist = ll --graph --decorate
+  lls = ll --numstat
+  llg = ll -E -i --grep
+
+  bch = !git branch | fzf | xargs git checkout
+  bll = !git ll master..$(git branch-name)
+  bdf = !git diff master $(git branch-name)
+  bp = !git push origin $(git branch-name)
+  bpf = !git push --force-with-lease origin $(git branch-name)
+
+  undo = !git reset --hard HEAD^
+  uncommit = !git reset --mixed HEAD^
+  unstage = !git reset
+
+  # Commits everything in my working directory and then does a hard reset to remove that commit.
+  # You can reach that commit later in 'git reflog'
+  wipe = !git add -A && git commit --no-verify -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+[init]
+	defaultBranch = main

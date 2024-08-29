@@ -1,0 +1,91 @@
+theme = "dmytr0x"
+
+[editor]
+mouse = true
+shell = ["zsh", "-c"]
+line-number = "relative"
+bufferline = "always"
+cursorline = true
+auto-pairs = false
+
+[editor.indent-guides]
+render = false
+character = "┊"
+skip-levels = 1
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.whitespace.render]
+space = "none"
+tab = "none"
+newline = "none"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "version-control", "spinner"]
+center = ["read-only-indicator", "file-name", "file-modification-indicator"]
+right = ["diagnostics", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
+separator = "╎"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.gutters.line-numbers]
+min-width = 3
+
+[editor.lsp]
+display-inlay-hints = false
+
+# Keys mapping:
+#   https://docs.helix-editor.com/keymap.html
+#   https://github.com/helix-editor/helix/blob/master/helix-term/src/commands.rs
+
+# space-k = show the docs
+#   C-d -> scroll down
+#   C-u -> scroll up
+# space-? = command palette
+#   C-t -> toggle right window 
+# normal mode:
+#   ]Space - new line below
+#   [Space - new line above
+
+[keys.normal]
+H = ":buffer-previous"
+L = ":buffer-next"
+"{" = ["goto_prev_paragraph", "collapse_selection"]
+"}" = ["goto_next_paragraph", "collapse_selection"]
+i = ["insert_mode", "collapse_selection"]
+a = ["append_mode", "collapse_selection"]
+# move the current line up/down
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+# select current word and search it back-and-forth (n | N)
+D = ["move_prev_word_start", "move_next_word_start", "trim_selections", "search_selection"]
+
+[keys.normal.g]
+# go to the definition in a split
+C-l = ["vsplit", "jump_view_up", "goto_definition"]
+C-j = ["hsplit", "jump_view_down", "goto_definition"]
+
+[keys.normal.space]
+q = ":quit"
+C-f = "file_picker_in_current_buffer_directory"
+# Think about :pipe
+# l = """:pipe python3 -c "print('Hello')""""
+
+[keys.normal.space.space]
+r = ":config-reload"
+# Close windows except current
+w = "wonly"
+b = ":buffer-close-others"
+a = ":toggle-option lsp.display-inlay-hints"
+i = ":toggle-option indent-guides.render"
+s = ":toggle-option soft-wrap.enable"
+# waiting for new version!
+# x = ":toggle whitespace.render all none"
+

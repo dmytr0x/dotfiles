@@ -1,0 +1,310 @@
+// Place your key bindings in this file to override the defaults
+[
+    // Suggestions:
+    //  ctrl+i  - trigger suggest
+    //  shift+cmd+space - show the parameters hint
+    //  cmd+k i - show the information
+    //
+    // Copilot
+    //    alt+\ - trigger inline suggest
+    //    cmd+right - accept next word of inline suggestion
+    //    tab - acceptn the entire suggestion
+    //    alt+] - next inline suggest
+    //    alt+[ - previous inline suggest
+    //    ctrl+enter - generate copilot suggestions
+    //
+    {
+        "key": "alt+\\",
+        "command": "editor.action.inlineSuggest.trigger"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "-editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "focusSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "-focusSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "toggleSuggestionDetails",
+        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "-toggleSuggestionDetails",
+        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "workbench.action.terminal.requestCompletions",
+        "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && terminalShellIntegrationEnabled"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "-workbench.action.terminal.requestCompletions",
+        "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && terminalShellIntegrationEnabled"
+    }  
+    //
+    // code inspection:
+    //  alt+f12 - peek definition (show code in lens)
+    //  cmd+k cmd+i - show hover (tooltip with signature)
+    //  shift+cmd+space - trigger parameter hints
+    //
+    // editing:
+    //  ctrl+k - delete all right
+    //  cmd+backspace - delete all left
+    //  fn+alf+backspace - delete word right
+    //  alt+backspace - delete word left
+    //
+    // breadcrumbs:
+    //  cmd+shift+. - toggle on breadcrumbs
+    //  cmd+shift+; - focus on breadcrumbs
+    //
+    // editor symbols:
+    //  F7 - go to next symbol highlight
+    //  shift+F7 - go to previous symbol highlight
+    //
+    // selection:
+    //  cmd+l - expand line selection
+    //  shift+ctrl+right - expand selection
+    //  shift+ctrl+left - shrink selection
+    //  shift+alt+cmd+\ - select to bracket
+    //  cmd+k cmd+b - start anchor selection
+    //  cmd+k cmd+k - end anchor selection
+    //  cmd+k cmd+d - move last selection to next match find
+    //  cmd+k shift+cmd+d - move last selection to previous match find
+    {
+        "key": "cmd+k shift+cmd+d",
+        "command": "editor.action.moveSelectionToPreviousFindMatch"
+    },
+    {
+        "key": "shift+alt+cmd+\\",
+        "command": "editor.action.selectToBracket"
+    },
+    // deletions
+    //  shift+cmd+k - delete line
+    //  ctrl+cmd+k - delete word
+    {
+        "key": "ctrl+cmd+k",
+        "command": "deleteInsideWord"
+    },
+    //
+    // usability
+    // - show all commands
+    {
+        "key": "shift shift",
+        "command": "workbench.action.showCommands"
+    },
+    // - show all views
+    {
+        "key": "alt alt",
+        "command": "workbench.action.openView"
+    },
+    //
+    // look & feel:
+    {
+        "key": "cmd+k cmd+f12",
+        "command": "workbench.action.toggleLightDarkThemes"
+    },
+    {
+        "key": "shift+cmd+b",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+        "key": "alt+cmd+b",
+        "command": "workbench.action.toggleAuxiliaryBar"
+    },
+    {
+        "key": "ctrl+alt+cmd+b",
+        "command": "workbench.action.toggleStatusbarVisibility"
+    },
+    //
+    // search
+    // - in activity bar
+    //  shift+cmd+f
+    // - in new editor
+    {
+        "key": "shift+alt+f",
+        "command": "search.action.openNewEditorFromView"
+    },
+    //
+    // pick between opened files, with the ability to enter a file name
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.showEditorsInActiveGroup",
+        "when": "!activeEditorGroupEmpty"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "when": "!activeEditorGroupEmpty"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+    },
+    //
+    // editor groups
+    //  cmd+k cmd+m - toggle maximize editor group
+    //
+    // - activate last editor group (e.g. from search or any input without triggering an action)
+    {
+        "key": "cmd+0",
+        "command": "-workbench.action.focusSideBar"
+    },
+    {
+        "key": "cmd+0",
+        "command": "workbench.action.focusLastEditorGroup"
+    },
+    //
+    //  - minimize other editors size
+    {
+        "key": "alt+enter",
+        "command": "workbench.action.minimizeOtherEditors",
+        "when": "editorTextFocus"
+    },
+    //
+    //  - reset editor groups size
+    {
+        "key": "shift+alt+enter",
+        "command": "workbench.action.evenEditorWidths"
+    },
+    //
+    // move editors between groups:
+    {
+        "key": "cmd+k shift+cmd+up",
+        "command": "workbench.action.moveEditorToAboveGroup"
+    },
+    {
+        "key": "cmd+k shift+cmd+down",
+        "command": "workbench.action.moveEditorToBelowGroup"
+    },
+    {
+        "key": "cmd+k shift+cmd+right",
+        "command": "workbench.action.moveEditorToRightGroup"
+    },
+    {
+        "key": "cmd+k shift+cmd+left",
+        "command": "workbench.action.moveEditorToLeftGroup"
+    },
+    // edit current file in helix editor
+    {
+        "key": "ctrl+alt+cmd+h",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                {
+                    "command": "workbench.action.terminal.new"
+                },
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        "text": "hx --working-dir '${workspaceFolder}' '${file}:${lineNumber}'\u000D"
+                    }
+                },
+                {
+                    "command": "workbench.action.terminal.moveToEditor"
+                }
+            ]
+        }
+    },
+    //
+    //  source: https://code.visualstudio.com/api/references/commands
+    {
+        "key": "ctrl+z ctrl+t",
+        "command": "cursorMove",
+        "args": {
+            "to": "viewPortTop"
+        }
+    },
+    {
+        "key": "ctrl+z ctrl+z",
+        "command": "cursorMove",
+        "args": {
+            "to": "viewPortCenter"
+        }
+    },
+    {
+        "key": "ctrl+z ctrl+b",
+        "command": "cursorMove",
+        "args": {
+            "to": "viewPortBottom"
+        }
+    },
+    //
+    // git:
+    //  alt+f3 - show next change
+    //  alt+f5 - go to next change
+    //  open changes
+    {
+        "key": "cmd+k c",
+        "command": "git.openChange",
+        "when": "editorTextFocus"
+    },
+    //
+    // gitlens:
+    //  because is settings: "gitlens.keymap": "none"
+    {
+        "key": "cmd+k b",
+        "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/",
+        "command": "gitlens.toggleFileBlame"
+    },
+    //
+    // diff editor:
+    {
+        "key": "f4",
+        "when": "isInDiffEditor",
+        "command": "git.openFile"
+    },
+    //
+    // diff changes:
+    //  cmd+k cmd+s - stage active changes
+    //  cmd+k cmd+u - unstage active changes
+    //  cmd+k cmd+r - revert active changes
+    {
+        "key": "cmd+k cmd+s",
+        "command": "git.stageSelectedRanges",
+        "when": "isInDiffEditor && !editorReadonly && editorHasSelection"
+    },
+    {
+        "key": "cmd+k cmd+u",
+        "command": "git.unstageSelectedRanges",
+        "when": "isInDiffEditor && editorReadonly && editorHasSelection"
+    },
+    //
+    // explorer:
+    {
+        "key": "ctrl+n",
+        "command": "explorer.newFile",
+        "when": "explorerViewletFocus"
+    },
+    {
+        "key": "ctrl+alt+n",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletFocus"
+    },
+    {
+        "key": "cmd+k ctrl+e",
+        "command": "workbench.files.action.showActiveFileInExplorer",
+    },
+    //
+]

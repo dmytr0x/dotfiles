@@ -1,0 +1,24 @@
+MacOS [38;5;220m ctrl+alt+cmd [0m - The Hyper key (caps)
+MacOS [38;5;220m shift+hyper+d [0m - Toggle Dock focus
+MacOS [38;5;220m alt+cmd+d [0m - Toggle Dock hiding
+MacOS [38;5;220m alt+cmd+m [0m - Toggle OS status menu
+MacOS [38;5;220m ctrl+up [0m - Mission control
+MacOS [38;5;220m ctrl+down [0m - Application windows
+MacOS [38;5;220m hyper+h [0m - Move left a space
+MacOS [38;5;220m hyper+l [0m - Move right a space
+MacOS [38;5;220m F11 [0m - Show Desktop
+Amethyst [38;5;220m shift+alt+space [0m - Next layout
+Amethyst [38;5;220m shift+alt+h [0m - Shrink the main pane
+Amethyst [38;5;220m shift+alt+l [0m - Expand the main pane
+Amethyst [38;5;220m shift+alt+i [0m - Display the current layout name
+Amethyst [38;5;220m hyper+j [0m - Move focus to the previous window
+Amethyst [38;5;220m hyper+k [0m - Move focus to the next window
+Amethyst [38;5;220m hyper+m [0m - Focus the main window
+Amethyst [38;5;220m shift+alt+enter [0m - Swap focused window with the main window
+Amethyst [38;5;220m hyper+a [0m - Select full screen layout
+Amethyst [38;5;220m hyper+s [0m - Select two-pane layout
+Amethyst [38;5;220m hyper+d [0m - Select wide layout
+Amethyst [38;5;220m hyper+f [0m - Toggle floating state of the focused window
+Amethyst [38;5;220m hyper+t [0m - Toggle tiling
+Amethyst [38;5;220m hyper+z [0m - Re-evaluate windows
+

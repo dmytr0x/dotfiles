@@ -1,0 +1,82 @@
+# Bash
+[[language]]
+name = "bash"
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = 'shfmt', args = ["-i", "2", "-bn", "-ci"] }
+auto-format = true
+
+# Yaml
+[[language]]
+name = "yaml"
+file-types = ["yaml", "yml"]
+language-servers = ["yaml-language-server"]
+formatter = { command = "yamlfmt", args = ["-"] }
+auto-format = true
+
+[language-server.yaml-language-server.yaml]
+format = { enable = true }
+validation = true
+
+# Json
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+
+# Css
+[[language]]
+name = 'css'
+language-servers = ['vscode-css-language-server' ]
+
+# Html
+[[language]]
+name = 'html'
+language-servers = ['vscode-html-language-server' ]
+
+# Toml
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+# Lua
+[[language]]
+name = "lua"
+auto-format = true
+
+# Python
+[[language]]
+name = "python"
+auto-format = true
+language-servers = [{ name = "pyright" }, { name = "ruff" }]
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config.python.analysis.typeCheckingMode = "standard"
+
+[language-server.ruff]
+command = "ruff-lsp"
+
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
+
+# Rust
+[[language]]
+name = "rust"
+auto-format = true
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config.check]
+check = { command = "clippy", features = "all" }
+diagnostics = { experimental = { enable = true } }
+hover = { actions = { enable = true } }
+typing = { autoClosingAngleBrackets = { enable = true } }
+cargo = { allFeatures = true }
+procMacro = { enable = true }
+
+# Go
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }

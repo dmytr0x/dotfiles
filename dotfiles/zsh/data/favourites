@@ -1,0 +1,90 @@
+# Useful shortcuts
+fzf-show-shortcuts
+
+# Show all vscodium installed extensions with versions
+codium --list-extensions --show-versions
+
+# Install vscodium extentions
+codium --install-extension {}
+
+# Uninstall vscodium extentions
+codium --uninstall-extension {}
+
+# Update all vscodium extensions
+codium --update-extensions
+
+# Show the bat's config file
+bat --config-file
+
+# Show the bat's themes
+bat --list-themes
+
+# Initialize or update bat's cache
+bat cache --build
+
+# Clear yazi's cache
+yazi --clear-cache
+
+# Show the size of directories in current path
+find . -type d -maxdepth 1 -exec du -sh {} \;
+
+# Show the homebrew outdated packages and casks
+brew update > /dev/null; brew outdated; brew outdated --cask --greedy
+
+# Upgrade all homebrew packages and casks
+brew upgrade; brew upgrade --cask --greedy
+
+# Show as a tree of all installed dependencies
+brew deps --tree --installed
+
+# Show as a tree of installed package
+brew deps --tree --installed {package}
+
+# Enable autoload of existing service "com.kanata.daemon" 
+sudo launchctl enable system/com.kanata.daemon
+
+#
+sudo launchctl kickstart system/com.kanata.daemon
+
+#
+sudo launchctl print system/com.kanata.daemon
+
+# Show the list of all services
+sudo launchctl list
+
+# Clear the DNS cache
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+
+# Check domain DNS records using particular DNS-Server
+nslookup {domain} {dns-server}
+
+# Scan specific port for particular IP address
+nmap -p {port} {ip}
+
+# Generate a Brewfile by listing currently installed packages:
+brew bundle dump --describe --direct --topological --file=Brewfile
+
+# Install all the packages listed in a Brewfile
+brew bundle --file=Brewfile
+
+# Clean up by removing packages not listed in the Brewfile:
+brew bundle cleanup --file=Brewfile
+
+# Create a symlink which points to the homebrew package
+brew link --overwrite {package} 
+
+# Show default key bindings
+wezterm show-keys --lua
+
+# Reset all allows in the background (OS System Settings)
+sudo sfltool resetbtm
+
+# Check the OS updates
+softwareupdate --list --all
+
+# Install the OS updates
+softwareupdate --all --install
+
+# Reinstall xcode
+sudo rm -rf $(xcode-select -p); sudo xcode-select --install 
+
