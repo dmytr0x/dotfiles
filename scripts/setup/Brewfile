@@ -74,8 +74,8 @@ brew "ruff-lsp"
 brew "rust-analyzer"
 # Cross-shell prompt for astronauts
 brew "starship"
-  # Command-line unarchiving tools supporting multiple formats
-  brew "unar"
+# Command-line unarchiving tools supporting multiple formats
+brew "unar"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Executes a program periodically, showing output fullscreen
@@ -95,20 +95,20 @@ brew "zsh"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
 # Autoformat shell script source code
-brew install shfmt
+brew "shfmt"
 # Extensible command-line tool to format YAML files
-brew install yamlfmt
+brew "yamlfmt"
 # Language Server for Yaml Files
-brew install yaml-language-server
+brew "yaml-language-server"
 # TOML toolkit written in Rust
-brew install taplo
+brew "taplo"
 # Language Server for the Lua language
-brew install lua-language-server
+brew "lua-language-server"
 
-# Enable Windows-like alt-tab
-cask "alt-tab"
-# Automatic tiling window manager similar to xmonad
-cask "amethyst"
+## Enable Windows-like alt-tab
+#cask "alt-tab"
+## Automatic tiling window manager similar to xmonad
+#cask "amethyst"
 # Application uninstaller
 cask "appcleaner"
 # Chromium based browser
