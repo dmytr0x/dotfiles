@@ -1,6 +1,5 @@
 ## Dependences
 
 ```sh
-curl
-jq
+pnpm install --global vscode-langservers-extracted
 ```

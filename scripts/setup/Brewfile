@@ -44,14 +44,14 @@ brew "imagemagick"
 brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
-# Powerful, lightweight programming language
-brew "lua"
-# Just-In-Time Compiler (JIT) for the Lua programming language
-brew "luajit"
-# Parser generator tool and incremental parsing library
-brew "tree-sitter"
-# Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
+## Powerful, lightweight programming language
+# brew "lua"
+## Just-In-Time Compiler (JIT) for the Lua programming language
+# brew "luajit"
+##Parser generator tool and incremental parsing library
+# brew "tree-sitter"
+##Ambitious Vim-fork focused on extensibility and agility
+# brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
 # Modern shell for the GitHub era
@@ -74,8 +74,8 @@ brew "ruff-lsp"
 brew "rust-analyzer"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Command-line unarchiving tools supporting multiple formats
-brew "unar"
+  # Command-line unarchiving tools supporting multiple formats
+  brew "unar"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Executes a program periodically, showing output fullscreen
@@ -94,6 +94,16 @@ brew "zoxide"
 brew "zsh"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
+# Autoformat shell script source code
+brew install shfmt
+# Extensible command-line tool to format YAML files
+brew install yamlfmt
+# Language Server for Yaml Files
+brew install yaml-language-server
+# TOML toolkit written in Rust
+brew install taplo
+# Language Server for the Lua language
+brew install lua-language-server
 
 # Enable Windows-like alt-tab
 cask "alt-tab"
