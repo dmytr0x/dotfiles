@@ -89,3 +89,7 @@ s = ":toggle-option soft-wrap.enable"
 # waiting for new version!
 # x = ":toggle whitespace.render all none"
 
+[keys.insert]
+# jk to enter Normal mode
+j = { k = "normal_mode" } 
+

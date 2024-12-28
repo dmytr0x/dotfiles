@@ -25,12 +25,12 @@ language-servers = ["vscode-json-language-server"]
 # Css
 [[language]]
 name = 'css'
-language-servers = ['vscode-css-language-server' ]
+language-servers = ['vscode-css-language-server']
 
 # Html
 [[language]]
 name = 'html'
-language-servers = ['vscode-html-language-server' ]
+language-servers = ['vscode-html-language-server']
 
 # Toml
 [[language]]
@@ -46,12 +46,16 @@ auto-format = true
 [[language]]
 name = "python"
 auto-format = true
-language-servers = [{ name = "pyright" }, { name = "ruff" }]
+language-servers = [{ name = "basedpyright" }, { name = "ruff" }]
 
-[language-server.pyright]
-command = "pyright-langserver"
+[language-server.basedpyright]
+command = "basedpyright-langserver"
 args = ["--stdio"]
-config.python.analysis.typeCheckingMode = "standard"
+
+# More info: https://docs.basedpyright.com/latest/configuration/language-server-settings/
+[language-server.basedpyright.config.basedpyright.analysis]
+typeCheckingMode = "standard"
+diagnosticMode = "openFilesOnly" # "openFilesOnly" / "workspace"
 
 [language-server.ruff]
 command = "ruff-lsp"
