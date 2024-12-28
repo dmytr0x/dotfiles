@@ -62,8 +62,8 @@ brew "ollama"
 brew "pipx"
 # Python version management
 brew "pyenv"
-# Static type checker for Python
-brew "pyright"
+# Pyright fork with various improvements and built-in pylance features
+brew "basedpyright"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
