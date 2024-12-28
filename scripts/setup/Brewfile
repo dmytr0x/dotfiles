@@ -122,7 +122,7 @@ cask "duckduckgo"
 # Web browser
 cask "firefox"
 # Fonts
-cask "font-anonymous-pro"
+cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 # GIT client
 cask "fork"
@@ -134,8 +134,8 @@ cask "hiddenbar"
 cask "iina"
 # Tool to optimise images to a smaller size
 cask "imageoptim"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
+## Terminal emulator as alternative to Apple's Terminal app
+#cask "iterm2"
 # Administration and development platform for PostgreSQL
 cask "pgadmin4"
 # Text translation application
@@ -148,10 +148,12 @@ cask "signal"
 cask "sloth"
 # System monitor for the menu bar
 cask "stats"
-# Binary releases of VS Code without MS branding/telemetry/licensing
-cask "vscodium"
+## Binary releases of VS Code without MS branding/telemetry/licensing
+#cask "vscodium"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask ghostty
 # Multiplayer code editor
 cask "zed"
 # Microsoft Visual Studio Code

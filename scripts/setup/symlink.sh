@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Initialise helpers
+source ./core.sh
+
 info "🚀 Linking global configs ..."
 symlink $(pwd)/dotfiles/.gitconfig $HOME/.gitconfig
 symlink $(pwd)/dotfiles/.gitignore $HOME/.gitignore
@@ -15,6 +18,7 @@ symlink $(pwd)/dotfiles/nvim $HOME/.config/nvim
 symlink $(pwd)/dotfiles/ripgrep $HOME/.config/ripgrep
 symlink $(pwd)/dotfiles/starship $HOME/.config/starship
 symlink $(pwd)/dotfiles/wezterm $HOME/.config/wezterm
+symlink $(pwd)/dotfiles/ghostty $HOME/.config/ghostty
 symlink $(pwd)/dotfiles/yazi $HOME/.config/yazi
 symlink $(pwd)/dotfiles/zsh $HOME/.config/zsh
 symlink $(pwd)/dotfiles/vscode $HOME/.config/vscode
