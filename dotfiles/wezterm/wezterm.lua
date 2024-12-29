@@ -192,7 +192,7 @@ config.keys = {
 
   -- Workspaces
   {
-    key = "s",
+    key = " ",
     mods = "LEADER",
     action = act.ActivateKeyTable({ name = "workspaces", timeout_milliseconds = 2000 }),
   },
