@@ -74,7 +74,6 @@ C-j = ["hsplit", "jump_view_down", "goto_definition"]
 
 [keys.normal.space]
 q = ":quit"
-C-f = "file_picker_in_current_buffer_directory"
 # Think about :pipe
 # l = """:pipe python3 -c "print('Hello')""""
 
