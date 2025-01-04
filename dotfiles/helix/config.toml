@@ -7,6 +7,11 @@ line-number = "relative"
 bufferline = "always"
 cursorline = true
 auto-pairs = false
+end-of-line-diagnostics = "hint"
+
+# !Experimental!
+# [editor.inline-diagnostics]
+# cursor-line = "error"
 
 [editor.indent-guides]
 render = false

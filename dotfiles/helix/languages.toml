@@ -46,7 +46,7 @@ auto-format = true
 [[language]]
 name = "python"
 auto-format = true
-language-servers = [{ name = "basedpyright" }, { name = "ruff" }]
+language-servers = ["basedpyright", "ruff"]
 
 [language-server.basedpyright]
 command = "basedpyright-langserver"
@@ -58,10 +58,19 @@ typeCheckingMode = "recommended"
 diagnosticMode = "openFilesOnly" # "openFilesOnly" / "workspace"
 
 [language-server.ruff]
-command = "ruff-lsp"
+command = "ruff"
+args = ["server"]
 
 [language-server.ruff.config.settings]
 args = ["--ignore", "E501"]
+lineLength = 80
+
+[language-server.ruff.config.settings.lint]
+select = ["E4", "E7"]
+preview = false
+
+[language-server.ruff.config.settings.format]
+preview = true
 
 # Rust
 [[language]]

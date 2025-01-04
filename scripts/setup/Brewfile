@@ -68,8 +68,6 @@ brew "basedpyright"
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
-# Language Server Protocol implementation for Ruff
-brew "ruff-lsp"
 # Experimental Rust compiler front-end for IDEs
 brew "rust-analyzer"
 # Cross-shell prompt for astronauts
