@@ -90,6 +90,7 @@ b = ":buffer-close-others"
 a = ":toggle-option lsp.display-inlay-hints"
 i = ":toggle-option indent-guides.render"
 s = ":toggle-option soft-wrap.enable"
+f = ":toggle-option auto-format"
 # waiting for new version!
 # x = ":toggle whitespace.render all none"
 
