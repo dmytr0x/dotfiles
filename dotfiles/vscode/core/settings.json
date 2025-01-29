@@ -200,12 +200,13 @@
     },
     //     // "python.defaultInterpreterPath": "python",
     "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.completeFunctionParens": true,
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.variableTypes": true,
     "python.analysis.inlayHints.pytestParameters": true,
-    "python.analysis.completeFunctionParens": true,
     "python.analysis.inlayHints.callArgumentNames": "all",
-    "python.analysis.typeCheckingMode": "standard",
+    
     //     "python.analysis.autoImportCompletions": false,
     //     // - black
     //     // "python.formatting.provider": "none", // use vscode extension
