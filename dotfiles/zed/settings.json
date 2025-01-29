@@ -1,0 +1,138 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "outline_panel": {
+    "dock": "left"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "auto_update": false,
+  "vim_mode": true,
+  "confirm_quit": true,
+  "base_keymap": "VSCode",
+  "auto_install_extensions": {
+    "basedpyright": true,
+    "ruff": true,
+    "toml": true
+  },
+  "assistant": {
+    "version": "2",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    }
+  },
+  "file_scan_exclusions": [
+    // Default exclusions
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    // My custom exclusions
+    "**/__pycache__"
+  ],
+  //
+  "autosave": "on_window_change",
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright", "ruff"],
+      "formatter": {
+        // format the code + organize imports
+        "external": {
+          "command": "sh",
+          "arguments": ["-c", "ruff format - | ruff check --select I --fix -"]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        },
+        "basedpyright.analysis": {
+          "typeCheckingMode": "recommended",
+          "diagnosticMode": "openFilesOnly"
+        }
+      }
+    },
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "configurationPreference": "filesystemFirst",
+          "lint": {
+            "preview": false
+          },
+          "format": {
+            "preview": false
+          }
+        }
+      }
+    }
+  },
+  //
+  "project_panel": {
+    "dock": "right"
+  },
+  "gutter": {
+    // Whether to show line numbers in the gutter.
+    "line_numbers": false
+  },
+  "collaboration_panel": {
+    // Whether to show the collaboration panel button in the status bar.
+    "button": false
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "current_line_highlight": "gutter",
+  "cursor_blink": false,
+  "tab_bar": {
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "git_status": true
+  },
+  "terminal": {
+    "font_family": "FiraCode Nerd Font",
+    "font_features": null,
+    "font_size": null,
+    "line_height": "comfortable"
+  },
+  "ui_font_family": "FiraCode Nerd Font",
+  "ui_font_size": 14,
+  "buffer_font_size": 13,
+  "buffer_font_family": "FiraCode Nerd Font",
+  "buffer_font_features": {
+    // Disable ligatures:
+    "calt": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light Hard",
+    "dark": "Gruvbox Dark Hard"
+  }
+}
