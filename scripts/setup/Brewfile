@@ -102,6 +102,8 @@ brew "yaml-language-server"
 brew "taplo"
 # Language Server for the Lua language
 brew "lua-language-server"
+# Handy way to save and run project-specific commands
+brew "just"
 
 ## Enable Windows-like alt-tab
 #cask "alt-tab"
@@ -151,7 +153,7 @@ cask "stats"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 # Terminal emulator that uses platform-native UI and GPU acceleration
-cask ghostty
+cask "ghostty"
 # Multiplayer code editor
 cask "zed"
 # Microsoft Visual Studio Code
