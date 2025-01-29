@@ -1,2 +1,8 @@
+#
+# Info: https://ghostty.org/docs/config/reference
+#
+
 theme = "iTerm2 Tango Dark"
+font-family = "Fira Code"
 background-opacity = 0.85
+
