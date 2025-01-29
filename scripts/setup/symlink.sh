@@ -12,6 +12,8 @@ symlink $(pwd)/dotfiles/.zshrc $HOME/.zshrc
 
 info "🚀 Linking packages configs ..."
 symlink $(pwd)/dotfiles/helix $HOME/.config/helix
+symlink $(pwd)/dotfiles/zed/settings.json $HOME/.config/zed/settings.json
+symlink $(pwd)/dotfiles/zed/keymap.json $HOME/.config/zed/keymap.json
 symlink $(pwd)/dotfiles/amethyst $HOME/.config/amethyst
 symlink $(pwd)/dotfiles/lazygit $HOME/.config/lazygit
 symlink $(pwd)/dotfiles/nvim $HOME/.config/nvim
