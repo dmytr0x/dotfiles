@@ -11,7 +11,7 @@ name = "yaml"
 file-types = ["yaml", "yml"]
 language-servers = ["yaml-language-server"]
 formatter = { command = "yamlfmt", args = ["-"] }
-auto-format = true
+auto-format = false
 
 [language-server.yaml-language-server.yaml]
 format = { enable = true }
@@ -63,7 +63,14 @@ diagnosticMode = "openFilesOnly" # "openFilesOnly" / "workspace"
 command = "ruff"
 args = ["server"]
 
+# TODO: check how it works
+[language-server.ruff.config.settings]
+configurationPreference = "filesystemFirst"
+
 [language-server.ruff.config.settings.format]
+preview = false
+
+[language-server.ruff.config.settings.lint]
 preview = false
 
 # Rust

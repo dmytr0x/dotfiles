@@ -83,7 +83,7 @@ q = ":quit"
 # l = """:pipe python3 -c "print('Hello')""""
 
 [keys.normal.space.space]
-r = ":config-reload"
+r = ":reload"
 # Close windows except current
 w = "wonly"
 b = ":buffer-close-others"
