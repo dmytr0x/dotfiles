@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# Initialise helpers
+source ./core.sh
+
 # pyenv
 PYENV_VERSION=$(get_last_brew_package_version "pyenv")
 info "🚀 Installing pyenv $PYENV_VERSION ..."
 brew install --quiet pyenv
-
-source ./dotfiles/zsh/python.sh
+eval "$(pyenv init -)"
 
 info "🚀 Installing python 3.10 ..."
 pyenv install --skip-existing 3.10
@@ -30,17 +32,12 @@ pipx install ipython --python=$(pyenv which python3)
 info "🚀 Installing poetry ..."
 ./scripts/setup/sources/poetry.py
 
-# pyright
-PYRIGHT_VERSION=$(get_last_brew_package_version "pyright")
-info "🚀 Installing pyright $PYRIGHT_VERSION ..."
-brew install --quiet pyright
+# basedpyright
+BASEDPYRIGHT_VERSION=$(get_last_brew_package_version "basedpyright")
+info "🚀 Installing basedpyright $BASEDPYRIGHT_VERSION ..."
+brew install --quiet basedpyright
 
 # ruff
 RUFF_VERSION=$(get_last_brew_package_version "ruff")
 info "🚀 Installing ruff $RUFF_VERSION ..."
 brew install --quiet ruff
-
-# ruff-lsp
-RUFFLSP_VERSION=$(get_last_brew_package_version "ruff-lsp")
-info "🚀 Installing ruff-lsp $RUFFLSP_VERSION ..."
-brew install --quiet ruff-lsp

@@ -2,13 +2,13 @@
 
 source ./dotfiles/zsh/golang.sh
 
-VERSION="1.23.0"
+VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
 ARCHIVE="go.tar.gz"
 
 info "🚀 Installing golang $VERSION ..."
 
 if [ ! -d "$GOROOT" ]; then
-  curl -sLo $ARCHIVE https://go.dev/dl/go$VERSION.darwin-arm64.tar.gz
+  curl -sLo $ARCHIVE https://go.dev/dl/$VERSION.darwin-arm64.tar.gz
   tar -xzf $ARCHIVE -C $HOME
   rm -f $ARCHIVE
   mv $HOME/go $GOROOT
