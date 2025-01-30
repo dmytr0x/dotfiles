@@ -118,56 +118,56 @@ config.keys = {
   -- Functionality
   -- INFO: In the Debug Overlay (default: CTRL + SHIFT + L) you can interactively with lua code.
   --
-  { key = "p",          mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
+  { key = "p",          mods = "SUPER|SHIFT", action = act.ActivateCommandPalette },
 
-  { key = "v",          mods = "SUPER",      action = act.PasteFrom("Clipboard") },
-  { key = "c",          mods = "SUPER",      action = act.CopyTo("Clipboard") },
-  { key = "Enter",      mods = "ALT",        action = act.ToggleFullScreen },
+  { key = "v",          mods = "SUPER",       action = act.PasteFrom("Clipboard") },
+  { key = "c",          mods = "SUPER",       action = act.CopyTo("Clipboard") },
+  { key = "Enter",      mods = "ALT",         action = act.ToggleFullScreen },
 
-  { key = "v",          mods = "LEADER",     action = act.ActivateCopyMode },
-  { key = "u",          mods = "CTRL|SHIFT", action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }) },
+  { key = "v",          mods = "LEADER",      action = act.ActivateCopyMode },
+  { key = "u",          mods = "CTRL|SHIFT",  action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }) },
 
   -- Font
-  { key = "+",          mods = "SUPER",      action = act.IncreaseFontSize },
-  { key = "-",          mods = "SUPER",      action = act.DecreaseFontSize },
-  { key = "0",          mods = "SUPER",      action = act.ResetFontSize },
+  { key = "+",          mods = "SUPER",       action = act.IncreaseFontSize },
+  { key = "-",          mods = "SUPER",       action = act.DecreaseFontSize },
+  { key = "0",          mods = "SUPER",       action = act.ResetFontSize },
 
   -- Common
-  { key = "h",          mods = "LEADER",     action = act.ActivatePaneDirection("Left") },
-  { key = "LeftArrow",  mods = "LEADER",     action = act.ActivatePaneDirection("Left") },
-  { key = "l",          mods = "LEADER",     action = act.ActivatePaneDirection("Right") },
-  { key = "RightArrow", mods = "LEADER",     action = act.ActivatePaneDirection("Right") },
-  { key = "k",          mods = "LEADER",     action = act.ActivatePaneDirection("Up") },
-  { key = "UpArrow",    mods = "LEADER",     action = act.ActivatePaneDirection("Up") },
-  { key = "j",          mods = "LEADER",     action = act.ActivatePaneDirection("Down") },
-  { key = "DownArrow",  mods = "LEADER",     action = act.ActivatePaneDirection("Down") },
+  { key = "h",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
+  { key = "LeftArrow",  mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
+  { key = "l",          mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
+  { key = "RightArrow", mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
+  { key = "k",          mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
+  { key = "UpArrow",    mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
+  { key = "j",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
+  { key = "DownArrow",  mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
 
   -- Pane
-  { key = "s",          mods = "LEADER",     action = act.SplitHorizontal({}) }, -- right
-  { key = "S",          mods = "LEADER",     action = act.SplitVertical({}) },   -- down
-  { key = "w",          mods = "LEADER",     action = act.CloseCurrentPane({ confirm = true }) },
-  { key = "z",          mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
+  { key = "s",          mods = "LEADER",      action = act.SplitHorizontal({}) }, -- right
+  { key = "S",          mods = "LEADER",      action = act.SplitVertical({}) },   -- down
+  { key = "w",          mods = "LEADER",      action = act.CloseCurrentPane({ confirm = true }) },
+  { key = "z",          mods = "SHIFT|CTRL",  action = act.TogglePaneZoomState },
 
-  { key = "n",          mods = "LEADER",     action = act.SpawnWindow },
-  { key = "q",          mods = "SUPER",      action = act.QuitApplication },
+  { key = "n",          mods = "LEADER",      action = act.SpawnWindow },
+  { key = "q",          mods = "SUPER",       action = act.QuitApplication },
 
   -- Tab
-  { key = "T",          mods = "LEADER",     action = act.ShowTabNavigator },
-  { key = "t",          mods = "LEADER",     action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "q",          mods = "LEADER",     action = act.CloseCurrentTab({ confirm = true }) },
-  { key = "H",          mods = "LEADER",     action = act.ActivateTabRelative(-1) },
-  { key = "L",          mods = "LEADER",     action = act.ActivateTabRelative(1) },
-  { key = "1",          mods = "SUPER",      action = act.ActivateTab(0) },
-  { key = "2",          mods = "SUPER",      action = act.ActivateTab(1) },
-  { key = "3",          mods = "SUPER",      action = act.ActivateTab(2) },
-  { key = "4",          mods = "SUPER",      action = act.ActivateTab(3) },
-  { key = "5",          mods = "SUPER",      action = act.ActivateTab(4) },
-  { key = "6",          mods = "SUPER",      action = act.ActivateTab(5) },
-  { key = "7",          mods = "SUPER",      action = act.ActivateTab(6) },
-  { key = "8",          mods = "SUPER",      action = act.ActivateTab(7) },
-  { key = "9",          mods = "SUPER",      action = act.ActivateTab(-1) },
+  { key = "T",          mods = "LEADER",      action = act.ShowTabNavigator },
+  { key = "t",          mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
+  { key = "q",          mods = "LEADER",      action = act.CloseCurrentTab({ confirm = true }) },
+  { key = "H",          mods = "LEADER",      action = act.ActivateTabRelative(-1) },
+  { key = "L",          mods = "LEADER",      action = act.ActivateTabRelative(1) },
+  { key = "1",          mods = "SUPER",       action = act.ActivateTab(0) },
+  { key = "2",          mods = "SUPER",       action = act.ActivateTab(1) },
+  { key = "3",          mods = "SUPER",       action = act.ActivateTab(2) },
+  { key = "4",          mods = "SUPER",       action = act.ActivateTab(3) },
+  { key = "5",          mods = "SUPER",       action = act.ActivateTab(4) },
+  { key = "6",          mods = "SUPER",       action = act.ActivateTab(5) },
+  { key = "7",          mods = "SUPER",       action = act.ActivateTab(6) },
+  { key = "8",          mods = "SUPER",       action = act.ActivateTab(7) },
+  { key = "9",          mods = "SUPER",       action = act.ActivateTab(-1) },
 
-  { key = "/",          mods = "LEADER",     action = act.Search({ CaseInSensitiveString = "hash" }) },
+  { key = "/",          mods = "LEADER",      action = act.Search({ CaseInSensitiveString = "hash" }) },
 
   -- Pane actions
   {
