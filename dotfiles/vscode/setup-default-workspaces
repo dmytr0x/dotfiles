@@ -3,11 +3,8 @@
 install_core_extentions() {
   local workspace=$1
 
-  # Theme and Icons:
-  #   Catppuccin: https://github.com/catppuccin/vscode
-  ./workspace install-extension $workspace Catppuccin.catppuccin-vsc
-  ./workspace install-extension $workspace Catppuccin.catppuccin-vsc-icons
-
+  # GitHub Copilot is an AI pair programmer tool that helps you write code faster and smarter
+  ./workspace install-extension $workspace GitHub.copilot
 }
 
 # python
