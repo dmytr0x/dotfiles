@@ -16,6 +16,10 @@
   },
   "auto_update": false,
   "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank",
+    "toggle_relative_line_numbers": true
+  },
   "confirm_quit": true,
   "base_keymap": "VSCode",
   "auto_install_extensions": {
@@ -24,6 +28,7 @@
     "toml": true
   },
   "assistant": {
+    "enabled": true,
     "version": "2",
     "default_model": {
       "provider": "copilot_chat",
