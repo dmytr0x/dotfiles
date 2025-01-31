@@ -5,8 +5,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="$PATH:$HOME/.local/bin"
 
 # --- pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
 # --- rust
@@ -24,3 +22,4 @@ eval "$(zoxide init zsh)"
 # --- fzf
 export FZF_COMPLETION_TRIGGER='~~'
 export PATH="$PATH:/opt/homebrew/opt/fzf/bin"
+
