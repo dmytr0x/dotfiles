@@ -1,9 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
-tap "oven-sh/bun"
-
 # Image format providing lossless and lossy compression for web images
 brew "webp"
 # Clone of cat(1) with syntax highlighting and Git integration
