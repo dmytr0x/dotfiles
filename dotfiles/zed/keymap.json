@@ -6,10 +6,18 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrev"
+    }
+  },
   // Navigation
   {
     "context": "Dock || Terminal || Editor || ProjectPanel",
     "bindings": {
+      "shift shift": "command_palette::Toggle",
       // pane navigation
       "space w h": ["workspace::ActivatePaneInDirection", "Left"],
       "space w l": ["workspace::ActivatePaneInDirection", "Right"],
@@ -26,14 +34,21 @@
     "context": "VimControl && !menu",
     "bindings": {
       "shift-v": null,
-      "x": "vim::ToggleVisualLine",
+      "x": "vim::ToggleVisualLine"
     }
   },
   {
     "context": "vim_mode == normal",
     "bindings": {
       "d": "vim::DeleteRight",
-      "shift-d": "vim::DeleteLeft",
+      "shift-d": "vim::DeleteLeft"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
+    "bindings": {
+      "ctrl-j": "editor::MoveLineDown",
+      "ctrl-k": "editor::MoveLineUp"
     }
   },
   // Vim normal mode
@@ -49,8 +64,8 @@
       // Main menu "Space"
       "space d": "diagnostics::Deploy",
       "space f": "file_finder::Toggle",
+      "space shift-f": "project_panel::ToggleFocus",
       "space b": "tab_switcher::Toggle",
-      "space e": "workspace::ToggleLeftDock", // helix: "space s"
       "space /": "workspace::NewSearch",
       "space t": "workspace::NewCenterTerminal",
       "space c": "editor::ToggleComments",
