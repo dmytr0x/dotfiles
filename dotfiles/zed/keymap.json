@@ -6,16 +6,94 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
+  // Navigation
   {
-    "context": "Workspace",
+    "context": "Dock || Terminal || Editor || ProjectPanel",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
+      // pane navigation
+      "space w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "space w l": ["workspace::ActivatePaneInDirection", "Right"],
+      "space w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "space w j": ["workspace::ActivatePaneInDirection", "Down"],
+      // pane swapping
+      "space w L": ["workspace::SwapPaneInDirection", "Right"],
+      "space w K": ["workspace::SwapPaneInDirection", "Up"],
+      "space w J": ["workspace::SwapPaneInDirection", "Down"],
+      "space w H": ["workspace::SwapPaneInDirection", "Left"]
     }
   },
   {
-    "context": "Editor",
+    "context": "VimControl && !menu",
     "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "shift-v": null,
+      "x": "vim::ToggleVisualLine",
+    }
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "d": "vim::DeleteRight",
+      "shift-d": "vim::DeleteLeft",
+    }
+  },
+  // Vim normal mode
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // Extra menu "Space Space"
+      "space space a": "editor::ToggleInlayHints",
+      "space space i": "editor::ToggleIndentGuides",
+      "space space s": "editor::ToggleSoftWrap",
+      "space space g": "editor::ToggleGitBlame",
+      "space space b": "editor::ToggleGitBlame",
+      // Main menu "Space"
+      "space d": "diagnostics::Deploy",
+      "space f": "file_finder::Toggle",
+      "space b": "tab_switcher::Toggle",
+      "space e": "workspace::ToggleLeftDock", // helix: "space s"
+      "space /": "workspace::NewSearch",
+      "space t": "workspace::NewCenterTerminal",
+      "space c": "editor::ToggleComments",
+      "space a": "editor::ToggleCodeActions",
+      "space w s": "pane::SplitHorizontal",
+      "space w v": "pane::SplitVertical",
+      "space w q": "pane::CloseActiveItem",
+      "space w o": "pane::CloseInactiveItems"
+      //
+    }
+  },
+  // vim insert mode
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "ctrl-w": "editor::DeleteToPreviousWordStart",
+      "ctrl-k": "vim::DeleteToEndOfLine",
+      // Exit vim insert mode
+      "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  // vim visual mode
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "n": "editor::SelectLargerSyntaxNode",
+      "N": "editor::SelectSmallerSyntaxNode",
+      "space c": "editor::ToggleComments"
+      // "m": "vim::SelectNext",
+      // "M": "vim::SelectPrevious",
+      // ",": "editor::SplitSelectionIntoLines"
+    }
+  },
+  // like vim buffers
+  {
+    "context": "TabSwitcher",
+    "use_key_equivalents": true,
+    "bindings": {
+      "tab": null,
+      "shift-tab": null,
+      "k": "menu::SelectPrev",
+      "j": "menu::SelectNext",
+      "q": "tab_switcher::CloseSelectedItem"
     }
   }
 ]
