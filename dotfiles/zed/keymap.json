@@ -66,6 +66,8 @@
       "space f": "file_finder::Toggle",
       "space shift-f": "project_panel::ToggleFocus",
       "space b": "tab_switcher::Toggle",
+      "space s": "outline::Toggle",
+      "space S": "project_symbols::Toggle",
       "space /": "workspace::NewSearch",
       "space t": "workspace::NewCenterTerminal",
       "space c": "editor::ToggleComments",
