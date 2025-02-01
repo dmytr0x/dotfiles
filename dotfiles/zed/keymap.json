@@ -15,7 +15,7 @@
   },
   // Navigation
   {
-    "context": "Dock || Terminal || Editor || ProjectPanel",
+    "context": "Dock || Terminal || ProjectPanel || (Editor && vim_mode == normal)",
     "bindings": {
       "shift shift": "command_palette::Toggle",
       // pane navigation
@@ -66,7 +66,7 @@
       "space f": "file_finder::Toggle",
       "space shift-f": "project_panel::ToggleFocus",
       "space b": "tab_switcher::Toggle",
-      "space s": "outline::Toggle",
+      "space s": "editor::SelectEnclosingSymbol",
       "space S": "project_symbols::Toggle",
       "space /": "workspace::NewSearch",
       "space t": "workspace::NewCenterTerminal",
@@ -95,10 +95,9 @@
     "bindings": {
       "n": "editor::SelectLargerSyntaxNode",
       "N": "editor::SelectSmallerSyntaxNode",
-      "space c": "editor::ToggleComments"
-      // "m": "vim::SelectNext",
-      // "M": "vim::SelectPrevious",
-      // ",": "editor::SplitSelectionIntoLines"
+      "space c": "editor::ToggleComments",
+      "m": "vim::SelectNext",
+      "M": "vim::SelectPrevious"
     }
   },
   // like vim buffers
