@@ -18,8 +18,10 @@
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "on_yank",
+    // "use_multiline_find": true,
     "toggle_relative_line_numbers": true
   },
+  "wrap_guides": [80],
   "confirm_quit": true,
   "base_keymap": "VSCode",
   "auto_install_extensions": {
@@ -51,6 +53,7 @@
   ],
   //
   "autosave": "on_window_change",
+  "format_on_save": "off",
   "inlay_hints": {
     "enabled": true,
     "show_type_hints": true,
@@ -60,6 +63,7 @@
   "languages": {
     "Python": {
       "language_servers": ["basedpyright", "ruff"],
+      "format_on_save": "on",
       "formatter": {
         // format the code + organize imports
         "external": {
@@ -67,9 +71,15 @@
           "arguments": ["-c", "ruff format - | ruff check --select I --fix -"]
         }
       }
+    },
+    "Rust": {
+      "language_servers": ["rust-analyzer"],
+      "format_on_save": "on",
+      "formatter": "language_server"
     }
   },
   "lsp": {
+    // === Python
     "basedpyright": {
       "settings": {
         "python": {
@@ -93,6 +103,14 @@
           }
         }
       }
+    },
+    // === Rust
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy" // rust-analyzer.check.command (default: "check")
+        }
+      }
     }
   },
   //
@@ -101,7 +119,7 @@
   },
   "gutter": {
     // Whether to show line numbers in the gutter.
-    "line_numbers": false
+    "line_numbers": true
   },
   "collaboration_panel": {
     // Whether to show the collaboration panel button in the status bar.
