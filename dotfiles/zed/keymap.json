@@ -86,7 +86,8 @@
         "task::Spawn",
         { "task_name": "start lazygit", "reveal_target": "center" }
       ],
-      "c d": null, // disable default editor::Rename keybinding
+      // disable default editor::Rename keybinding
+      "c d": null,
       "space r": "editor::Rename",
       "space w s": "pane::SplitHorizontal",
       "space w v": "pane::SplitVertical",
