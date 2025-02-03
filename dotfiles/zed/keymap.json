@@ -6,13 +6,6 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "use_key_equivalents": true,
-    "bindings": {
-      "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrev"
-    }
-  },
   // Navigation
   {
     "context": "Dock || Terminal || ProjectPanel || (Editor && vim_mode == normal)",
@@ -30,6 +23,10 @@
       "space w H": ["workspace::SwapPaneInDirection", "Left"]
     }
   },
+  // Change behaviour similar to the helix editor: {
+  // x - select current line
+  // d - delete current character right
+  // D - delete current character left
   {
     "context": "VimControl && !menu",
     "bindings": {
@@ -44,6 +41,18 @@
       "shift-d": "vim::DeleteLeft"
     }
   },
+  // }
+  // Extend behaviour of the completion menu navigation: {
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-k": "editor::ContextMenuPrev",
+      "ctrl-j": "editor::ContextMenuNext"
+    }
+  },
+  // }
+  // Move lines up and down in visual mode
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
     "bindings": {
@@ -62,24 +71,30 @@
       "space space g": "editor::ToggleGitBlame",
       "space space b": "editor::ToggleGitBlame",
       // Main menu "Space"
+      "space q": "pane::CloseActiveItem",
       "space d": "diagnostics::Deploy",
       "space f": "file_finder::Toggle",
       "space shift-f": "project_panel::ToggleFocus",
       "space b": "tab_switcher::Toggle",
-      "space s": "editor::SelectEnclosingSymbol",
+      "space s": "outline::Toggle",
       "space S": "project_symbols::Toggle",
       "space /": "workspace::NewSearch",
       "space t": "workspace::NewCenterTerminal",
       "space c": "editor::ToggleComments",
       "space a": "editor::ToggleCodeActions",
+      "space g": [
+        "task::Spawn",
+        { "task_name": "start lazygit", "reveal_target": "center" }
+      ],
+      "c d": null, // disable default editor::Rename keybinding
+      "space r": "editor::Rename",
       "space w s": "pane::SplitHorizontal",
       "space w v": "pane::SplitVertical",
-      "space w q": "pane::CloseActiveItem",
       "space w o": "pane::CloseInactiveItems"
       //
     }
   },
-  // vim insert mode
+  // Vim insert mode
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": {
@@ -89,7 +104,7 @@
       "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
-  // vim visual mode
+  // Vim visual mode
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
@@ -97,10 +112,11 @@
       "N": "editor::SelectSmallerSyntaxNode",
       "space c": "editor::ToggleComments",
       "m": "vim::SelectNext",
-      "M": "vim::SelectPrevious"
+      "M": "vim::SelectPrevious",
+      ",": "editor::SplitSelectionIntoLines"
     }
   },
-  // like vim buffers
+  // Like vim buffers
   {
     "context": "TabSwitcher",
     "use_key_equivalents": true,
