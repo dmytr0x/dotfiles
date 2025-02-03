@@ -78,7 +78,7 @@ C-l = ["vsplit", "jump_view_up", "goto_definition"]
 C-j = ["hsplit", "jump_view_down", "goto_definition"]
 
 [keys.normal.space]
-q = ":quit"
+q = ":buffer-close"
 # Think about :pipe
 # l = """:pipe python3 -c "print('Hello')""""
 
