@@ -132,7 +132,7 @@ config.keys = {
   { key = "-",          mods = "SUPER",       action = act.DecreaseFontSize },
   { key = "0",          mods = "SUPER",       action = act.ResetFontSize },
 
-  -- Common
+  -- Move pane focus
   { key = "h",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
   { key = "LeftArrow",  mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
   { key = "l",          mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
@@ -142,18 +142,13 @@ config.keys = {
   { key = "j",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
   { key = "DownArrow",  mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
 
-  -- Pane
-  { key = "s",          mods = "LEADER",      action = act.SplitHorizontal({}) }, -- right
-  { key = "S",          mods = "LEADER",      action = act.SplitVertical({}) },   -- down
-  { key = "w",          mods = "LEADER",      action = act.CloseCurrentPane({ confirm = true }) },
-  { key = "z",          mods = "SHIFT|CTRL",  action = act.TogglePaneZoomState },
-
-  { key = "n",          mods = "LEADER",      action = act.SpawnWindow },
+  -- Application
   { key = "q",          mods = "SUPER",       action = act.QuitApplication },
+  { key = "n",          mods = "LEADER",      action = act.SpawnWindow },
 
   -- Tab
-  { key = "T",          mods = "LEADER",      action = act.ShowTabNavigator },
   { key = "t",          mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
+  { key = "T",          mods = "LEADER",      action = act.ShowTabNavigator },
   { key = "q",          mods = "LEADER",      action = act.CloseCurrentTab({ confirm = true }) },
   { key = "H",          mods = "LEADER",      action = act.ActivateTabRelative(-1) },
   { key = "L",          mods = "LEADER",      action = act.ActivateTabRelative(1) },
@@ -169,40 +164,18 @@ config.keys = {
 
   { key = "/",          mods = "LEADER",      action = act.Search({ CaseInSensitiveString = "hash" }) },
 
-  -- Pane actions
-  {
-    key = "p",
-    mods = "LEADER",
-    action = act.ActivateKeyTable({ name = "pane_actions", timeout_milliseconds = 2000 }),
-  },
+  --
+  -- Key tables
+  --
 
-  -- Adjust pane size
-  {
-    key = "a",
-    mods = "LEADER",
-    action = act.ActivateKeyTable({ name = "adjust_pane_size", one_shot = false }),
-  },
-
-  -- Rotate panes
-  {
-    key = "r",
-    mods = "LEADER",
-    action = act.ActivateKeyTable({ name = "rotate_panes", one_shot = false }),
-  },
+  -- Window
+  { key = "w",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "w_sequence", timeout_milliseconds = 2000 }) },
 
   -- Workspaces
-  {
-    key = " ",
-    mods = "LEADER",
-    action = act.ActivateKeyTable({ name = "workspaces", timeout_milliseconds = 2000 }),
-  },
+  { key = "s",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "workspace_sequence", timeout_milliseconds = 2000 }) },
 
-  -- Custom events
-  {
-    key = "Enter",
-    mods = "LEADER",
-    action = act.ActivateKeyTable({ name = "events", timeout_milliseconds = 2000 }),
-  },
+  -- Events
+  { key = "e",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "events", timeout_milliseconds = 2000 }) },
 }
 
 config.key_tables = {
@@ -260,13 +233,25 @@ config.key_tables = {
     { key = 'DownArrow',  mods = 'NONE',  action = act.CopyMode 'MoveDown' },
   },
 
-  pane_actions = {
-    { key = "f", action = act.TogglePaneZoomState },
-    { key = "g", action = act.PaneSelect({ alphabet = "1234567890", mode = "Activate", show_pane_ids = false }) },
-    { key = "s", action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActive", show_pane_ids = false }) },
+  w_sequence = {
+    { key = "w",     action = act.CloseCurrentPane({ confirm = true }) },
+
+    -- pane splits
+    { key = "s",     action = act.SplitHorizontal({}) },
+    { key = "v",     action = act.SplitVertical({}) },
+
+    -- pane
+    { key = "f",     action = act.TogglePaneZoomState },
+    { key = "Space", action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActive", show_pane_ids = false }) },
+
+    -- sub-sequence: adjust pane
+    { key = "a",     action = act.ActivateKeyTable({ name = "wa_sequence", one_shot = false }) },
+    -- sub-sequence: rotate pane
+    { key = "r",     action = act.ActivateKeyTable({ name = "wr_sequence", one_shot = false }) },
+
   },
 
-  adjust_pane_size = {
+  wa_sequence = {
     { key = "LeftArrow",  action = act.AdjustPaneSize({ "Left", 1 }) },
     { key = "h",          action = act.AdjustPaneSize({ "Left", 1 }) },
     { key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
@@ -275,14 +260,16 @@ config.key_tables = {
     { key = "k",          action = act.AdjustPaneSize({ "Up", 1 }) },
     { key = "DownArrow",  action = act.AdjustPaneSize({ "Down", 1 }) },
     { key = "j",          action = act.AdjustPaneSize({ "Down", 1 }) },
+    --
     { key = "Escape",     action = "PopKeyTable" },
   },
 
-  rotate_panes = {
+  wr_sequence = {
     { key = "h",          action = act.RotatePanes("Clockwise") },
     { key = "LeftArrow",  action = act.RotatePanes("Clockwise") },
     { key = "l",          action = act.RotatePanes("CounterClockwise") },
     { key = "RightArrow", action = act.RotatePanes("CounterClockwise") },
+    --
     { key = "Escape",     action = "PopKeyTable" },
   },
 
@@ -290,7 +277,12 @@ config.key_tables = {
     { key = "o", action = act.EmitEvent("opacity-toggle") },
   },
 
-  workspaces = {
+  workspace_sequence = {
+    -- Navigation
+    { key = "h", action = act.SwitchWorkspaceRelative(1) },
+    { key = "l", action = act.SwitchWorkspaceRelative(-1) },
+    { key = "o", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+
     -- Create new
     {
       key = "n",
@@ -311,10 +303,6 @@ config.key_tables = {
       }),
     },
 
-    -- Navigation
-    { key = "h", action = act.SwitchWorkspaceRelative(1) },
-    { key = "l", action = act.SwitchWorkspaceRelative(-1) },
-    { key = "o", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
   },
 }
 
