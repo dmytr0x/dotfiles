@@ -234,7 +234,7 @@ config.key_tables = {
   },
 
   w_sequence = {
-    { key = "w",     action = act.CloseCurrentPane({ confirm = true }) },
+    { key = "q",     action = act.CloseCurrentPane({ confirm = true }) },
 
     -- pane splits
     { key = "s",     action = act.SplitHorizontal({}) },
