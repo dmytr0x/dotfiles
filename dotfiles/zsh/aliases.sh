@@ -41,6 +41,8 @@ unset -f vscode_cmd
 # Setup partial parameters
 alias lazygit="lazygit --use-config-dir=$HOME/.config/lazygit"
 alias lg="lazygit"
+alias pdf-slicer="uv run $HOME/.local/bin/_pdf_slicer.py"
+alias dup-scout="uv run $HOME/.local/bin/_dup_scout.py"
 
 # Shortcuts
 alias tree="eza --tree"
