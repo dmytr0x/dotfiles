@@ -10,7 +10,6 @@ import shlex
 import sys
 from collections import Counter, defaultdict
 from collections.abc import Generator, Iterable
-from typing import Sequence
 
 
 class Args(argparse.Namespace):
