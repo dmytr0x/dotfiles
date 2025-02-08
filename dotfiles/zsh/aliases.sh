@@ -48,7 +48,7 @@ alias dup-scout="uv run $HOME/.local/bin/_dup_scout.py"
 alias tree="eza --tree"
 alias ls="eza --all --width=1"
 alias ll="ls --long --group --header --grid --git"
-alias llt="ls --tree --git-ignore"
+alias llt="ls --tree --level=2"
 alias yy="yazi"
 alias -- +x="chmod +x"
 
