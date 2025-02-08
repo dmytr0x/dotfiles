@@ -55,7 +55,7 @@
     "**/__pycache__"
   ],
   //
-  "autosave": "on_window_change",
+  "autosave": "on_focus_change",
   "format_on_save": "off",
   "inlay_hints": {
     "enabled": true,
