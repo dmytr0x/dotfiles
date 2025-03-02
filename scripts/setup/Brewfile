@@ -8,8 +8,6 @@ brew "btop"
 brew "sqlite"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
-# Secure runtime for JavaScript and TypeScript
-brew "deno"
 # Diff that understands syntax
 brew "difftastic"
 # Modern, maintained replacement for ls
@@ -67,7 +65,7 @@ brew "rust-analyzer"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Command-line unarchiving tools supporting multiple formats
-brew "unar"
+# brew "unar"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Executes a program periodically, showing output fullscreen
@@ -78,14 +76,10 @@ brew "watchexec"
 brew "xh"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
-# Programming language designed for robustness, optimality, and clarity
-brew "zig"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
-brew "oven-sh/bun/bun"
 # Autoformat shell script source code
 brew "shfmt"
 # Extensible command-line tool to format YAML files
@@ -113,8 +107,6 @@ cask "coteditor"
 cask "deepl"
 # Web browser focusing on privacy
 cask "duckduckgo"
-# Web browser
-cask "firefox"
 # Fonts
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
