@@ -114,8 +114,8 @@ cask "font-fira-code-nerd-font"
 cask "fork"
 # Free and open-source image editor
 cask "gimp"
-# Utility to hide menu bar items
-cask "hiddenbar"
+# Menu bar manager
+cask "jordanbaird-ice"
 # Open source API development ecosystem
 cask "iina"
 # Tool to optimise images to a smaller size
