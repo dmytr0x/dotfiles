@@ -24,7 +24,7 @@ alias codium="codium --new-window"
 # VSCode
 vscode_cmd() {
   local workspace_name=$1
-  echo "vscode \
+  echo "code \
     --user-data-dir=$HOME/.config/vscode/workspaces/$workspace_name/user \
     --extensions-dir=$HOME/.config/vscode/workspaces/$workspace_name/extensions \
     --sync=off"
