@@ -25,7 +25,7 @@
   "confirm_quit": true,
   "base_keymap": "VSCode",
   "features": {
-    "inline_completion_provider": "copilot"
+    "edit_prediction_provider": "copilot"
   },
   "auto_install_extensions": {
     "basedpyright": true,
@@ -67,13 +67,10 @@
     "Python": {
       "language_servers": ["basedpyright", "ruff"],
       "format_on_save": "on",
-      "formatter": {
-        // format the code + organize imports
-        "external": {
-          "command": "sh",
-          "arguments": ["-c", "ruff format - | ruff check --select I --fix -"]
-        }
-      }
+      "formatter": [
+        { "code_actions": { "source.organizeImports.ruff": true } },
+        { "language_server": { "name": "ruff" } }
+      ]
     },
     "Rust": {
       "language_servers": ["rust-analyzer"],
@@ -160,5 +157,10 @@
     "mode": "system",
     "light": "Gruvbox Light Hard",
     "dark": "Gruvbox Dark Hard"
-  }
+  },
+  "icon_theme": {
+      "mode": "system",
+      "light": "Zed (Default)",
+      "dark": "Zed (Default)"
+    }
 }

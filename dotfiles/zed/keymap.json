@@ -12,36 +12,25 @@
     "bindings": {
       "shift shift": "command_palette::Toggle",
       // pane navigation
-      "space w h": ["workspace::ActivatePaneInDirection", "Left"],
-      "space w l": ["workspace::ActivatePaneInDirection", "Right"],
-      "space w k": ["workspace::ActivatePaneInDirection", "Up"],
-      "space w j": ["workspace::ActivatePaneInDirection", "Down"],
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w l": "workspace::ActivatePaneRight",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w j": "workspace::ActivatePaneDown",
       // pane swapping
-      "space w L": ["workspace::SwapPaneInDirection", "Right"],
-      "space w K": ["workspace::SwapPaneInDirection", "Up"],
-      "space w J": ["workspace::SwapPaneInDirection", "Down"],
-      "space w H": ["workspace::SwapPaneInDirection", "Left"]
+      "space w L": "workspace::SwapPaneRight",
+      "space w K": "workspace::SwapPaneUp",
+      "space w J": "workspace::SwapPaneDown",
+      "space w H": "workspace::SwapPaneLeft"
     }
   },
-  // Change behaviour similar to the helix editor: {
-  // x - select current line
-  // d - delete current character right
-  // D - delete current character left
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "shift-v": null,
-      "x": "vim::ToggleVisualLine"
+      // The vim::Search it's not substitute the selected term into the search field
+      // "/": "vim::Search"
+      "/": "buffer_search::Deploy"
     }
   },
-  {
-    "context": "vim_mode == normal",
-    "bindings": {
-      "d": "vim::DeleteRight",
-      "shift-d": "vim::DeleteLeft"
-    }
-  },
-  // }
   // Extend behaviour of the completion menu navigation: {
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
@@ -51,7 +40,6 @@
       "ctrl-j": "editor::ContextMenuNext"
     }
   },
-  // }
   // Move lines up and down in visual mode
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
@@ -60,10 +48,17 @@
       "ctrl-k": "editor::MoveLineUp"
     }
   },
-  // Vim normal mode
+  // Vim: Normal mode
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "U": "vim::Redo"
+    }
+  },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
+      "space w": "workspace::Save",
       // Extra menu "Space Space"
       "space space a": "editor::ToggleInlayHints",
       "space space i": "editor::ToggleIndentGuides",
@@ -82,22 +77,19 @@
       "space t": "workspace::NewCenterTerminal",
       "space c": "editor::ToggleComments",
       "space a": "editor::ToggleCodeActions",
-      "space g": [
-        "task::Spawn",
-        { "task_name": "start lazygit", "reveal_target": "center" }
-      ],
+      "space g": ["task::Spawn", { "task_name": "start_lazygit" }],
       // disable default editor::Rename keybinding
       "c d": null,
       "space r": "editor::Rename",
       "space w s": "pane::SplitHorizontal",
       "space w v": "pane::SplitVertical",
-      "space w o": "pane::CloseInactiveItems"
+      "space w a": "pane::CloseInactiveItems"
       //
     }
   },
-  // Vim insert mode
+  // Vim: Insert mode
   {
-    "context": "Editor && vim_mode == insert && !menu",
+    "context": "Editor && vim_mode == insert && !menu && !Terminal",
     "bindings": {
       "ctrl-w": "editor::DeleteToPreviousWordStart",
       "ctrl-k": "vim::DeleteToEndOfLine",
@@ -105,7 +97,7 @@
       "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
-  // Vim visual mode
+  // Vim: Visual mode
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
@@ -117,7 +109,7 @@
       ",": "editor::SplitSelectionIntoLines"
     }
   },
-  // Like vim buffers
+  // AKA vim buffers
   {
     "context": "TabSwitcher",
     "use_key_equivalents": true,
