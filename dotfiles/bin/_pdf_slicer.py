@@ -3,7 +3,6 @@
 # dependencies = [
 #     "pypdf>=5.2.0,<5.3.0",
 # ]
-# required=True,
 # ///
 
 import argparse
@@ -40,13 +39,13 @@ def slice_pdf(
         reader = pypdf.PdfReader(infile)
 
         for file_num, (start, stop) in enumerate(page_ranges, start=1):
-            writer = pypdf.PdfWriter()
+            pdf = pypdf.PdfWriter()
             for page_number in range(start - 1, stop):
-                writer.add_page(reader.pages[page_number])
+                _ = pdf.add_page(reader.pages[page_number])
 
             output_filename = input_path.parent / f"{output_prefix}{file_num:02}.pdf"
             with open(output_filename, "wb") as outfile:
-                writer.write(outfile)
+                _ = pdf.write(outfile)
                 files.append(ResultItem(output_filename.as_posix(), start, stop))
 
     return files
