@@ -144,3 +144,6 @@ cask "ghostty"
 cask "zed"
 # Microsoft Visual Studio Code
 cask "visual-studio-code"
+# Application launcher
+cask "leader-key"
+
