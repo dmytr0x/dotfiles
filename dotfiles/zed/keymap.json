@@ -33,10 +33,10 @@
   },
   // Extend behaviour of the completion menu navigation: {
   {
-    "context": "Editor && (showing_code_actions || showing_completions)",
+    "context": "Editor && (showing_code_actions || showing_completions )",
     "use_key_equivalents": true,
     "bindings": {
-      "ctrl-k": "editor::ContextMenuPrev",
+      "ctrl-k": "editor::ContextMenuPrevious",
       "ctrl-j": "editor::ContextMenuNext"
     }
   },
@@ -48,7 +48,7 @@
       "ctrl-k": "editor::MoveLineUp"
     }
   },
-  // Vim: Normal mode
+  // Normal mode
   {
     "context": "vim_mode == normal",
     "bindings": {
@@ -87,7 +87,7 @@
       //
     }
   },
-  // Vim: Insert mode
+  // Insert mode
   {
     "context": "Editor && vim_mode == insert && !menu && !Terminal",
     "bindings": {
@@ -97,7 +97,7 @@
       "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
-  // Vim: Visual mode
+  // Visual mode
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
@@ -109,16 +109,24 @@
       ",": "editor::SplitSelectionIntoLines"
     }
   },
-  // AKA vim buffers
+  // hotkeys for: file picker [file_finder::Toggle]
+  {
+    "context": "",
+    "bindings": {
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-j": "menu::SelectNext"
+    }
+  },
+  // hotkeys for: buffers [tab_switcher::Toggle]
   {
     "context": "TabSwitcher",
     "use_key_equivalents": true,
     "bindings": {
       "tab": null,
       "shift-tab": null,
-      "k": "menu::SelectPrev",
-      "j": "menu::SelectNext",
-      "q": "tab_switcher::CloseSelectedItem"
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-q": "tab_switcher::CloseSelectedItem"
     }
   }
 ]
