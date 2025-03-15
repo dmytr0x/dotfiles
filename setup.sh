@@ -8,20 +8,44 @@ source ./core.sh
 
 info "🚀 Installing dotfiles ..."
 
-# Create symlinks
-source ./scripts/setup/symlink.sh
+answer=$(yes_no_question "Do you want to create symlinks?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/symlink.sh
+fi
 
-# Install packages via homebrew
-brew bundle --no-upgrade --file=./scripts/setup/Brewfile
+answer=$(yes_no_question "Do you want to install brew packages and casks?")
+if [ "$answer" = "y" ]; then
+  brew bundle --no-upgrade --file=./scripts/setup/Brewfile
+fi
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# Install oh-my-zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+answer=$(yes_no_question "Do you want to install zsh & oh-my-zsh?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/zsh.sh
+fi
 
 # Install programming languages
-source ./scripts/setup/python.sh
-source ./scripts/setup/javascript.sh
-source ./scripts/setup/rust.sh
-source ./scripts/setup/golang.sh
+mkdir -p $HOME/.zsources
+
+answer=$(yes_no_question "Do you want to install Python?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/python.sh
+  ln -s $DOTFILES/scripts/setup/sources/python.sh $HOME/.zsources/python.sh
+fi
+
+answer=$(yes_no_question "Do you want to install JavaScript?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/javascript.sh
+  ln -s $DOTFILES/scripts/setup/sources/javascript.sh $HOME/.zsources/javascript.sh
+fi
+
+answer=$(yes_no_question "Do you want to install Rust?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/rust.sh
+  ln -s $DOTFILES/scripts/setup/sources/rust.sh $HOME/.zsources/rust.sh
+fi
+
+answer=$(yes_no_question "Do you want to install Go?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/go.sh
+  ln -s $DOTFILES/scripts/setup/sources/go.sh $HOME/.zsources/go.sh
+fi

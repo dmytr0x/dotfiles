@@ -1,5 +1,3 @@
-#!/usr/bin/evn bash
-
 # standard libraries
 export GOROOT=$HOME/.golang
 if ! echo "$PATH" | grep -q "$GOROOT/bin"; then

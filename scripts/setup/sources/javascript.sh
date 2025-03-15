@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # --- fnm
 eval "$(fnm env --use-on-cd)"
 

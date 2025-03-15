@@ -18,7 +18,6 @@ symlink $(pwd)/dotfiles/zed/tasks.json $HOME/.config/zed/tasks.json
 symlink $(pwd)/dotfiles/zed/snippets $HOME/.config/zed/snippets
 symlink $(pwd)/dotfiles/amethyst $HOME/.config/amethyst
 symlink $(pwd)/dotfiles/lazygit $HOME/.config/lazygit
-symlink $(pwd)/dotfiles/nvim $HOME/.config/nvim
 symlink $(pwd)/dotfiles/ripgrep $HOME/.config/ripgrep
 symlink $(pwd)/dotfiles/starship $HOME/.config/starship
 symlink $(pwd)/dotfiles/wezterm $HOME/.config/wezterm

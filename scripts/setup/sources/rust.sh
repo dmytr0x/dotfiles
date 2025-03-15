@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 export RUSTUP_HOME=$HOME/.rustup
 export CARGO_HOME=$HOME/.cargo
 

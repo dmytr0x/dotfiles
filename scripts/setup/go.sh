@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./dotfiles/zsh/golang.sh
+source ./dotfiles/zsh/sources/go.sh
 
 VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
 ARCHIVE="go.tar.gz"

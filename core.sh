@@ -63,3 +63,32 @@ get_last_brew_cask_version() {
   local name=$1
   echo $(brew info --cask "$name" --json=v2 | jq ".casks[0].version" | tr -d '"')
 }
+
+yes_no_question() {
+  local prompt="$1"
+  local default_answer="${2:-y}"
+  local answer
+
+  if [ "$default_answer" = "y" ]; then
+    answer_options="Y/n"
+  else
+    answer_options="y/N"
+  fi
+
+  read -p "$prompt [$answer_options]: " answer
+
+  case "$answer" in
+    y | Y | yes | Yes)
+      echo "y"
+      ;;
+    n | N | no | No)
+      echo "n"
+      ;;
+    "")
+      echo $default_answer
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+}
