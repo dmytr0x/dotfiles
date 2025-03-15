@@ -146,4 +146,5 @@ cask "zed"
 cask "visual-studio-code"
 # Application launcher
 cask "leader-key"
-
+# Control your tools with a few keystrokes
+cask "raycast"
