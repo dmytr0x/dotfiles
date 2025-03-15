@@ -44,16 +44,21 @@ source $ZSH/oh-my-zsh.sh
 # Must be first source
 source $HOME/.config/zsh/dotfiles.sh
 
+source ~/.config/zsh/options.sh
+source ~/.config/zsh/key-bindings.sh
 source ~/.config/zsh/env.sh
 source ~/.config/zsh/aliases.sh
-source ~/.config/zsh/prompt.sh
 source ~/.config/zsh/completions.sh
-source ~/.config/zsh/cli-tools.sh
-source ~/.config/zsh/fzf.sh
-source ~/.config/zsh/key-bindings.sh
-source ~/.config/zsh/options.sh
-source ~/.config/zsh/python.sh
-source ~/.config/zsh/javascript.sh
-source ~/.config/zsh/golang.sh
-source ~/.config/zsh/rust.sh
-source ~/.config/zsh/java.sh
+source ~/.config/zsh/tools/fzf.sh
+source ~/.config/zsh/tools/ripgrep.sh
+source ~/.config/zsh/tools/starship.sh
+
+# Load external sources
+SOURCES_DIR="$HOME/.zsources"
+if [ -d "$SOURCES_DIR" ]; then
+  for entry in "$SOURCES_DIR"/*; do
+    if [ -f "$entry" ]; then
+      source $entry
+    fi
+  done
+fi
