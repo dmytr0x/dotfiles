@@ -198,7 +198,7 @@
         "files.insertFinalNewline": true,
         "files.trimTrailingWhitespace": true,
     },
-    //     // "python.defaultInterpreterPath": "python",
+    // "python.defaultInterpreterPath": "python",
     "python.languageServer": "Pylance",
     "python.analysis.typeCheckingMode": "strict",
     "python.analysis.completeFunctionParens": true,
@@ -423,7 +423,7 @@
     // look & feel
     "window.title": " ",
     "window.commandCenter": false,
-    "window.autoDetectColorScheme": false,
+    "window.autoDetectColorScheme": true,
     "workbench.preferredDarkColorTheme": "Default Dark Modern",
     "workbench.preferredLightColorTheme": "Default Light Modern",
     //
