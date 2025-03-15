@@ -2,7 +2,7 @@
   "actions" : [
     {
       "key" : "t",
-      "label" : "",
+      "label" : "Terminal",
       "type" : "application",
       "value" : "/Applications/WezTerm.app"
     },
@@ -10,42 +10,42 @@
       "actions" : [
         {
           "key" : "m",
-          "label" : "",
+          "label" : "Mail",
           "type" : "application",
           "value" : "/System/Applications/Mail.app"
         },
         {
-          "key" : "c",
-          "label" : "",
-          "type" : "application",
-          "value" : "/System/Applications/Calculator.app"
-        },
-        {
           "key" : "b",
-          "label" : "",
+          "label" : "Arc",
           "type" : "application",
           "value" : "/Applications/Arc.app"
         },
         {
           "key" : "e",
-          "label" : "",
+          "label" : "Zed",
           "type" : "application",
           "value" : "/Applications/Zed.app"
+        },
+        {
+          "key" : "g",
+          "label" : "Grammarly",
+          "type" : "application",
+          "value" : "/Applications/Grammarly Desktop.app"
         }
       ],
       "key" : "o",
-      "label" : "",
+      "label" : "Open",
       "type" : "group"
     },
     {
       "key" : "d",
-      "label" : "",
+      "label" : "DeepL",
       "type" : "application",
       "value" : "/Applications/DeepL.app"
     },
     {
       "key" : "r",
-      "label" : "",
+      "label" : "Reverso",
       "type" : "application",
       "value" : "/Applications/Reverso.app"
     }
