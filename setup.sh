@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-# Initialise environment
 source ./dotfiles/zsh/dotfiles.sh
-
-# Initialise helpers
 source ./core.sh
 
 info "🚀 Installing dotfiles ..."
