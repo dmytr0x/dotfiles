@@ -22,22 +22,26 @@ config.enable_scroll_bar = true
 config.scrollback_lines = 10000
 
 local function scheme_for_appearance(appearance)
-  if appearance:find("Dark") then
-    return "iTerm2 Tango Dark"
-  else
-    return "iTerm2 Tango Light"
-  end
+  -- if appearance:find("Dark") then
+  --   return "iTerm2 Tango Dark"
+  -- else
+  --   return "iTerm2 Tango Light"
+  -- end
+  return "iTerm2 Tango Dark"
 end
 local function colors_for_appearance(appearance)
-  if appearance:find("Dark") then
-    return {
-      background = "#000000",
-    }
-  else
-    return {
-      background = "#ffffff",
-    }
-  end
+  -- if appearance:find("Dark") then
+  --   return {
+  --     background = "#000000",
+  --   }
+  -- else
+  --   return {
+  --     background = "#ffffff",
+  --   }
+  -- end
+  return {
+    background = "#000000",
+  }
 end
 
 --
@@ -349,7 +353,7 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 --
-local default_background_opacity = 0.85
+local default_background_opacity = 0.90
 config.window_background_opacity = default_background_opacity
 
 wezterm.on("opacity-toggle", function(window, pane)
