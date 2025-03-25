@@ -41,6 +41,7 @@ local function colors_for_appearance(appearance)
   -- end
   return {
     background = "#000000",
+    cursor_bg = "#f27172",
   }
 end
 
