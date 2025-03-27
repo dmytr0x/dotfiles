@@ -206,7 +206,6 @@
     "python.analysis.inlayHints.variableTypes": true,
     "python.analysis.inlayHints.pytestParameters": true,
     "python.analysis.inlayHints.callArgumentNames": "all",
-    
     //     "python.analysis.autoImportCompletions": false,
     //     // - black
     //     // "python.formatting.provider": "none", // use vscode extension
@@ -293,10 +292,15 @@
     // excludes
     "files.exclude": {
         "**/__pycache__": true,
-        // "**/.ipynb_checkpoints/**": true
+        "**/.ruff_cache": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cache": true,
     },
     "files.watcherExclude": {
-        "**/__pycache__/*/**": true
+        "**/__pycache__/*/**": true,
+        "**/.ruff_cache/*/**": true,
+        "**/.mypy_cache/*/**": true,
+        "**/.pytest_cache/*/**": true,
     },
     //     // search
     "search.searchOnType": false,
