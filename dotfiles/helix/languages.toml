@@ -20,7 +20,11 @@ validation = true
 # Json
 [[language]]
 name = "json"
+file-types = ["json", "jsonc"]
 language-servers = ["vscode-json-language-server"]
+indent = { tab-width = 4, unit = " " }
+comment-token = "//"
+auto-format = false
 
 # Css
 [[language]]
