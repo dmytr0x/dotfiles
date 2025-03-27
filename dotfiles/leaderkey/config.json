@@ -21,16 +21,16 @@
           "value" : "/Applications/Arc.app"
         },
         {
-          "key" : "e",
-          "label" : "Zed",
+          "key" : "c",
+          "label" : "Cursor",
           "type" : "application",
-          "value" : "/Applications/Zed.app"
+          "value" : "/Applications/Cursor.app"
         },
         {
-          "key" : "g",
-          "label" : "Grammarly",
+          "key" : "e",
+          "label" : "Editor",
           "type" : "application",
-          "value" : "/Applications/Grammarly Desktop.app"
+          "value" : "/Applications/CotEditor.app"
         }
       ],
       "key" : "o",
@@ -48,6 +48,12 @@
       "label" : "Reverso",
       "type" : "application",
       "value" : "/Applications/Reverso.app"
+    },
+    {
+      "key" : "g",
+      "label" : "Grammarly",
+      "type" : "application",
+      "value" : "/Applications/Grammarly Desktop.app"
     }
   ],
   "type" : "group"
