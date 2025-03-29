@@ -85,8 +85,6 @@ brew "just"
 #cask "amethyst"
 # Application uninstaller
 cask "appcleaner"
-# Chromium based browser
-cask "arc"
 # Plain-text editor for web pages, program source codes and more
 cask "coteditor"
 # Trains AIs to understand and translate texts
