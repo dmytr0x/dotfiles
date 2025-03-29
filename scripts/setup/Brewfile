@@ -128,3 +128,5 @@ cask "visual-studio-code"
 cask "leader-key"
 # Control your tools with a few keystrokes
 cask "raycast"
+# Gecko based web browser
+cask "zen-browser"
