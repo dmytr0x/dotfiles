@@ -2,6 +2,4 @@
 prepend_keymap = [
   # Shell
   {on = "<C-s>", run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here"},
-  # Goto
-  {on = ["g", "m"], run  = 'cd ~/Mega/drive', desc = "Goto ~/Mega/drive"}
 ]
