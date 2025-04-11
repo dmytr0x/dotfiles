@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+if [ "$#" -ne 2 ]; then
+  echo "Delete all files or directories with a specific name, starting from the current working directory."
+  echo "Usage: $(basename $0) <type> <name>"
+  echo "  <type>: file or dir"
+  echo "  <name>: entity name"
+  exit 1
+fi
+
+read -p "Do you want to delete all $2 $1s? [y/N] " -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  fd --unrestricted --case-sensitive --type $1 --glob "$2" --exec rm || true
+  echo "Deletion done."
+else
+  echo "Deletion cancelled."
+fi
+
+exit 0

@@ -35,3 +35,4 @@ symlink $(pwd)/dotfiles/bin/ds-delete $HOME/.local/bin/ds-delete
 symlink $(pwd)/dotfiles/bin/flush-dns $HOME/.local/bin/flush-dns
 symlink $(pwd)/dotfiles/bin/_dup_scout.py $HOME/.local/bin/_dup_scout.py
 symlink $(pwd)/dotfiles/bin/_pdf_slicer.py $HOME/.local/bin/_pdf_slicer.py
+symlink $(pwd)/dotfiles/bin/remove-all $HOME/.local/bin/remove-all
