@@ -31,7 +31,6 @@ info "🚀 Linking local binaries ..."
 symlink $(pwd)/dotfiles/bin/check-port $HOME/.local/bin/check-port
 symlink $(pwd)/dotfiles/bin/clear-port $HOME/.local/bin/clear-port
 symlink $(pwd)/dotfiles/bin/colors $HOME/.local/bin/colors
-symlink $(pwd)/dotfiles/bin/ds-delete $HOME/.local/bin/ds-delete
 symlink $(pwd)/dotfiles/bin/flush-dns $HOME/.local/bin/flush-dns
 symlink $(pwd)/dotfiles/bin/_dup_scout.py $HOME/.local/bin/_dup_scout.py
 symlink $(pwd)/dotfiles/bin/_pdf_slicer.py $HOME/.local/bin/_pdf_slicer.py
