@@ -8,6 +8,7 @@ show_hidden    = true
 [opener]
 edit = [
 	{ run = 'hx "$@"', desc = "Helix Editor", block = true, for = "unix" },
+	{ run = 'gui-editor "$@"', desc = "GUI Editor", for = "macos" },
 ]
 open = [
 	{ run = 'open "$@"', desc = "Open", for = "macos" },

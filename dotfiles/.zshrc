@@ -48,6 +48,7 @@ source ~/.config/zsh/options.sh
 source ~/.config/zsh/key-bindings.sh
 source ~/.config/zsh/env.sh
 source ~/.config/zsh/aliases.sh
+source ~/.config/zsh/overrides.sh
 source ~/.config/zsh/completions.sh
 source ~/.config/zsh/tools/fzf.sh
 source ~/.config/zsh/tools/ripgrep.sh
