@@ -1,5 +1,32 @@
 [manager]
 prepend_keymap = [
   # Shell
-  {on = "<C-s>", run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here"},
+  { on = "<C-s>", run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+  #
+  # === Plugins ===
+  #  
+  # Git changes
+  # https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi
+  { on = [
+    "P",
+    "g",
+  ], run = "plugin vcs-files", desc = "Show Git file changes" },
+  # 
+  # Mount manager
+  # https://github.com/yazi-rs/plugins/tree/main/mount.yazi
+  { on = [
+    "P",
+    "m",
+  ], run = "plugin mount" },
+  #
+  # Smart filter
+  # https://github.com/yazi-rs/plugins/tree/main/smart-filter.yazi
+  { on = [
+    "P",
+    "f",
+  ], run = "plugin smart-filter", desc = "Smart filter" },
+  #
+  # Toggle pane
+  #
+  { on = ["P", "p"], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
 ]
