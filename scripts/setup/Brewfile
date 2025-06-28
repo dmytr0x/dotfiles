@@ -80,6 +80,8 @@ brew "taplo"
 brew "lua-language-server"
 # Handy way to save and run project-specific commands
 brew "just"
+# Multi-shell multi-command argument completer
+brew "carapace"
 
 # Automatic tiling window manager similar to xmonad
 #cask "amethyst"
