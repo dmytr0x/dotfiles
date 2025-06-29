@@ -21,67 +21,37 @@ config.enable_scroll_bar = true
 -- the contents of the scrollback buffer.
 config.scrollback_lines = 10000
 
-local function scheme_for_appearance(appearance)
-  -- if appearance:find("Dark") then
-  --   return "iTerm2 Tango Dark"
-  -- else
-  --   return "iTerm2 Tango Light"
-  -- end
+local function scheme_for_appearance()
   return "iTerm2 Tango Dark"
 end
-local function colors_for_appearance(appearance)
-  -- if appearance:find("Dark") then
-  --   return {
-  --     background = "#000000",
-  --   }
-  -- else
-  --   return {
-  --     background = "#ffffff",
-  --   }
-  -- end
+
+local function colors_for_appearance()
   return {
     background = "#000000",
     cursor_bg = "#f27172",
     split = '#6272a4',
 
-    -- tab_bar = {
-    --   background = '#000000',
-
-    --   active_tab = {
-    --     bg_color = '#000000',
-    --     fg_color = '#ffffff',
-    --   },
-
-    --   inactive_tab = {
-    --     bg_color = '#000000',
-    --     fg_color = '#555555',
-    --   },
-    -- },
     tab_bar = {
-      -- Background color of the tab bar (match your editor)
-      background = '#1e1e1e', -- Dark background like your editor
+      background = '#1e1e1e',
 
-      -- Active tab styling
       active_tab = {
-        bg_color = '#1e1e1e', -- Same as editor background
-        fg_color = '#ffffff', -- White text
+        bg_color = '#1e1e1e',
+        fg_color = '#f38ba8',
         intensity = 'Normal',
         underline = 'None',
         italic = false,
         strikethrough = false,
       },
 
-      -- Inactive tab styling
       inactive_tab = {
-        bg_color = '#2d2d2d', -- Slightly different for distinction
-        fg_color = '#808080', -- Dimmed text
+        bg_color = '#2d2d2d',
+        fg_color = '#808080',
         intensity = 'Normal',
         underline = 'None',
         italic = false,
         strikethrough = false,
       },
 
-      -- Hover state
       inactive_tab_hover = {
         bg_color = '#404040',
         fg_color = '#ffffff',
@@ -89,18 +59,6 @@ local function colors_for_appearance(appearance)
         underline = 'None',
         italic = false,
         strikethrough = false,
-      },
-
-      -- New tab button
-      new_tab = {
-        bg_color = '#1e1e1e',
-        fg_color = '#808080',
-      },
-
-      -- New tab button hover
-      new_tab_hover = {
-        bg_color = '#404040',
-        fg_color = '#ffffff',
       },
     },
   }
@@ -115,8 +73,8 @@ config.webgpu_preferred_adapter = wezterm.gui.enumerate_gpus()[1]
 config.prefer_egl = true
 --
 -- color scheme
-config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
-config.colors = colors_for_appearance(wezterm.gui.get_appearance())
+config.color_scheme = scheme_for_appearance()
+config.colors = colors_for_appearance()
 config.inactive_pane_hsb = {
   saturation = 0.8,
   brightness = 0.7,
@@ -357,7 +315,7 @@ config.key_tables = {
       key = 'r',
       action = wezterm.action.PromptInputLine {
         description = 'Enter tab name',
-        action = wezterm.action_callback(function(window, pane, line)
+        action = wezterm.action_callback(function(window, _, line)
           if line then
             window:active_tab():set_title(line)
           end
@@ -426,7 +384,7 @@ wezterm.on("open-uri", function(window, pane, uri)
 end)
 
 --
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-right-status", function(window, _)
   local key_table = window:active_key_table()
   local workspace = window:active_workspace()
 
@@ -442,7 +400,7 @@ local default_background_opacity = 0.85
 config.window_background_opacity = default_background_opacity
 config.macos_window_background_blur = 20
 
-wezterm.on("opacity-toggle", function(window, pane)
+wezterm.on("opacity-toggle", function(window, _)
   local overrides = window:get_config_overrides() or {}
   if overrides.window_background_opacity == 1.0 then
     overrides.window_background_opacity = default_background_opacity
@@ -453,11 +411,11 @@ wezterm.on("opacity-toggle", function(window, pane)
 end)
 
 --
-wezterm.on('window-config-reloaded', function(window, pane)
+wezterm.on('window-config-reloaded', function(window, _)
   local appearance = window:get_appearance()
 
   local overrides = window:get_config_overrides() or {}
-  overrides.color_scheme = scheme_for_appearance(appearance)
+  overrides.color_scheme = scheme_for_appearance()
 
   window:set_config_overrides(overrides)
 end)
