@@ -79,8 +79,10 @@ C-j = ["hsplit", "jump_view_down", "goto_definition"]
 
 [keys.normal.space]
 q = ":buffer-close"
-# Think about :pipe
+# think about :pipe
 # l = """:pipe python3 -c "print('Hello')""""
+# open file picker at current buffer's directory
+F = "file_picker_in_current_buffer_directory"
 
 [keys.normal.space.space]
 r = ":reload"
