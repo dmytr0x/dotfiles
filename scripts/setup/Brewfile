@@ -84,6 +84,8 @@ brew "just"
 brew "carapace"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
+# Load/unload environment variables based on $PWD
+brew "direnv"
 
 # Automatic tiling window manager similar to xmonad
 #cask "amethyst"

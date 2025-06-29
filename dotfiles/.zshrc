@@ -54,6 +54,8 @@ source ~/.config/zsh/tools/starship.sh
 source ~/.config/zsh/tools/ripgrep.sh
 source ~/.config/zsh/tools/fzf.sh
 source ~/.config/zsh/tools/atuin.sh
+source ~/.config/zsh/tools/zoxide.sh
+source ~/.config/zsh/tools/direnv.sh
 
 # Load external sources
 SOURCES_DIR="$HOME/.zsources"
