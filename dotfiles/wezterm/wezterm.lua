@@ -82,7 +82,7 @@ config.inactive_pane_hsb = {
 --
 -- font
 config.font = wezterm.font_with_fallback({
-  { family = "Fira Code", weight = "Regular", italic = false },
+  { family = "FiraCode Nerd Font", weight = "Regular", italic = false },
 })
 config.font_size = 13.0
 config.line_height = 1.05
