@@ -58,8 +58,8 @@ sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 # Check domain DNS records using particular DNS-Server
 nslookup {domain} {dns-server}
 
-# Scan specific port for particular IP address
-nmap -p {port} {ip}
+# Scan a particular IP address port
+ask <<< "nmap -p {{port}} {{ip}}" | bash
 
 # Generate a Brewfile by listing currently installed packages:
 brew bundle dump --describe --direct --topological --file=Brewfile
