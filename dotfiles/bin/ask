@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+import re
+import sys
+
+
+def main():
+    try:
+        template = sys.stdin.read()
+    except (IOError, EOFError):
+        sys.exit(1)
+
+    # Find all variables and get an ordered list of unique ones.
+    variables = re.findall(r"\{\{([a-zA-Z0-9_]+)\}\}", template)
+    unique_vars = list(dict.fromkeys(variables))
+
+    output_string = template
+    try:
+        with open("/dev/tty", "r") as tty:
+            for var_name in unique_vars:
+                # Hack to avoid send the output to the terminal
+                print(f"{var_name}: ", end="", flush=True, file=sys.stderr)
+                value = tty.readline().rstrip("\n")
+
+                # Replace all occurrences of this placeholder
+                output_string = output_string.replace(f"{{{{{var_name}}}}}", value)
+
+    except (EOFError, KeyboardInterrupt, OSError):
+        print("\nAborted.", file=sys.stderr)
+        sys.exit(1)
+
+    # Send the final output to stdout
+    print(output_string, end="")
+
+
+if __name__ == "__main__":
+    main()
