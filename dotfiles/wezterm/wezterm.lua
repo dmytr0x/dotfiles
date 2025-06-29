@@ -152,9 +152,6 @@ config.keys = {
   { key = "n",          mods = "LEADER",      action = act.SpawnWindow },
 
   -- Tab
-  { key = "t",          mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "T",          mods = "LEADER",      action = act.ShowTabNavigator },
-  { key = "q",          mods = "LEADER",      action = act.CloseCurrentTab({ confirm = true }) },
   { key = "H",          mods = "LEADER",      action = act.ActivateTabRelative(-1) },
   { key = "L",          mods = "LEADER",      action = act.ActivateTabRelative(1) },
   { key = "1",          mods = "SUPER",       action = act.ActivateTab(0) },
@@ -174,7 +171,10 @@ config.keys = {
   --
 
   -- Window
-  { key = "w",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "w_sequence", timeout_milliseconds = 2000 }) },
+  { key = "w",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "window_sequence", timeout_milliseconds = 2000 }) },
+
+  -- Window
+  { key = "t",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "tab_sequence", timeout_milliseconds = 2000 }) },
 
   -- Workspaces
   { key = "s",          mods = "LEADER",      action = act.ActivateKeyTable({ name = "workspace_sequence", timeout_milliseconds = 2000 }) },
@@ -238,7 +238,7 @@ config.key_tables = {
     { key = 'DownArrow',  mods = 'NONE',  action = act.CopyMode 'MoveDown' },
   },
 
-  w_sequence = {
+  window_sequence = {
     { key = "q",     action = act.CloseCurrentPane({ confirm = true }) },
 
     -- pane splits
@@ -250,13 +250,13 @@ config.key_tables = {
     { key = "Space", action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActive", show_pane_ids = false }) },
 
     -- sub-sequence: adjust pane
-    { key = "a",     action = act.ActivateKeyTable({ name = "wa_sequence", one_shot = false }) },
+    { key = "a",     action = act.ActivateKeyTable({ name = "window_adjust_sequence", one_shot = false }) },
     -- sub-sequence: rotate pane
-    { key = "r",     action = act.ActivateKeyTable({ name = "wr_sequence", one_shot = false }) },
+    { key = "r",     action = act.ActivateKeyTable({ name = "window_rotate_sequence", one_shot = false }) },
 
   },
 
-  wa_sequence = {
+  window_adjust_sequence = {
     { key = "LeftArrow",  action = act.AdjustPaneSize({ "Left", 1 }) },
     { key = "h",          action = act.AdjustPaneSize({ "Left", 1 }) },
     { key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
@@ -269,7 +269,7 @@ config.key_tables = {
     { key = "Escape",     action = "PopKeyTable" },
   },
 
-  wr_sequence = {
+  window_rotate_sequence = {
     { key = "h",          action = act.RotatePanes("Clockwise") },
     { key = "LeftArrow",  action = act.RotatePanes("Clockwise") },
     { key = "l",          action = act.RotatePanes("CounterClockwise") },
@@ -280,6 +280,23 @@ config.key_tables = {
 
   events = {
     { key = "o", action = act.EmitEvent("opacity-toggle") },
+  },
+
+  tab_sequence = {
+    { key = "n", action = act.SpawnTab("CurrentPaneDomain") },
+    { key = "t", action = act.ShowTabNavigator },
+    { key = "q", action = act.CloseCurrentTab({ confirm = true }) },
+    {
+      key = 'r',
+      action = wezterm.action.PromptInputLine {
+        description = 'Enter tab name',
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
+    },
   },
 
   workspace_sequence = {
