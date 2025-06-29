@@ -42,6 +42,67 @@ local function colors_for_appearance(appearance)
   return {
     background = "#000000",
     cursor_bg = "#f27172",
+    split = '#6272a4',
+
+    -- tab_bar = {
+    --   background = '#000000',
+
+    --   active_tab = {
+    --     bg_color = '#000000',
+    --     fg_color = '#ffffff',
+    --   },
+
+    --   inactive_tab = {
+    --     bg_color = '#000000',
+    --     fg_color = '#555555',
+    --   },
+    -- },
+    tab_bar = {
+      -- Background color of the tab bar (match your editor)
+      background = '#1e1e1e', -- Dark background like your editor
+
+      -- Active tab styling
+      active_tab = {
+        bg_color = '#1e1e1e', -- Same as editor background
+        fg_color = '#ffffff', -- White text
+        intensity = 'Normal',
+        underline = 'None',
+        italic = false,
+        strikethrough = false,
+      },
+
+      -- Inactive tab styling
+      inactive_tab = {
+        bg_color = '#2d2d2d', -- Slightly different for distinction
+        fg_color = '#808080', -- Dimmed text
+        intensity = 'Normal',
+        underline = 'None',
+        italic = false,
+        strikethrough = false,
+      },
+
+      -- Hover state
+      inactive_tab_hover = {
+        bg_color = '#404040',
+        fg_color = '#ffffff',
+        intensity = 'Normal',
+        underline = 'None',
+        italic = false,
+        strikethrough = false,
+      },
+
+      -- New tab button
+      new_tab = {
+        bg_color = '#1e1e1e',
+        fg_color = '#808080',
+      },
+
+      -- New tab button hover
+      new_tab_hover = {
+        bg_color = '#404040',
+        fg_color = '#ffffff',
+      },
+    },
   }
 end
 
@@ -56,6 +117,10 @@ config.prefer_egl = true
 -- color scheme
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 config.colors = colors_for_appearance(wezterm.gui.get_appearance())
+config.inactive_pane_hsb = {
+  saturation = 0.8,
+  brightness = 0.7,
+}
 --
 -- font
 config.font = wezterm.font_with_fallback({
@@ -69,7 +134,9 @@ config.harfbuzz_features = { "calt=0" }
 --
 -- tab bar
 config.enable_tab_bar = true
-config.use_fancy_tab_bar = true
+-- Use retro tab bar style (cleaner look)
+config.use_fancy_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 --
 -- window
@@ -371,8 +438,9 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 --
-local default_background_opacity = 0.90
+local default_background_opacity = 0.85
 config.window_background_opacity = default_background_opacity
+config.macos_window_background_blur = 20
 
 wezterm.on("opacity-toggle", function(window, pane)
   local overrides = window:get_config_overrides() or {}
