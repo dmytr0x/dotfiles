@@ -7,16 +7,14 @@
 #   3) You can revert the options for the current shell to the default settings with the `emulate -LR zsh` command.
 
 # This only sets options that exist
-setopt_if_exists() {
-  if [[ "${options[$1]+1}" ]]; then
-    setopt "$1"
-  fi
-}
-
+# setopt_if_exists() {
+#   if [[ "${options[$1]+1}" ]]; then
+#     setopt "$1"
+#   fi
+# }
 
 # Autocorrect commands with typos and ask to run the correct command instead
-setopt_if_exists correct # commands
-setopt_if_exists correct_all # all arguments
+# setopt_if_exists correct # commands
+# setopt_if_exists correct_all # all arguments
 
-
-unset setopt_if_exists
+# unset setopt_if_exists

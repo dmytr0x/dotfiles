@@ -50,9 +50,10 @@ source ~/.config/zsh/env.sh
 source ~/.config/zsh/aliases.sh
 source ~/.config/zsh/overrides.sh
 source ~/.config/zsh/completions.sh
-source ~/.config/zsh/tools/fzf.sh
-source ~/.config/zsh/tools/ripgrep.sh
 source ~/.config/zsh/tools/starship.sh
+source ~/.config/zsh/tools/ripgrep.sh
+source ~/.config/zsh/tools/fzf.sh
+source ~/.config/zsh/tools/atuin.sh
 
 # Load external sources
 SOURCES_DIR="$HOME/.zsources"

@@ -82,6 +82,8 @@ brew "lua-language-server"
 brew "just"
 # Multi-shell multi-command argument completer
 brew "carapace"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
 
 # Automatic tiling window manager similar to xmonad
 #cask "amethyst"

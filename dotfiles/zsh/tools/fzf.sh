@@ -50,11 +50,11 @@ export FZF_ALT_C_OPTS="
 # CTRL-R: Paste the selected command from history onto the command-line.
 # CTRL-/ to toggle small preview window to see the full command
 # CTRL-Y to copy the command into clipboard using pbcopy
-export FZF_CTRL_R_OPTS="
-  --preview 'echo {}' --preview-window down:3:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --header 'Press CTRL-Y to copy command into clipboard'"
+# export FZF_CTRL_R_OPTS="
+#   --preview 'echo {}' --preview-window down:3:wrap
+#   --bind 'ctrl-/:toggle-preview'
+#   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+#   --header 'Press CTRL-Y to copy command into clipboard'"
 
 # Auto suggest by trigger
 export FZF_COMPLETION_TRIGGER="~~"

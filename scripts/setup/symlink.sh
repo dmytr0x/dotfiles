@@ -26,6 +26,7 @@ symlink $(pwd)/dotfiles/yazi $HOME/.config/yazi
 symlink $(pwd)/dotfiles/zsh $HOME/.config/zsh
 symlink $(pwd)/dotfiles/vscode $HOME/.config/vscode
 symlink $(pwd)/dotfiles/leaderkey $HOME/.config/leaderkey
+symlink $(pwd)/dotfiles/atuin $HOME/.config/atuin
 
 info "🚀 Linking local binaries ..."
 symlink $(pwd)/dotfiles/bin/check-port $HOME/.local/bin/check-port

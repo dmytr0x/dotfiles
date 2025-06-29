@@ -76,3 +76,6 @@ function get-term-colors() {
 # Download file and save it with the name of the remote file in the current working directory
 # Usage: get <URL>
 alias get="curl -O -L"
+
+# Atuin Script Run
+alias asr="atuin script run"
