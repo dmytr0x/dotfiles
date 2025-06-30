@@ -10,13 +10,11 @@
       "actions" : [
         {
           "key" : "m",
-          "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Mail.app"
         },
         {
           "key" : "c",
-          "label" : "",
           "type" : "application",
           "value" : "/Applications/Cursor.app"
         },
@@ -28,9 +26,13 @@
         },
         {
           "key" : "b",
-          "label" : "",
           "type" : "application",
           "value" : "/Applications/Bitwarden.app"
+        },
+        {
+          "key" : "d",
+          "type" : "application",
+          "value" : "/Applications/Deskflow.app"
         }
       ],
       "key" : "o",
@@ -39,13 +41,11 @@
     },
     {
       "key" : "d",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/DeepL.app"
     },
     {
       "key" : "r",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/Reverso.app"
     },
