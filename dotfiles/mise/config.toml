@@ -1,0 +1,6 @@
+[tools]
+node = "lts"
+python = "3.13"
+
+[settings]
+env_file = ".env"
