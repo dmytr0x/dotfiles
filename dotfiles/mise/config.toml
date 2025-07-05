@@ -4,3 +4,5 @@ python = "3.13"
 
 [settings]
 env_file = ".env"
+experimental = false
+status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
