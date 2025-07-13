@@ -52,8 +52,7 @@ symbol = ' '
 [python]
 style = 'teal'
 symbol = ' '
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_prefix = ''
+format = '[${symbol}(${version} )(\($virtualenv\) )]($style)'
 
 [lua]
 symbol = ' '

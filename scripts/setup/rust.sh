@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
+source ./core.sh
+
 info "🚀 Installing rust ..."
+mise install rust
 
-source ./dotfiles/zsh/rust.sh
-
-if [ ! -d "$CARGO_HOME" ]; then
-  ./scripts/setup/sources/rustup.sh \
-    -y \
-    --no-modify-path \
-    --profile=default \
-    --component=rust-analyzer
-fi
+# Experimental Rust compiler front-end for IDEs
+info "🚀 Installing rust-analyzer ..."
+cargo install rust-analyzer

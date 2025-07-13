@@ -1,18 +1,9 @@
 #!/usr/bin/env bash
 
-source ./dotfiles/zsh/sources/go.sh
+source ./core.sh
 
-VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
-ARCHIVE="go.tar.gz"
-
-info "🚀 Installing golang $VERSION ..."
-
-if [ ! -d "$GOROOT" ]; then
-  curl -sLo $ARCHIVE https://go.dev/dl/$VERSION.darwin-arm64.tar.gz
-  tar -xzf $ARCHIVE -C $HOME
-  rm -f $ARCHIVE
-  mv $HOME/go $GOROOT
-fi
+# Install golang
+mise install go
 
 info "🚀 Installing golang tools ..."
 go install "golang.org/x/tools/gopls@latest"

@@ -1,8 +1,13 @@
 [tools]
 node = "lts"
-python = "3.13"
+python = "latest"
+go = "latest"
+rust = "latest"
+deno = "latest"
+bun = "latest"
+java = "latest"
 
 [settings]
 env_file = ".env"
 experimental = false
-status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = false }
+status = { missing_tools = "always", show_env = true, show_tools = false }
