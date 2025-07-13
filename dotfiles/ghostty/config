@@ -2,7 +2,14 @@
 # Info: https://ghostty.org/docs/config/reference
 #
 
-theme = "iTerm2 Tango Dark"
 font-family = "Fira Code"
-background-opacity = 0.85
 
+macos-titlebar-style = "tabs"
+window-decoration = true
+background-opacity = 0.8
+background-blur-radius = 20
+
+mouse-hide-while-typing = true
+macos-option-as-alt = true
+
+keybind = global:cmd+/=toggle_quick_terminal
