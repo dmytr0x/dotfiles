@@ -76,7 +76,7 @@ config.prefer_egl = true
 config.color_scheme = scheme_for_appearance()
 config.colors = colors_for_appearance()
 config.inactive_pane_hsb = {
-  saturation = 0.8,
+  saturation = 0.7,
   brightness = 0.7,
 }
 --
