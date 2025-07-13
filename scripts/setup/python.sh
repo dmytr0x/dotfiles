@@ -3,34 +3,8 @@
 # Initialise helpers
 source ./core.sh
 
-# pyenv
-PYENV_VERSION=$(get_last_brew_package_version "pyenv")
-info "🚀 Installing pyenv $PYENV_VERSION ..."
-brew install --quiet pyenv
-eval "$(pyenv init -)"
-
-info "🚀 Installing python 3.11 ..."
-pyenv install --skip-existing 3.11
-
-info "🚀 Installing python 3.12 ..."
-pyenv install --skip-existing 3.12
-
-info "🚀 Installing python 3.13 ..."
-pyenv install --skip-existing 3.13
-
-pyenv global 3.13
-
-# pipx
-PIPX_VERSION=$(get_last_brew_package_version "pipx")
-info "🚀 Installing pipx $PIPX_VERSION ..."
-brew install --quiet pipx
-pipx ensurepath --quiet
-
-pipx install ipython --python=$(pyenv which python3)
-
-# poetry
-info "🚀 Installing poetry ..."
-./scripts/setup/sources/poetry.py
+# Install global python
+mise install python
 
 # basedpyright
 BASEDPYRIGHT_VERSION=$(get_last_brew_package_version "basedpyright")

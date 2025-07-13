@@ -40,16 +40,8 @@ brew "nmap"
 brew "nushell"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
-# Python version management
-brew "pyenv"
-# Pyright fork with various improvements and built-in pylance features
-brew "basedpyright"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Extremely fast Python linter, written in Rust
-brew "ruff"
 # Experimental Rust compiler front-end for IDEs
 brew "rust-analyzer"
 # Cross-shell prompt for astronauts
