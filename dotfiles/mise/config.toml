@@ -11,3 +11,4 @@ java = "latest"
 env_file = ".env"
 experimental = false
 status = { missing_tools = "always", show_env = true, show_tools = false }
+idiomatic_version_file_enable_tools = ["python"]
