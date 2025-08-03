@@ -4,8 +4,9 @@
 source ./core.sh
 
 info "🚀 Linking global configs ..."
-cp -n $(pwd)/dotfiles/.gitconfig $HOME/.gitconfig
-cp -n $(pwd)/dotfiles/.gitignore_global $HOME/.gitignore_global
+symlink $(pwd)/dotfiles/.gitconfig $HOME/.gitconfig
+symlink $(pwd)/dotfiles/.gitconfig_global $HOME/.gitconfig_global
+symlink $(pwd)/dotfiles/.gitignore_global $HOME/.gitignore_global
 symlink $(pwd)/dotfiles/.zprofile $HOME/.zprofile
 symlink $(pwd)/dotfiles/.zshenv $HOME/.zshenv
 symlink $(pwd)/dotfiles/.zshrc $HOME/.zshrc
