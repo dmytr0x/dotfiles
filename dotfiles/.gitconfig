@@ -162,7 +162,7 @@
   #
   features = line-numbers decorations
   #
-  side-by-side = true
+  side-by-side = false
 
 # Include the personal config
 [includeIf "gitdir:~/"]
