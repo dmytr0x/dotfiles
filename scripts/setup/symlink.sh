@@ -38,3 +38,6 @@ symlink $(pwd)/dotfiles/bin/_dup_scout.py $HOME/.local/bin/_dup_scout.py
 symlink $(pwd)/dotfiles/bin/_pdf_slicer.py $HOME/.local/bin/_pdf_slicer.py
 symlink $(pwd)/dotfiles/bin/remove-all $HOME/.local/bin/remove-all
 symlink $(pwd)/dotfiles/bin/ask $HOME/.local/bin/ask
+symlink $(pwd)/dotfiles/bin/git-worktree-add $HOME/.local/bin/git-worktree-add
+symlink $(pwd)/dotfiles/bin/git-worktree-open $HOME/.local/bin/git-worktree-open
+symlink $(pwd)/dotfiles/bin/git-worktree-remove $HOME/.local/bin/git-worktree-remove

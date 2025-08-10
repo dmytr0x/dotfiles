@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# You can use it as a git alias in .gitconfig, e.g.:
+# [alias]
+#   wt-open = !git-worktree-open ../.worktrees/$(basename "$PWD")
+#
+
+set -e
+set -u
+set -o pipefail
+
+if [ "$#" -ne 1 ]; then
+  echo "Open a Git worktree in the editor."
+  echo "Usage: $(basename $0) <path>"
+  echo "  <path>: The Git worktrees directory."
+  exit 1
+fi
+
+WORKTREE_PATH=$1
+
+worktree=$(ls -1 "$WORKTREE_PATH" | fzf \
+  --prompt="Select worktree to open: " \
+  --height=60% \
+  --border \
+  --no-preview)
+
+if [ -n "$worktree" ]; then
+  code --new-window "$WORKTREE_PATH/$worktree"
+fi
+
+exit 0
