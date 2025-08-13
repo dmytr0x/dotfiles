@@ -10,6 +10,11 @@ if [ "$answer" = "y" ]; then
   source ./scripts/setup/symlink.sh
 fi
 
+answer=$(yes_no_question "Do you want to update MacOS settings?")
+if [ "$answer" = "y" ]; then
+  source ./scripts/setup/macos.sh
+fi
+
 answer=$(yes_no_question "Do you want to install brew packages and casks?")
 if [ "$answer" = "y" ]; then
   brew bundle --no-upgrade --file=./scripts/setup/Brewfile
