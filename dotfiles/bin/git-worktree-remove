@@ -28,6 +28,7 @@ if [ -n "$worktree" ]; then
   read -p "Are you sure you want to remove worktree '$worktree'? [y/N]" -n 1 -r
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     git worktree remove "$WORKTREE_PATH/$worktree"
+    git branch --delete '$worktree'
     echo
     echo "Worktree '$worktree' deleted."
   fi
