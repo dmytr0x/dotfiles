@@ -29,6 +29,9 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+# Activate vim motions in the shell
+set -o vi
+
 source $ZSH/oh-my-zsh.sh
 
 # --- Settings
