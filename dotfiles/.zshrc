@@ -1,3 +1,4 @@
+# --- Oh-my-zsh
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -8,6 +9,15 @@ unset ZSH_THEME
 # How often to auto-update (in days).
 zstyle ':omz:update' frequency 14
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
+
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+plugins=(
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # Disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
@@ -21,18 +31,8 @@ DISABLE_AUTO_TITLE="true"
 # Change the command execution time stamp shown in the history command output.
 HIST_STAMPS="dd.mm.yyyy"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
-
 # Activate vim motions in the shell
 set -o vi
-
-source $ZSH/oh-my-zsh.sh
 
 # --- Settings
 # Must be first source
