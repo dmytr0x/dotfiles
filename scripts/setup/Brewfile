@@ -74,6 +74,8 @@ brew "carapace"
 brew "atuin"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Deep clean and optimize your Mac
+brew "mole"
 
 # Automatic tiling window manager similar to xmonad
 #cask "amethyst"
@@ -124,3 +126,7 @@ cask "leader-key"
 cask "raycast"
 # Gecko based web browser
 cask "zen-browser"
+# Trims video and audio files losslessly
+cask "losslesscut"
+# Display management tool
+cask "betterdisplay"
