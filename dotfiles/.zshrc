@@ -32,7 +32,7 @@ DISABLE_AUTO_TITLE="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Activate vim motions in the shell
-set -o vi
+# set -o vi
 
 # --- Settings
 # Must be first source
