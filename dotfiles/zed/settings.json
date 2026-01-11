@@ -1,181 +1,38 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette
 {
-  "outline_panel": {
-    "dock": "left"
-  },
+  "auto_update": false,
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
-  "auto_update": false,
-  "vim_mode": false,
-  "vim": {
-    "use_system_clipboard": "on_yank",
-    "use_multiline_find": true,
-    "toggle_relative_line_numbers": true
+  "session": {
+    "restore_unsaved_buffers": true,
+    "trust_all_worktrees": false,
   },
-  "wrap_guides": [
-    80
-  ],
-  "confirm_quit": true,
-  "base_keymap": "VSCode",
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "auto_install_extensions": {
-    "basedpyright": true,
-    "ruff": true,
-    "toml": true
-  },
-  "assistant": {
-    "enabled": true,
-    "version": "2",
+  "agent": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
-    }
-  },
-  "file_scan_exclusions": [
-    // Default exclusions
-    "**/.git",
-    "**/.svn",
-    "**/.hg",
-    "**/.jj",
-    "**/CVS",
-    "**/.DS_Store",
-    "**/Thumbs.db",
-    "**/.classpath",
-    "**/.settings",
-    // My custom exclusions
-    "**/__pycache__"
-  ],
-  //
-  "autosave": "on_focus_change",
-  "format_on_save": "off",
-  "inlay_hints": {
-    "enabled": true,
-    "show_type_hints": true,
-    "show_parameter_hints": true,
-    "show_other_hints": true
-  },
-  "languages": {
-    "Python": {
-      "language_servers": [
-        "basedpyright",
-        "ruff"
-      ],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true
-          }
-        },
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        }
-      ]
+      "model": "claude-haiku-4-5"
     },
-    "Rust": {
-      "language_servers": [
-        "rust-analyzer"
-      ],
-      "format_on_save": "on",
-      "formatter": "language_server"
-    }
+    "enable_feedback": false,
+    "always_allow_tool_actions": false,
+    "model_parameters": [],
   },
-  "lsp": {
-    // === Python
-    "basedpyright": {
-      "settings": {
-        "python": {
-          "pythonPath": ".venv/bin/python"
-        },
-        "basedpyright.analysis": {
-          "typeCheckingMode": "recommended",
-          "diagnosticMode": "openFilesOnly"
-        }
-      }
-    },
-    "ruff": {
-      "initialization_options": {
-        "settings": {
-          "configurationPreference": "filesystemFirst",
-          "lint": {
-            "preview": false
-          },
-          "format": {
-            "preview": false
-          }
-        }
-      }
-    },
-    // === Rust
-    "rust-analyzer": {
-      "initialization_options": {
-        "check": {
-          "command": "clippy" // rust-analyzer.check.command (default: "check")
-        }
-      }
-    }
-  },
-  //
-  "project_panel": {
-    "dock": "right"
-  },
-  "gutter": {
-    // Whether to show line numbers in the gutter.
-    "line_numbers": true
-  },
-  "collaboration_panel": {
-    // Whether to show the collaboration panel button in the status bar.
-    "button": false
-  },
-  "git": {
-    "git_gutter": "tracked_files",
-    "inline_blame": {
-      "enabled": false
-    }
-  },
-  "current_line_highlight": "gutter",
-  "cursor_blink": false,
+  "ui_font_size": 14.0,
+  "ui_font_family": ".ZedMono",
+  "buffer_font_size": 13.0,
+  "buffer_font_family": ".ZedMono",
   "tab_bar": {
-    "show_nav_history_buttons": false
+    "show": false,
   },
-  "tabs": {
-    "git_status": true
+  "theme": "Gruvbox Dark Hard",
+  "theme_overrides": {
+    "Gruvbox Dark Hard": {
+      "syntax": {
+        // Reduce the prominence of certain captures in the code
+        "type": { "color": "#5f5a51ff" },
+        "comment": { "color": "#5f5a51ff" },
+      },
+    },
   },
-  "terminal": {
-    "font_family": "FiraCode Nerd Font",
-    "font_features": null,
-    "font_size": null,
-    "line_height": "comfortable"
-  },
-  "ui_font_family": "FiraCode Nerd Font",
-  "ui_font_size": 14,
-  "buffer_font_size": 13,
-  "buffer_font_family": "FiraCode Nerd Font",
-  "buffer_font_features": {
-    // Disable ligatures:
-    "calt": false
-  },
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
-  },
-  "icon_theme": {
-    "mode": "system",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)"
-  }
+  "base_keymap": "VSCode",
 }
