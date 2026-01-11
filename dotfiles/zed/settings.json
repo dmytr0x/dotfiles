@@ -9,9 +9,10 @@
     "trust_all_worktrees": false,
   },
   "agent": {
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-haiku-4-5"
+      "model": "claude-haiku-4-5",
     },
     "enable_feedback": false,
     "always_allow_tool_actions": false,
@@ -35,4 +36,5 @@
     },
   },
   "base_keymap": "VSCode",
+  "file_scan_exclusions": ["**/__pycache__"],
 }
