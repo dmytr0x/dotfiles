@@ -28,6 +28,7 @@ symlink $(pwd)/dotfiles/vscode $HOME/.config/vscode
 symlink $(pwd)/dotfiles/leaderkey $HOME/.config/leaderkey
 symlink $(pwd)/dotfiles/atuin $HOME/.config/atuin
 symlink $(pwd)/dotfiles/mise $HOME/.config/mise
+symlink $(pwd)/dotfiles/opencode/config.json $HOME/.config/opencode/config.json
 
 info "🚀 Linking local binaries ..."
 symlink $(pwd)/dotfiles/bin/check-port $HOME/.local/bin/check-port

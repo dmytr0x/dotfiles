@@ -1,0 +1,66 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "username": "dmytr0x",
+  "theme": "aura",
+  "share": "manual",
+  "autoupdate": false,
+  "model": "zai-coding-plan/glm-4.7",
+  "small_model": "zai-coding-plan/glm-4.5-air",
+  "permission": {
+    "bash": {
+      "git *": "ask",
+      "git show*": "allow",
+      "git diff*": "allow",
+      "git status*": "allow",
+      "git branch*": "allow",
+      "git log*": "allow",
+      "git push -f*": "deny",
+      "git push --force*": "deny",
+      "rm -rf *": "ask"
+    }
+  },
+  "agent": {
+    "code-review": {
+      "mode": "primary",
+      "model": "github-copilot/claude-opus-4.5",
+      "prompt": "You are a principal software engineer conducting thorough code reviews. You focus on code quality, security, performance, and maintainability. Provide constructive feedback on code patterns, potential bugs, security issues, and improvement opportunities. Be specific and actionable in suggestions. When identifying issues or improvements, create a step-by-step plan with clear priorities and actionable items to guide implementation. Save it as CODEREVIEW.md file.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "context7*": true
+      }
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "disabled": true
+    },
+    "basedpyright": {
+      "command": ["basedpyright-langserver", "--stdio"],
+      "extensions": [".py", ".pyi"]
+    }
+  },
+  "mcp": {
+    "sequential-thinking": {
+        "enabled": false,
+        "type": "local",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "-i",
+          "-e",
+          "DISABLE_THOUGHT_LOGGING=true",
+          "mcp/sequentialthinking"
+        ]
+    },
+    "context7": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    }
+  }
+}

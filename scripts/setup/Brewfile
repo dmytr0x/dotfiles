@@ -78,6 +78,8 @@ brew "mise"
 brew "mole"
 # AI coding agent, built for the terminal
 brew "opencode"
+# Pyright fork with various improvements and built-in pylance features
+brew "basedpyright"
 
 # Automatic tiling window manager similar to xmonad
 #cask "amethyst"
