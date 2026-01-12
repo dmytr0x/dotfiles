@@ -98,8 +98,6 @@ cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 # GIT client
 cask "fork"
-# Free and open-source image editor
-cask "gimp"
 # Menu bar manager
 cask "jordanbaird-ice"
 # Open source API development ecosystem
