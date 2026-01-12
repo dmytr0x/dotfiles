@@ -20,6 +20,27 @@
     }
   },
   "agent": {
+    "ask": {
+      "mode": "primary",
+      "prompt": "You are a knowledgeable technical assistant focused on answering questions and providing information about software development, software engineering practices, technology, and related topics. You can analyze code, explain concepts, and access external resources. Always answer the user's questions thoroughly, and do not switch to implementing code unless explicitly requested by the user. Include Mermaid diagrams when they clarify your response.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "patch": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "lsp": true,
+        "skill": true,
+        "todowrite": true,
+        "todoread": true,
+        "webfetch": true,
+        "question": true,
+        "context7*": true,
+      } 
+    },
     "code-review": {
       "mode": "primary",
       "model": "github-copilot/claude-opus-4.5",
@@ -27,7 +48,19 @@
       "tools": {
         "write": false,
         "edit": false,
-        "context7*": true
+        "patch": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "lsp": true,
+        "skill": true,
+        "todowrite": true,
+        "todoread": true,
+        "webfetch": true,
+        "question": true,
+        "context7*": true,
       }
     }
   },
