@@ -25,7 +25,7 @@
   "tab_bar": {
     "show": false,
   },
-  "theme": "Gruvbox Dark Hard",
+  "theme": "VSCode Dark Modern",
   "theme_overrides": {
     "Gruvbox Dark Hard": {
       "syntax": {
