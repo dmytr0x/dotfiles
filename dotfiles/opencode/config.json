@@ -64,6 +64,7 @@
       }
     }
   },
+  "formatter": false,
   "lsp": {
     "pyright": {
       "disabled": true
