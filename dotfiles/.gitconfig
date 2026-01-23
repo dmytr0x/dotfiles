@@ -96,6 +96,7 @@
 [grep]
   lineNumber = true
   fullname = true
+  extendedRegexp = true
 
 [commit]
   # Include the diff of staged changes at the bottom of your editor when writing a commit message
