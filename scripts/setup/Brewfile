@@ -85,8 +85,6 @@ brew "direnv"
 
 # Automatic tiling window manager similar to xmonad
 #cask "amethyst"
-# Application uninstaller
-cask "appcleaner"
 # Plain-text editor for web pages, program source codes and more
 cask "coteditor"
 # Trains AIs to understand and translate texts
@@ -111,7 +109,7 @@ cask "reverso"
 # Screenshot measurement and annotation tool
 cask "shottr"
 # Instant messaging application focusing on security
-cask "signal"
+# cask "signal"
 # Displays all open files and sockets in use by all running processes
 cask "sloth"
 # System monitor for the menu bar
