@@ -4,8 +4,6 @@
   "theme": "aura",
   "share": "manual",
   "autoupdate": false,
-  "model": "zai-coding-plan/glm-4.7",
-  "small_model": "zai-coding-plan/glm-4.5-air",
   "permission": {
     "bash": {
       "git *": "ask",
