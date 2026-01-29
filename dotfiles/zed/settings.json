@@ -1,40 +1,72 @@
 {
-  "auto_update": false,
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false,
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": true
   },
-  "session": {
-    "restore_unsaved_buffers": true,
-    "trust_all_worktrees": false,
+  "project_panel": {
+    "entry_spacing": "standard"
   },
-  "agent": {
-    "default_profile": "write",
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-haiku-4-5",
-    },
-    "enable_feedback": false,
-    "always_allow_tool_actions": false,
-    "model_parameters": [],
+  "tabs": {
+    "file_icons": true,
+    "git_status": false
+  },
+  "tab_bar": {
+    "show": true
   },
   "ui_font_size": 14.0,
   "ui_font_family": ".ZedMono",
+  "current_line_highlight": "none",
   "buffer_font_size": 13.0,
-  "buffer_font_family": ".ZedMono",
-  "tab_bar": {
-    "show": false,
+  "buffer_line_height": { "custom": 1.4 },
+  "buffer_font_features": {
+    "calt": false
   },
+  "buffer_font_family": ".ZedMono",
   "theme": "VSCode Dark Modern",
   "theme_overrides": {
     "Gruvbox Dark Hard": {
       "syntax": {
-        // Reduce the prominence of certain captures in the code
         "type": { "color": "#5f5a51ff" },
-        "comment": { "color": "#5f5a51ff" },
-      },
-    },
+        "comment": { "color": "#5f5a51ff" }
+      }
+    }
   },
+  "icon_theme": "Catppuccin Mocha",
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "git_panel": {
+    "scrollbar": {
+      "show": "never"
+    },
+    "tree_view": false,
+    "sort_by_path": false,
+    "collapse_untracked_diff": true
+  },
+  "autosave": "on_focus_change",
+  "format_on_save": "off",
   "base_keymap": "VSCode",
-  "file_scan_exclusions": ["**/__pycache__"],
+  "file_scan_exclusions": ["**/__pycache__", ".venv", ".ruff_cache"],
+  "auto_update": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "session": {
+    "restore_unsaved_buffers": true,
+    "trust_all_worktrees": false
+  },
+  "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "grok-code-fast-1"
+    },
+    "enable_feedback": false,
+    "always_allow_tool_actions": false,
+    "model_parameters": []
+  }
 }

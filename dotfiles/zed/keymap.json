@@ -1,2 +1,8 @@
 [
+  // Always open the search in a new pane
+  {
+    "bindings": {
+      "cmd-shift-f": "workspace::NewSearch"
+    }
+  }
 ]
