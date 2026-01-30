@@ -18,6 +18,29 @@
     }
   },
   "agent": {
+    "minimal": {
+      "mode": "primary",
+      "prompt": "You are a knowledgeable technical assistant. YOU ARE IN 'MINIMUM AGENT MODE'. You are strictly PROHIBITED from using any tools, functions, bash commands, or file operations. Do not write to files, do not execute code, and do not request to use external tools. You must answer all questions using only your internal knowledge and conversational text. If the user asks for code changes, explain them theoretically but do not attempt to apply them.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "patch": false,
+        "bash": false,
+        "read": false,
+        "grep": false,
+        "glob": false,
+        "list": false,
+        "lsp": false,
+        "skill": false,
+        "task": false,
+        "todowrite": false,
+        "todoread": false,
+        "webfetch": false,
+        "question": false,
+        "google_search": false,
+        "context7*": false
+      }
+    },
     "ask": {
       "mode": "primary",
       "prompt": "You are a knowledgeable technical assistant focused on answering questions and providing information about software development, software engineering practices, technology, and related topics. You can analyze code, explain concepts, and access external resources. Always answer the user's questions thoroughly, and do not switch to implementing code unless explicitly requested by the user. Include Mermaid diagrams when they clarify your response.",
@@ -36,8 +59,8 @@
         "todoread": true,
         "webfetch": true,
         "question": true,
-        "context7*": true,
-      } 
+        "context7*": true
+      }
     },
     "code-review": {
       "mode": "primary",
@@ -58,7 +81,7 @@
         "todoread": true,
         "webfetch": true,
         "question": true,
-        "context7*": true,
+        "context7*": true
       }
     }
   },
@@ -74,17 +97,17 @@
   },
   "mcp": {
     "sequential-thinking": {
-        "enabled": false,
-        "type": "local",
-        "command": [
-          "docker",
-          "run",
-          "--rm",
-          "-i",
-          "-e",
-          "DISABLE_THOUGHT_LOGGING=true",
-          "mcp/sequentialthinking"
-        ]
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "DISABLE_THOUGHT_LOGGING=true",
+        "mcp/sequentialthinking"
+      ]
     },
     "context7": {
       "enabled": false,
@@ -95,7 +118,5 @@
       }
     }
   },
-  "plugin": [
-    "opencode-antigravity-auth@latest"
-  ]
+  "plugin": ["opencode-antigravity-auth@latest"]
 }
