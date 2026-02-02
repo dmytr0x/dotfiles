@@ -1,6 +1,6 @@
 {
   "toolbar": {
-    "breadcrumbs": false,
+    "breadcrumbs": true,
     "quick_actions": false,
     "selections_menu": true
   },
@@ -12,6 +12,7 @@
     "git_status": false
   },
   "tab_bar": {
+    "show_pinned_tabs_in_separate_row": true,
     "show": true
   },
   "ui_font_size": 14.0,
@@ -28,7 +29,12 @@
     "VSCode Dark Modern": {
       "syntax": {
         "comment": { "color": "#3D6832" }
-      }
+      },
+      "tab.active_background": "#423E36",
+      "editor.background": "#181818",
+      "editor.gutter.background": "#181818",
+      "terminal.background": "#181818",
+      "panel.background": "#1F1F1F"
     }
   },
   "icon_theme": "Catppuccin Mocha",
