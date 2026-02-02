@@ -1,4 +1,7 @@
 {
+  "collaboration_panel": {
+    "button": false
+  },
   "toolbar": {
     "breadcrumbs": true,
     "quick_actions": false,
@@ -14,6 +17,9 @@
   "tab_bar": {
     "show_pinned_tabs_in_separate_row": true,
     "show": true
+  },
+  "terminal": {
+    "cursor_shape": "bar"
   },
   "ui_font_size": 14.0,
   "ui_font_family": ".ZedMono",
