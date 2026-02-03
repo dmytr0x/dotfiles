@@ -1,92 +1,128 @@
 {
-  "collaboration_panel": {
-    "button": false
-  },
-  "toolbar": {
-    "breadcrumbs": true,
-    "quick_actions": false,
-    "selections_menu": true
-  },
-  "project_panel": {
-    "entry_spacing": "standard"
-  },
-  "tabs": {
-    "file_icons": true,
-    "git_status": false
-  },
-  "tab_bar": {
-    "show_pinned_tabs_in_separate_row": true,
-    "show": true
-  },
-  "terminal": {
-    "cursor_shape": "bar"
-  },
-  "ui_font_size": 14.0,
-  "ui_font_family": ".ZedMono",
-  "current_line_highlight": "none",
-  "buffer_font_size": 13.0,
-  "buffer_line_height": { "custom": 1.4 },
-  "buffer_font_features": {
-    "calt": false
-  },
-  "buffer_font_family": ".ZedMono",
+  // ==================== UI & Appearance ====================
   "theme": "VSCode Dark Modern",
+  "icon_theme": "Catppuccin Mocha",
   "theme_overrides": {
     "VSCode Dark Modern": {
       "syntax": {
-        "comment": { "color": "#3D6832" }
+        "comment": { "color": "#3D6832" },
       },
       "tab.active_background": "#423E36",
       "editor.background": "#181818",
       "editor.gutter.background": "#181818",
       "terminal.background": "#181818",
-      "panel.background": "#1F1F1F"
-    }
+      "panel.background": "#1F1F1F",
+    },
   },
-  "icon_theme": "Catppuccin Mocha",
+
+  // ==================== Fonts ====================
+  "ui_font_family": ".ZedMono",
+  "ui_font_size": 14.0,
+  "buffer_font_family": ".ZedMono",
+  "buffer_font_size": 13.0,
+  "buffer_line_height": { "custom": 1.4 },
+  "buffer_font_features": {
+    "calt": false,
+  },
+
+  // ==================== Editor ====================
+  "current_line_highlight": "none",
+  "colorize_brackets": true,
+  "indent_guides": {
+    "enabled": false,
+  },
+  "gutter": {
+    "line_numbers": false,
+  },
+
+  // ==================== Language-specific ====================
+  "languages": {
+    "YAML": {
+      "indent_guides": { "enabled": true },
+    },
+    "Python": {
+      "indent_guides": { "enabled": true },
+    },
+    "JSON": {
+      "indent_guides": { "enabled": true },
+    },
+    "JSONC": {
+      "indent_guides": { "enabled": true },
+    },
+  },
+
+  // ==================== Panels ====================
+  "project_panel": {
+    "entry_spacing": "standard",
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
+
+  // ==================== Git ====================
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": true,
+      "delay_ms": 5000,
+    },
   },
   "git_panel": {
-    "scrollbar": {
-      "show": "never"
-    },
+    "scrollbar": { "show": "never" },
     "tree_view": true,
-    "sort_by_path": false,
-    "collapse_untracked_diff": true
+    "sort_by_path": true,
   },
-  "autosave": "on_focus_change",
-  "format_on_save": "off",
-  "base_keymap": "VSCode",
-  "file_scan_exclusions": ["**/__pycache__", ".venv", ".ruff_cache"],
-  "auto_update": false,
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
+
+  // ==================== Tabs & Toolbar ====================
+  "tab_bar": {
+    "show": true,
+    "show_pinned_tabs_in_separate_row": true,
   },
-  "session": {
-    "restore_unsaved_buffers": true,
-    "trust_all_worktrees": false
+  "tabs": {
+    "file_icons": true,
+    "git_status": false,
   },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false,
+    "selections_menu": true,
+  },
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_onboarding_banner": false,
+    "show_user_menu": false,
+  },
+
+  // ==================== Terminal ====================
+  "terminal": {
+    "font_family": "FiraCode Nerd Font",
+    "cursor_shape": "bar",
+  },
+
+  // ==================== Search ====================
+  "search": {
+    "center_on_match": true,
+    "button": false,
+  },
+  "seed_search_query_from_cursor": "selection",
+
+  // ==================== AI & Agent ====================
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "agent": {
     "default_profile": "minimal",
     "default_model": {
       "provider": "zai",
-      "model": "glm-4.7"
+      "model": "glm-4.7",
     },
     "enable_feedback": false,
     "always_allow_tool_actions": false,
-    "model_parameters": []
+    "model_parameters": [],
   },
   "language_models": {
     "openai_compatible": {
-     "zai": {
-       "api_url": "https://api.z.ai/api/coding/paas/v4",
+      "zai": {
+        "api_url": "https://api.z.ai/api/coding/paas/v4",
         "available_models": [
           {
             "name": "glm-4.7",
@@ -98,11 +134,59 @@
               "tools": true,
               "images": false,
               "parallel_tool_calls": true,
-              "prompt_cache_key": false
-            }
-          }
-        ]
-      }
-    }
-  }
+              "prompt_cache_key": false,
+            },
+          },
+        ],
+      },
+    },
+  },
+
+  // ==================== Behavior ====================
+  "autosave": "on_focus_change",
+  "format_on_save": "off",
+  "session": {
+    "restore_unsaved_buffers": true,
+    "trust_all_worktrees": false,
+  },
+
+  // ==================== Files & Projects ====================
+  "file_scan_exclusions": ["**/__pycache__", ".venv", ".ruff_cache"],
+
+  // ==================== Keymap ====================
+  "base_keymap": "VSCode",
+
+  // ==================== Profiles ====================
+  "profiles": {
+    "Zen": {
+      "buffer_font_size": 16,
+      "tab_bar": { "show": false },
+      "toolbar": { "breadcrumbs": false },
+      "status_bar": { "experimental.show": false },
+      "title_bar": {
+        "show_branch_icon": false,
+        "show_branch_name": false,
+      },
+      "gutter": { "line_numbers": false },
+      "indent_guides": { "enabled": false },
+    },
+    "Presentation": {
+      "buffer_font_size": 20,
+      "ui_font_size": 18,
+      "theme": "VSCode Dark Modern",
+    },
+  },
+
+  // ==================== Extensions ====================
+  "auto_install_extensions": {
+    "vscode-dark-modern": true,
+    "catppuccin-icons": true,
+  },
+
+  // ==================== System ====================
+  "auto_update": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
 }
