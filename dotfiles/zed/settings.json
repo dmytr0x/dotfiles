@@ -95,6 +95,7 @@
   // ==================== Terminal ====================
   "terminal": {
     "font_family": "FiraCode Nerd Font",
+    "font_size": 12,
     "cursor_shape": "bar",
   },
 
