@@ -34,6 +34,9 @@
   "gutter": {
     "line_numbers": false,
   },
+  "inlay_hints": {
+    "show_value_hints": false
+  },
 
   // ==================== Language-specific ====================
   "languages": {
@@ -42,6 +45,9 @@
     },
     "Python": {
       "indent_guides": { "enabled": true },
+      // INFO: that will disable the built-in debug configurations
+      //       only the .zed/debug.json will be used
+      "debuggers": ["debugpy"],
     },
     "JSON": {
       "indent_guides": { "enabled": true },
