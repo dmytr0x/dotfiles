@@ -98,6 +98,7 @@
     "font_size": 12,
     "cursor_shape": "bar",
   },
+  "load_direnv": "shell_hook",
 
   // ==================== Search ====================
   "search": {
