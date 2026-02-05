@@ -2,7 +2,121 @@
   // Always open the search in a new pane
   {
     "bindings": {
-      "cmd-shift-f": "workspace::NewSearch"
-    }
-  }
+      "cmd-shift-f": "workspace::NewSearch",
+    },
+  },
+
+  // Text navigation with a central focus
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "Up": [
+        "action::Sequence",
+        ["editor::MoveUp", "editor::ScrollCursorCenter"],
+      ],
+      "Down": [
+        "action::Sequence",
+        ["editor::MoveDown", "editor::ScrollCursorCenter"],
+      ],
+      "Shift-Up": [
+        "action::Sequence",
+        ["editor::SelectUp", "editor::ScrollCursorCenter"],
+      ],
+      "Shift-Down": [
+        "action::Sequence",
+        ["editor::SelectDown", "editor::ScrollCursorCenter"],
+      ],
+      "PageUp": [
+        "action::Sequence",
+        ["editor::MoveToBeginning", "editor::ScrollCursorCenter"],
+      ],
+      "PageDown": [
+        "action::Sequence",
+        ["editor::MoveToEnd", "editor::ScrollCursorCenter"],
+      ],
+      "Shift-PageUp": [
+        "action::Sequence",
+        ["editor::SelectToBeginning", "editor::ScrollCursorCenter"],
+      ],
+      "Shift-PageDown": [
+        "action::Sequence",
+        ["editor::SelectToEnd", "editor::ScrollCursorCenter"],
+      ],
+      "Escape": [
+        "action::Sequence",
+        ["editor::Cancel", "editor::ScrollCursorCenter"],
+      ],
+      "Delete": [
+        "action::Sequence",
+        ["editor::Delete", "editor::ScrollCursorCenter"],
+      ],
+      "Alt-Up": [
+        "action::Sequence",
+        ["editor::MoveLineUp", "editor::ScrollCursorCenter"],
+      ],
+      "Alt-Down": [
+        "action::Sequence",
+        ["editor::MoveLineDown", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-d": [
+        "action::Sequence",
+        ["editor::SelectNext", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-l": [
+        "action::Sequence",
+        ["editor::SelectLine", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-v": [
+        "action::Sequence",
+        ["editor::Paste", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-x": [
+        "action::Sequence",
+        ["editor::Cut", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-z": [
+        "action::Sequence",
+        ["editor::Undo", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-Shift-z": [
+        "action::Sequence",
+        ["editor::Redo", "editor::ScrollCursorCenter"],
+      ],
+      "Ctrl--": [
+        "action::Sequence",
+        ["pane::GoBack", "editor::ScrollCursorCenter"],
+      ],
+      "Ctrl-Shift--": [
+        "action::Sequence",
+        ["pane::GoForward", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-Alt-[": [
+        "action::Sequence",
+        ["editor::Fold", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-Alt-]": [
+        "action::Sequence",
+        ["editor::UnfoldLines", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-k Cmd-0": [
+        "action::Sequence",
+        ["editor::FoldAll", "editor::ScrollCursorCenter"],
+      ],
+      "Cmd-k Cmd-j": [
+        "action::Sequence",
+        ["editor::UnfoldAll", "editor::ScrollCursorCenter"],
+      ],
+    },
+  },
+
+  // Autocompletion
+  {
+    "context": "showing_completions",
+    "bindings": {
+      " Escape ": "editor::Cancel",
+      " Up     ": "editor::ContextMenuPrevious",
+      " Down   ": "editor::ContextMenuNext",
+      " Enter  ": "editor::ConfirmCompletion",
+    },
+  },
 ]

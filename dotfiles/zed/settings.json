@@ -32,7 +32,7 @@
     "enabled": false,
   },
   "gutter": {
-    "line_numbers": false,
+    "line_numbers": true,
   },
   "inlay_hints": {
     "show_value_hints": false
