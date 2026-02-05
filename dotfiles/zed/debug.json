@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Debug pytest (file)",
+    "adapter": "Debugpy",
+    "request": "launch",
+    "module": "pytest",
+    "args": ["--no-cov", "-vv", "$ZED_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "env": {
+      "PYTHONPATH": "./proto"
+    },
+    "justMyCode": false
+  },
+  {
+    "label": "Debug pytest (tests)",
+    "adapter": "Debugpy",
+    "request": "launch",
+    "module": "pytest",
+    "args": ["--no-cov", "-vv"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "env": {
+      "PYTHONPATH": "./proto"
+    },
+    "justMyCode": false
+  }
+]

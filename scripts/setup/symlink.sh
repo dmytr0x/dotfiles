@@ -16,6 +16,7 @@ symlink $(pwd)/dotfiles/zed/settings.json $HOME/.config/zed/settings.json
 symlink $(pwd)/dotfiles/zed/keymap.json $HOME/.config/zed/keymap.json
 symlink $(pwd)/dotfiles/zed/tasks.json $HOME/.config/zed/tasks.json
 symlink $(pwd)/dotfiles/zed/snippets $HOME/.config/zed/snippets
+symlink $(pwd)/dotfiles/zed/debug.json $HOME/.config/zed/debug.json
 symlink $(pwd)/dotfiles/amethyst $HOME/.config/amethyst
 symlink $(pwd)/dotfiles/lazygit $HOME/.config/lazygit
 symlink $(pwd)/dotfiles/ripgrep $HOME/.config/ripgrep
