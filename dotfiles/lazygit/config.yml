@@ -1,4 +1,8 @@
 gui:
+  sidePanelWidth: 0.3
+  expandFocusedSidePanel: true
+  nerdFontsVersion: "3"
+  # Custom color scheme inspired by vscode dark modern, with a Zed-like vibe (dark, minimal, with cool accents)
   theme:
     # Base
     defaultFgColor:
@@ -32,7 +36,28 @@ gui:
       - "#191919"
     cherryPickedCommitBgColor:
       - "#567587"
-
   # makes the overall look cleaner by hiding some UI elements
   showBottomLine: false
   showCommandLog: false
+  # experience improvements
+  mouseEvents: true # enable mouse support for easier navigation
+  showFileTree: true # for rendering changes files in a tree format
+  border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
+  portraitMode: "auto" # one of 'auto' | 'never' | 'always'
+
+git:
+  parseEmoji: true
+  commit:
+    autoWrapCommitMessage: true
+    autoWrapWidth: 80
+
+os:
+  copyToClipboardCmd: "pbcopy < {{text}}"
+  editPreset: "zed"
+  open: ""
+
+customCommands:
+  - key: 'o'
+    command: "zed {{.SelectedFile.Name}}"
+    context: 'files'
+    description: 'Open file in Editor'
