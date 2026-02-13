@@ -35,7 +35,7 @@
     "line_numbers": true,
   },
   "inlay_hints": {
-    "show_value_hints": false
+    "show_value_hints": false,
   },
 
   // ==================== Language-specific ====================
@@ -67,6 +67,7 @@
 
   // ==================== Git ====================
   "git": {
+    "hunk_style": "unstaged_hollow",
     "inline_blame": {
       "enabled": true,
       "delay_ms": 5000,
@@ -114,18 +115,22 @@
   "seed_search_query_from_cursor": "selection",
 
   // ==================== AI & Agent ====================
-  "features": {
-    "edit_prediction_provider": "copilot",
+  "agent_servers": {
+    "opencode": {
+      "type": "extension",
+      "favorite_models": ["openai/gpt-5.2-codex/high"],
+    },
   },
   "agent": {
-    "default_profile": "minimal",
-    "default_model": {
-      "provider": "zai",
-      "model": "glm-4.7",
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5",
     },
-    "enable_feedback": false,
-    "always_allow_tool_actions": false,
-    "model_parameters": [],
+  },
+  "edit_predictions": {
+    "mode": "subtle", // Display predictions inline only when holding a modifier key (alt by default)
+    "provider": "copilot",
+    "disabled_globs": ["**/.env", "**/.env.*", "**/.env-*", "**/.env_*"],
   },
   "language_models": {
     "openai_compatible": {

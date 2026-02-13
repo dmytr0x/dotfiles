@@ -43,7 +43,9 @@ gui:
   mouseEvents: true # enable mouse support for easier navigation
   showFileTree: true # for rendering changes files in a tree format
   border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
-  portraitMode: "auto" # one of 'auto' | 'never' | 'always'
+  portraitMode: "always" # one of 'auto' | 'never' | 'always'
+
+disableStartupPopups: true
 
 git:
   parseEmoji: true

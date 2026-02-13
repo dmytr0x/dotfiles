@@ -13,7 +13,7 @@ window-colorspace = display-p3
 
 # Background:
 background = #000000
-background-opacity = 0.8
+background-opacity = 0.95
 background-blur-radius = 20
 
 # Typing:

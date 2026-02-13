@@ -119,4 +119,15 @@
       " Enter  ": "editor::ConfirmCompletion",
     },
   },
+
+  // Code actions
+  {
+    "context": "showing_code_actions",
+    "bindings": {
+      " Escape ": "editor::Cancel",
+      " Up     ": "editor::ContextMenuPrevious",
+      " Down   ": "editor::ContextMenuNext",
+      " Enter  ": "editor::ConfirmCodeAction",
+    },
+  },
 ]

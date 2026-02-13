@@ -25,7 +25,7 @@ worktree=$(ls -1 "$WORKTREE_PATH" | fzf \
   --no-preview)
 
 if [ -n "$worktree" ]; then
-  code --new-window "$WORKTREE_PATH/$worktree"
+  zed --new "$WORKTREE_PATH/$worktree"
 fi
 
 exit 0
