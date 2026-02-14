@@ -34,9 +34,6 @@
   "gutter": {
     "line_numbers": true,
   },
-  "inlay_hints": {
-    "show_value_hints": false,
-  },
 
   // ==================== Language-specific ====================
   "languages": {
@@ -55,6 +52,23 @@
     "JSONC": {
       "indent_guides": { "enabled": true },
     },
+  },
+
+  // ========Language Server Protocol ==============
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright.analysis": {
+          "inlayHints": {
+            "variableTypes": true,
+            "functionReturnTypes": true,
+            "genericTypes": true,
+            "callArgumentNames": true,
+            "callArgumentNamesMatching": true
+          }
+        }
+      }
+    }
   },
 
   // ==================== Panels ====================
