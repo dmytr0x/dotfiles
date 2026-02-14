@@ -37,6 +37,32 @@
     "line_numbers": true,
   },
 
+  // ===========================================================
+  "jupyter": {
+    "kernel_selections": {
+      // details:
+      //
+      // this rewrites the specified ipykernel name using different .venv
+      //
+      // commands:
+      // - install
+      //     python -m ipykernel install --user --name venv-ipykernel --display-name "Python ipykernel"
+      // - list
+      //     jupyter kernelspec list --json
+      //
+      // checks
+      // - python:
+      //     ```python
+      //     # %%
+      //     import sys
+      //     print(sys.executable)
+      //     # %%
+      //     ```
+      //
+      "python": "venv-ipykernel"
+    }
+  },
+
   // ==================== Language-specific ====================
   "languages": {
     "YAML": {
@@ -187,7 +213,7 @@
   },
 
   // ==================== Files & Projects ====================
-  "file_scan_exclusions": ["**/__pycache__", ".venv", ".ruff_cache"],
+  "file_scan_exclusions": [".venv", ".ruff_cache", ".mypy_cache", "**/__pycache__", "**/.pytest_cache"],
 
   // ==================== Keymap ====================
   "base_keymap": "VSCode",
