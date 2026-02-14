@@ -69,7 +69,7 @@
       "indent_guides": { "enabled": true },
     },
     "Python": {
-      "indent_guides": { "enabled": true },
+      "indent_guides": { "enabled": false },
       // details:
       //
       // ty - https://docs.astral.sh/ty/editors/#zed
