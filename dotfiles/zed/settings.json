@@ -5,13 +5,15 @@
   "theme_overrides": {
     "VSCode Dark Modern": {
       "syntax": {
-        "comment": { "color": "#3D6832" },
+        "comment": { "color": "#3d6832" },
+        "hint": { "color": "#454545"},
+        "variable.parameter": { "color": "#F7768E"},
       },
-      "tab.active_background": "#423E36",
+      "tab.active_background": "#423e36",
       "editor.background": "#181818",
       "editor.gutter.background": "#181818",
       "terminal.background": "#181818",
-      "panel.background": "#1F1F1F",
+      "panel.background": "#1f1f1f",
     },
   },
 
@@ -60,20 +62,22 @@
     "basedpyright": {
       "settings": {
         "python": {
-            "pythonPath": ".venv/bin/python"
+          "pythonPath": ".venv/bin/python",
         },
         "basedpyright.analysis": {
-          "diagnosticMode": "openFilesOnly",
+          "diagnosticMode": "openFilesOnly", // "openFilesOnly" | "workspace"
+          // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
+          "typeCheckingMode": "recommended", // "off" | "basic" | "standard" | "strict" | "recommended" | "all"
           "inlayHints": {
             "variableTypes": true,
             "functionReturnTypes": true,
             "genericTypes": true,
             "callArgumentNames": true,
-            "callArgumentNamesMatching": true
-          }
-        }
-      }
-    }
+            "callArgumentNamesMatching": true,
+          },
+        },
+      },
+    },
   },
 
   // ==================== Panels ====================
