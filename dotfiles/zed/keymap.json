@@ -109,6 +109,14 @@
     },
   },
 
+  // Prefer edit prediction instead of LSP completion in case when both available.
+  {
+    "context": "Editor && edit_prediction_conflict && showing_completions",
+    "bindings": {
+      "tab": "editor::AcceptEditPrediction"
+    }
+  },
+
   // Autocompletion
   {
     "context": "showing_completions",
