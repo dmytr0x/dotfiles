@@ -138,4 +138,15 @@
       " Enter  ": "editor::ConfirmCodeAction",
     },
   },
+
+  // Spawn tasks
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-l": [
+        "task::Spawn",
+        { "task_name": "LazyGit", "reveal_target": "center" }
+      ]
+    }
+  }
 ]

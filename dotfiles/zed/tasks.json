@@ -1,6 +1,14 @@
 [
+  // details: https://zed.dev/docs/taskss
+  //
   {
-    "label": "start lazygit",
-    "command": "cd '$ZED_WORKTREE_ROOT' && lazygit"
-  }
+    "label": "LazyGit",
+    "command": "lazygit",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true,
+    "hide": "on_success",
+    "show_summary": false,
+    "show_command": false,
+  },
 ]

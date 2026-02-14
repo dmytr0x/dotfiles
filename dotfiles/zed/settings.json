@@ -6,8 +6,8 @@
     "VSCode Dark Modern": {
       "syntax": {
         "comment": { "color": "#3d6832" },
-        "hint": { "color": "#454545"},
-        "variable.parameter": { "color": "#F7768E"},
+        "hint": { "color": "#454545" },
+        "variable.parameter": { "color": "#F7768E" },
       },
       "tab.active_background": "#423e36",
       "editor.background": "#181818",
@@ -59,8 +59,8 @@
       //     # %%
       //     ```
       //
-      "python": "venv-ipykernel"
-    }
+      "python": "venv-ipykernel",
+    },
   },
 
   // ==================== Language-specific ====================
@@ -92,7 +92,6 @@
         },
         "basedpyright.analysis": {
           "diagnosticMode": "openFilesOnly", // "openFilesOnly" | "workspace"
-          // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
           "typeCheckingMode": "recommended", // "off" | "basic" | "standard" | "strict" | "recommended" | "all"
           "inlayHints": {
             "variableTypes": true,
@@ -213,7 +212,13 @@
   },
 
   // ==================== Files & Projects ====================
-  "file_scan_exclusions": [".venv", ".ruff_cache", ".mypy_cache", "**/__pycache__", "**/.pytest_cache"],
+  "file_scan_exclusions": [
+    ".venv",
+    ".ruff_cache",
+    ".mypy_cache",
+    "**/__pycache__",
+    "**/.pytest_cache",
+  ],
 
   // ==================== Keymap ====================
   "base_keymap": "VSCode",
