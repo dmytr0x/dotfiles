@@ -70,6 +70,11 @@
     },
     "Python": {
       "indent_guides": { "enabled": true },
+      // details:
+      //
+      // ty - https://docs.astral.sh/ty/editors/#zed
+      //
+      "language_servers": ["basedpyright", "ruff", "ty"],
       // INFO: that will disable the built-in debug configurations
       //       only the .zed/debug.json will be used
       "debuggers": ["debugpy"],
