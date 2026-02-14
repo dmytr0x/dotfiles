@@ -56,9 +56,14 @@
 
   // ========Language Server Protocol ==============
   "lsp": {
+    // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
     "basedpyright": {
       "settings": {
+        "python": {
+            "pythonPath": ".venv/bin/python"
+        },
         "basedpyright.analysis": {
+          "diagnosticMode": "openFilesOnly",
           "inlayHints": {
             "variableTypes": true,
             "functionReturnTypes": true,
