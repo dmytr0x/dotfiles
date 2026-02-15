@@ -37,32 +37,6 @@
     "line_numbers": true,
   },
 
-  // ===========================================================
-  "jupyter": {
-    "kernel_selections": {
-      // details:
-      //
-      // this rewrites the specified ipykernel name using different .venv
-      //
-      // commands:
-      // - install
-      //     python -m ipykernel install --user --name venv-ipykernel --display-name "Python ipykernel"
-      // - list
-      //     jupyter kernelspec list --json
-      //
-      // checks
-      // - python:
-      //     ```python
-      //     # %%
-      //     import sys
-      //     print(sys.executable)
-      //     # %%
-      //     ```
-      //
-      "python": "venv-ipykernel",
-    },
-  },
-
   // ==================== Language-specific ====================
   "languages": {
     "YAML": {
