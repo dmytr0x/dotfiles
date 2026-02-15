@@ -88,3 +88,5 @@ softwareupdate --all --install
 # Reinstall xcode
 sudo rm -rf $(xcode-select -p); sudo xcode-select --install 
 
+# Create a new python virtual environment
+python -m venv .venv && source .venv/bin/activate && python -m pip install --upgrade pip
