@@ -25,7 +25,7 @@ symlink $(pwd)/dotfiles/wezterm $HOME/.config/wezterm
 symlink $(pwd)/dotfiles/ghostty $HOME/.config/ghostty
 symlink $(pwd)/dotfiles/yazi $HOME/.config/yazi
 symlink $(pwd)/dotfiles/zsh $HOME/.config/zsh
-symlink $(pwd)/dotfiles/vscode $HOME/.config/vscode
+symlink $(pwd)/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 symlink $(pwd)/dotfiles/leaderkey $HOME/.config/leaderkey
 symlink $(pwd)/dotfiles/atuin $HOME/.config/atuin
 symlink $(pwd)/dotfiles/mise $HOME/.config/mise
