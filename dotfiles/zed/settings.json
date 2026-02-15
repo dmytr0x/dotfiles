@@ -72,9 +72,10 @@
       "indent_guides": { "enabled": false },
       // details:
       //
-      // ty - https://docs.astral.sh/ty/editors/#zed
+      // basedpyright - https://zed.dev/docs/languages/python#basedpyright
+      // ty           - https://docs.astral.sh/ty/editors/#zed
       //
-      "language_servers": ["basedpyright", "ruff", "ty"],
+      "language_servers": ["basedpyright", "ruff", "!ty"],
       // INFO: that will disable the built-in debug configurations
       //       only the .zed/debug.json will be used
       "debuggers": ["debugpy"],
@@ -180,6 +181,7 @@
       "model": "claude-haiku-4.5",
     },
   },
+  "show_edit_predictions": true,
   "edit_predictions": {
     "mode": "subtle", // Display predictions inline only when holding a modifier key (alt by default)
     "provider": "copilot",
