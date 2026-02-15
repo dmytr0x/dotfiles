@@ -132,3 +132,5 @@ cask "zen-browser"
 cask "losslesscut"
 # Display management tool
 cask "betterdisplay"
+# Open-source cross-platform alternative to AirDrop
+cask "localsend"
