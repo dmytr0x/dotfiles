@@ -1,59 +1,28 @@
 {
   "actions" : [
     {
+      "key" : "c",
+      "label" : "Codex",
+      "type" : "application",
+      "value" : "/Applications/Codex.app"
+    },
+    {
       "key" : "t",
       "label" : "Terminal",
       "type" : "application",
-      "value" : "/Applications/WezTerm.app"
+      "value" : "/Applications/Ghostty.app"
     },
     {
-      "actions" : [
-        {
-          "key" : "m",
-          "type" : "application",
-          "value" : "/System/Applications/Mail.app"
-        },
-        {
-          "key" : "c",
-          "type" : "application",
-          "value" : "/Applications/Cursor.app"
-        },
-        {
-          "key" : "e",
-          "label" : "Editor",
-          "type" : "application",
-          "value" : "/Applications/CotEditor.app"
-        },
-        {
-          "key" : "b",
-          "type" : "application",
-          "value" : "/Applications/Bitwarden.app"
-        },
-        {
-          "key" : "d",
-          "type" : "application",
-          "value" : "/Applications/Deskflow.app"
-        }
-      ],
+      "key" : "e",
+      "label" : "Editor",
+      "type" : "application",
+      "value" : "/Applications/Zed.app"
+    },
+    {
       "key" : "o",
-      "label" : "Open",
-      "type" : "group"
-    },
-    {
-      "key" : "d",
+      "label" : "Obsidian",
       "type" : "application",
-      "value" : "/Applications/DeepL.app"
-    },
-    {
-      "key" : "r",
-      "type" : "application",
-      "value" : "/Applications/Reverso.app"
-    },
-    {
-      "key" : "g",
-      "label" : "Grammarly",
-      "type" : "application",
-      "value" : "/Applications/Grammarly Desktop.app"
+      "value" : "/Applications/Obsidian.app"
     }
   ],
   "type" : "group"
