@@ -1,8 +1,8 @@
 {
   "actions" : [
     {
-      "key" : "c",
-      "label" : "Codex",
+      "key" : "a",
+      "label" : "AI Agent",
       "type" : "application",
       "value" : "/Applications/Codex.app"
     },
@@ -19,8 +19,8 @@
       "value" : "/Applications/Zed.app"
     },
     {
-      "key" : "o",
-      "label" : "Obsidian",
+      "key" : "n",
+      "label" : "Notes",
       "type" : "application",
       "value" : "/Applications/Obsidian.app"
     }
