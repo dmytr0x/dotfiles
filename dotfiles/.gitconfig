@@ -4,7 +4,8 @@
 #
 
 [core]
-  editor = hx
+  # Don't specify a particular editor. Let's the the environment decide which one to use
+  # editor = 
   pager = delta
   excludesfile = ~/.gitignore_global
 

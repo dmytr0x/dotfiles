@@ -142,6 +142,11 @@
     "font_family": "FiraCode Nerd Font",
     "font_size": 12,
     "cursor_shape": "bar",
+    // Use Zed as the default editor for the built-in terminal
+    "env": {
+      "EDITOR": "zed --wait",
+      "VISUAL": "zed --wait"
+    },
   },
   "load_direnv": "shell_hook",
 
