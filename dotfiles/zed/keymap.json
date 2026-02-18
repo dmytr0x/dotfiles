@@ -149,13 +149,4 @@
       ],
     },
   },
-
-  // Agent panel
-  {
-    "context": "AgentPanel",
-    "bindings": {
-      // Use the default external agent instead of `Zed Agent`
-      "cmd-alt-n": "agent::NewExternalAgentThread",
-    },
-  },
 ]
