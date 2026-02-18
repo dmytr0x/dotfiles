@@ -149,4 +149,16 @@
       ],
     },
   },
+
+  // Agent panel
+  {
+    "context": "AgentPanel && acp_thread",
+    "bindings": {
+      // Just like OpenCode does
+      "ctrl-x a": "agent::ToggleProfileSelector",
+      "ctrl-x m": "agent::ToggleModelSelector",
+      "ctrl-x e": "agent::ExpandMessageEditor",
+      "ctrl-x n": "agent::NewExternalAgentThread",
+    },
+  },
 ]
