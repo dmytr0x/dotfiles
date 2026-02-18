@@ -113,8 +113,8 @@
   {
     "context": "Editor && edit_prediction_conflict && showing_completions",
     "bindings": {
-      "tab": "editor::AcceptEditPrediction"
-    }
+      "tab": "editor::AcceptEditPrediction",
+    },
   },
 
   // Autocompletion
@@ -145,8 +145,17 @@
     "bindings": {
       "ctrl-alt-l": [
         "task::Spawn",
-        { "task_name": "LazyGit", "reveal_target": "center" }
-      ]
-    }
-  }
+        { "task_name": "LazyGit", "reveal_target": "center" },
+      ],
+    },
+  },
+
+  // Agent panel
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      // Use the default external agent instead of `Zed Agent`
+      "cmd-alt-n": "agent::NewExternalAgentThread",
+    },
+  },
 ]
