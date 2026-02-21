@@ -55,11 +55,19 @@ repos:
     hooks:
       - id: shellcheck
         args: ['--severity=warning', '--shell=bash']
-        # Only lint the dotfiles CLI and install scripts.
+        # Only lint install scripts (sources/scripts/).
         # Zsh config fragments (sourced files without shebangs)
         # and third-party completion scripts are excluded because
         # shellcheck can't parse zsh-specific syntax.
-        files: '(^dotfiles$|^sources/scripts/)'
+        files: '^sources/scripts/'
+
+  # Python linting and formatting with Ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.8
+    hooks:
+      - id: ruff
+        args: ['--fix']
+      - id: ruff-format
 
   # Secret detection with Gitleaks
   - repo: https://github.com/gitleaks/gitleaks

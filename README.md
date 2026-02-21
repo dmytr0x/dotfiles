@@ -5,6 +5,7 @@ Personal system dotfiles managed with GNU Stow.
 ## Requirements
 
 - `git`
+- `uv` (Python package runner — handles Python 3.13+ automatically)
 - `stow`
 - `pre-commit`
 - `gitleaks`
@@ -12,7 +13,7 @@ Personal system dotfiles managed with GNU Stow.
 ## Install dependencies (macOS/Homebrew)
 
 ```sh
-brew install git stow pre-commit gitleaks
+brew install git uv stow pre-commit gitleaks
 ```
 
 ## Install dotfiles
@@ -30,7 +31,7 @@ git clone https://github.com/dmytr0x/dotfiles ~/dotfiles
 Then execute:
 ```sh
 cd ~/dotfiles
-./dotfiles install
+uv run dotfiles.py install
 ```
 
 ## Install specific sources
@@ -39,20 +40,20 @@ cd ~/dotfiles
 cd ~/dotfiles
 
 # Symlinks only
-./dotfiles install symlink
+uv run dotfiles.py install symlinks
 
 # Brewfiles only
-./dotfiles install brewfiles
+uv run dotfiles.py install brewfiles
 
 # Scripts only
-./dotfiles install scripts
+uv run dotfiles.py install scripts
 ```
 
 ## Uninstall dotfiles
 
 ```sh
 cd ~/dotfiles
-./dotfiles uninstall
+uv run dotfiles.py uninstall
 ```
 
 ## Uninstall specific sources
@@ -61,10 +62,10 @@ cd ~/dotfiles
 cd ~/dotfiles
 
 # Symlinks only
-./dotfiles uninstall symlink
+uv run dotfiles.py uninstall symlinks
 
 # Brewfiles only
-./dotfiles uninstall brewfiles
+uv run dotfiles.py uninstall brewfiles
 ```
 
 ## Pre-commit hooks
