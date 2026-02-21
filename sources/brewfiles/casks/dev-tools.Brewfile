@@ -1,0 +1,21 @@
+# Fonts
+cask "font-fira-code"
+cask "font-fira-code-nerd-font"
+
+# GIT client
+cask "fork"
+
+# Displays all open files and sockets in use by all running processes
+cask "sloth"
+
+# System monitor for the menu bar
+cask "stats"
+
+# Multiplayer code editor
+cask "zed"
+
+# Application launcher
+cask "leader-key"
+
+# Control your tools with a few keystrokes
+cask "raycast"

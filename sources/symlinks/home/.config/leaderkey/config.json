@@ -1,0 +1,29 @@
+{
+  "actions": [
+    {
+      "key": "a",
+      "label": "AI Agent",
+      "type": "application",
+      "value": "/Applications/Codex.app"
+    },
+    {
+      "key": "t",
+      "label": "Terminal",
+      "type": "application",
+      "value": "/Applications/Ghostty.app"
+    },
+    {
+      "key": "e",
+      "label": "Editor",
+      "type": "application",
+      "value": "/Applications/Zed.app"
+    },
+    {
+      "key": "n",
+      "label": "Notes",
+      "type": "application",
+      "value": "/Applications/Obsidian.app"
+    }
+  ],
+  "type": "group"
+}

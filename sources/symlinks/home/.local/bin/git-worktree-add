@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# You can use it as a git alias in .gitconfig, e.g.:
+# [alias]
+#   wt-add = !git-worktree-add ../.worktrees/$(basename "$PWD")/$1
+#
+
+set -e
+set -u
+set -o pipefail
+
+if [ "$#" -ne 2 ]; then
+  echo "Create a Git worktree for the following branch and set up the environment."
+  echo "Usage: $(basename $0) <path> <revision>"
+  echo "  <path>: The directory in which the worktree will be created."
+  echo "  <revision>: The Git revision that will be checked out in the worktree."
+  exit 1
+fi
+
+WORKTREE_PATH=$1
+WORKTREE_BRANCH=$2
+
+echo
+echo "Creating the worktree ..."
+git worktree add "$WORKTREE_PATH" $WORKTREE_BRANCH
+
+echo
+echo "Copying the sources for the environment ..."
+for file in .tool-versions .env .envrc; do
+  [ -f "$file" ] && cp "$file" "$WORKTREE_PATH" && echo "$file"
+done
+
+echo
+echo "The current Python is ..."
+python --version
+which python
+
+echo
+read -p "Do you want to install Virtual Environment for $WORKTREE_BRANCH? [y/N] " -n 1 -r
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  CURRENT_WORK_DIR="$(pwd)"
+  cd "$WORKTREE_PATH"
+
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install --upgrade pip
+
+  cd $CURRENT_WORK_DIR
+  echo
+  echo "Virtual Environment is created."
+fi
+
+exit 0

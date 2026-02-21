@@ -1,0 +1,155 @@
+{
+  "python.experiments.enabled": false,
+  "[python]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.defaultFoldingRangeProvider": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "never",
+      "source.fixAll": "never"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+  },
+  "[json]": {
+    // "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.fontLigatures": false,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.4,
+  "editor.fontWeight": "100",
+  "files.defaultLanguage": "plaintext",
+  "files.autoSave": "onFocusChange",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+  },
+  "files.watcherExclude": {
+    "**/__pycache__/*/**": true,
+    "**/.pytest_cache/*/**": true,
+    "**/.mypy_cache/*/**": true,
+    "**/.ruff_cache/*/**": true,
+  },
+  "debug.console.fontFamily": "Fira Code",
+  "debug.console.fontSize": 13,
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono, Fira Code",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.fontWeight": "100",
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.enablePersistentSessions": false,
+  // Explorer tree: folder indentation
+  "workbench.tree.indent": 14,
+  "explorer.compactFolders": false,
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "Default Dark Modern",
+  "workbench.preferredLightColorTheme": "Default Light Modern",
+  "workbench.colorCustomizations": {
+    // https://code.visualstudio.com/api/references/theme-color
+    // cursor
+    "editorCursor.foreground": "#f27172",
+    "terminalCursor.background": "#cccccc",
+    "terminalCursor.foreground": "#f27172",
+    //
+    "[Default Light Modern]": {
+      "peekViewEditor.background": "#ffffff",
+      "editorGhostText.foreground": "#bababa",
+      "editorLineNumber.foreground": "#c3c3c3",
+      "editorIndentGuide.background1": "#ededed",
+      // force the dark theme
+      "terminal.foreground": "#CCCCCC",
+    },
+    "[Default Dark Modern]": {
+      // === Background
+      //
+      // Editor and Terminal
+      "editor.background": "#000000",
+      "terminal.background": "#000000",
+      // General UI Elements
+      "activityBar.background": "#000000",
+      "sideBar.background": "#000000",
+      "sideBarSectionHeader.background": "#000000",
+      "editorGroupHeader.tabsBackground": "#000000",
+      "tab.inactiveBackground": "#000000",
+      "tab.activeBackground": "#000000",
+      "panel.background": "#000000",
+      "statusBar.background": "#000000",
+      // "titleBar.activeBackground": "#000000",
+      "editorGutter.background": "#000000",
+      // Scrollbar
+      "editorOverviewRuler.background": "#000000",
+      "scrollbarSlider.background": "#1a1a1a",
+      "scrollbarSlider.hoverBackground": "#2a2a2a",
+      "scrollbarSlider.activeBackground": "#4a4a4a",
+      // Set borders to black to create a seamless look
+      "activityBar.border": "#000000",
+      "sideBar.border": "#000000",
+      "sideBarSectionHeader.border": "#000000",
+      "editorGroupHeader.border": "#000000",
+      "panel.border": "#000000",
+      "statusBar.border": "#000000",
+      "titleBar.border": "#000000",
+      // Other UI elements to ensure a consistent black theme
+      "dropdown.background": "#000000",
+      "input.background": "#000000",
+      "list.hoverBackground": "#1a1a1a",
+      "list.inactiveSelectionBackground": "#1a1a1a",
+      "list.activeSelectionBackground": "#1a1a1a",
+      "peekView.border": "#000000",
+      "peekViewTitle.background": "#000000",
+      "peekViewEditor.background": "#0d1117", // Slightly lighter than main editor for distinction
+      "peekViewResult.background": "#161b22", // References list background - different from editor
+      "editorGhostText.foreground": "#474747",
+      "editorLineNumber.foreground": "#434343",
+      "editorIndentGuide.background1": "#272727",
+      // Find/Replace Widget
+      "editorWidget.background": "#1a1a1a",
+      "editorWidget.border": "#1a1a1a",
+      // Command Palette (Quick Input)
+      "quickInput.background": "#000000",
+      "quickInput.foreground": "#cccccc",
+      "quickInputList.focusBackground": "#1a1a1a",
+      "quickInputList.focusForeground": "#FFFFFF",
+    },
+    // "titleBar.activeBackground": "#0e6bd6",
+    // "titleBar.activeForeground": "#f3f5f7",
+    // "titleBar.inactiveBackground": "#085cbd",
+  },
+  "makefile.configureOnOpen": false,
+  "editor.accessibilitySupport": "off",
+  "extensions.ignoreRecommendations": true,
+  "workbench.editor.tabSizing": "fixed",
+  "jupyter.enableExtendedPythonKernelCompletions": true,
+  "editor.minimap.enabled": false,
+  "redhat.telemetry.enabled": false,
+  "terminal.integrated.scrollback": 20000,
+  "workbench.startupEditor": "none",
+  "workbench.activityBar.location": "top",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "python.analysis.typeCheckingMode": "standard",
+  "editor.hover.delay": 2000,
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "window.zoomLevel": -0.25,
+  "kilo-code.allowedCommands": [
+    "git log",
+    "git diff",
+    "git show"
+  ],
+  "kilo-code.deniedCommands": [],
+  "diffEditor.experimental.showMoves": true,
+  "chat.viewSessions.orientation": "stacked",
+  "git.autofetch": true
+}

@@ -1,0 +1,11 @@
+# Automatic tiling window manager similar to xmonad
+cask "amethyst"
+
+# Menu bar manager
+cask "jordanbaird-ice"
+
+# Instant messaging application focusing on security
+cask "signal"
+
+# Microsoft Visual Studio Code
+cask "visual-studio-code"

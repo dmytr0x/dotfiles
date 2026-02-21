@@ -1,0 +1,7 @@
+{
+  "List Comprehension": {
+    "prefix": "_lc",
+    "description": "Create a list using list comprehension",
+    "body": "$0[$3 for $2 in $1]"
+  }
+}

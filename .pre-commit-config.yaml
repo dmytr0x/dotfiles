@@ -1,0 +1,68 @@
+repos:
+  # General file hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      # Prevents committing large files that don't belong in a dotfiles repo
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+
+      # Detects private keys (SSH, PGP, etc.)
+      - id: detect-private-key
+
+      # Ensures files end with a newline (POSIX best practice)
+      - id: end-of-file-fixer
+        exclude: '^sources/symlinks/home/\.config/yazi/plugins/'
+
+      # Removes trailing whitespace
+      - id: trailing-whitespace
+        args: ['--markdown-linebreak-ext=md']
+        exclude: '^sources/symlinks/home/\.config/yazi/plugins/'
+
+      # Prevents committing directly to main
+      # - id: no-commit-to-branch
+      #   args: ['--branch', 'main']
+
+      # Validates YAML syntax (for configs like lazygit, etc.)
+      - id: check-yaml
+        args: ['--allow-multiple-documents']
+
+      # Validates TOML syntax (for starship, helix, atuin, etc.)
+      - id: check-toml
+
+      # Checks for files that would conflict in case-insensitive filesystems
+      - id: check-case-conflict
+
+      # Checks for merge conflict markers
+      - id: check-merge-conflict
+
+      # Ensures symlinks point to valid targets
+      - id: check-symlinks
+      - id: destroyed-symlinks
+
+      # Checks for UTF-8 byte order marker
+      - id: fix-byte-order-marker
+
+      # Ensures executables have shebangs
+      - id: check-executables-have-shebangs
+
+      # Ensures files with shebangs are executable
+      - id: check-shebang-scripts-are-executable
+
+  # Shell script linting (only standalone scripts with shebangs)
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+        args: ['--severity=warning', '--shell=bash']
+        # Only lint the dotfiles CLI and install scripts.
+        # Zsh config fragments (sourced files without shebangs)
+        # and third-party completion scripts are excluded because
+        # shellcheck can't parse zsh-specific syntax.
+        files: '(^dotfiles$|^sources/scripts/)'
+
+  # Secret detection with Gitleaks
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "username": "dmytr0x",
+  "theme": "aura",
+  "share": "manual",
+  "autoupdate": false,
+  "permission": {
+    "bash": {
+      "git *": "ask",
+      "git show*": "allow",
+      "git diff*": "allow",
+      "git status*": "allow",
+      "git branch*": "allow",
+      "git log*": "allow",
+      "git push -f*": "deny",
+      "git push --force*": "deny",
+      "rm -rf *": "ask"
+    }
+  },
+  "agent": {
+    "minimal": {
+      "mode": "primary",
+      "prompt": "You are a knowledgeable technical assistant. YOU ARE IN 'MINIMUM AGENT MODE'. You are strictly PROHIBITED from using any tools, functions, bash commands, or file operations. Do not write to files, do not execute code, and do not request to use external tools. You must answer all questions using only your internal knowledge and conversational text. If the user asks for code changes, explain them theoretically but do not attempt to apply them.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "patch": false,
+        "bash": false,
+        "read": false,
+        "grep": false,
+        "glob": false,
+        "list": false,
+        "lsp": false,
+        "skill": false,
+        "task": false,
+        "todowrite": false,
+        "todoread": false,
+        "webfetch": false,
+        "question": false,
+        "google_search": false,
+        "context7*": false
+      }
+    },
+    "ask": {
+      "mode": "primary",
+      "prompt": "You are a knowledgeable technical assistant focused on answering questions and providing information about software development, software engineering practices, technology, and related topics. You can analyze code, explain concepts, and access external resources. Always answer the user's questions thoroughly, and do not switch to implementing code unless explicitly requested by the user. Include Mermaid diagrams when they clarify your response.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "patch": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "lsp": true,
+        "skill": true,
+        "todowrite": true,
+        "todoread": true,
+        "webfetch": true,
+        "question": true,
+        "context7*": true
+      }
+    },
+    "code-review": {
+      "mode": "primary",
+      "model": "github-copilot/claude-opus-4.5",
+      "prompt": "You are a principal software engineer conducting thorough code reviews. You focus on code quality, security, performance, and maintainability. Provide constructive feedback on code patterns, potential bugs, security issues, and improvement opportunities. Be specific and actionable in suggestions. When identifying issues or improvements, create a step-by-step plan with clear priorities and actionable items to guide implementation. Save it as CODEREVIEW.md file.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "patch": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "lsp": true,
+        "skill": true,
+        "todowrite": true,
+        "todoread": true,
+        "webfetch": true,
+        "question": true,
+        "context7*": true
+      }
+    }
+  },
+  "formatter": false,
+  "lsp": {
+    "pyright": {
+      "disabled": true
+    },
+    "basedpyright": {
+      "command": ["basedpyright-langserver", "--stdio"],
+      "extensions": [".py", ".pyi"]
+    }
+  },
+  "mcp": {
+    "sequential-thinking": {
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "DISABLE_THOUGHT_LOGGING=true",
+        "mcp/sequentialthinking"
+      ]
+    },
+    "context7": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    }
+  },
+  "plugin": ["opencode-antigravity-auth@latest"]
+}

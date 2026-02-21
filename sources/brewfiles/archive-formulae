@@ -1,0 +1,14 @@
+# Language Server for the Lua language
+brew "lua-language-server"
+
+# Language Server for Yaml Files
+brew "yaml-language-server"
+
+# Autoformat shell script source code
+brew "shfmt"
+
+# Extensible command-line tool to format YAML files
+brew "yamlfmt"
+
+# Handy way to save and run project-specific commands
+brew "just"
