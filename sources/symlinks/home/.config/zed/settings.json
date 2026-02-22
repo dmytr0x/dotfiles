@@ -70,6 +70,10 @@
   },
 
   // ========Language Server Protocol ==============
+  // Whether to automatically show a signature help pop-up or not.
+  // To show it manually, press: `cmd+i` (editor::ShowSignatureHelp)
+  "auto_signature_help": false,
+  //
   "lsp": {
     // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
     "basedpyright": {
@@ -162,6 +166,9 @@
   "seed_search_query_from_cursor": "selection",
 
   // ==================== AI & Agent ====================
+  // Completely disable or enable all AI features in the editor
+  "disable_ai": false,
+  //
   "agent_servers": {
     "opencode": {
       "type": "registry",
@@ -170,7 +177,7 @@
       "favorite_models": [
         "openai/gpt-5.3-codex/high",
         "openai/gpt-5.3-codex/medium",
-        "openai/gpt-5.3-codex",
+        "openai/gpt-5.3-codex/low",
       ],
     },
   },
@@ -183,7 +190,8 @@
   "show_edit_predictions": true,
   "edit_predictions": {
     "mode": "subtle", // Display predictions inline only when holding a modifier key (alt by default)
-    "provider": "copilot",
+    // INFO: The `copilot` is using more than 1GB of memory
+    "provider": "zed",
     "disabled_globs": ["**/.env", "**/.env.*", "**/.env-*", "**/.env_*"],
   },
   "language_models": {
