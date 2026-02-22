@@ -9,7 +9,7 @@ import pathlib
 import shlex
 import sys
 from collections import Counter, defaultdict
-from collections.abc import Generator, Iterable
+from collections.abc import Iterable, Iterator
 
 
 class Args(argparse.Namespace):
@@ -25,7 +25,7 @@ def compute_sha(file: pathlib.Path) -> str:
     return hasher.hexdigest()
 
 
-def find_duplicates(files: Iterable[pathlib.Path]) -> Generator[list[pathlib.Path]]:
+def find_duplicates(files: Iterable[pathlib.Path]) -> Iterator[list[pathlib.Path]]:
     duplicates: defaultdict[str, list[pathlib.Path]] = defaultdict(list)
     for file in files:
         sha = compute_sha(file)
@@ -42,7 +42,7 @@ def find_duplicates(files: Iterable[pathlib.Path]) -> Generator[list[pathlib.Pat
         yield files
 
 
-def traverse(source: pathlib.Path) -> Generator[pathlib.Path]:
+def traverse(source: pathlib.Path) -> Iterator[pathlib.Path]:
     for file in source.rglob("*"):
         if file.is_file():
             yield file
