@@ -1,0 +1,12 @@
+[theme]
+name = "vscode-dark-modern"
+parent = "default"
+
+[colors]
+Base = "#8d8c8b"
+Annotation = "#515555"
+Guidance = "#567587"
+Important = "#0078d4"
+AlertInfo = "#94e59a"
+AlertWarn = "#cca700"
+AlertError = "#C16363"
