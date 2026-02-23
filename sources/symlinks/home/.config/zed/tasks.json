@@ -1,7 +1,13 @@
 [
   // details: https://zed.dev/docs/taskss
+  // For awareness
+  {
+    "label": "zed env",
+    "command": "env | grep ZED"
+  },
   //
   {
+    // details: https://github.com/jesseduffield/lazygit
     "label": "LazyGit",
     "command": "lazygit",
     "cwd": "$ZED_WORKTREE_ROOT",
@@ -11,4 +17,24 @@
     "show_summary": false,
     "show_command": false,
   },
+  {
+    // details: https://alexpasmantier.github.io/television/
+    "label": "television-file-finder",
+    // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.
+    "command": "tv zed-files | tr '\\n' '\\0' | xargs -0 zed",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "hide": "always",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true
+  },
+  {
+    // details: https://alexpasmantier.github.io/television/
+    "label": "television-text-finder",
+    // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.
+    "command": "tv zed-text | tr '\\n' '\\0' | xargs -0 zed",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "hide": "always",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true
+  }
 ]

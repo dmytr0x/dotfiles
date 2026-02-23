@@ -1,0 +1,29 @@
+[metadata]
+name = "zed-text"
+description = "Find text and open in Zed"
+requirements = ["rg", "bat", "zed"]
+
+[source]
+command = [
+  # using the global git ignore file
+  "rg . --no-heading --line-number --hidden --color=never",
+  "rg . --no-heading --line-number --color=never",
+]
+# ansi = false
+display = "{strip_ansi|split:\\::2..}"
+output = "{strip_ansi|split:\\::0}:{strip_ansi|split:\\::1}:1"
+
+[preview]
+command = "bat -n --color=always '{strip_ansi|split:\\::0}'"
+offset = "{strip_ansi|split:\\::1}"
+
+[ui]
+preview_panel = { header = "{strip_ansi|split:\\::..2}" }
+
+[keybindings]
+f12 = "actions:edit"
+
+[actions.edit]
+description = "Open file in Zed at line"
+command = "zed '{strip_ansi|split:\\::0}:{strip_ansi|split:\\::1}:1'"
+mode = "fork"
