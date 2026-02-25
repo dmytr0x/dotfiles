@@ -46,5 +46,5 @@ brew "basedpyright"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 
-# Plain-text editor for web pages, program source codes and more
-cask "coteditor"
+# General purpose fuzzy finder TUI
+brew "television"

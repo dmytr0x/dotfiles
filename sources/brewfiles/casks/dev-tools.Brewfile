@@ -2,6 +2,9 @@
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 
+# Plain-text editor for web pages, program source codes and more
+cask "coteditor"
+
 # GIT client
 cask "fork"
 
