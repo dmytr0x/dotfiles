@@ -3,6 +3,7 @@
   {
     "bindings": {
       "cmd-shift-f": "workspace::NewSearch",
+      "ctrl-0": "editor::ToggleFocus",
     },
   },
 
@@ -66,10 +67,10 @@
         "action::Sequence",
         ["editor::SelectLine", "editor::ScrollCursorCenter"],
       ],
-      "Cmd-v": [
-        "action::Sequence",
-        ["editor::Paste", "editor::ScrollCursorCenter"],
-      ],
+      // "Cmd-v": [
+      //   "action::Sequence",
+      //   ["editor::Paste", "editor::ScrollCursorCenter"],
+      // ],
       "Cmd-x": [
         "action::Sequence",
         ["editor::Cut", "editor::ScrollCursorCenter"],
@@ -114,6 +115,19 @@
     "context": "Editor && edit_prediction_conflict && showing_completions",
     "bindings": {
       "tab": "editor::AcceptEditPrediction",
+    },
+  },
+
+  // Editor
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-k p": "workspace::CopyRelativePath",
+      "cmd-k cmd-p": "workspace::CopyPath",
+      "shift-cmd-c": [
+        "task::Spawn",
+        { "task_name": "Copy selected text with file marker" },
+      ],
     },
   },
 
@@ -174,4 +188,5 @@
       "ctrl-x n": "agent::NewExternalAgentThread",
     },
   },
+  //
 ]
