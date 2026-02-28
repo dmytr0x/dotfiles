@@ -3,3 +3,6 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .dmypy.json
+
+# Local data
+sources/symlinks/home/.local/bin/data/task/favourite-commands-local.yml

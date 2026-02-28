@@ -15,28 +15,9 @@ alias mv='mv -iv'
 alias rm='rm -iv'
 alias grep="grep -i --color=auto"
 alias mkdir="mkdir -p"
-
-# Editors
-alias vim="nvim"
-alias v="nvim"
-alias codium="codium --new-window"
-
-# VSCode
-vscode_cmd() {
-  local workspace_name=$1
-  echo "code \
-    --user-data-dir=$HOME/.config/vscode/workspaces/$workspace_name/user \
-    --extensions-dir=$HOME/.config/vscode/workspaces/$workspace_name/extensions \
-    --sync=off"
+mkcd() {
+  mkdir -p -- "$1" && cd -- "$1"
 }
-eval 'alias codepy="$(vscode_cmd py)"'
-eval 'alias codejs="$(vscode_cmd js)"'
-eval 'alias codego="$(vscode_cmd go)"'
-eval 'alias coders="$(vscode_cmd rs)"'
-eval 'alias codezig="$(vscode_cmd zig)"'
-eval 'alias codedn="$(vscode_cmd dn)"'
-eval 'alias codejava="$(vscode_cmd java)"'
-unset -f vscode_cmd
 
 # Setup partial parameters
 alias lazygit="lazygit --use-config-dir=$HOME/.config/lazygit"

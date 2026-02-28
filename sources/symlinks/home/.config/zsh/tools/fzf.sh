@@ -19,7 +19,7 @@ prompt:#cba6f7,\
 hl+:#f38ba8\
 "
 
-FZF_PREVIEW_SCRIPT="$DOTFILES/dotfiles/bin/fzf-preview"
+FZF_PREVIEW_SCRIPT="~/.local/bin/fzf-preview"
 
 export FZF_SKIP=".git,.npm,node_modules"
 export FZF_DEFAULT_OPTS="
@@ -76,22 +76,12 @@ fzf-show-shortcuts() {
 }
 
 # Favourite commands {
-fzf-favourites() {
-  selected=$(
-    rg --no-line-number '^\s*[^#]' < ~/.config/zsh/data/favourites | fzf \
-      --header="Favourites" \
-      --prompt "Command> " \
-      --ansi \
-      --preview-window=down:1:wrap \
-      --preview "rg --no-config --color=always --fixed-strings --stop-on-nonmatch --case-sensitive --before-context=1 --after-context=0 "{}" < ~/.config/zsh/data/favourites" \
-      --bind "ctrl-e:execute(\$EDITOR ~/.config/zsh/data/favourites)+reload(rg --no-line-number '^\s*[^#]' < ~/.config/zsh/data/favourites)"
-  )
-  if [ -n "$selected" ]; then
-    print -z "$selected"
-  fi
+favourites-widget() {
+  BUFFER=' favourite-commands'
+  zle accept-line
 }
-bindkey -N fzf-favourites
-bindkey -s "^[f" "fzf-favourites\n"
+zle -N favourites-widget
+bindkey '^[f' favourites-widget
 # }
 
 # Edit popular file/directory {

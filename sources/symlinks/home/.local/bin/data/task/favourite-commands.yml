@@ -1,0 +1,159 @@
+version: '3'
+
+includes:
+  local:
+    taskfile: ~/.local/bin/data/task/favourite-commands-local.yml
+    flatten: true
+    optional: true
+
+tasks:
+  bat:show-themes:
+    desc: "Bat: Show the bat's themes"
+    cmds:
+      - bat --list-themes
+
+  bat:cache-init:
+    desc: "Bat: Initialize or update bat's cache"
+    cmds:
+      - bat cache --build
+
+  yazi:clear-cache:
+    desc: "Yazi: Clear yazi's cache"
+    cmds:
+      - yazi --clear-cache
+
+  find:the-size-of-directories-in-current-path:
+    desc: "Find: Show the size of directories in current path"
+    cmds:
+      - |
+          find . -type d -maxdepth 1 -exec du -sh {} \;
+
+  brew:show-outdated-packages-and-casks:
+    desc: "Brew: Show the homebrew outdated packages and casks"
+    cmds:
+      - |
+          brew update > /dev/null
+          brew outdated
+          brew outdated --cask --greedy
+
+  brew:upgrade-all-packages-and-casks:
+    desc: "Brew: Upgrade all homebrew packages and casks"
+    deps: [brew:show-outdated-packages-and-casks]
+    cmds:
+      - |
+          brew upgrade
+          brew upgrade --cask --greedy
+
+  brew:shoe-tree-of-all-installed-dependencies:
+    desc: "Brew: Show as a tree of all installed dependencies"
+    cmds:
+      - brew deps --tree --installed
+
+  brew:show-tree-of-installed-package:
+    desc: "Brew: Show as a tree of installed package"
+    requires:
+      vars:
+        - PACKAGE
+    cmds:
+      - brew deps --tree --installed {{.PACKAGE}}
+
+  system:show-list-of-services:
+    desc: "System: Show the list of all services"
+    cmds:
+      - sudo launchctl list
+
+  dns:clear-dns-cache:
+    desc: "DNS: Clear the DNS cache"
+    cmds:
+      - |
+          sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+
+  dns:check-domain-dns-records-using-particular-dns-server:
+    desc: "DNS: Check domain DNS records using particular DNS-Server"
+    cmds:
+      - |
+          nslookup {domain} {dns-server}
+
+  # scan:a-particular-ip-address-port:
+  #   desc: "Scan a particular IP address port"
+  #   cmds:
+  #     - |
+  #         ask <<< "nmap -p {{port}} {{ip}}" | bash
+
+  brew:generate-brewfile-by-listing-currently-installed-packages:
+    desc: "Brew: Generate a Brewfile by listing currently installed packages:"
+    cmds:
+      - brew bundle dump --describe --direct --topological --file=Brewfile
+
+  brew:install-all-the-packages-listed-in-a-brewfile:
+    desc: "Brew: Install all the packages listed in a Brewfile"
+    requires:
+      vars:
+        - BREWFILE
+    cmds:
+      - brew bundle --file={{.BREWFILE}}
+
+  brew:clean-up-by-removing-packages-not-listed-in-the-brewfile:
+    desc: "Brew: Clean up by removing packages not listed in the Brewfile:"
+    requires:
+      vars:
+        - BREWFILE
+    cmds:
+      - brew bundle cleanup --file={{.BREWFILE}}
+
+  brew:create-a-symlink-which-points-to-the-homebrew-package:
+    desc: "Brew: Create a symlink which points to the homebrew package"
+    requires:
+      vars:
+        - PACKAGE
+    cmds:
+      - brew link --overwrite {{.PACKAGE}}
+
+  wezterm:show-default-key-bindings:
+    desc: "Wezterm: Show default key bindings"
+    cmds:
+      - wezterm show-keys --lua
+
+  system:reset-all-allows-in-the-background-os-system-settings:
+    desc: "System: Reset all allows in the background (OS System Settings)"
+    cmds:
+      - sudo sfltool resetbtm
+
+  system:check-the-os-updates:
+    desc: "System: Check the OS updates"
+    cmds:
+      - softwareupdate --list --all
+
+  system:install-the-os-updates:
+    desc: "System: Install the OS updates"
+    cmds:
+      - softwareupdate --all --install
+
+  system:reinstall-xcode:
+    desc: "XCode: Reinstall xcode"
+    cmds:
+      - |
+          sudo rm -rf $(xcode-select -p)
+          sudo xcode-select --install
+
+  python:create-a-new-python-virtual-environment:
+    desc: "Python: Create a new python virtual environment (.venv)"
+    cmds:
+      - |
+          echo "1. Python to be used:"
+          echo "  Path: $(which python)"
+          echo "  Version: $(python -V)"
+          echo
+          echo "2. Creating the .venv ..."
+          python -m venv .venv
+          echo
+          echo "3. Activating the new virtual environment ..."
+          source .venv/bin/activate
+          echo
+          echo "4. Python created ..."
+          echo "  Path: $(which python)"
+          echo "  Version: $(python -V)"
+          echo
+          echo "5. Upgrading the pip ..."
+          python -m pip install --upgrade pip
+          echo
