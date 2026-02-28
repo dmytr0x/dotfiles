@@ -183,11 +183,13 @@
     },
   },
   "agent": {
+    "enable_feedback": false,
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5",
     },
   },
+  // On/off edit predictions
   "show_edit_predictions": true,
   "edit_predictions": {
     "mode": "subtle", // Display predictions inline only when holding a modifier key (alt by default)
