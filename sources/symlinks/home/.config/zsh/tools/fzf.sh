@@ -108,7 +108,7 @@ fzf-edit-popular() {
   configs=$(fd \
     --base-directory "$HOME" \
     --search-path "$HOME/.config" \
-    --search-path "$DOTFILES" \
+    --search-path "$HOME/dotfiles" \
     --type file \
     --type dir \
     --type symlink \
