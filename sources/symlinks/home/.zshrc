@@ -12,6 +12,7 @@ source ~/.config/zsh/tools/atuin.sh
 source ~/.config/zsh/tools/zoxide.sh
 source ~/.config/zsh/tools/mise.sh
 source ~/.config/zsh/tools/direnv.sh
+source ~/.config/zsh/tools/worktrunk.sh
 
 # Load external sources
 SOURCES_DIR="$HOME/.zsources"

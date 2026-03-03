@@ -1,4 +1,16 @@
 #!/usr/bin/env python3
+"""Prompt for placeholder values in command templates read from stdin.
+
+The script looks for placeholders in the form `@@name@@`, asks the user for a
+value for each unique placeholder, and writes the final expanded text to stdout.
+This is useful when you want to keep a command or snippet generic until runtime
+without hardcoding interactive prompts into the template itself.
+
+Examples:
+    ask <<< "nmap -p @@port@@ @@ip@@"
+    ask <<< "ssh @@host@@ -l @@user@@"
+"""
+
 import re
 import sys
 
@@ -10,7 +22,7 @@ def main():
         sys.exit(1)
 
     # Find all variables and get an ordered list of unique ones.
-    variables = re.findall(r"\{\{([a-zA-Z0-9_]+)\}\}", template)
+    variables = re.findall(r"@@([a-zA-Z0-9_]+)@@", template)
     unique_vars = list(dict.fromkeys(variables))
 
     output_string = template
@@ -22,7 +34,7 @@ def main():
                 value = tty.readline().rstrip("\n")
 
                 # Replace all occurrences of this placeholder
-                output_string = output_string.replace(f"{{{{{var_name}}}}}", value)
+                output_string = output_string.replace(f"@@{var_name}@@", value)
 
     except (EOFError, KeyboardInterrupt, OSError):
         print("\nAborted.", file=sys.stderr)

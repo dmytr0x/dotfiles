@@ -51,3 +51,6 @@ brew "television"
 
 # Task is a task runner/build tool that aims to be simpler and easier to use
 brew "go-task"
+
+# CLI for Git worktree management, designed for parallel AI agent workflows
+brew "worktrunk"

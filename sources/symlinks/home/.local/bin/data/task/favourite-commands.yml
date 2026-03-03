@@ -74,11 +74,10 @@ tasks:
       - |
           nslookup {domain} {dns-server}
 
-  # scan:a-particular-ip-address-port:
-  #   desc: "Scan a particular IP address port"
-  #   cmds:
-  #     - |
-  #         ask <<< "nmap -p {{port}} {{ip}}" | bash
+  ip:scan-a-particular-ip-address-port:
+    desc: "Scan a particular IP address port"
+    cmds:
+      - ask <<< "nmap -p @@port@@ @@ip@@" | bash
 
   brew:generate-brewfile-by-listing-currently-installed-packages:
     desc: "Brew: Generate a Brewfile by listing currently installed packages:"
