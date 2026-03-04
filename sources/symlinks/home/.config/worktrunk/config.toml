@@ -1,0 +1,23 @@
+# Worktrunk configs commands:
+#
+# Details: https://worktrunk.dev/config/
+#
+# 1. User level:
+#      wt config create
+# 2. Project level:
+#      wt config create --project
+#
+# Show the config:
+#      wt config show
+#
+
+# Centralized worktrees directory
+# Creates: ~/worktrees/myproject/feature-auth
+worktree-path = "~/.worktrees/{{ repo }}/{{ branch | sanitize }}"
+
+skip-commit-generation-prompt = true
+
+[post-create]
+setup_start = "echo 'Setting up worktree...'"
+direnv = "direnv allow"
+setup_finish = "echo 'Worktree setup complete!'"

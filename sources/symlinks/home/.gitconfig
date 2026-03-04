@@ -139,8 +139,8 @@
   llg = ll -E -i --grep
 
   bch = !git branch | fzf | xargs git checkout
-  bll = !git ll master..$(git branch-name)
-  bdf = !git diff master $(git branch-name)
+  bll = !git ll $(git config init.defaultBranch)..$(git branch-name)
+  bdf = !git diff $(git config init.defaultBranch) $(git branch-name)
   bp = !git push origin $(git branch-name)
   bpf = !git push --force-with-lease origin $(git branch-name)
 

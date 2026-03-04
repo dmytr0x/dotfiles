@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+#
+# This script "uncommits" the current feature branch into staged changes:
+# 1) Detects your current branch and resolves the repo's default/base branch.
+# 2) Shows commits that exist on the current branch but not on the base branch.
+# 3) Resets the branch tip back to the merge-base (keeps file changes in working tree).
+# 4) Stages all resulting changes across the whole repository.
+# 5) Prints staged diff statistics.
+#
+# Safety checks:
+# - Fails if not inside a Git repo.
+# - Fails on detached HEAD.
+# - Fails when run on the base branch itself.
+# - Fails if the working tree/index is dirty before reset.
+set -euo pipefail
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "Error: not inside a Git repository." >&2
+  exit 1
+fi
+
+branch_name="$(git symbolic-ref --quiet --short HEAD || true)"
+if [[ -z "$branch_name" ]]; then
+  echo "Error: detached HEAD. Checkout a branch first." >&2
+  exit 1
+fi
+
+# Prefer origin/HEAD (real remote default branch), then local init.defaultBranch, then common fallbacks.
+main_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+main_branch="${main_branch#origin/}"
+
+if [[ -z "$main_branch" ]]; then
+  main_branch="$(git config --get init.defaultBranch || true)"
+fi
+
+if [[ -z "$main_branch" ]]; then
+  if git show-ref --verify --quiet refs/heads/main; then
+    main_branch="main"
+  elif git show-ref --verify --quiet refs/heads/master; then
+    main_branch="master"
+  else
+    main_branch="main"
+  fi
+fi
+
+if [[ "$branch_name" == "$main_branch" ]]; then
+  echo "Error: current branch is '$main_branch'. Switch to a feature branch first." >&2
+  exit 1
+fi
+
+# Use local base branch when available; otherwise use remote-tracking branch.
+if git show-ref --verify --quiet "refs/heads/$main_branch"; then
+  base_ref="$main_branch"
+elif git show-ref --verify --quiet "refs/remotes/origin/$main_branch"; then
+  base_ref="origin/$main_branch"
+else
+  echo "Error: base branch '$main_branch' not found locally or on origin." >&2
+  exit 1
+fi
+
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "Error: working tree or index is dirty. Commit/stash or clean it first." >&2
+  exit 1
+fi
+
+echo "branch_name: $branch_name"
+echo "main_branch: $main_branch"
+echo "base_ref: $base_ref"
+
+echo "The current feature branch commits ..."
+if [[ -z "$(git rev-list --max-count=1 "${base_ref}..${branch_name}")" ]]; then
+  echo "No commits found in '${branch_name}' that are not in '${base_ref}'."
+  exit 0
+fi
+
+git log \
+  --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+  --abbrev-commit \
+  "${base_ref}..${branch_name}"
+
+merge_base="$(git merge-base HEAD "$base_ref")"
+
+echo
+echo "Reset all commits in the branch ..."
+git reset --mixed "$merge_base"
+
+echo
+echo "Stage all changes ..."
+git add -A :/
+
+echo
+echo "The changes statistics ..."
+git diff --staged --stat
+
+
+# #!/usr/bin/env bash
+# set -euo pipefail
+
+# branch_name="$(git rev-parse --abbrev-ref HEAD)"
+# main_branch="$(git config --get init.defaultBranch || true)"
+# main_branch="${main_branch:-main}"   # fallback if config is unset
+
+# echo "branch_name: $branch_name"
+# echo "main_branch: $main_branch"
+
+# echo "The current feature branch commits ..."
+# git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $main_branch..$branch_name
+# echo
+# echo "Reset all commits in the branch ..."
+# git reset --mixed $(git merge-base HEAD $main_branch)
+# echo
+# echo "Stage all changes ..."
+# git add .
+# echo
+# echo "The changes statistics ..."
+# git diff --staged --stat
