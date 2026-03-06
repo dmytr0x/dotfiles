@@ -25,8 +25,7 @@ tasks:
   find:the-size-of-directories-in-current-path:
     desc: "Find: Show the size of directories in current path"
     cmds:
-      - |
-          find . -type d -maxdepth 1 -exec du -sh {} \;
+      - find . -type d -maxdepth 1 -exec du -sh {} \;
 
   brew:show-outdated-packages-and-casks:
     desc: "Brew: Show the homebrew outdated packages and casks"
@@ -65,19 +64,21 @@ tasks:
   dns:clear-dns-cache:
     desc: "DNS: Clear the DNS cache"
     cmds:
-      - |
-          sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+      - sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 
   dns:check-domain-dns-records-using-particular-dns-server:
     desc: "DNS: Check domain DNS records using particular DNS-Server"
+    requires:
+      vars: [domain, dns_server]
     cmds:
-      - |
-          nslookup {domain} {dns-server}
+      - nslookup {{.domain}} {{.dns_server}}
 
   ip:scan-a-particular-ip-address-port:
-    desc: "Scan a particular IP address port"
+    desc: "IP: Scan a particular IP address port"
+    requires:
+      vars: [po-rt, ip]
     cmds:
-      - ask <<< "nmap -p @@port@@ @@ip@@" | bash
+      - nmap -p {{.port}} {{.ip}}
 
   brew:generate-brewfile-by-listing-currently-installed-packages:
     desc: "Brew: Generate a Brewfile by listing currently installed packages:"
@@ -88,25 +89,25 @@ tasks:
     desc: "Brew: Install all the packages listed in a Brewfile"
     requires:
       vars:
-        - BREWFILE
+        - brewfile
     cmds:
-      - brew bundle --file={{.BREWFILE}}
+      - brew bundle --file={{.brewfile}}
 
   brew:clean-up-by-removing-packages-not-listed-in-the-brewfile:
     desc: "Brew: Clean up by removing packages not listed in the Brewfile:"
     requires:
       vars:
-        - BREWFILE
+        - brewfile
     cmds:
-      - brew bundle cleanup --file={{.BREWFILE}}
+      - brew bundle cleanup --file={{.brewfile}}
 
   brew:create-a-symlink-which-points-to-the-homebrew-package:
     desc: "Brew: Create a symlink which points to the homebrew package"
     requires:
       vars:
-        - PACKAGE
+        - package
     cmds:
-      - brew link --overwrite {{.PACKAGE}}
+      - brew link --overwrite {{.package}}
 
   wezterm:show-default-key-bindings:
     desc: "Wezterm: Show default key bindings"
