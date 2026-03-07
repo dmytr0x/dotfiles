@@ -25,3 +25,6 @@ cask "raycast"
 
 # Open source API development ecosystem
 cask "hoppscotch"
+
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
