@@ -109,9 +109,11 @@ fzf-edit-popular() {
     --base-directory "$HOME" \
     --search-path "$HOME/.config" \
     --search-path "$HOME/dotfiles" \
+    --search-path "$HOME/.local/bin" \
     --type file \
     --type dir \
     --type symlink \
+    --follow \
     --exclude .git \
     --exclude node_modules \
     --color always
