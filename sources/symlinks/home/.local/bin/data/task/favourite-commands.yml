@@ -127,7 +127,7 @@ tasks:
   system:install-the-os-updates:
     desc: "System: Install the OS updates"
     cmds:
-      - softwareupdate --all --install
+      - sudo softwareupdate --all --install --restart
 
   system:reinstall-xcode:
     desc: "XCode: Reinstall xcode"
