@@ -31,6 +31,7 @@
   },
 
   // ==================== Editor ====================
+  "preferred_line_length": 100,
   "current_line_highlight": "none",
   "colorize_brackets": true,
   "indent_guides": {
@@ -73,6 +74,7 @@
   // Whether to automatically show a signature help pop-up or not.
   // To show it manually, press: `cmd+i` (editor::ShowSignatureHelp)
   "auto_signature_help": false,
+  "go_to_definition_fallback": "none",
   //
   "lsp": {
     // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
@@ -108,7 +110,8 @@
   "collaboration_panel": {
     "button": false,
   },
-
+  "pane_split_direction_vertical": "left",
+  "pane_split_direction_horizontal": "up",
   // ==================== Git ====================
   "git": {
     "hunk_style": "unstaged_hollow",
@@ -143,6 +146,7 @@
     "show_branch_icon": true,
     "show_onboarding_banner": false,
     "show_user_menu": false,
+    "show_sign_in": false,
   },
 
   // ==================== Terminal ====================
@@ -150,11 +154,16 @@
     "font_family": "FiraCode Nerd Font",
     "font_size": 12,
     "cursor_shape": "bar",
+    "copy_on_select": true,
+    "blinking": "on",
     // Use Zed as the default editor for the built-in terminal
     "env": {
       "EDITOR": "zed --wait",
       "VISUAL": "zed --wait",
     },
+    //
+    // "path_hyperlink_regexes": [...]
+    // "scroll_multiplier": 0
   },
   "load_direnv": "shell_hook",
 
@@ -189,6 +198,15 @@
       "model": "claude-haiku-4.5",
     },
   },
+  "private_files": [
+    "**/.env*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.cert",
+    "**/*.crt",
+    "**/secret*.yml",
+    "**/secret*.yaml",
+  ],
   // On/off edit predictions
   "show_edit_predictions": true,
   "edit_predictions": {
@@ -196,6 +214,14 @@
     // INFO: The `copilot` is using more than 1GB of memory
     "provider": "zed",
     "disabled_globs": ["**/.env", "**/.env.*", "**/.env-*", "**/.env_*"],
+  },
+  // Auto completions
+  "completions": {
+    "words": "fallback",
+    "words_min_length": 3,
+    "lsp": true,
+    "lsp_fetch_timeout_ms": 0,
+    "lsp_insert_mode": "replace_suffix",
   },
   "language_models": {
     "openai_compatible": {
@@ -229,12 +255,7 @@
   },
 
   // ==================== Files & Projects ====================
-  "file_scan_exclusions": [
-    ".ruff_cache",
-    ".mypy_cache",
-    "**/__pycache__",
-    "**/.pytest_cache",
-  ],
+  "file_scan_exclusions": [".ruff_cache", ".mypy_cache", "**/__pycache__", "**/.pytest_cache"],
 
   // ==================== Keymap ====================
   "base_keymap": "VSCode",
@@ -242,7 +263,10 @@
   // ==================== Profiles ====================
   "profiles": {
     "Zen": {
+      // "theme": "VSCode Dark Modern",
       "buffer_font_size": 16,
+      "agent_buffer_font_size": 15.0,
+      "ui_font_size": 15.0,
       "tab_bar": { "show": false },
       "toolbar": { "breadcrumbs": false },
       "status_bar": { "experimental.show": false },
@@ -254,9 +278,9 @@
       "indent_guides": { "enabled": false },
     },
     "Presentation": {
+      "theme": "VSCode Dark Modern",
       "buffer_font_size": 20,
       "ui_font_size": 18,
-      "theme": "VSCode Dark Modern",
     },
   },
 
