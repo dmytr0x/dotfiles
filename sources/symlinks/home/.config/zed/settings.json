@@ -288,6 +288,11 @@
   "auto_install_extensions": {
     "vscode-dark-modern": true,
     "catppuccin-icons": true,
+    "dockerfile": true,
+    "terraform": true,
+    "toml": true,
+    "bash": true,
+    "sql": true,
   },
 
   // ==================== System ====================
