@@ -157,3 +157,20 @@ tasks:
           echo "5. Upgrading the pip ..."
           python -m pip install --upgrade pip
           echo
+
+  python:install-uv-in-a-venv:
+    desc: "Python: Install uv in a .venv"
+    requires:
+      vars:
+        - version
+    cmds:
+      - |
+          source .venv/bin/activate
+          python -m pip install uv=={{.version}}
+
+  python:install-dev-extras-in-a-venv:
+    desc: "Python: Install dev extras in a .venv"
+    cmds:
+      - |
+          source .venv/bin/activate
+          python -m pip install marimo
