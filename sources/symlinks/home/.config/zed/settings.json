@@ -105,6 +105,7 @@
 
   // ==================== Panels ====================
   "project_panel": {
+    "diagnostic_badges": false,
     "entry_spacing": "standard",
   },
   "collaboration_panel": {
