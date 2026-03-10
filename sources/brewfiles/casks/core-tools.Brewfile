@@ -6,3 +6,6 @@ cask "zen"
 
 # Speech to text application
 cask "handy"
+
+# Open-source cross-platform alternative to AirDrop
+cask "localsend"
