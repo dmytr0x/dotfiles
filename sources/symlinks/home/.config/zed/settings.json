@@ -75,6 +75,8 @@
   // To show it manually, press: `cmd+i` (editor::ShowSignatureHelp)
   "auto_signature_help": false,
   "go_to_definition_fallback": "none",
+  // Add LSP document symbols to the breadcrumbs and outline UI
+  "document_symbols": "on",
   //
   "lsp": {
     // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
@@ -113,6 +115,7 @@
   },
   "pane_split_direction_vertical": "left",
   "pane_split_direction_horizontal": "up",
+
   // ==================== Git ====================
   "git": {
     "hunk_style": "unstaged_hollow",
@@ -177,6 +180,7 @@
 
   // ==================== AI & Agent ====================
   // Completely disable or enable all AI features in the editor
+  // You can enable or disable AI on a per-project basis
   "disable_ai": false,
   //
   "agent_servers": {

@@ -124,6 +124,9 @@
     "bindings": {
       "cmd-k p": "workspace::CopyRelativePath",
       "cmd-k cmd-p": "workspace::CopyPath",
+      // Tab switching within the active pane
+      "alt-cmd-p": "tab_switcher::OpenInActivePane",
+      // Useful for external consumers, such as AI agents
       "shift-cmd-c": [
         "task::Spawn",
         { "task_name": "Copy selected text with file marker" },
