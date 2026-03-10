@@ -3,3 +3,6 @@ cask "ghostty"
 
 # Gecko based web browser
 cask "zen"
+
+# Speech to text application
+cask "handy"
