@@ -54,3 +54,6 @@ brew "go-task"
 
 # CLI for Git worktree management, designed for parallel AI agent workflows
 brew "worktrunk"
+
+# CLI for Postgres with auto-completion and syntax highlighting
+brew "pgcli"
