@@ -9,3 +9,6 @@ cask "handy"
 
 # Open-source cross-platform alternative to AirDrop
 cask "localsend"
+
+# MacOS menu bar manager
+cask "thaw"
