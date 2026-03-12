@@ -50,7 +50,7 @@
       // basedpyright - https://zed.dev/docs/languages/python#basedpyright
       // ty           - https://docs.astral.sh/ty/editors/#zed
       //
-      "language_servers": ["basedpyright", "ruff", "!ty"],
+      "language_servers": ["ty", "ruff", "!basedpyright"],
       // INFO: that will disable the built-in debug configurations
       //       only the .zed/debug.json will be used
       "debuggers": ["debugpy"],
@@ -79,6 +79,14 @@
   "document_symbols": "on",
   //
   "lsp": {
+    // details:
+    // - https://docs.astral.sh/ty/reference/editor-settings
+    // - https://docs.astral.sh/ty/reference/configuration/
+    "ty": {
+      "settings": {
+        "diagnosticMode": "openFilesOnly",
+      }
+    },
     // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
     "basedpyright": {
       "settings": {
