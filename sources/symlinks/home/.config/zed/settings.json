@@ -292,10 +292,12 @@
 
   // ==================== Extensions ====================
   "auto_install_extensions": {
+    "opencode": true,
     "vscode-dark-modern": true,
     "catppuccin-icons": true,
     "dockerfile": true,
     "terraform": true,
+    "html": true,
     "toml": true,
     "bash": true,
     "sql": true,
