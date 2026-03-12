@@ -15,3 +15,6 @@ cask "localsend"
 
 # MacOS menu bar manager
 cask "thaw"
+
+# Window snapping tool
+cask "rectangle-pro"
