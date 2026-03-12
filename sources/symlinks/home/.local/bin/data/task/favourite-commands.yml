@@ -173,7 +173,9 @@ tasks:
     cmds:
       - |
           source .venv/bin/activate
-          python -m pip install marimo
+          python -m pip install \
+            debugpy \
+            marimo
 
   uv:reinstall-dependencies-using-the-lock-file:
     desc: "UV: Reinstall dependencies from uv.lock file"
