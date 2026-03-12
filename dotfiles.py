@@ -38,6 +38,10 @@ class DotfilesPaths:
     def app_support_dir(cls) -> Path:
         return Path.home() / "Library" / "Application Support"
 
+    @classmethod
+    def hammerspoon_dir(cls) -> Path:
+        return Path.home() / ".hammerspoon"
+
 
 class Target(StrEnum):
     ALL = "all"
@@ -103,6 +107,9 @@ def prepare_symlink_targets() -> None:
     vscode_dir = DotfilesPaths.app_support_dir() / "Code" / "User"
     vscode_dir.mkdir(parents=True, exist_ok=True)
 
+    # Hammerspoon needs its target directory to exist for Stow to link into.
+    DotfilesPaths.hammerspoon_dir().mkdir(parents=True, exist_ok=True)
+
 
 class SymlinksManager:
     @staticmethod
@@ -110,6 +117,7 @@ class SymlinksManager:
         return [
             ("home", Path.home()),
             ("application_support", DotfilesPaths.app_support_dir()),
+            (".hammerspoon", DotfilesPaths.hammerspoon_dir()),
         ]
 
     @staticmethod

@@ -25,3 +25,6 @@ cask "hoppscotch"
 
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
 cask "cmux"
+
+# Desktop automation application
+cask "hammerspoon"
