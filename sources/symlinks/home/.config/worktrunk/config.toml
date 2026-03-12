@@ -19,5 +19,5 @@ skip-commit-generation-prompt = true
 
 [post-create]
 setup_start = "echo 'Setting up worktree...'"
-direnv = "direnv allow"
+direnv = "if [ -f .envrc ] || [ -f .env ]; then direnv allow; fi"
 setup_finish = "echo 'Worktree setup complete!'"
