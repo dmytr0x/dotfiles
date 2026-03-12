@@ -1,6 +1,9 @@
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 
+# Control your tools with a few keystrokes
+cask "raycast"
+
 # Gecko based web browser
 cask "zen"
 

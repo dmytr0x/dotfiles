@@ -20,9 +20,6 @@ cask "zed"
 # Application launcher
 cask "leader-key"
 
-# Control your tools with a few keystrokes
-cask "raycast"
-
 # Open source API development ecosystem
 cask "hoppscotch"
 
