@@ -68,6 +68,17 @@
     "YAML": {
       "indent_guides": { "enabled": true, "coloring": "indent_aware" },
     },
+    "TOML": {
+      "tab_size": 2,
+      "indent_guides": { "enabled": true, "coloring": "indent_aware" },
+      "formatter": {
+        "external": {
+          "command": "taplo",
+          "arguments": ["fmt", "-"],
+        },
+      },
+      "format_on_save": "off",
+    },
   },
 
   // ========Language Server Protocol ==============
@@ -85,7 +96,7 @@
     "ty": {
       "settings": {
         "diagnosticMode": "openFilesOnly",
-      }
+      },
     },
     // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
     "basedpyright": {
@@ -201,7 +212,7 @@
         "openai/gpt-5.4/medium",
         "openai/gpt-5.4/none",
         "github-copilot/claude-opus-4.6",
-        "github-copilot/claude-haiku-4.5"
+        "github-copilot/claude-haiku-4.5",
       ],
     },
   },
