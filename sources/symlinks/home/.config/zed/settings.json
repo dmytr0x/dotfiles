@@ -316,6 +316,7 @@
     "catppuccin-icons": true,
     "dockerfile": true,
     "terraform": true,
+    "lua": true,
     "html": true,
     "toml": true,
     "bash": true,
