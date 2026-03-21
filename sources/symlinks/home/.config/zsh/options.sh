@@ -18,3 +18,6 @@
 # setopt_if_exists correct_all # all arguments
 
 # unset setopt_if_exists
+
+# Make the `/` character not be treated as part of a "word" for `opt-backspace`
+WORDCHARS=${WORDCHARS//\/}
