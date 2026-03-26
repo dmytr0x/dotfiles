@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Improve the keyboard experience
 defaults write -g ApplePressAndHoldEnabled -bool false
