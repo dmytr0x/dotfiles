@@ -50,6 +50,10 @@ class DotfilesPaths:
     def config(cls) -> Path:
         return Path.home() / ".config"
 
+    @classmethod
+    def zed_editor(cls) -> Path:
+        return Path.home() / ".config" / "zed"
+
 class Target(StrEnum):
     ALL = "all"
     SYMLINKS = "symlinks"
@@ -115,6 +119,9 @@ def prepare_symlink_targets() -> None:
 
     # .config must exists
     DotfilesPaths.config().mkdir(parents=True, exist_ok=True)
+
+    # Zed editor config must exists
+    DotfilesPaths.zed_editor().mkdir(parents=True, exist_ok=True)
 
     # VS Code needs the target directory to exist for individual file links.
     vscode_dir = DotfilesPaths.app_support_dir() / "Code" / "User"
