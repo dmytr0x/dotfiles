@@ -1,0 +1,2 @@
+# Image format providing lossless and lossy compression for web images
+brew "webp"

@@ -1,3 +1,6 @@
+# Plain-text editor for web pages, program source codes and more
+cask "coteditor"
+
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 
