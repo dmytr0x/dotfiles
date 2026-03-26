@@ -51,3 +51,6 @@ brew "go-task"
 
 # CLI for Git worktree management, designed for parallel AI agent workflows
 brew "worktrunk"
+
+# OpenAI's coding agent that runs in your terminal
+brew "codex"

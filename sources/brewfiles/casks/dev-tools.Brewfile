@@ -11,6 +11,9 @@ cask "stats"
 # Multiplayer code editor
 cask "zed"
 
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
+
 # Open source API development ecosystem
 cask "hoppscotch"
 
