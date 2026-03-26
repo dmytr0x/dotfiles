@@ -19,3 +19,6 @@ cask "hoppscotch"
 
 # Desktop automation application
 cask "hammerspoon"
+
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
