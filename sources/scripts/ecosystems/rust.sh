@@ -5,4 +5,4 @@ echo "🚀 Installing rust ..."
 mise install rust
 
 echo "🚀 Installing rust-analyzer ..."
-mise exec --quiet rust -- cargo install rust-analyzer
+mise exec --quiet rust -- rustup component add rust-analyzer
