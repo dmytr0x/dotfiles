@@ -46,6 +46,9 @@ class DotfilesPaths:
     def local_bin(cls) -> Path:
         return Path.home() / ".local" / "bin"
 
+    @classmethod
+    def config(cls) -> Path:
+        return Path.home() / ".config"
 
 class Target(StrEnum):
     ALL = "all"
@@ -109,6 +112,9 @@ def prepare_symlink_targets() -> None:
 
     # .local/bin must exists
     DotfilesPaths.local_bin().mkdir(parents=True, exist_ok=True)
+
+    # .config must exists
+    DotfilesPaths.config().mkdir(parents=True, exist_ok=True)
 
     # VS Code needs the target directory to exist for individual file links.
     vscode_dir = DotfilesPaths.app_support_dir() / "Code" / "User"
