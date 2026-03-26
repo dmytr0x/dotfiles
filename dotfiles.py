@@ -42,6 +42,10 @@ class DotfilesPaths:
     def hammerspoon_dir(cls) -> Path:
         return Path.home() / ".hammerspoon"
 
+    @classmethod
+    def local_bin(cls) -> Path:
+        return Path.home() / ".local" / "bin"
+
 
 class Target(StrEnum):
     ALL = "all"
@@ -102,6 +106,9 @@ def prepare_symlink_targets() -> None:
         backup = atuin_config.with_suffix(".toml.backup")
         print(f"Backing up {atuin_config} -> {backup}")
         atuin_config.rename(backup)
+
+    # .local/bin must exists
+    DotfilesPaths.local_bin().mkdir(parents=True, exist_ok=True)
 
     # VS Code needs the target directory to exist for individual file links.
     vscode_dir = DotfilesPaths.app_support_dir() / "Code" / "User"
