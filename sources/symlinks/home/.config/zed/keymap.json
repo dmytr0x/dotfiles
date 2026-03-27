@@ -3,7 +3,10 @@
   {
     "bindings": {
       "cmd-shift-f": "workspace::NewSearch",
-      "ctrl-0": "editor::ToggleFocus",
+      // Old and new actions to move focus to the most recent pane from any dock
+      // "ctrl-0": "editor::ToggleFocus",
+      "ctrl-0": "workspace::FocusCenterPane",
+      //
     },
   },
 

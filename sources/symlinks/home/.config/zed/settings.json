@@ -148,6 +148,8 @@
     "scrollbar": { "show": "never" },
     "tree_view": true,
     "sort_by_path": true,
+    "show_count_badge": true,
+    "file_icons": true,
   },
 
   // ==================== Tabs & Toolbar ====================
