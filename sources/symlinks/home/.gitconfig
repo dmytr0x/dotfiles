@@ -162,10 +162,15 @@
 [delta]
   # use n and N to move between diff sections
   navigate = true
-  #
-  features = line-numbers decorations
-  #
-  side-by-side = false
+  # style
+  side-by-side = true
+  line-numbers = true
+  # modification labels
+  file-added-label = added:
+  file-modified-label = modified:
+  file-removed-label = removed:
+  file-renamed-label = renamed:
+  file-copied-label = copied:
 
 # Include the personal config
 [includeIf "gitdir:~/"]
