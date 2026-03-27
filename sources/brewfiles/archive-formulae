@@ -12,3 +12,6 @@ brew "yamlfmt"
 
 # Handy way to save and run project-specific commands
 brew "just"
+
+# Diff that understands syntax
+brew "difftastic"
