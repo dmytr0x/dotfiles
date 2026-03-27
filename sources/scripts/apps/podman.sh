@@ -4,9 +4,6 @@ set -euo pipefail
 echo "🚀 Installing podman desktop ..."
 brew install --cask podman-desktop
 
-echo "🚀 Create a docker alias ..."
-ln -s $(which podman) ~/.local/bin/docker
-
 echo ""
 echo "To disable Podman’s compose warning"
 echo "Add the following line under [engine] in ~/.config/containers/containers.conf"
