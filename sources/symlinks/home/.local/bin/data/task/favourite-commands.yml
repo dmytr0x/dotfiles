@@ -181,3 +181,22 @@ tasks:
     desc: "UV: Reinstall dependencies from uv.lock file"
     cmds:
       - uv sync --frozen --reinstall --no-cache
+
+  git:get-incoming-changes:
+    desc: "Git: Get incoming changes"
+    vars:
+      target: '{{.target | default ""}}'
+    # The target can be:
+    # - Passed as a param of the task: task git:get-incoming-changes target=origin/main
+    # - Passed as an user input in the shell
+    # - Use the default value: origin/HEAD
+    cmds:
+      - |
+          target="{{.target}}"
+          if [ -z "$target" ]; then
+            printf 'Enter the target, the defaule is origin/HEAD: '
+            read -r target
+            target="${target:-origin/HEAD}"
+          fi
+          git log "HEAD..$target"
+
