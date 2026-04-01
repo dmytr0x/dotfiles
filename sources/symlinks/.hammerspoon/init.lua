@@ -1,4 +1,5 @@
 local appearance = require("macos.appearance")
+local menuBar = require("macos.menubar")
 local rectangle = require("apps.rectangle")
 local leaderkey = require("helpers.leaderkey")
 
@@ -6,6 +7,8 @@ local hyper = { "control", "option", "command" }
 
 -- Toggle Dark/Light MacOS appearance
 hs.hotkey.bind(hyper, "F12", appearance.toggle)
+-- Hide MacOS main menu
+hs.hotkey.bind(hyper, "F11", menuBar.toggle)
 -- Move the focused app to the center of the screen, resizing it to two-thirds of the screen size.
 -- When the hotkey is pressed again, return the app to its original position.
 hs.hotkey.bind(hyper, "return", rectangle.toggleCentered)
