@@ -38,13 +38,13 @@ keybind = global:ctrl+alt+cmd+/=toggle_quick_terminal
 #
 # Adjust the pane size
 #
-keybind = resize/arrow_up=resize_split:up,10
-keybind = resize/arrow_down=resize_split:down,10
-keybind = resize/arrow_left=resize_split:left,10
-keybind = resize/arrow_right=resize_split:right,10
-keybind = resize/escape=deactivate_key_table
-keybind = resize/catch_all=ignore
-keybind = ctrl+a=activate_key_table:resize
+# keybind = resize/arrow_up=resize_split:up,10
+# keybind = resize/arrow_down=resize_split:down,10
+# keybind = resize/arrow_left=resize_split:left,10
+# keybind = resize/arrow_right=resize_split:right,10
+# keybind = resize/escape=deactivate_key_table
+# keybind = resize/catch_all=ignore
+# keybind = ctrl+a=activate_key_table:resize
 # Toggle full screen for the active pane
 keybind = cmd+shift+enter=unbind
 keybind = shift+escape=toggle_split_zoom
