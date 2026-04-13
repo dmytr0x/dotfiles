@@ -69,6 +69,3 @@ alias get="curl -O -L"
 
 # Atuin Script Run
 alias asr="atuin script run"
-
-# Podman/Docker
-alias docker="podman"
