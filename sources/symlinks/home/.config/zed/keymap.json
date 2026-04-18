@@ -3,6 +3,15 @@
   {
     "bindings": {
       "cmd-shift-f": "workspace::NewSearch",
+      //
+      // Possible parameters for Search:
+      // - query: prefilled search query string
+      // - regex: enable regex search mode
+      // - case_sensitive: match case exactly
+      // - whole_word: match whole words only
+      // - include_ignored: search in gitignored files
+      // "...": ["pane::DeploySearch", { "query": "TODO|FIXME|NOTE|BUG|HACK|XXX|WARN", "regex": true, "whole_word": false }],
+      //
       // Old and new actions to move focus to the most recent pane from any dock
       // "ctrl-0": "editor::ToggleFocus",
       "ctrl-0": "workspace::FocusCenterPane",
