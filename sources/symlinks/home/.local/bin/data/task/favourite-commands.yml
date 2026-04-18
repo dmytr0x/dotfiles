@@ -200,3 +200,8 @@ tasks:
           fi
           git log "HEAD..$target"
 
+  github:open_current_branch_pr:
+    desc: "GitHub: Open current branch PR"
+    cmds:
+      - gh pr view $(git branch-name) --web
+  

@@ -54,3 +54,6 @@ brew "worktrunk"
 
 # OpenAI's coding agent that runs in your terminal
 brew "codex"
+
+# GitHub command-line tool
+brew "gh"
