@@ -205,6 +205,14 @@
   "disable_ai": false,
   //
   "agent_servers": {
+    "codex-acp": {
+      "type": "registry",
+      "default_config_options": {
+        "model": "gpt-5.4",
+        "reasoning_effort": "high",
+        "mode": "default"  // default, full-access, read-only
+      },
+    },
     "opencode": {
       "type": "registry",
       "default_config_options": {
@@ -309,6 +317,7 @@
   // ==================== Extensions ====================
   "auto_install_extensions": {
     "opencode": true,
+    "codex-acp": true,
     "vscode-dark-modern": true,
     "catppuccin-icons": true,
     "dockerfile": true,
