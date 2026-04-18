@@ -207,23 +207,26 @@
   "agent_servers": {
     "opencode": {
       "type": "registry",
-      "default_model": "openai/gpt-5.4/high",
-      "default_mode": "build",
-      "favorite_models": [
-        "openai/gpt-5.4/high",
-        "openai/gpt-5.4/medium",
-        "openai/gpt-5.4/none",
-        "github-copilot/claude-opus-4.6",
-        "github-copilot/claude-haiku-4.5",
-      ],
+      "default_config_options": {
+        "model": "openai/gpt-5.4/high",
+        "mode": "build",
+      },
+      "favorite_config_option_values": {
+        "model": [
+          "openai/gpt-5.4/xhigh",
+          "openai/gpt-5.4/high",
+          "openai/gpt-5.4/medium",
+          "openai/gpt-5.4/low",
+          "openai/gpt-5.4-mini/medium",
+          "openai/gpt-5.4-mini/low",
+          "github-copilot/claude-opus-4.6",
+          "github-copilot/claude-haiku-4.5",
+        ]
+      },
     },
   },
   "agent": {
     "enable_feedback": false,
-    "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "claude-haiku-4.5",
-    },
   },
   "private_files": [
     "**/.env*",
@@ -269,23 +272,37 @@
   "profiles": {
     "Zen": {
       // "theme": "VSCode Dark Modern",
-      "buffer_font_size": 16,
-      "agent_buffer_font_size": 15.0,
-      "ui_font_size": 15.0,
-      "tab_bar": { "show": false },
-      "toolbar": { "breadcrumbs": false },
-      "status_bar": { "experimental.show": false },
-      "title_bar": {
-        "show_branch_icon": false,
-        "show_branch_name": false,
-      },
-      "gutter": { "line_numbers": false },
-      "indent_guides": { "enabled": false },
+      "settings": {
+        "buffer_font_size": 16,
+        "agent_buffer_font_size": 15.0,
+        "ui_font_size": 15.0,
+        "tab_bar": {
+          "show": false
+        },
+        "toolbar": {
+          "breadcrumbs": false
+        },
+        "status_bar": {
+          "experimental.show": false
+        },
+        "title_bar": {
+          "show_branch_icon": false,
+          "show_branch_name": false
+        },
+        "gutter": {
+          "line_numbers": false
+        },
+        "indent_guides": {
+          "enabled": false
+        }
+      }
     },
     "Presentation": {
-      "theme": "VSCode Dark Modern",
-      "buffer_font_size": 20,
-      "ui_font_size": 18,
+      "settings": {
+        "theme": "VSCode Dark Modern",
+        "buffer_font_size": 20,
+        "ui_font_size": 18
+      }
     },
   },
 
