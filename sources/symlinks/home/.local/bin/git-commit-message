@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+set -euo pipefail
+
+codex exec --profile=fast --sandbox=read-only --ephemeral "Generate a commit message" 2>/dev/null
