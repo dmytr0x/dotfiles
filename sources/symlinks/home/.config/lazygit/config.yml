@@ -54,7 +54,7 @@ git:
     autoWrapWidth: 80
 
 os:
-  copyToClipboardCmd: "pbcopy < {{text}}"
+  copyToClipboardCmd: ""
   editPreset: "zed"
   open: ""
 
