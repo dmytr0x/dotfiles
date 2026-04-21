@@ -33,6 +33,17 @@
     "show_command": false,
   },
   {
+    // details: https://git-fork.com/
+    "label": "Fork",
+    "command": "fork",
+    "reveal": "never",
+    "hide": "always",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "show_summary": false,
+    "show_command": false,
+  },
+  {
     // details: https://alexpasmantier.github.io/television/
     "label": "television-file-finder",
     // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.

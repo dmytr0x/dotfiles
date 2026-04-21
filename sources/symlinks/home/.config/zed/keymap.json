@@ -23,102 +23,36 @@
   {
     "context": "Editor && mode == full",
     "bindings": {
-      "Up": [
-        "action::Sequence",
-        ["editor::MoveUp", "editor::ScrollCursorCenter"],
-      ],
-      "Down": [
-        "action::Sequence",
-        ["editor::MoveDown", "editor::ScrollCursorCenter"],
-      ],
-      "Shift-Up": [
-        "action::Sequence",
-        ["editor::SelectUp", "editor::ScrollCursorCenter"],
-      ],
-      "Shift-Down": [
-        "action::Sequence",
-        ["editor::SelectDown", "editor::ScrollCursorCenter"],
-      ],
-      "PageUp": [
-        "action::Sequence",
-        ["editor::MoveToBeginning", "editor::ScrollCursorCenter"],
-      ],
-      "PageDown": [
-        "action::Sequence",
-        ["editor::MoveToEnd", "editor::ScrollCursorCenter"],
-      ],
+      "Up": ["action::Sequence", ["editor::MoveUp", "editor::ScrollCursorCenter"]],
+      "Down": ["action::Sequence", ["editor::MoveDown", "editor::ScrollCursorCenter"]],
+      "Shift-Up": ["action::Sequence", ["editor::SelectUp", "editor::ScrollCursorCenter"]],
+      "Shift-Down": ["action::Sequence", ["editor::SelectDown", "editor::ScrollCursorCenter"]],
+      "PageUp": ["action::Sequence", ["editor::MoveToBeginning", "editor::ScrollCursorCenter"]],
+      "PageDown": ["action::Sequence", ["editor::MoveToEnd", "editor::ScrollCursorCenter"]],
       "Shift-PageUp": [
         "action::Sequence",
         ["editor::SelectToBeginning", "editor::ScrollCursorCenter"],
       ],
-      "Shift-PageDown": [
-        "action::Sequence",
-        ["editor::SelectToEnd", "editor::ScrollCursorCenter"],
-      ],
-      "Escape": [
-        "action::Sequence",
-        ["editor::Cancel", "editor::ScrollCursorCenter"],
-      ],
-      "Delete": [
-        "action::Sequence",
-        ["editor::Delete", "editor::ScrollCursorCenter"],
-      ],
-      "Alt-Up": [
-        "action::Sequence",
-        ["editor::MoveLineUp", "editor::ScrollCursorCenter"],
-      ],
-      "Alt-Down": [
-        "action::Sequence",
-        ["editor::MoveLineDown", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-d": [
-        "action::Sequence",
-        ["editor::SelectNext", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-l": [
-        "action::Sequence",
-        ["editor::SelectLine", "editor::ScrollCursorCenter"],
-      ],
+      "Shift-PageDown": ["action::Sequence", ["editor::SelectToEnd", "editor::ScrollCursorCenter"]],
+      "Escape": ["action::Sequence", ["editor::Cancel", "editor::ScrollCursorCenter"]],
+      "Delete": ["action::Sequence", ["editor::Delete", "editor::ScrollCursorCenter"]],
+      "Alt-Up": ["action::Sequence", ["editor::MoveLineUp", "editor::ScrollCursorCenter"]],
+      "Alt-Down": ["action::Sequence", ["editor::MoveLineDown", "editor::ScrollCursorCenter"]],
+      "Cmd-d": ["action::Sequence", ["editor::SelectNext", "editor::ScrollCursorCenter"]],
+      "Cmd-l": ["action::Sequence", ["editor::SelectLine", "editor::ScrollCursorCenter"]],
       // "Cmd-v": [
       //   "action::Sequence",
       //   ["editor::Paste", "editor::ScrollCursorCenter"],
       // ],
-      "Cmd-x": [
-        "action::Sequence",
-        ["editor::Cut", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-z": [
-        "action::Sequence",
-        ["editor::Undo", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-Shift-z": [
-        "action::Sequence",
-        ["editor::Redo", "editor::ScrollCursorCenter"],
-      ],
-      "Ctrl--": [
-        "action::Sequence",
-        ["pane::GoBack", "editor::ScrollCursorCenter"],
-      ],
-      "Ctrl-Shift--": [
-        "action::Sequence",
-        ["pane::GoForward", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-Alt-[": [
-        "action::Sequence",
-        ["editor::Fold", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-Alt-]": [
-        "action::Sequence",
-        ["editor::UnfoldLines", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-k Cmd-0": [
-        "action::Sequence",
-        ["editor::FoldAll", "editor::ScrollCursorCenter"],
-      ],
-      "Cmd-k Cmd-j": [
-        "action::Sequence",
-        ["editor::UnfoldAll", "editor::ScrollCursorCenter"],
-      ],
+      "Cmd-x": ["action::Sequence", ["editor::Cut", "editor::ScrollCursorCenter"]],
+      "Cmd-z": ["action::Sequence", ["editor::Undo", "editor::ScrollCursorCenter"]],
+      "Cmd-Shift-z": ["action::Sequence", ["editor::Redo", "editor::ScrollCursorCenter"]],
+      "Ctrl--": ["action::Sequence", ["pane::GoBack", "editor::ScrollCursorCenter"]],
+      "Ctrl-Shift--": ["action::Sequence", ["pane::GoForward", "editor::ScrollCursorCenter"]],
+      "Cmd-Alt-[": ["action::Sequence", ["editor::Fold", "editor::ScrollCursorCenter"]],
+      "Cmd-Alt-]": ["action::Sequence", ["editor::UnfoldLines", "editor::ScrollCursorCenter"]],
+      "Cmd-k Cmd-0": ["action::Sequence", ["editor::FoldAll", "editor::ScrollCursorCenter"]],
+      "Cmd-k Cmd-j": ["action::Sequence", ["editor::UnfoldAll", "editor::ScrollCursorCenter"]],
     },
   },
 
@@ -139,10 +73,7 @@
       // Tab switching within the active pane
       "alt-cmd-p": "tab_switcher::OpenInActivePane",
       // Useful for external consumers, such as AI agents
-      "shift-cmd-c": [
-        "task::Spawn",
-        { "task_name": "Copy selected text with file marker" },
-      ],
+      "shift-cmd-c": ["task::Spawn", { "task_name": "Copy selected text with file marker" }],
     },
   },
 
@@ -173,10 +104,9 @@
     "context": "Workspace",
     "bindings": {
       // lazygit
-      "ctrl-alt-l": [
-        "task::Spawn",
-        { "task_name": "LazyGit", "reveal_target": "center" },
-      ],
+      "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
+      // fork
+      "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
       // file fuzzy finder
       // details: https://alexpasmantier.github.io/television/
       "shift shift f": [
@@ -200,7 +130,7 @@
       "ctrl-w up": "workspace::ActivatePaneUp",
       "ctrl-w left": "workspace::ActivatePaneLeft",
       "ctrl-w right": "workspace::ActivatePaneRight",
-    }
+    },
   },
 
   // Agent panel
