@@ -205,6 +205,11 @@ tasks:
     cmds:
       - git commit --edit --message "$(git commit-message)"
 
+  git:create-empty-commit:
+    desc: "Git: Create empty commit"
+    cmds:
+      - git commit --allow-empty-message -m ""
+
   github:open_current_branch_pr:
     desc: "GitHub: Open current branch PR"
     cmds:
