@@ -9,7 +9,7 @@
   excludesfile = ~/.gitignore_global
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [branch]
   # New branches created from a remote-tracking branch will default to --rebase instead of merge
@@ -32,9 +32,7 @@
 [fetch]
   # Automatically prunes deleted remote branches
   prune = true
-  #
   pruneTags = true
-  #
   all = true
 
 [rerere]
@@ -160,17 +158,38 @@
   diffFilter = delta --color-only
 
 [delta]
+  pager = less -R
   # use n and N to move between diff sections
   navigate = true
-  # style
-  side-by-side = true
-  line-numbers = true
+  dark = true
+  trueColor = always
+  keep-plus-minus-markers = true
+  side-by-side = false
+  line-numbers = false
+  features = muted-diff muted-decorations
   # modification labels
   file-added-label = added:
   file-modified-label = modified:
   file-removed-label = removed:
   file-renamed-label = renamed:
   file-copied-label = copied:
+
+[delta "muted-diff"]
+  plus-style = "#b8c05a"
+  minus-style = "#ff7b72"
+  plus-emph-style = bold "#d0d86a"
+  minus-emph-style = bold "#ff7b72"
+  zero-style = normal
+  whitespace-error-style = "#7a2f2f" reverse
+
+[delta "muted-decorations"]
+  commit-style = omit
+  file-style = "#7f848e"
+  file-decoration-style = "#3a3f4b"
+  hunk-header-style = file line-number
+  hunk-header-file-style = "#7aa2f7"
+  hunk-header-line-number-style = "#5c6370"
+  hunk-header-decoration-style = "#3a3f4b"
 
 # Include the personal config
 [includeIf "gitdir:~/"]
