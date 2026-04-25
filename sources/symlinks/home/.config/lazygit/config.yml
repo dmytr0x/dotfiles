@@ -52,6 +52,8 @@ git:
   commit:
     autoWrapCommitMessage: true
     autoWrapWidth: 80
+  pagers:
+    - pager: delta --paging=never
 
 os:
   copyToClipboardCmd: ""
