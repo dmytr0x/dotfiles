@@ -1,5 +1,8 @@
 {
   // ==================== UI & Appearance ====================
+  "outline_panel": {
+    "dock": "left"
+  },
   "theme": "VSCode Dark Modern",
   "icon_theme": "Catppuccin Mocha",
   "theme_overrides": {
@@ -126,10 +129,12 @@
 
   // ==================== Panels ====================
   "project_panel": {
+    "dock": "left",
     "diagnostic_badges": false,
     "entry_spacing": "standard",
   },
   "collaboration_panel": {
+    "dock": "left",
     "button": false,
   },
   "pane_split_direction_vertical": "left",
@@ -168,7 +173,7 @@
     "selections_menu": true,
   },
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
     "show_onboarding_banner": false,
     "show_user_menu": false,
     "show_sign_in": false,
@@ -234,6 +239,8 @@
     },
   },
   "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
     "enable_feedback": false,
   },
   "private_files": [
@@ -294,7 +301,6 @@
           "experimental.show": false
         },
         "title_bar": {
-          "show_branch_icon": false,
           "show_branch_name": false
         },
         "gutter": {
@@ -321,6 +327,7 @@
     "vscode-dark-modern": true,
     "catppuccin-icons": true,
     "dockerfile": true,
+    "proto": true,
     "terraform": true,
     "lua": true,
     "html": true,
