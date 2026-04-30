@@ -208,7 +208,7 @@ tasks:
   git:create-empty-commit:
     desc: "Git: Create empty commit"
     cmds:
-      - git commit --allow-empty-message -m ""
+      - git commit --allow-empty -m "Empty commit: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" --quiet
 
   github:open_current_branch_pr:
     desc: "GitHub: Open current branch PR"
