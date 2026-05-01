@@ -207,7 +207,7 @@
   // ==================== AI & Agent ====================
   // Completely disable or enable all AI features in the editor
   // You can enable or disable AI on a per-project basis
-  "disable_ai": false,
+  "disable_ai": true,
   //
   "agent_servers": {
     "codex-acp": {
