@@ -1,5 +1,8 @@
 # --- environment
 
+# Use the `bun` bin folder to look at binaries
+export PATH="$PATH:$HOME/.bun/bin"
+
 # Prefer UK English and use UTF-8
 export LC_ALL="en_GB.UTF-8"
 export LANG="en_GB.UTF-8"
