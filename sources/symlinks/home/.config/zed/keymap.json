@@ -103,8 +103,11 @@
   {
     "context": "Workspace",
     "bindings": {
-      // New center terminal
+      // terminal
       "alt-`": "workspace::NewCenterTerminal",
+      // bookmarks
+      "shift shift n": "editor::ToggleBookmark",
+      "shift shift m": "editor::ViewBookmarks",
       // lazygit
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
       // fork
