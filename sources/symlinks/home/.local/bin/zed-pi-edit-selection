@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# zstat gives us a precise file timestamp so we can detect whether the editor saved.
+zmodload zsh/stat
+
+# Zed only exposes selected text when the task is run with an active selection.
+if [[ -z "${ZED_SELECTED_TEXT:-}" ]]; then
+  print -u2 "no text is selected in zed editor."
+  exit 1
+fi
+
+# Use the user's configured blocking editor command, for example: zed --wait.
+editor_cmd="${VISUAL:-${EDITOR:-}}"
+if [[ -z "$editor_cmd" ]]; then
+  print -u2 "EDITOR or VISUAL must be set to a blocking editor command, e.g. 'zed --wait'."
+  exit 1
+fi
+
+# Create a disposable markdown prompt file and remove it on normal exit or cancellation.
+tmpdir="$(mktemp -d "${TMPDIR:-/tmp}/zed-pi-selection.XXXXXX")"
+tmpfile="$tmpdir/prompt.md"
+cleanup() {
+  rm -rf "$tmpdir"
+}
+trap cleanup EXIT INT TERM
+
+# Seed the prompt with a source marker, then the exact selected text from Zed.
+{
+  printf '[%s](%s:%s)\n\n' "$ZED_FILENAME" "$ZED_RELATIVE_FILE" "$ZED_ROW"
+  printf '```%s\n%s\n```\n\n' "${(L)ZED_LANGUAGE}" "$ZED_SELECTED_TEXT"
+} > "$tmpfile"
+
+# Remember the seeded file state. If it is unchanged after the editor exits,
+# the file was closed without being saved, so there is nothing to send to pi.
+zstat -F %s.%N -H before_edit -- "$tmpfile"
+before_edit_signature="${before_edit[mtime]}:${before_edit[size]}"
+
+# This blocks until the editor saves/closes, so edits are captured before pi starts.
+${=editor_cmd} "$tmpfile"
+
+zstat -F %s.%N -H after_edit -- "$tmpfile"
+after_edit_signature="${after_edit[mtime]}:${after_edit[size]}"
+
+# If the editor did not write the file, exit without starting pi.
+if [[ "$after_edit_signature" == "$before_edit_signature" ]]; then
+  exit 0
+fi
+
+# Do not start pi if the edited prompt was cleared.
+if [[ ! -s "$tmpfile" ]]; then
+  print -u2 "temporary prompt is empty, not starting pi."
+  exit 1
+fi
+
+# Hand the edited markdown prompt to pi-mono as an @file argument.
+pi \
+  --offline \
+  --mode text \
+  --no-themes \
+  --no-session \
+  --provider openai-codex \
+  --model gpt-5.5 \
+  --thinking low \
+  --models gpt-5.5:low,gpt-5.4-mini:medium \
+  @"$tmpfile"

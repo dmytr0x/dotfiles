@@ -20,7 +20,16 @@
     "use_new_terminal": false,
     "allow_concurrent_runs": true,
   },
-  //
+  // pi-mono
+  {
+    "label": "pi: edit selected code",
+    "command": "zed-pi-edit-selection",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "hide": "always",
+    "save": "current"
+  },
+  // third-party applications
   {
     // details: https://github.com/jesseduffield/lazygit
     "label": "LazyGit",
@@ -43,6 +52,7 @@
     "show_summary": false,
     "show_command": false,
   },
+  // television (fuzzy finder)
   {
     // details: https://alexpasmantier.github.io/television/
     "label": "television-file-finder",

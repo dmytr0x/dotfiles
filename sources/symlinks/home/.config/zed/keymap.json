@@ -23,6 +23,9 @@
   {
     "context": "Editor && mode == full",
     "bindings": {
+      // ai
+      "cmd-enter": ["task::Spawn", { "task_name": "pi: edit selected code" }],
+      //
       "Up": ["action::Sequence", ["editor::MoveUp", "editor::ScrollCursorCenter"]],
       "Down": ["action::Sequence", ["editor::MoveDown", "editor::ScrollCursorCenter"]],
       "Shift-Up": ["action::Sequence", ["editor::SelectUp", "editor::ScrollCursorCenter"]],
@@ -108,9 +111,8 @@
       // bookmarks
       "shift shift n": "editor::ToggleBookmark",
       "shift shift m": "editor::ViewBookmarks",
-      // lazygit
+      // third-party applications
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
-      // fork
       "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
       // file fuzzy finder
       // details: https://alexpasmantier.github.io/television/
