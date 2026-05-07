@@ -22,6 +22,9 @@
   "scrollbar": {
     "show": "never",
   },
+  // Markdown
+  "markdown_preview_font_family": "Fira Code",
+  "markdown_preview_theme": "VSCode Dark Modern",
 
   // ==================== Fonts ====================
   "ui_font_family": ".ZedMono",
@@ -88,6 +91,7 @@
   // Whether to automatically show a signature help pop-up or not.
   // To show it manually, press: `cmd+i` (editor::ShowSignatureHelp)
   "auto_signature_help": false,
+  "go_to_definition_scroll_strategy": "center",
   "go_to_definition_fallback": "none",
   // Add LSP document symbols to the breadcrumbs and outline UI
   "document_symbols": "on",
@@ -144,6 +148,7 @@
   "git": {
     "hunk_style": "unstaged_hollow",
     "inline_blame": {
+      "show_commit_summary": true,
       "enabled": true,
       "delay_ms": 5000,
     },
