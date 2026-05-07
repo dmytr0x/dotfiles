@@ -26,12 +26,4 @@ play = [
 [plugin]
 # Disable all preloaders
 #  https://yazi-rs.github.io/docs/configuration/yazi/#plugin.preloaders
-# prepend_preloaders = [{ mime = "*", run = "noop" }]
-
-prepend_previewers = [
-  { name = "*/", run = 'piper -- eza -TL=2 --color=always --icons=always --group-directories-first --no-quotes "$1"' },
-]
-prepend_fetchers = [
-  { id = "git", name = "*", run = "git" },
-  { id = "git", name = "*/", run = "git" },
-]
+#  preloaders = [{ mime = "*", run = "noop" }]
