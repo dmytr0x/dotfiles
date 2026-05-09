@@ -16,11 +16,17 @@ reveal = [
   { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-  { run = 'for f in $@; do unar "$f"; done', desc = "Extract here", for = "unix" },
+  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
 ]
 play = [
   { run = 'open "$@"', orphan = true, desc = "Play", for = "macos" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+  { url = "*.zip", use = "extract" },
+  { url = "*.7z",  use = "extract" },
 ]
 
 [plugin]
