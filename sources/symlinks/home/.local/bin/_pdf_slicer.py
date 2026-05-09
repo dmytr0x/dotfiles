@@ -8,6 +8,7 @@
 import argparse
 import pathlib
 import typing
+from collections.abc import Iterable
 
 import pypdf
 
@@ -32,26 +33,27 @@ def chunk_to_tuple(chunk: str) -> tuple[int, int]:
 def slice_pdf(
     input_path: pathlib.Path, output_prefix: str, chunks: str
 ) -> list[ResultItem]:
-    page_ranges = [chunk_to_tuple(chunk) for chunk in chunks.split(",")]
+    results: list[ResultItem] = []
 
-    files: list[ResultItem] = []
-    with open(input_path, "rb") as infile:
+    with input_path.open("rb") as infile:
         reader = pypdf.PdfReader(infile)
 
-        for file_num, (start, stop) in enumerate(page_ranges, start=1):
-            pdf = pypdf.PdfWriter()
-            for page_number in range(start - 1, stop):
-                _ = pdf.add_page(reader.pages[page_number])
+        for file_num, (start, stop) in enumerate(
+            map(chunk_to_tuple, chunks.split(",")), start=1
+        ):
+            writer = pypdf.PdfWriter()
+            writer.append(reader, pages=(start - 1, stop))
 
-            output_filename = input_path.parent / f"{output_prefix}{file_num:02}.pdf"
-            with open(output_filename, "wb") as outfile:
-                _ = pdf.write(outfile)
-                files.append(ResultItem(output_filename.as_posix(), start, stop))
+            output_path = input_path.parent / f"{output_prefix}{file_num:02}.pdf"
+            with output_path.open("wb") as outfile:
+                writer.write(outfile)
 
-    return files
+            results.append(ResultItem(output_path.as_posix(), start, stop))
+
+    return results
 
 
-def display_results(results: list[ResultItem]) -> None:
+def display_results(results: Iterable[ResultItem]) -> None:
     for item in results:
         print(f"Created: {item.path} with pages from {item.page_from}-{item.page_to}")
 
