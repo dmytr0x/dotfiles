@@ -1,0 +1,127 @@
+--- a/main.lua
++++ b/main.lua
+@@ -6,6 +6,7 @@
+ -- Define default flags and strings
+ local is_password, is_encrypted, is_level, is_silent_success = false, false, false, false
+ local default_extension = "zip"
++local clean_tar_args = { "--no-mac-metadata", "--no-xattrs" }
+ 
+ -- Allow dots when matching file extension arguments
+ local function extension_pattern(ext)
+@@ -189,7 +190,7 @@
+ 	["%.tar%.gz$"] = {
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-",
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -197,7 +198,7 @@
+ 		},
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-mx=",
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -206,7 +207,7 @@
+ 		},
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "-czf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-czf" },
+ 			level_arg = { "--option", "gzip:compression-level=" },
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -215,7 +216,7 @@
+ 	["%.tar%.xz$"] = {
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-",
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -223,7 +224,7 @@
+ 		},
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-mx=",
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -232,7 +233,7 @@
+ 		},
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "-cJf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-cJf" },
+ 			level_arg = { "--option", "xz:compression-level=" },
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -241,7 +242,7 @@
+ 	["%.tar%.bz2$"] = {
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-",
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -249,7 +250,7 @@
+ 		},
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-mx=",
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -258,7 +259,7 @@
+ 		},
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "-cjf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-cjf" },
+ 			level_arg = { "--option", "bzip2:compression-level=" },
+ 			level_min = 1,
+ 			level_max = 9,
+@@ -267,7 +268,7 @@
+ 	["%.tar%.zst$"] = {
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-",
+ 			level_min = 1,
+ 			level_max = 22,
+@@ -278,7 +279,7 @@
+ 	["%.tar%.lz4$"] = {
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-",
+ 			level_min = 1,
+ 			level_max = 12,
+@@ -288,7 +289,7 @@
+ 	["%.tar%.lha$"] = {
+ 		{
+ 			command = { "tar", "bsdtar" },
+-			args = { "rpf" },
++			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+ 			level_arg = "-o",
+ 			level_min = 5,
+ 			level_max = 7,
+@@ -297,7 +298,7 @@
+ 		},
+ 	},
+ 	["%.tar$"] = {
+-		{ command = { "tar", "bsdtar" }, args = { "rpf" } },
++		{ command = { "tar", "bsdtar" }, args = { clean_tar_args[1], clean_tar_args[2], "-rpf" } },
+ 	},
+ }
+ 

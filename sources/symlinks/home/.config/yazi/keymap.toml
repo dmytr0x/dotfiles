@@ -29,4 +29,14 @@ prepend_keymap = [
   # Toggle pane
   #
   { on = ["P", "p"], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+  #
+  # Archive selected files
+  #
+  { on = [ "A", "a" ], run = "plugin compress", desc = "Create archive" },
+  { on = [ "A", "z" ], run = "plugin compress zip", desc = "Create a zip" },
+  { on = [ "A", "7" ], run = "plugin compress 7z", desc = "Create a 7z" },
+  { on = [ "A", "t" ], run = "plugin compress tar", desc = "Create a tar" },
+  { on = [ "A", "g" ], run = "plugin compress tar.gz", desc = "Create a tar.gz" },
+  #
+  
 ]
