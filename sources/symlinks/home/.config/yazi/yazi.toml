@@ -27,6 +27,7 @@ play = [
 prepend_rules = [
   { url = "*.zip", use = "extract" },
   { url = "*.7z",  use = "extract" },
+  { url = "*.rar", use = "extract" },
 ]
 
 [plugin]
