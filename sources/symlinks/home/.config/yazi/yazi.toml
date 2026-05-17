@@ -31,6 +31,13 @@ prepend_rules = [
 ]
 
 [plugin]
+prepend_previewers = [
+  { mime = "application/pdf", run = "noop" },
+]
+prepend_preloaders = [
+  { mime = "application/pdf", run = "noop" },
+]
+
 # Disable all preloaders
 #  https://yazi-rs.github.io/docs/configuration/yazi/#plugin.preloaders
 #  preloaders = [{ mime = "*", run = "noop" }]
