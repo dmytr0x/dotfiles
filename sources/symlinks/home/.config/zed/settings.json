@@ -5,6 +5,17 @@
   },
   "theme": "VSCode Dark Modern",
   "icon_theme": "Catppuccin Mocha",
+  //
+  "experimental.theme_overrides": {
+    // diff
+    "version_control.added": "#4FE764",
+    "version_control.deleted": "#FF5A60",
+    // "version_control.modified": "#",
+    // "version_control.renamed": "#",
+    // "created": "#",
+    // "deleted": "#"
+    // "modified": "#",
+  },
   "theme_overrides": {
     "VSCode Dark Modern": {
       "syntax": {
