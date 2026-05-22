@@ -73,4 +73,23 @@
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
+  // location: git graph
+  {
+    "label": "Show commit $ZED_GIT_SHA_SHORT (stat + patch)",
+    "command": "git",
+    "args": ["show", "--stat", "--patch", "$ZED_GIT_SHA"],
+    "tags": ["git-command"],
+    "hide": "always",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
+  },
+  {
+    "label": "Revert $ZED_GIT_SHA_SHORT (no auto-commit)",
+    "command": "git",
+    "args": ["revert", "--no-commit", "$ZED_GIT_SHA"],
+    "tags": ["git-command"],
+    "hide": "always",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
+  },
 ]

@@ -140,15 +140,11 @@
     },
   },
 
-  // Agent panel
+  // Project panel (explorer)
   {
-    "context": "AgentPanel && acp_thread",
+    "context": "ProjectPanel",
     "bindings": {
-      // Just like OpenCode does
-      "ctrl-x a": "agent::ToggleProfileSelector",
-      "ctrl-x m": "agent::ToggleModelSelector",
-      "ctrl-x e": "agent::ExpandMessageEditor",
-      "ctrl-x n": "agent::NewExternalAgentThread",
+      "cmd-k cmd-0": "project_panel::CollapseAllEntries",
     },
   },
   //

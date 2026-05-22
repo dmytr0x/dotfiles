@@ -1,4 +1,7 @@
 {
+  // ==================== cli ====================
+  "cli_default_open_behavior": "new_window",
+
   // ==================== UI & Appearance ====================
   "outline_panel": {
     "dock": "left"
@@ -40,8 +43,8 @@
   // ==================== Fonts ====================
   "ui_font_family": ".ZedMono",
   "ui_font_size": 14.0,
-  "buffer_font_family": ".ZedMono",
-  "buffer_font_size": 13.0,
+  "buffer_font_family": "FiraCode Nerd Font",
+  "buffer_font_size": 12.5,
   "buffer_line_height": { "custom": 1.4 },
   "buffer_font_features": {
     "calt": false,
@@ -57,6 +60,7 @@
   "gutter": {
     "line_numbers": true,
   },
+  "completion_menu_item_kind": "symbol",
 
   // ==================== Language-specific ====================
   "languages": {
@@ -224,41 +228,6 @@
   // Completely disable or enable all AI features in the editor
   // You can enable or disable AI on a per-project basis
   "disable_ai": true,
-  //
-  "agent_servers": {
-    "codex-acp": {
-      "type": "registry",
-      "default_config_options": {
-        "model": "gpt-5.4",
-        "reasoning_effort": "high",
-        "mode": "default"  // default, full-access, read-only
-      },
-    },
-    "opencode": {
-      "type": "registry",
-      "default_config_options": {
-        "model": "openai/gpt-5.4/high",
-        "mode": "build",
-      },
-      "favorite_config_option_values": {
-        "model": [
-          "openai/gpt-5.4/xhigh",
-          "openai/gpt-5.4/high",
-          "openai/gpt-5.4/medium",
-          "openai/gpt-5.4/low",
-          "openai/gpt-5.4-mini/medium",
-          "openai/gpt-5.4-mini/low",
-          "github-copilot/claude-opus-4.6",
-          "github-copilot/claude-haiku-4.5",
-        ]
-      },
-    },
-  },
-  "agent": {
-    "sidebar_side": "right",
-    "dock": "right",
-    "enable_feedback": false,
-  },
   "private_files": [
     "**/.env*",
     "**/*.pem",
@@ -268,15 +237,8 @@
     "**/secret*.yml",
     "**/secret*.yaml",
   ],
-  // On/off edit predictions
-  "show_edit_predictions": true,
-  "edit_predictions": {
-    "mode": "subtle", // Display predictions inline only when holding a modifier key (alt by default)
-    // INFO: The `copilot` is using more than 1GB of memory
-    "provider": "zed",
-    "disabled_globs": ["**/.env", "**/.env.*", "**/.env-*", "**/.env_*"],
-  },
-  // Auto completions
+
+  // ==================== Auto completions ====================
   "completions": {
     "words": "fallback",
     "words_min_length": 3,
