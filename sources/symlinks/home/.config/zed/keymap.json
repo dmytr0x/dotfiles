@@ -112,7 +112,7 @@
       "shift shift n": "editor::ToggleBookmark",
       "shift shift m": "editor::ViewBookmarks",
       // third-party applications
-      "ctrl-alt-i": ["task::Spawn", { "task_name": "pi: start with selection", "reveal_target": "center" }],
+      "ctrl-alt-i": ["task::Spawn", { "task_name": "pi: start with selection", "reveal_target": "dock" }],
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
       "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
       // file fuzzy finder
@@ -147,6 +147,14 @@
     "bindings": {
       "cmd-k cmd-0": "project_panel::CollapseAllEntries",
     },
+  },
+  // Git panel
+  {
+    "context": "GitPanel && ChangesList",
+    "bindings": {
+      "alt-enter": "menu::SecondaryConfirm",
+      "ctrl-enter": null
+    }
   },
   //
 ]
