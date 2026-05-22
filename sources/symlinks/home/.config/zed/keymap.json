@@ -76,7 +76,7 @@
       // Tab switching within the active pane
       "alt-cmd-p": "tab_switcher::OpenInActivePane",
       // Useful for external consumers, such as AI agents
-      "shift-cmd-c": ["task::Spawn", { "task_name": "Copy selected text with file marker" }],
+      "shift-cmd-c": ["task::Spawn", { "task_name": "zed: copy selection to clipboard" }],
     },
   },
 
@@ -112,6 +112,7 @@
       "shift shift n": "editor::ToggleBookmark",
       "shift shift m": "editor::ViewBookmarks",
       // third-party applications
+      "ctrl-alt-i": ["task::Spawn", { "task_name": "pi: start with selection", "reveal_target": "center" }],
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
       "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
       // file fuzzy finder

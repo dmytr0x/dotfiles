@@ -1,33 +1,42 @@
 [
-  // details: https://zed.dev/docs/taskss
-  // For awareness
+  // details: https://zed.dev/docs/tasks
   {
-    "label": "zed env",
+    "label": "zed: show available env variables",
     "command": "env | grep ZED",
   },
-  // Copy the selected text as the template
-  // [{file-name}]({relative-file-path}:{line-number})
-  // ```
-  // {selected-text}
-  // ```
   {
-    "label": "Copy selected text with file marker",
-    "command": "/bin/zsh -c 'cat <<ZEDEOF | pbcopy\n[$ZED_FILENAME]($ZED_RELATIVE_FILE:$ZED_ROW)\n\\`\\`\\`\n$ZED_SELECTED_TEXT\n\\`\\`\\`\nZEDEOF'",
-    "reveal": "never",
-    "hide": "always",
-    "show_summary": false,
-    "show_command": false,
-    "use_new_terminal": false,
-    "allow_concurrent_runs": true,
+    "label": "zed: copy selection to clipboard",
+    "command": "/bin/zsh",
+    "args": [
+      "-c",
+      "_zed_get_selection | /usr/bin/pbcopy"
+    ],
+    "env": {
+      "ZED_FILENAME": "${ZED_FILENAME}",
+      "ZED_RELATIVE_FILE": "${ZED_RELATIVE_FILE}",
+      "ZED_ROW": "${ZED_ROW}",
+      "ZED_SELECTED_TEXT": "${ZED_SELECTED_TEXT}"
+    },
+    "hide": "on_success",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true
   },
-  // pi-mono
   {
-    "label": "pi: edit selected code",
-    "command": "zed-pi-edit-selection",
-    "cwd": "$ZED_WORKTREE_ROOT",
-    "reveal": "always",
-    "hide": "always",
-    "save": "current"
+    "label": "pi: start with selection",
+    "command": "/bin/zsh",
+    "args": [
+      "-c",
+      "_zed_get_selection > /tmp/_zed_selection.txt && _zed_run_pi_with_context /tmp/_zed_selection.txt"
+    ],
+    "env": {
+      "ZED_FILENAME": "${ZED_FILENAME}",
+      "ZED_RELATIVE_FILE": "${ZED_RELATIVE_FILE}",
+      "ZED_ROW": "${ZED_ROW}",
+      "ZED_SELECTED_TEXT": "${ZED_SELECTED_TEXT}"
+    },
+    "hide": "on_success",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
   },
   // third-party applications
   {
@@ -59,7 +68,7 @@
     // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.
     "command": "tv zed-files | tr '\\n' '\\0' | xargs -0 zed",
     "cwd": "$ZED_WORKTREE_ROOT",
-    "hide": "always",
+    "hide": "on_success",
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
@@ -69,7 +78,7 @@
     // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.
     "command": "tv zed-text | tr '\\n' '\\0' | xargs -0 zed",
     "cwd": "$ZED_WORKTREE_ROOT",
-    "hide": "always",
+    "hide": "on_success",
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
@@ -79,7 +88,7 @@
     "command": "git",
     "args": ["show", "--stat", "--patch", "$ZED_GIT_SHA"],
     "tags": ["git-command"],
-    "hide": "always",
+    "hide": "on_success",
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
@@ -88,8 +97,9 @@
     "command": "git",
     "args": ["revert", "--no-commit", "$ZED_GIT_SHA"],
     "tags": ["git-command"],
-    "hide": "always",
+    "hide": "on_success",
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
+  //
 ]

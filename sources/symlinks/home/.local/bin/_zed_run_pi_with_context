@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
+  exit 0
+fi
+
+context="${1:-/tmp/_zed_selection.txt}"
+
+if [[ ! -f "$context" ]]; then
+  printf 'Context file does not exist: %s\n' "$context" >&2
+  printf 'Run _zed_dump_selection %q first.\n' "$context" >&2
+  exit 1
+fi
+
+if [[ ! -s "$context" ]]; then
+  printf 'Context file is empty: %s\n' "$context" >&2
+  exit 1
+fi
+
+# Start in interactive mode for all aliases to be applied
+exec /bin/zsh -ic 'pi --no-session "$@"' _ "@$context" "You must wait for my clarification on what to do with it"

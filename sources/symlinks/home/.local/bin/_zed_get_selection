@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+filename="${ZED_FILENAME:-}"
+relative_file="${ZED_RELATIVE_FILE:-}"
+row="${ZED_ROW:-}"
+selected_text="${ZED_SELECTED_TEXT:-}"
+
+printf '[%s](%s:%s)\n' "$filename" "$relative_file" "$row"
+printf '```\n'
+printf '%s\n' "$selected_text"
+printf '```\n'
