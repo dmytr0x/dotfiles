@@ -40,9 +40,6 @@ brew "taplo"
 # Pyright fork with various improvements and built-in pylance features
 brew "basedpyright"
 
-# AI coding agent, built for the terminal
-brew "anomalyco/tap/opencode"
-
 # General purpose fuzzy finder TUI
 brew "television"
 
