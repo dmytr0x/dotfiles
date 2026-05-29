@@ -6,8 +6,16 @@
   "outline_panel": {
     "dock": "left"
   },
-  "theme": "VSCode Dark Modern",
-  "icon_theme": "Catppuccin Mocha",
+  "theme": {
+    "mode": "system",
+    "light": "VSCode Dark Modern",
+    "dark": "VSCode Dark Modern"
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha"
+  },
   //
   "experimental.theme_overrides": {
     // diff
