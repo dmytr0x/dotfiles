@@ -67,6 +67,7 @@
   "buffer_font_features": {
     "calt": false,
   },
+  "git_commit_buffer_font_size": 12.5,
 
   // ==================== Editor ====================
   "preferred_line_length": 100,
