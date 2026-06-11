@@ -24,7 +24,7 @@
     "context": "Editor && mode == full",
     "bindings": {
       // ai
-      "cmd-enter": ["task::Spawn", { "task_name": "pi: edit selected code" }],
+      "cmd-enter": ["task::Spawn", { "task_name": "pi: start with selection", "reveal_target": "dock" }],
       //
       "Up": ["action::Sequence", ["editor::MoveUp", "editor::ScrollCursorCenter"]],
       "Down": ["action::Sequence", ["editor::MoveDown", "editor::ScrollCursorCenter"]],
@@ -112,7 +112,6 @@
       "shift shift n": "editor::ToggleBookmark",
       "shift shift m": "editor::ViewBookmarks",
       // third-party applications
-      "ctrl-alt-i": ["task::Spawn", { "task_name": "pi: start with selection", "reveal_target": "dock" }],
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
       "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
       // file fuzzy finder
