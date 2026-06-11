@@ -282,6 +282,13 @@
 
   // ==================== Profiles ====================
   "profiles": {
+    "Compact": {
+      "settings": {
+        "theme": "VSCode Dark Modern",
+        "buffer_font_size": 10,
+        "ui_font_size": 12
+      }
+    },
     "Zen": {
       // "theme": "VSCode Dark Modern",
       "settings": {
