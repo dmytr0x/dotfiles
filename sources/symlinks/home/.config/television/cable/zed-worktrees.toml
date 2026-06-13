@@ -1,0 +1,54 @@
+[metadata]
+name = "zed-worktrees"
+description = "Select a Git worktree and open it in a new Zed window"
+requirements = ["git", "zed"]
+
+[source]
+command = """
+git -C "$ZED_SELECTED_REPO" worktree list --porcelain | awk '
+  /^worktree / {
+    if (path != "") {
+      print path "\t" branch "\t" state "\t" substr(head, 1, 8)
+    }
+    path=substr($0, 10)
+    branch=""
+    state="normal"
+    head=""
+  }
+  /^HEAD / { head=substr($0, 6) }
+  /^branch / { branch=substr($0, 8) }
+  /^detached$/ { state="detached" }
+  /^locked/ { state="locked" }
+  /^prunable/ { state="prunable" }
+  END {
+    if (path != "") {
+      print path "\t" branch "\t" state "\t" substr(head, 1, 8)
+    }
+  }
+'
+"""
+display = "{split:\\t:1}  {split:\\t:2}\n{split:\\t:0}"
+output = "{split:\\t:0}"
+frecency = true
+
+[preview]
+command = "git -C '{split:\\t:0}' status --short --branch"
+header = "{split:\\t:1} / {split:\\t:2}"
+
+[ui]
+layout = "portrait"
+input_header = "Search Git worktrees"
+input_prompt = "> "
+
+[ui.preview_panel]
+hidden = false
+size = 45
+
+[keybindings]
+enter = "actions:open"
+f12 = "actions:open"
+
+[actions.open]
+description = "Open selected worktree in a new Zed window"
+command = "zed '{split:\\t:0}'"
+mode = "execute"

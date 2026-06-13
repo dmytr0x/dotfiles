@@ -126,6 +126,12 @@
         "task::Spawn",
         { "task_name": "television-text-finder", "reveal_target": "center" },
       ],
+      // git worktree picker
+      // details: https://alexpasmantier.github.io/television/
+      "shift shift w": [
+        "task::Spawn",
+        { "task_name": "television-git-worktree-picker", "reveal_target": "center" },
+      ],
     },
   },
 

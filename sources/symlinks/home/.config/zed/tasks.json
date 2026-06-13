@@ -82,6 +82,16 @@
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
+  {
+    // details: https://alexpasmantier.github.io/television/
+    "label": "television-git-worktree-picker",
+    "command": "tv",
+    "args": ["zed-repositories"],
+    "reveal": "always",
+    "hide": "on_success",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+  },
   // location: git graph
   {
     "label": "Show commit $ZED_GIT_SHA_SHORT (stat + patch)",

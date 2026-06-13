@@ -1,0 +1,42 @@
+[metadata]
+name = "zed-repositories"
+description = "Select a Git repository, then show its worktrees"
+requirements = ["fd", "git", "tv"]
+
+[source]
+command = """
+{
+  fd --hidden --no-ignore --type d --max-depth 5 '^\\.git$' /Users/dmytr0x/Work
+  fd --hidden --no-ignore --type d --max-depth 1 '^\\.git$' /Users/dmytr0x/dotfiles
+} | sort -u | while IFS= read -r git_dir; do
+  git_dir="${git_dir%/}"
+  repo_path="${git_dir%/.git}"
+  repo_name="${repo_path##*/}"
+  printf '%s\t%s\n' "$repo_name" "$repo_path"
+done
+"""
+display = "{split:\\t:0}"
+output = "{split:\\t:1}"
+frecency = true
+
+[preview]
+command = "git -C '{split:\\t:1}' worktree list"
+header = "{split:\\t:0}"
+
+[ui]
+layout = "portrait"
+input_header = "Search Git repositories"
+input_prompt = "> "
+
+[ui.preview_panel]
+hidden = false
+size = 45
+
+[keybindings]
+enter = "actions:worktrees"
+f12 = "actions:worktrees"
+
+[actions.worktrees]
+description = "Show worktrees for selected repository"
+command = "ZED_SELECTED_REPO='{split:\\t:1}' ZED_SELECTED_REPO_NAME='{split:\\t:0}' tv zed-worktrees"
+mode = "execute"
