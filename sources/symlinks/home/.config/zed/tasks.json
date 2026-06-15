@@ -74,16 +74,6 @@
   },
   {
     // details: https://alexpasmantier.github.io/television/
-    "label": "television-text-finder",
-    // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.
-    "command": "tv zed-text | tr '\\n' '\\0' | xargs -0 zed",
-    "cwd": "$ZED_WORKTREE_ROOT",
-    "hide": "on_success",
-    "allow_concurrent_runs": true,
-    "use_new_terminal": true,
-  },
-  {
-    // details: https://alexpasmantier.github.io/television/
     "label": "television-git-worktree-picker",
     "command": "tv",
     "args": ["zed-repositories"],

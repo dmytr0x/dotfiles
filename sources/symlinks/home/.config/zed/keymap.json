@@ -116,20 +116,15 @@
       // third-party applications
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
       "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
+      // television:
+      //   details: https://alexpasmantier.github.io/television/
+      //
       // file fuzzy finder
-      // details: https://alexpasmantier.github.io/television/
       "shift shift f": [
         "task::Spawn",
         { "task_name": "television-file-finder", "reveal_target": "center" },
       ],
-      // text fuzzy finder
-      // details: https://alexpasmantier.github.io/television/
-      "shift shift t": [
-        "task::Spawn",
-        { "task_name": "television-text-finder", "reveal_target": "center" },
-      ],
-      // git worktree picker
-      // details: https://alexpasmantier.github.io/television/
+      // git worktree fuzzy picker
       "shift shift w": [
         "task::Spawn",
         { "task_name": "television-git-worktree-picker", "reveal_target": "center" },
