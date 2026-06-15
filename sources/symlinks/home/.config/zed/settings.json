@@ -180,6 +180,7 @@
 
   // ==================== Git ====================
   "git": {
+    "worktree_directory": "../.worktrees",
     "hunk_style": "unstaged_hollow",
     "inline_blame": {
       "show_commit_summary": true,

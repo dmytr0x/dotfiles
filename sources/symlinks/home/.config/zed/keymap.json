@@ -108,6 +108,8 @@
     "bindings": {
       // terminal
       "alt-`": "workspace::NewCenterTerminal",
+      // toggle center layout
+      "ctrl-w c": "workspace::ToggleCenteredLayout",
       // bookmarks
       "shift shift n": "editor::ToggleBookmark",
       "shift shift m": "editor::ViewBookmarks",
@@ -135,7 +137,7 @@
     },
   },
 
-  // Activate panes
+  // Panes
   {
     "context": "Workspace",
     "bindings": {
