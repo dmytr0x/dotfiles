@@ -6,8 +6,8 @@ requirements = ["fd", "git", "tv"]
 [source]
 command = """
 {
-  fd --hidden --no-ignore --type d --max-depth 5 '^\\.git$' /Users/dmytr0x/Work
-  fd --hidden --no-ignore --type d --max-depth 1 '^\\.git$' /Users/dmytr0x/dotfiles
+  fd --hidden --no-ignore --type d --max-depth 5 '^\\.git$' $HOME/Work
+  fd --hidden --no-ignore --type d --max-depth 1 '^\\.git$' $HOME/dotfiles
 } | sort -u | while IFS= read -r git_dir; do
   git_dir="${git_dir%/}"
   repo_path="${git_dir%/.git}"
