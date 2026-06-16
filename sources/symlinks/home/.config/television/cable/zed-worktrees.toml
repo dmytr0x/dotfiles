@@ -27,7 +27,7 @@ git -C "$ZED_SELECTED_REPO" worktree list --porcelain | awk '
   }
 '
 """
-display = "{split:\\t:1}  {split:\\t:2}\n{split:\\t:0}"
+display = "{split:\\t:1}"
 output = "{split:\\t:0}"
 frecency = true
 
@@ -49,6 +49,6 @@ enter = "actions:open"
 f12 = "actions:open"
 
 [actions.open]
-description = "Open selected worktree in a new Zed window"
-command = "zed '{split:\\t:0}'"
+description = "Open selected worktree in Zed"
+command = "zed --existing '{split:\\t:0}'"
 mode = "execute"

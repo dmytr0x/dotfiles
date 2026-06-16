@@ -1,16 +1,26 @@
 [metadata]
 name = "zed-repositories"
 description = "Select a Git repository, then show its worktrees"
-requirements = ["fd", "git", "tv"]
+requirements = ["find-git-roots", "git", "tv"]
 
 [source]
 command = """
 {
-  fd --hidden --no-ignore --type d --max-depth 5 '^\\.git$' $HOME/Work
-  fd --hidden --no-ignore --type d --max-depth 1 '^\\.git$' $HOME/dotfiles
-} | sort -u | while IFS= read -r git_dir; do
-  git_dir="${git_dir%/}"
-  repo_path="${git_dir%/.git}"
+  # Traverse the Work directory to find the Git repositories within it
+  find-git-roots \
+  ~/Work \
+  --min-depth 2 \
+  --max-depth 3 \
+  --exclude node_modules \
+  --exclude .venv \
+  --exclude .worktrees
+
+  # Manually added repositories
+  printf '%s\n' \
+   "$HOME/dotfiles"
+
+} | sort -u | while IFS= read -r repo_path; do
+  repo_path="${repo_path%/}"
   repo_name="${repo_path##*/}"
   printf '%s\t%s\n' "$repo_name" "$repo_path"
 done
