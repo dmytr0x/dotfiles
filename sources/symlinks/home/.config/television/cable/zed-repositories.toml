@@ -45,8 +45,14 @@ size = 45
 [keybindings]
 enter = "actions:worktrees"
 f12 = "actions:worktrees"
+ctrl-y = "actions:copy"
 
 [actions.worktrees]
 description = "Show worktrees for selected repository"
 command = "ZED_SELECTED_REPO='{split:\\t:1}' ZED_SELECTED_REPO_NAME='{split:\\t:0}' tv zed-worktrees"
+mode = "execute"
+
+[actions.copy]
+description = "Copy repository path to clipboard"
+command = "printf '%s' '{split:\\t:1}' | pbcopy"
 mode = "execute"
