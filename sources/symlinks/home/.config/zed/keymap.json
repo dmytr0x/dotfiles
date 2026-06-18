@@ -159,4 +159,10 @@
     }
   },
   //
+
+  {
+    "bindings": {
+      "ctrl-shift-l": "editor::ScrollCursorTop"
+    }
+  }
 ]
