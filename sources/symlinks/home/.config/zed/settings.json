@@ -4,17 +4,17 @@
 
   // ==================== UI & Appearance ====================
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "theme": {
     "mode": "system",
     "light": "Dmytr0x Light Modern",
-    "dark": "Dmytr0x Dark Modern"
+    "dark": "Dmytr0x Dark Modern",
   },
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   //
   "scrollbar": {
@@ -29,6 +29,7 @@
   "ui_font_size": 14.0,
   "buffer_font_family": "FiraCode Nerd Font",
   "buffer_font_size": 12.5,
+  "buffer_font_weight": 300,
   "buffer_line_height": { "custom": 1.4 },
   "buffer_font_features": {
     "calt": false,
@@ -188,6 +189,7 @@
   // ==================== Terminal ====================
   "terminal": {
     "font_family": "FiraCode Nerd Font",
+    "font_weight": 300,
     "font_size": 12,
     "cursor_shape": "bar",
     "copy_on_select": true,
@@ -254,8 +256,8 @@
         "theme": "Dmytr0x Dark Modern",
         "icon_theme": "Catppuccin Mocha",
         "buffer_font_size": 10,
-        "ui_font_size": 12
-      }
+        "ui_font_size": 12,
+      },
     },
     "Zen": {
       "settings": {
@@ -265,32 +267,32 @@
         "agent_buffer_font_size": 15.0,
         "ui_font_size": 15.0,
         "tab_bar": {
-          "show": false
+          "show": false,
         },
         "toolbar": {
-          "breadcrumbs": false
+          "breadcrumbs": false,
         },
         "status_bar": {
-          "experimental.show": false
+          "experimental.show": false,
         },
         "title_bar": {
-          "show_branch_name": false
+          "show_branch_name": false,
         },
         "gutter": {
-          "line_numbers": false
+          "line_numbers": false,
         },
         "indent_guides": {
-          "enabled": false
-        }
-      }
+          "enabled": false,
+        },
+      },
     },
     "Presentation": {
       "settings": {
         "theme": "Dmytr0x Dark Modern",
         "icon_theme": "Catppuccin Mocha",
         "buffer_font_size": 20,
-        "ui_font_size": 18
-      }
+        "ui_font_size": 18,
+      },
     },
   },
 
