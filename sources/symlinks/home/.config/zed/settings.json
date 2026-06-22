@@ -8,55 +8,21 @@
   },
   "theme": {
     "mode": "system",
-    "light": "VSCode Dark Modern",
-    "dark": "VSCode Dark Modern"
+    "light": "Dmytr0x Light Modern",
+    "dark": "Dmytr0x Dark Modern"
   },
   "icon_theme": {
-    "mode": "light",
-    "light": "Catppuccin Mocha",
+    "mode": "system",
+    "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha"
   },
   //
-  "experimental.theme_overrides": {
-    // diff
-    "version_control.added": "#4FE764",
-    "version_control.deleted": "#FF5A60",
-    // "version_control.modified": "#",
-    // "version_control.renamed": "#",
-    // "created": "#",
-    // "deleted": "#"
-    // "modified": "#",
-  },
-  "theme_overrides": {
-    "VSCode Dark Modern": {
-      "syntax": {
-        "comment": { "color": "#3d6832" },
-        "hint": { "color": "#454545" },
-        "variable.parameter": { "color": "#F7768E" },
-      },
-      "tab.active_background": "#2e2b26",
-      "tab.inactive_background": "#161616",
-      "tab_bar.background": "#161616",
-      "title_bar.background": "#161616",
-      "title_bar.inactive_background": "#161616",
-      "toolbar.background": "#161616",
-      "status_bar.background": "#161616",
-      "background": "#111111",
-      "surface.background": "#161616",
-      "elevated_surface.background": "#161616",
-      "editor.background": "#111111",
-      "editor.gutter.background": "#111111",
-      "editor.subheader.background": "#161616",
-      "terminal.background": "#111111",
-      "panel.background": "#161616",
-    },
-  },
   "scrollbar": {
     "show": "never",
   },
   // Markdown
-  "markdown_preview_font_family": "Fira Code",
-  "markdown_preview_theme": "VSCode Dark Modern",
+  "markdown_preview_font_family": "FiraCode Nerd Font",
+  "markdown_preview_theme": "Dmytr0x Dark Modern",
 
   // ==================== Fonts ====================
   "ui_font_family": ".ZedMono",
@@ -285,14 +251,16 @@
   "profiles": {
     "Compact": {
       "settings": {
-        "theme": "VSCode Dark Modern",
+        "theme": "Dmytr0x Dark Modern",
+        "icon_theme": "Catppuccin Mocha",
         "buffer_font_size": 10,
         "ui_font_size": 12
       }
     },
     "Zen": {
-      // "theme": "VSCode Dark Modern",
       "settings": {
+        "theme": "Dmytr0x Dark Modern",
+        "icon_theme": "Catppuccin Mocha",
         "buffer_font_size": 16,
         "agent_buffer_font_size": 15.0,
         "ui_font_size": 15.0,
@@ -318,7 +286,8 @@
     },
     "Presentation": {
       "settings": {
-        "theme": "VSCode Dark Modern",
+        "theme": "Dmytr0x Dark Modern",
+        "icon_theme": "Catppuccin Mocha",
         "buffer_font_size": 20,
         "ui_font_size": 18
       }
