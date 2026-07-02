@@ -4,7 +4,7 @@
 
   // ==================== UI & Appearance ====================
   "outline_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   "theme": {
     "mode": "system",
@@ -134,7 +134,7 @@
 
   // ==================== Panels ====================
   "project_panel": {
-    "dock": "left",
+    "dock": "right",
     "diagnostic_badges": false,
     "entry_spacing": "standard",
   },
