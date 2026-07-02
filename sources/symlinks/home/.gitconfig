@@ -131,7 +131,7 @@
   mt = mergetool
   sw = switch
 
-  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ll = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset' --abbrev-commit
   hist = ll --graph --decorate
   lls = ll --numstat
   llg = ll -E -i --grep
