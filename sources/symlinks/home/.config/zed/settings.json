@@ -1,5 +1,6 @@
 {
   // ==================== cli ====================
+  "diff_view_style": "split",
   "cli_default_open_behavior": "new_window",
 
   // ==================== UI & Appearance ====================
@@ -150,16 +151,15 @@
     "worktree_directory": "../.worktrees",
     "hunk_style": "unstaged_hollow",
     "inline_blame": {
-      "show_commit_summary": true,
       "enabled": true,
-      "delay_ms": 5000,
+      "location": "inline",
+      "delay_ms": 3000,
     },
   },
   "git_panel": {
     "dock": "right",
     "scrollbar": { "show": "never" },
     "tree_view": true,
-    "sort_by_path": true,
     "show_count_badge": true,
     "file_icons": true,
   },

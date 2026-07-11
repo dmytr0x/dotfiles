@@ -114,6 +114,7 @@
       "shift shift n": "editor::ToggleBookmark",
       "shift shift m": "editor::ViewBookmarks",
       "shift shift t": "text_finder::Toggle",
+      "shift shift p": "workspace::ReopenLastPicker",
       // third-party applications
       "ctrl-alt-l": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
       "ctrl-alt-;": ["task::Spawn", { "task_name": "Fork", "reveal_target": "center" }],
