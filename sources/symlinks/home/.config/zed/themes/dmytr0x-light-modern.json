@@ -125,6 +125,7 @@
         "link_text.hover": "#005FB8",
         "version_control.added": "#22863A",
         "version_control.deleted": "#CB2431",
+        "version_control.word_deleted": "#D9808880",
         "version_control.modified": "#005FB8",
         "version_control.renamed": "#22863A",
         "version_control.conflict": "#B31D28",
