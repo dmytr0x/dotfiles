@@ -177,7 +177,7 @@
         "warning.border": "#454545",
         "players": [
           {
-            "cursor": "#AEAFAD",
+            "cursor": "#FFFFFF",
             "background": null,
             "selection": "#264F78"
           },

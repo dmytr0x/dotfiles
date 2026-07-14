@@ -28,7 +28,7 @@
         "elevated_surface.background": "#FFFFFF",
         "surface.background": "#F3F3F3",
         "background": "#FFFFFF",
-        "element.background": "#007ACC",
+        "element.background": "#79B4DC",
         "element.hover": "#E8E8E8",
         "element.active": "#CCE8FF",
         "element.selected": "#D6EBFF",
@@ -178,7 +178,7 @@
         "warning.border": "#EAC54F",
         "players": [
           {
-            "cursor": "#000000",
+            "cursor": "#FFFFFF",
             "background": null,
             "selection": "#ADD6FF"
           },
