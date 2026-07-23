@@ -208,8 +208,8 @@
     "blinking": "on",
     // Use Zed as the default editor for the built-in terminal
     "env": {
-      "EDITOR": "zed --wait",
-      "VISUAL": "zed --wait",
+      "EDITOR": "zed --wait --existing",
+      "VISUAL": "zed --wait --existing",
     },
     //
     // "path_hyperlink_regexes": [...]
