@@ -1,6 +1,6 @@
 {
   // ==================== cli ====================
-  "diff_view_style": "split",
+  "diff_view_style": "unified",
   "cli_default_open_behavior": "new_window",
 
   // ==================== UI & Appearance ====================
@@ -95,8 +95,19 @@
   "auto_signature_help": false,
   "go_to_definition_scroll_strategy": "center",
   "go_to_definition_fallback": "none",
+  //
   // Add LSP document symbols to the breadcrumbs and outline UI
   "document_symbols": "on",
+  //
+  // Use the picker instead of `multi buffer` for:
+  // - definitions
+  // - implementations
+  // - find all references
+  // Pressing `cmd+F12` opens the definition in a split as a multi-buffer
+  "lsp_results_location": "picker",
+  //
+  // Use LSP semantic tokens together with tree-sitter highlighting
+  "semantic_tokens": "combined",
   //
   "lsp": {
     // details:
@@ -157,6 +168,7 @@
     },
   },
   "git_panel": {
+    "group_by": "staging",
     "dock": "right",
     "scrollbar": { "show": "never" },
     "tree_view": true,

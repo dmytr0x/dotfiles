@@ -106,6 +106,8 @@
   {
     "context": "Workspace",
     "bindings": {
+      // overwrite the `workspace::ToggleZoom` to toggle editor zoom
+      "shift-escape": "workspace::ToggleEditorZoom",
       // terminal
       "alt-`": "workspace::NewCenterTerminal",
       // toggle center layout
@@ -165,6 +167,13 @@
   {
     "bindings": {
       "ctrl-shift-l": "editor::ScrollCursorTop"
+    }
+  },
+
+  {
+    "unbind": {
+      // overwritten by `workspace::ToggleEditorZoom`
+      "shift-escape": "workspace::ToggleZoom"
     }
   }
 ]
