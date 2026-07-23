@@ -2,4 +2,16 @@
 #
 set -euo pipefail
 
-codex exec --profile=fast --sandbox=read-only --ephemeral "Generate a commit message" 2>/dev/null
+git diff --staged | pi \
+  --no-session \
+  --tools read,grep,find,ls,bash \
+  --thinking high \
+  --model "openai-codex/gpt-5.6-luna" \
+  --print "Generate a commit message from this staged diff. \
+   The message template is '{TICKET-ID}: [{COMMIT-TYPE}] {COMMIT-TITLE}\n\n{DESCRIPTION}'. \
+   You need to replace the TICKET-ID, COMMIT-TYPE, COMMIT-TITLE, and DESCRIPTION placeholders. These are all required. \
+   You can find the TICKET-ID at the start of the branch name. \
+   Pick the right COMMIT-TYPE: feature, fix, tech, test, docs, chore, revert, security, performance, or other. \
+   The DESCRIPTION should be a short but informative overview of the changes in this commit. \
+   Don't add anything else to the commit!" \
+  2>/dev/null
