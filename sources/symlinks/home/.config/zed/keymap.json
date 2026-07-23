@@ -171,6 +171,7 @@
   },
 
   {
+    "context": "Workspace",
     "unbind": {
       // overwritten by `workspace::ToggleEditorZoom`
       "shift-escape": "workspace::ToggleZoom"
