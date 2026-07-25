@@ -10,7 +10,7 @@ show_agent_labels_on_pane_borders = true
 
 [ui.toast]
 delivery = "herdr"
-delay_seconds = 3
+delay_seconds = 5
 
 [ui.toast.herdr]
 position = "bottom-right"

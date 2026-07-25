@@ -76,3 +76,6 @@ _pi() { command pi --models gpt-5.5,gpt-5.3-codex-spark "$@"; }
 alias pim="_pi --thinking medium"
 alias pif="_pi --thinking low"
 alias pis="_pi --thinking high"
+
+# herdr
+alias hdr="herdr-projects.py default ~/herdr-default-projects.txt"
