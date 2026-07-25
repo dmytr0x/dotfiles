@@ -24,6 +24,7 @@ alias lazygit="lazygit --use-config-dir=$HOME/.config/lazygit"
 alias lg="lazygit"
 alias pdf-slicer="uv run $HOME/.local/bin/_pdf_slicer.py"
 alias dup-scout="uv run $HOME/.local/bin/_dup_scout.py"
+alias favourite-commands='command-picker "${HOME}/.local/bin/data/task/favorites.yml"'
 
 # Shortcuts
 alias tree="eza --tree"
