@@ -256,7 +256,7 @@ def open_repository_workspaces(session, repository, focus_first=False):
             label = repository.name
         else:
             branch = worktree.get("branch") or path.name
-            label = f"{repository.name}: {branch}"
+            label = branch
 
         # Query the current workspace list for every worktree. The IDs in the
         # original worktree-list response become stale when a workspace is
