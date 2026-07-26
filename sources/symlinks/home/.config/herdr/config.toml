@@ -16,7 +16,7 @@ delivery = "herdr"
 delay_seconds = 0
 
 [ui.toast.herdr]
-position = "bottom-right"
+position = "top-right"
 
 [theme]
 name = "catppuccin"
