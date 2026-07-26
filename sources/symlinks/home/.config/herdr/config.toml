@@ -2,6 +2,9 @@
 # 
 onboarding = false
 
+[experimental]
+kitty_graphics = true
+
 [update]
 version_check = false
 
