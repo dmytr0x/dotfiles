@@ -72,10 +72,9 @@ alias get="curl -O -L"
 alias asr="atuin script run"
 
 # pi-mono
-_pi() { command pi --models gpt-5.5,gpt-5.3-codex-spark "$@"; }
-alias pif='pi --model gpt-5.6-luna --thinking high "$@"'
-alias pim='pi --model gpt-5.6-sol --thinking low "$@"'
-alias pis='pi --model gpt-5.6-sol --thinking high "$@"'
+alias pif='pi --model "openai-codex/gpt-5.6-luna" --thinking high "$@"'
+alias pim='pi --model "openai-codex/gpt-5.6-sol" --thinking low "$@"'
+alias pis='pi --model "openai-codex/gpt-5.6-sol" --thinking high "$@"'
 
 # herdr
 hrd() {
