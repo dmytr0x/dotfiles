@@ -61,28 +61,7 @@
     "show_summary": false,
     "show_command": false,
   },
-  // television (fuzzy finder)
-  {
-    // details: https://alexpasmantier.github.io/television/
-    "label": "television-file-finder",
-    // tv multi-select outputs newline-delimited paths; convert to NUL and pass each as a separate zed arg.
-    "command": "tv zed-files | tr '\\n' '\\0' | xargs -0 zed",
-    "cwd": "$ZED_WORKTREE_ROOT",
-    "hide": "on_success",
-    "allow_concurrent_runs": true,
-    "use_new_terminal": true,
-  },
-  {
-    // details: https://alexpasmantier.github.io/television/
-    "label": "television-git-worktree-picker",
-    "command": "tv",
-    "args": ["zed-repositories"],
-    "reveal": "always",
-    "hide": "on_success",
-    "use_new_terminal": false,
-    "allow_concurrent_runs": true,
-  },
-  // location: git graph
+  // location: zed editor - git graph
   {
     "label": "Show commit $ZED_GIT_SHA_SHORT (stat + patch)",
     "command": "git",

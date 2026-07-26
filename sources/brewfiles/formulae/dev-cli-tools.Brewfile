@@ -40,9 +40,6 @@ brew "taplo"
 # Pyright fork with various improvements and built-in pylance features
 brew "basedpyright"
 
-# General purpose fuzzy finder TUI
-brew "television"
-
 # Task is a task runner/build tool that aims to be simpler and easier to use
 brew "go-task"
 
