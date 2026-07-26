@@ -78,4 +78,7 @@ alias pif="_pi --thinking low"
 alias pis="_pi --thinking high"
 
 # herdr
-alias hdr="herdr-projects.py default ~/herdr-default-projects.txt"
+hdr() {
+  local session="${1:-default}"
+  herdr-workspaces.py "$session" "$HOME/herdr-default-workspaces.txt"
+}

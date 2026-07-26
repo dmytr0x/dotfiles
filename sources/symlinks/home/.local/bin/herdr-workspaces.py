@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Create or synchronize a Herdr session with configured repositories.
+"""Create or synchronize a Herdr session with configured workspaces.
 
-Repository paths are read from the file passed on the command line, one per
-line. Blank lines and lines beginning with "#" are ignored. Relative repository
+Workspace paths are read from the file passed on the command line, one per
+line. Blank lines and lines beginning with "#" are ignored. Relative workspace
 paths are resolved from the user's home directory.
 """
 
@@ -60,12 +60,12 @@ def run_herdr_json(*args, session=None):
 
 
 def read_repositories(config_path: Path):
-    """Read, normalize, and validate repository paths from the config file."""
+    """Read, normalize, and validate workspace paths from the config file."""
 
     if not config_path.is_file():
         raise RuntimeError(
-            f"Repository config not found: {config_path}\n"
-            "Create it with one repository path per line."
+            f"Workspace config not found: {config_path}\n"
+            "Create it with one Git repository or directory path per line."
         )
 
     repositories = []
@@ -89,9 +89,9 @@ def read_repositories(config_path: Path):
             seen.add(path)
 
     if errors:
-        raise RuntimeError("Invalid repository config:\n  " + "\n  ".join(errors))
+        raise RuntimeError("Invalid workspace config:\n  " + "\n  ".join(errors))
     if not repositories:
-        raise RuntimeError(f"No repositories configured in {config_path}")
+        raise RuntimeError(f"No workspaces configured in {config_path}")
 
     return repositories
 
@@ -193,8 +193,49 @@ def workspace_has_cwd(session, workspace_id, expected_cwd):
     )
 
 
+def is_git_worktree(path):
+    """Return whether path is inside a Git work tree."""
+    result = subprocess.run(
+        ["git", "-C", str(path), "rev-parse", "--is-inside-work-tree"],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    return result.returncode == 0 and result.stdout.strip() == "true"
+
+
+def open_regular_workspace(session, directory, focus_first=False):
+    """Open a regular directory as one Herdr workspace."""
+    label = directory.name
+    workspace = find_workspace(session, label, directory)
+    if workspace:
+        workspace_id = workspace["workspace_id"]
+        if workspace_has_cwd(session, workspace_id, directory):
+            print(f"Already open: {label} ({directory})")
+            return 0
+
+        print(f"Reopening workspace with the correct CWD: {label} ({directory})")
+        run_herdr_json("workspace", "close", workspace_id, session=session)
+
+    run_herdr_json(
+        "workspace",
+        "create",
+        "--cwd",
+        str(directory),
+        "--label",
+        label,
+        "--focus" if focus_first else "--no-focus",
+        session=session,
+    )
+    print(f"Opened workspace: {label} ({directory})")
+    return 1
+
+
 def open_repository_workspaces(session, repository, focus_first=False):
-    """Open all usable worktrees for a repository and return the open count."""
+    """Open all worktrees, or one regular workspace, for a directory."""
+    if not is_git_worktree(repository):
+        return open_regular_workspace(session, repository, focus_first=focus_first)
+
     data = run_herdr_json(
         "worktree", "list", "--cwd", str(repository), "--json", session=session
     )
@@ -265,13 +306,13 @@ def repositories_file(value):
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(
-        description="Launch Herdr with all worktrees from configured repositories."
+        description="Launch Herdr with all configured Git worktrees and directories."
     )
     parser.add_argument("session", type=session_name, help="Herdr session name")
     parser.add_argument(
         "repositories_file",
         type=repositories_file,
-        help="text file containing one repository path per line",
+        help="text file containing one Git repository or directory path per line",
     )
     return parser.parse_args(argv)
 

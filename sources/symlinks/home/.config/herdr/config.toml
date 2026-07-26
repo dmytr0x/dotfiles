@@ -37,6 +37,7 @@ rows = [
 
 [keys]
 # open_worktree = "prefix+..."
+zoom = "shift+esc"
 
 # indexed jumps
 switch_tab = "prefix+1..9"

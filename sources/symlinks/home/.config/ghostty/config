@@ -34,7 +34,6 @@ quick-terminal-animation-duration = 0
 
 # Key bindings:
 keybind = global:ctrl+alt+cmd+/=toggle_quick_terminal
-# keybind = shift+enter=text:\n
 #
 # Adjust the pane size
 #
@@ -47,5 +46,7 @@ keybind = global:ctrl+alt+cmd+/=toggle_quick_terminal
 # keybind = ctrl+a=activate_key_table:resize
 # Toggle full screen for the active pane
 keybind = cmd+shift+enter=unbind
-keybind = shift+escape=toggle_split_zoom
+# `unconsumed` refers to the terminal-side mapping for herdr {
+keybind = unconsumed:shift+escape=toggle_split_zoom
+# }
 #
