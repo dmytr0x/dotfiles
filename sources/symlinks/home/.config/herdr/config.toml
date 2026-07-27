@@ -1,5 +1,5 @@
 # Herdr config docs: https://herdr.dev/docs/config-reference/
-# 
+#
 onboarding = false
 
 [experimental]
@@ -28,6 +28,10 @@ row_gap = 1
 rows = [
   ["state_icon", "workspace"],
   ["branch", "git_status"],
+  [
+    { token = "$diff_added", fg = "#a6e3a1" },
+    { token = "$diff_deleted", fg = "#f38ba8" },
+  ],
 ]
 
 [ui.sidebar.agents]

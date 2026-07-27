@@ -5,6 +5,7 @@ source ~/.config/zsh/env.sh
 source ~/.config/zsh/aliases.sh
 source ~/.config/zsh/completions.sh
 source ~/.config/zsh/ssh.sh
+source ~/.config/zsh/hooks/herdr-diffstat.sh
 source ~/.config/zsh/tools/starship.sh
 source ~/.config/zsh/tools/ripgrep.sh
 source ~/.config/zsh/tools/fzf.sh
