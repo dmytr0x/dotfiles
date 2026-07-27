@@ -51,3 +51,6 @@ brew "codex"
 
 # GitHub command-line tool
 brew "gh"
+
+# Agent multiplexer that lives in your terminal
+brew "herdr"
