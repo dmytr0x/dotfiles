@@ -18,5 +18,5 @@ typeset -gA keys=(
   Ctrl+K          '^K'
 )
 
-# Erase whole line
-bindkey "${keys[Ctrl+K]}" kill-whole-line
+# Delete from the cursor to the end of the line
+bindkey "${keys[Ctrl+K]}" kill-line
