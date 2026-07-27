@@ -94,7 +94,7 @@ q = ":buffer-close"
 F = "file_picker_in_current_buffer_directory"
 
 [keys.normal.space.space]
-r = ":reload"
+r = ":reload-all"
 # Close windows except current
 w = "wonly"
 b = ":buffer-close-others"
