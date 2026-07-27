@@ -52,16 +52,30 @@ name = "python"
 # format the code + organize imports
 formatter = { command = "sh", args = ["-c", "ruff format - | ruff check --select I --fix -"] }
 auto-format = true
-language-servers = ["basedpyright", "ruff"]
+roots = ["pyproject.toml", "ty.toml", "setup.py", "poetry.lock", ".git"]
+language-servers = ["ty", "ruff"]
 
-[language-server.basedpyright]
-command = "basedpyright-langserver"
-args = ["--stdio"]
+[language-server.ty]
+command = "ty"
+args = ["server"]
 
-# More info: https://docs.basedpyright.com/latest/configuration/language-server-settings/
-[language-server.basedpyright.config.basedpyright.analysis]
-typeCheckingMode = "recommended"
-diagnosticMode = "openFilesOnly" # "openFilesOnly" / "workspace"
+# Helix 25.07 serializes `language-server.ty.config` verbatim as the LSP
+# `initializationOptions` object. Ty expects `diagnosticMode`, `inlayHints`,
+# and the other settings at that object's top level. Adding `.ty` after
+# `.config` would instead send an unrecognized `{ "ty": { ... } }` wrapper.
+# Helix: https://docs.helix-editor.com/languages.html#language-server-configuration
+# Ty: https://docs.astral.sh/ty/reference/editor-settings/
+[language-server.ty.config]
+diagnosticMode = "openFilesOnly"
+showSyntaxErrors = true
+
+[language-server.ty.config.inlayHints]
+variableTypes = true
+callArgumentNames = true
+
+[language-server.ty.config.completions]
+autoImport = true
+completeFunctionParentheses = true
 
 [language-server.ruff]
 command = "ruff"

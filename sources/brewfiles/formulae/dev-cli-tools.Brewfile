@@ -37,8 +37,11 @@ brew "uv"
 # TOML toolkit written in Rust
 brew "taplo"
 
-# Pyright fork with various improvements and built-in pylance features
-brew "basedpyright"
+# Extremely fast Python type checker and language server, written in Rust
+brew "ty"
+
+# Extremely fast Python linter and code formatter, written in Rust
+brew "ruff"
 
 # Task is a task runner/build tool that aims to be simpler and easier to use
 brew "go-task"
