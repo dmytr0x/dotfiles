@@ -57,3 +57,6 @@ brew "gh"
 
 # Agent multiplexer that lives in your terminal
 brew "herdr"
+
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
