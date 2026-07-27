@@ -193,15 +193,12 @@ def workspace_has_cwd(session, workspace_id, expected_cwd):
     )
 
 
-def is_git_worktree(path):
-    """Return whether path is inside a Git work tree."""
-    result = subprocess.run(
-        ["git", "-C", str(path), "rev-parse", "--is-inside-work-tree"],
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    return result.returncode == 0 and result.stdout.strip() == "true"
+def is_git_worktree_root(path):
+    """Return whether path itself is a Git checkout root."""
+    # .git is a directory in regular checkouts and a file in linked worktrees
+    # and submodules. Do not treat a directory as a repository merely because
+    # one of its ancestors contains this entry.
+    return (path / ".git").exists()
 
 
 def open_regular_workspace(session, directory, focus_first=False):
@@ -233,7 +230,7 @@ def open_regular_workspace(session, directory, focus_first=False):
 
 def open_repository_workspaces(session, repository, focus_first=False):
     """Open all worktrees, or one regular workspace, for a directory."""
-    if not is_git_worktree(repository):
+    if not is_git_worktree_root(repository):
         return open_regular_workspace(session, repository, focus_first=focus_first)
 
     data = run_herdr_json(
