@@ -71,6 +71,17 @@ width = "90%"
 height = "90%"
 
 [[keys.command]]
+description = "Open Hunk diff"
+key = "prefix+d"
+type = "shell"
+command = '''
+layout="$("$HERDR_BIN_PATH" pane layout --pane "$HERDR_ACTIVE_PANE_ID")" &&
+direction="$(printf '%s\n' "$layout" | jq -er --arg pane "$HERDR_ACTIVE_PANE_ID" '.result.layout.panes[] | select(.pane_id == $pane) | if .rect.width >= (.rect.height * 2) then "right" else "down" end')" &&
+pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$direction" --focus | jq -er '.result.pane.pane_id')" &&
+"$HERDR_BIN_PATH" pane run "$pane_id" "exec hunk diff --watch"
+'''
+
+[[keys.command]]
 key = "prefix+space"
 type = "plugin_action"
 command = "dmytr0x.herdr-task-picker.open"
