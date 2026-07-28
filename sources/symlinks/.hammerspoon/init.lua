@@ -5,17 +5,6 @@ local leaderkey = require("helpers.leaderkey")
 
 local hyper = { "control", "option", "command" }
 
-local function openPi()
-    local piLauncher = os.getenv("HOME") .. "/.local/bin/pi-null"
-    hs.task.new("/usr/bin/open", nil, {
-        "-na",
-        "Ghostty.app",
-        "--args",
-        "-e",
-        piLauncher,
-    }):start()
-end
-
 -- Toggle Dark/Light MacOS appearance
 hs.hotkey.bind(hyper, "F12", appearance.toggle)
 -- Hide MacOS main menu
@@ -29,5 +18,4 @@ hs.hotkey.bind(hyper, "o", leaderkey.create({
     t = function() hs.application.open("Ghostty") end,
     e = function() hs.application.open("Zed") end,
     n = function() hs.application.open("Obsidian") end,
-    i = openPi,
 }))
