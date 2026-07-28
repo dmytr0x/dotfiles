@@ -67,7 +67,7 @@ C-i = "no_op"  # default jump_forward
 C-minus = "jump_backward"
 C-_ = "jump_forward"  # ctrl+shift+-
 # }
-# 
+#
 H = ":buffer-previous"
 L = ":buffer-next"
 "{" = ["goto_prev_paragraph", "collapse_selection"]

@@ -54,6 +54,7 @@ class DotfilesPaths:
     def zed_editor(cls) -> Path:
         return Path.home() / ".config" / "zed"
 
+
 class Target(StrEnum):
     ALL = "all"
     SYMLINKS = "symlinks"
