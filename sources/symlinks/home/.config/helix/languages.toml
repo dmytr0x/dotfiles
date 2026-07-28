@@ -99,7 +99,7 @@ auto-format = true
 [language-server.rust-analyzer]
 command = "rust-analyzer"
 
-[language-server.rust-analyzer.config.check]
+[language-server.rust-analyzer.config]
 check = { command = "clippy", features = "all" }
 diagnostics = { experimental = { enable = true } }
 hover = { actions = { enable = true } }
