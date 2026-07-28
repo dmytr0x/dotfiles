@@ -37,6 +37,24 @@ brew "uv"
 # TOML toolkit written in Rust
 brew "taplo"
 
+# Language server for Bash
+brew "bash-language-server"
+
+# Language server for Lua
+brew "lua-language-server"
+
+# Language server for YAML
+brew "yaml-language-server"
+
+# Language servers for HTML, CSS, and JSON extracted from VS Code
+brew "vscode-langservers-extracted"
+
+# Autoformat shell script source code
+brew "shfmt"
+
+# Extensible command-line tool to format YAML files
+brew "yamlfmt"
+
 # Extremely fast Python type checker and language server, written in Rust
 brew "ty"
 

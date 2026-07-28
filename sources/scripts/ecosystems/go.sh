@@ -6,3 +6,4 @@ mise install go
 
 echo "🚀 Installing golang tools ..."
 go install "golang.org/x/tools/gopls@latest"
+go install "golang.org/x/tools/cmd/goimports@latest"
