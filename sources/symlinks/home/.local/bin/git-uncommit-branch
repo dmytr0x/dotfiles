@@ -58,7 +58,8 @@ else
   exit 1
 fi
 
-if ! git diff --quiet || ! git diff --cached --quiet; then
+# Include untracked files because `git add -A` below would stage them too.
+if [[ -n "$(git status --porcelain --untracked-files=normal)" ]]; then
   echo "Error: working tree or index is dirty. Commit/stash or clean it first." >&2
   exit 1
 fi
