@@ -18,7 +18,13 @@ if [ "$#" -eq 0 ]; then
   exit 1
 fi
 
-port_num="$(lsof -ti4TCP:"$1")"
-if [ $? -eq 0 ]; then
-  kill "$port_num"
+if port_nums="$(lsof -ti4TCP:"$1")"; then
+  pids=()
+  while IFS= read -r pid; do
+    [ -n "$pid" ] && pids+=("$pid")
+  done <<< "$port_nums"
+
+  if [ "${#pids[@]}" -gt 0 ]; then
+    kill "${pids[@]}"
+  fi
 fi
