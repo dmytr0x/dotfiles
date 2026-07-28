@@ -9,7 +9,6 @@ export LANG="en_GB.UTF-8"
 export LANGUAGE="en_GB.UTF-8"
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export TERM="xterm-256color"
 
 # Use helix if no other editor is configured
 export EDITOR="${EDITOR:-hx}"
