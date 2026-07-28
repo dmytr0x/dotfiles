@@ -157,7 +157,7 @@ def ensure_session_running(session):
 
 
 def find_workspace(session, label, checkout_path):
-    """Find a workspace by checkout path, falling back to its label."""
+    """Find a workspace by checkout path or a matching pane CWD."""
     data = run_herdr_json("workspace", "list", session=session)
     try:
         workspaces = data["result"]["workspaces"]
@@ -169,17 +169,26 @@ def find_workspace(session, label, checkout_path):
         if path and Path(path).resolve() == checkout_path:
             return workspace
 
-    return next(
-        (workspace for workspace in workspaces if workspace.get("label") == label),
-        None,
-    )
+    # Regular workspaces have no worktree checkout path. A label alone is not
+    # an identity: different configured directories can share a basename. Only
+    # use a same-label regular workspace when one of its panes confirms the
+    # requested directory, otherwise synchronizing one directory could close
+    # the workspace belonging to another.
+    for workspace in workspaces:
+        path = (workspace.get("worktree") or {}).get("checkout_path")
+        if (
+            not path
+            and workspace.get("label") == label
+            and workspace_has_cwd(session, workspace["workspace_id"], checkout_path)
+        ):
+            return workspace
+
+    return None
 
 
 def workspace_has_cwd(session, workspace_id, expected_cwd):
     """Return whether any pane in a workspace is at the expected directory."""
-    data = run_herdr_json(
-        "pane", "list", "--workspace", workspace_id, session=session
-    )
+    data = run_herdr_json("pane", "list", "--workspace", workspace_id, session=session)
     try:
         panes = data["result"]["panes"]
     except (KeyError, TypeError) as exc:
