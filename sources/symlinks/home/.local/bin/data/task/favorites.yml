@@ -76,7 +76,7 @@ tasks:
   ip:scan-a-particular-ip-address-port:
     desc: "IP: Scan a particular IP address port"
     requires:
-      vars: [po-rt, ip]
+      vars: [port, ip]
     cmds:
       - nmap -p {{.port}} {{.ip}}
 
