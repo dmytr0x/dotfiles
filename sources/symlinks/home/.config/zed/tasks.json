@@ -26,7 +26,7 @@
     "command": "/bin/zsh",
     "args": [
       "-c",
-      "_zed_get_selection > /tmp/_zed_selection.txt && _zed_run_pi_with_context /tmp/_zed_selection.txt"
+      "_zed_run_pi_with_context"
     ],
     "env": {
       "ZED_FILENAME": "${ZED_FILENAME}",

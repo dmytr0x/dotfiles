@@ -5,11 +5,27 @@ if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
   exit 0
 fi
 
-context="${1:-/tmp/_zed_selection.txt}"
+context="${1-}"
+
+if [[ -z "$context" ]]; then
+  cleanup() {
+    [[ -z "$context" ]] || rm -f -- "$context"
+  }
+
+  trap cleanup EXIT
+  trap 'exit 129' HUP
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+
+  umask 077
+  context="$(mktemp "${TMPDIR:-/tmp}/_zed_selection.XXXXXX")"
+  chmod 0600 "$context"
+  _zed_get_selection > "$context"
+fi
 
 if [[ ! -f "$context" ]]; then
   printf 'Context file does not exist: %s\n' "$context" >&2
-  printf 'Run _zed_dump_selection %q first.\n' "$context" >&2
+  printf 'Run _zed_get_selection > %q first.\n' "$context" >&2
   exit 1
 fi
 
@@ -18,5 +34,6 @@ if [[ ! -s "$context" ]]; then
   exit 1
 fi
 
-# Start in interactive mode for all aliases to be applied
-exec /bin/zsh -ic 'pi --no-session "$@"' _ "@$context" "You must wait for my clarification on what to do with it"
+# Start in interactive mode for all aliases to be applied. Do not exec: the
+# calling shell must remain alive so its EXIT trap can remove the context file.
+/bin/zsh -ic 'pi --no-session "$@"' _ "@$context" "You must wait for my clarification on what to do with it"
