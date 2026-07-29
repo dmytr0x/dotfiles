@@ -8,3 +8,21 @@ use = "catppuccin-mocha"
 files = []
 exts = []
 dirs = []
+
+# git.yazi status signs shown in the file list's linemode.
+[git]
+unknown_sign  = ""
+modified_sign = "M "
+added_sign    = "A "
+untracked_sign = "? "
+ignored_sign  = "I "
+deleted_sign  = "D "
+updated_sign  = "U "
+clean_sign    = ""
+
+modified = { fg = "yellow", bold = true }
+added    = { fg = "green", bold = true }
+untracked = { fg = "magenta" }
+ignored  = { fg = "darkgray" }
+deleted  = { fg = "red", bold = true }
+updated  = { fg = "yellow", bold = true }

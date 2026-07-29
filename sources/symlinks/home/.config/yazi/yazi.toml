@@ -38,6 +38,17 @@ prepend_preloaders = [
   { mime = "application/pdf", run = "noop" },
 ]
 
+# git.yazi fetchers. Yazi >= 26.1.22 uses `url`/`group` and does not need `id`.
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
+
 # Disable all preloaders
 #  https://yazi-rs.github.io/docs/configuration/yazi/#plugin.preloaders
 #  preloaders = [{ mime = "*", run = "noop" }]
