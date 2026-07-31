@@ -82,6 +82,20 @@ pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$di
 '''
 
 [[keys.command]]
+description = "Pane to tab"
+key = "prefix+m"
+type = "shell"
+command = '''
+"$HERDR_BIN_PATH" pane zoom "$HERDR_ACTIVE_PANE_ID" \
+  --off >/dev/null 2>&1
+
+"$HERDR_BIN_PATH" pane move "$HERDR_ACTIVE_PANE_ID" \
+  --new-tab \
+  --workspace "$HERDR_ACTIVE_WORKSPACE_ID" \
+  --focus >/dev/null
+'''
+
+[[keys.command]]
 key = "prefix+space"
 type = "plugin_action"
 command = "dmytr0x.herdr-task-picker.open"
