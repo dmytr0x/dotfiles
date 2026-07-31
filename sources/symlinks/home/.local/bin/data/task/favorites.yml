@@ -40,8 +40,8 @@ tasks:
     deps: [brew:show-outdated-packages-and-casks]
     cmds:
       - |
-          brew upgrade
-          brew upgrade --cask --greedy
+          brew upgrade --no-ask
+          brew upgrade --no-ask --cask --greedy
 
   brew:shoe-tree-of-all-installed-dependencies:
     desc: "Brew: Show as a tree of all installed dependencies"
