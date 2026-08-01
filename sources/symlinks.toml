@@ -1,0 +1,33 @@
+# Directories that must remain real directories so Stow can place individual
+# links inside them. Paths are relative to sources/symlinks and begin with the
+# Stow package name. Source directories not covered by this list are linked as
+# whole directories.
+target_directories = [
+  "home/.local/bin",
+  #
+  "home/.config",
+  "home/.config/amethyst",
+  "home/.config/atuin",
+  "home/.config/bat",
+  "home/.config/btop",
+  "home/.config/fresh",
+  "home/.config/ghostty",
+  "home/.config/helix",
+  "home/.config/herdr",
+  "home/.config/hunk",
+  "home/.config/lazygit",
+  "home/.config/leaderkey",
+  "home/.config/mise",
+  "home/.config/opencode",
+  "home/.config/ripgrep",
+  "home/.config/starship",
+  "home/.config/wezterm",
+  "home/.config/worktrunk",
+  "home/.config/yazi",
+  "home/.config/zed",
+  "home/.config/zsh",
+  #
+  "application_support/Code/User",
+  #
+  ".hammerspoon",
+]

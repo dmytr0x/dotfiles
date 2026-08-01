@@ -102,7 +102,7 @@ SKIP=gitleaks git commit -m "message"
 
 - Brew dependencies are defined in `sources/brewfiles/*.Brewfile`.
 - Stow symlink sources are stored in `sources/symlinks/`.
+- Symlink directory behavior is configured in `sources/symlinks.toml`.
 - Install-time shell scripts are stored in `sources/scripts/**/*.sh`.
 - `scripts` source supports `install` only.
-- The install script backs up Atuin config from `~/.config/atuin/config.toml` to `~/.config/atuin/config.toml.back`.
-- The install script ensures the VS Code user directory exists at `~/Library/Application Support/Code/User`.
+- Existing targets that conflict with a source are renamed with a `.backup` suffix before linking. Existing backups are preserved by adding a numeric suffix.

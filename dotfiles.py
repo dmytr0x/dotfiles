@@ -12,47 +12,14 @@ import sys
 from enum import StrEnum
 from pathlib import Path
 
+import tomllib
 
-class DotfilesPaths:
-    @classmethod
-    def dotfiles_dir(cls) -> Path:
-        return Path(__file__).resolve().parent
-
-    @classmethod
-    def sources_dir(cls) -> Path:
-        return cls.dotfiles_dir() / "sources"
-
-    @classmethod
-    def symlinks_dir(cls) -> Path:
-        return cls.sources_dir() / "symlinks"
-
-    @classmethod
-    def brewfiles_dir(cls) -> Path:
-        return cls.sources_dir() / "brewfiles"
-
-    @classmethod
-    def scripts_dir(cls) -> Path:
-        return cls.sources_dir() / "scripts"
-
-    @classmethod
-    def app_support_dir(cls) -> Path:
-        return Path.home() / "Library" / "Application Support"
-
-    @classmethod
-    def hammerspoon_dir(cls) -> Path:
-        return Path.home() / ".hammerspoon"
-
-    @classmethod
-    def local_bin(cls) -> Path:
-        return Path.home() / ".local" / "bin"
-
-    @classmethod
-    def config(cls) -> Path:
-        return Path.home() / ".config"
-
-    @classmethod
-    def zed_editor(cls) -> Path:
-        return Path.home() / ".config" / "zed"
+DOTFILES_DIR = Path(__file__).resolve().parent
+SOURCES_DIR = DOTFILES_DIR / "sources"
+SYMLINKS_DIR = SOURCES_DIR / "symlinks"
+SYMLINKS_MANIFEST = SOURCES_DIR / "symlinks.toml"
+BREWFILES_DIR = SOURCES_DIR / "brewfiles"
+SCRIPTS_DIR = SOURCES_DIR / "scripts"
 
 
 class Target(StrEnum):
@@ -64,7 +31,7 @@ class Target(StrEnum):
 
 def display_path(path: Path) -> str:
     try:
-        return str(path.relative_to(DotfilesPaths.dotfiles_dir()))
+        return str(path.relative_to(DOTFILES_DIR))
     except ValueError:
         return str(path)
 
@@ -106,60 +73,126 @@ def list_sources(directory: Path, glob_pattern: str) -> list[Path]:
     return sorted(directory.rglob(glob_pattern))
 
 
-def prepare_symlink_targets() -> None:
-    """Handle pre-existing files that would conflict with Stow."""
-    # Atuin creates its own config on first run; back it up so Stow can link ours.
-    atuin_config = Path.home() / ".config" / "atuin" / "config.toml"
-    if atuin_config.is_file() and not atuin_config.is_symlink():
-        backup = atuin_config.with_suffix(".toml.backup")
-        print(f"Backing up {atuin_config} -> {backup}")
-        atuin_config.rename(backup)
-
-    # .local/bin must exists
-    DotfilesPaths.local_bin().mkdir(parents=True, exist_ok=True)
-
-    # .config must exists
-    DotfilesPaths.config().mkdir(parents=True, exist_ok=True)
-
-    # Zed editor config must exists
-    DotfilesPaths.zed_editor().mkdir(parents=True, exist_ok=True)
-
-    # VS Code needs the target directory to exist for individual file links.
-    vscode_dir = DotfilesPaths.app_support_dir() / "Code" / "User"
-    vscode_dir.mkdir(parents=True, exist_ok=True)
-
-    # Hammerspoon needs its target directory to exist for Stow to link into.
-    DotfilesPaths.hammerspoon_dir().mkdir(parents=True, exist_ok=True)
+def require_command(command: str, message: str) -> None:
+    if shutil.which(command) is None:
+        sys.exit(f"Error: {message}")
 
 
 class SymlinksManager:
     @staticmethod
-    def _stow_packages() -> list[tuple[str, Path]]:
-        return [
-            ("home", Path.home()),
-            ("application_support", DotfilesPaths.app_support_dir()),
-            (".hammerspoon", DotfilesPaths.hammerspoon_dir()),
-        ]
-
-    @staticmethod
-    def _require_stow() -> None:
-        if shutil.which("stow") is None:
-            sys.exit("Error: GNU Stow is not installed.  brew install stow")
+    def _stow_packages() -> dict[str, Path]:
+        home = Path.home()
+        return {
+            "home": home,
+            "application_support": home / "Library" / "Application Support",
+            ".hammerspoon": home / ".hammerspoon",
+        }
 
     def install(self) -> None:
-        self._require_stow()
+        require_command("stow", "GNU Stow is not installed.  brew install stow")
+        self._prepare_targets()
         self._stow()
 
     def uninstall(self) -> None:
-        self._require_stow()
+        require_command("stow", "GNU Stow is not installed.  brew install stow")
         self._stow(delete=True)
+
+    @staticmethod
+    def _manifest_target_directories() -> list[Path]:
+        with SYMLINKS_MANIFEST.open("rb") as manifest_file:
+            manifest = tomllib.load(manifest_file)
+
+        unknown_keys = manifest.keys() - {"target_directories"}
+        if unknown_keys:
+            unknown = ", ".join(sorted(unknown_keys))
+            raise ValueError(f"Unknown keys in {SYMLINKS_MANIFEST}: {unknown}")
+
+        paths = manifest.get("target_directories", [])
+        if not isinstance(paths, list) or not all(
+            isinstance(path, str) for path in paths
+        ):
+            raise ValueError(
+                f"target_directories in {SYMLINKS_MANIFEST} must be a list of paths"
+            )
+        return [Path(path) for path in paths]
+
+    @classmethod
+    def _source_and_target(cls, relative_path: Path) -> tuple[Path, Path]:
+        parts = relative_path.parts
+        if relative_path.is_absolute() or not parts or ".." in parts:
+            raise ValueError(f"Invalid symlink manifest path: {relative_path}")
+
+        package_targets = cls._stow_packages()
+        package = parts[0]
+        if package not in package_targets:
+            raise ValueError(f"Unknown Stow package in manifest: {relative_path}")
+
+        source = SYMLINKS_DIR / relative_path
+        target = package_targets[package].joinpath(*parts[1:])
+        return source, target
+
+    @staticmethod
+    def _backup_path(path: Path) -> Path:
+        backup = path.with_name(f"{path.name}.backup")
+        number = 1
+        while backup.exists() or backup.is_symlink():
+            backup = path.with_name(f"{path.name}.backup.{number}")
+            number += 1
+        return backup
+
+    @classmethod
+    def _backup_conflict(cls, target: Path, source: Path) -> None:
+        if not target.exists() and not target.is_symlink():
+            return
+        if target.resolve(strict=False) == source.resolve(strict=False):
+            return
+
+        backup = cls._backup_path(target)
+        print(f"Backing up {target} -> {backup}")
+        target.rename(backup)
+
+    @classmethod
+    def _prepare_directory(
+        cls,
+        source_directory: Path,
+        target_directory: Path,
+        target_directories: set[Path],
+    ) -> None:
+        for source in source_directory.iterdir():
+            target = target_directory / source.name
+            contains_target_directory = any(
+                directory.is_relative_to(source) for directory in target_directories
+            )
+            if source.is_dir() and contains_target_directory:
+                cls._prepare_directory(source, target, target_directories)
+            else:
+                cls._backup_conflict(target, source)
+
+    @classmethod
+    def _prepare_targets(cls) -> None:
+        target_directories: set[Path] = set()
+
+        for path in cls._manifest_target_directories():
+            source, target = cls._source_and_target(path)
+            if not source.is_dir():
+                raise ValueError(f"Target directory source does not exist: {source}")
+            target_directories.add(source)
+
+            if target.exists() and not target.is_dir():
+                cls._backup_conflict(target, source)
+            target.mkdir(parents=True, exist_ok=True)
+
+        for package, package_target in cls._stow_packages().items():
+            package_source = SYMLINKS_DIR / package
+            package_target.mkdir(parents=True, exist_ok=True)
+            cls._prepare_directory(package_source, package_target, target_directories)
 
     @classmethod
     def _stow(cls, *, delete: bool = False) -> None:
-        for package, target in cls._stow_packages():
+        for package, target in cls._stow_packages().items():
             cmd = [
                 "stow",
-                f"--dir={DotfilesPaths.symlinks_dir()}",
+                f"--dir={SYMLINKS_DIR}",
                 f"--target={target}",
                 "--verbose",
             ]
@@ -170,17 +203,12 @@ class SymlinksManager:
 
 
 class BrewfilesManager:
-    @staticmethod
-    def _require_brew() -> None:
-        if shutil.which("brew") is None:
-            sys.exit("Error: Homebrew is not installed.  https://brew.sh")
-
     def install(self, brewfile: Path) -> None:
-        self._require_brew()
+        require_command("brew", "Homebrew is not installed.  https://brew.sh")
         run(["brew", "bundle", "--no-upgrade", f"--file={brewfile}"])
 
     def uninstall(self, brewfile: Path) -> None:
-        self._require_brew()
+        require_command("brew", "Homebrew is not installed.  https://brew.sh")
         for pkg_type in ("formula", "cask"):
             self._uninstall_packages(brewfile, pkg_type)
 
@@ -225,36 +253,29 @@ class Dotfiles:
         self.scripts = ScriptsManager()
 
     def install(self, target: Target) -> None:
-        if target in (Target.ALL, Target.SYMLINKS):
-            if yes_no_question("Do you want to install symlinked dotfiles?"):
-                prepare_symlink_targets()
-                self.symlinks.install()
-            if target is not Target.ALL:
-                return
+        if target in (Target.ALL, Target.SYMLINKS) and yes_no_question(
+            "Do you want to install symlinked dotfiles?"
+        ):
+            self.symlinks.install()
 
         if target in (Target.ALL, Target.BREWFILES):
-            for brewfile in list_sources(DotfilesPaths.brewfiles_dir(), "*.Brewfile"):
+            for brewfile in list_sources(BREWFILES_DIR, "*.Brewfile"):
                 self.brewfiles.show(brewfile)
                 if yes_no_question(f"Do you want to install {display_path(brewfile)}?"):
                     self.brewfiles.install(brewfile)
-            if target is not Target.ALL:
-                return
 
         if target in (Target.ALL, Target.SCRIPTS):
-            for script in list_sources(DotfilesPaths.scripts_dir(), "*.sh"):
+            for script in list_sources(SCRIPTS_DIR, "*.sh"):
                 print_header(f"Install script: {display_path(script)}")
                 print()
                 if yes_no_question(f"Do you want to run {display_path(script)}?"):
                     self.scripts.install(script)
-            if target is not Target.ALL:
-                return
 
     def uninstall(self, target: Target) -> None:
-        if target in (Target.ALL, Target.SYMLINKS):
-            if yes_no_question("Do you want to uninstall symlinked dotfiles?"):
-                self.symlinks.uninstall()
-            if target is not Target.ALL:
-                return
+        if target in (Target.ALL, Target.SYMLINKS) and yes_no_question(
+            "Do you want to uninstall symlinked dotfiles?"
+        ):
+            self.symlinks.uninstall()
 
         if target in (Target.ALL, Target.BREWFILES):
             if target is Target.ALL and not yes_no_question(
@@ -262,17 +283,14 @@ class Dotfiles:
                 default_yes=False,
             ):
                 return
-            for brewfile in list_sources(DotfilesPaths.brewfiles_dir(), "*.Brewfile"):
+            for brewfile in list_sources(BREWFILES_DIR, "*.Brewfile"):
                 self.brewfiles.show(
                     brewfile, f"Uninstalling dependencies from {display_path(brewfile)}"
                 )
                 self.brewfiles.uninstall(brewfile)
-            if target is not Target.ALL:
-                return
 
         if target is Target.SCRIPTS:
             print("Scripts support only the install action.", file=sys.stderr)
-            return
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -282,25 +300,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     subparsers = parser.add_subparsers(dest="action", required=True)
 
-    install = subparsers.add_parser("install", help="Install dotfiles.")
-    install.add_argument(
-        "target",
-        nargs="?",
-        default=Target.ALL,
-        type=parse_target,
-        metavar="TARGET",
-        help="What to install: symlinks, brewfiles, scripts, or omit for all.",
-    )
-
-    uninstall = subparsers.add_parser("uninstall", help="Uninstall dotfiles.")
-    uninstall.add_argument(
-        "target",
-        nargs="?",
-        default=Target.ALL,
-        type=parse_target,
-        metavar="TARGET",
-        help="What to uninstall: symlinks, brewfiles, scripts, or omit for all.",
-    )
+    for action in ("install", "uninstall"):
+        command = subparsers.add_parser(action, help=f"{action.title()} dotfiles.")
+        command.add_argument(
+            "target",
+            nargs="?",
+            default=Target.ALL,
+            type=parse_target,
+            metavar="TARGET",
+            help=f"What to {action}: symlinks, brewfiles, scripts, or omit for all.",
+        )
 
     return parser
 
