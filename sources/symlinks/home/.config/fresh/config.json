@@ -1,0 +1,225 @@
+{
+  "keymap": "macos",
+  "theme": "dmytr0x-dark-modern",
+  "keybindings": [
+    // -------------------------------------------------------------------------
+    // Terminal-conflict fallbacks
+    // Ghostty receives key events before Fresh. These bindings replace shortcuts
+    // owned by Ghostty's default keymap. Herdr needs no fallbacks here; its
+    // Ctrl+B prefix and Shift+Esc binding remain reserved.
+    // -------------------------------------------------------------------------
+
+    // Expected: Cmd+Q. Conflict: Ghostty uses Cmd+Q to quit.
+    // Fallback: Ctrl+K, Q.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"q","modifiers":[]}],"action":"quit","when":"global"},
+
+    // Expected: Cmd+,. Conflict: Ghostty uses Cmd+, to open its config.
+    // Fallback: Ctrl+K, ,.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":",","modifiers":[]}],"action":"open_settings","when":"global"},
+
+    // Expected: Cmd+Shift+F. Conflict: Ghostty uses it to end terminal search.
+    // Fallback: Ctrl+Shift+F.
+    {"key":"f","modifiers":["ctrl","shift"],"action":"open_live_grep","when":"global"},
+
+    // Expected: Cmd+N. Conflict: Ghostty uses it to create a new window.
+    // Fallback: Ctrl+Shift+N.
+    {"key":"n","modifiers":["ctrl","shift"],"action":"new","when":"normal"},
+    {"key":"n","modifiers":["ctrl","shift"],"action":"file_explorer_new_file","when":"file_explorer"},
+
+    // Expected: Cmd+W. Conflict: Ghostty uses it to close the current surface.
+    // Fallback: Ctrl+Shift+W.
+    {"key":"w","modifiers":["ctrl","shift"],"action":"close_tab","when":"normal"},
+
+    // Expected: Cmd+Option+Left / Cmd+Option+Right. Ghostty uses these to focus splits.
+    // Fallback: Ctrl+Option+Left / Ctrl+Option+Right.
+    {"key":"Left","modifiers":["ctrl","alt"],"action":"prev_buffer","when":"normal"},
+    {"key":"Right","modifiers":["ctrl","alt"],"action":"next_buffer","when":"normal"},
+
+    // Expected: Cmd+C. Conflict: Ghostty uses it to copy terminal selections.
+    // Fallback: Ctrl+Shift+C.
+    {"key":"c","modifiers":["ctrl","shift"],"action":"copy","when":"normal"},
+    {"key":"c","modifiers":["ctrl","shift"],"action":"copy","when":"terminal"},
+    {"key":"c","modifiers":["ctrl","shift"],"action":"copy","when":"file_explorer"},
+    {"key":"c","modifiers":["ctrl","shift"],"action":"prompt_copy","when":"prompt"},
+
+    // Expected: Cmd+Z. Conflict: Ghostty owns Cmd+Z for terminal undo.
+    // Fallback: Ctrl+Z.
+    {"key":"z","modifiers":["ctrl"],"action":"undo","when":"normal"},
+
+    // Expected: Cmd+A. Conflict: Ghostty uses it to select all terminal output.
+    // Fallback: Ctrl+Shift+A.
+    {"key":"a","modifiers":["ctrl","shift"],"action":"select_all","when":"normal"},
+    {"key":"a","modifiers":["ctrl","shift"],"action":"select_all","when":"terminal"},
+    {"key":"a","modifiers":["ctrl","shift"],"action":"prompt_select_all","when":"prompt"},
+
+    // Expected: Cmd+Shift+Z. Conflict: Ghostty owns it for terminal redo.
+    // Fallback: Ctrl+Shift+Z.
+    {"key":"z","modifiers":["ctrl","shift"],"action":"redo","when":"normal"},
+
+    // Expected: Cmd+Backspace. Ghostty translates it to Ctrl+U.
+    // Fresh listens on Ctrl+U, so both Cmd+Backspace and fallback Ctrl+U work.
+    {"key":"u","modifiers":["ctrl"],"action":"delete_to_line_start","when":"normal"},
+
+    // Expected: Cmd+Left. Ghostty translates it to Ctrl+A.
+    // Fresh listens on Ctrl+A, so both Cmd+Left and fallback Ctrl+A work.
+    {"key":"a","modifiers":["ctrl"],"action":"move_line_start","when":"normal"},
+
+    // Expected: Cmd+Right. Ghostty translates it to Ctrl+E.
+    // Fresh listens on Ctrl+E, so both Cmd+Right and fallback Ctrl+E work.
+    {"key":"e","modifiers":["ctrl"],"action":"move_line_end","when":"normal"},
+
+    // Expected: Shift+PageUp / Shift+PageDown. Ghostty adjusts terminal selection.
+    // Fallback: Ctrl+Shift+PageUp / Ctrl+Shift+PageDown.
+    {"key":"PageUp","modifiers":["ctrl","shift"],"action":"select_document_start","when":"normal"},
+    {"key":"PageDown","modifiers":["ctrl","shift"],"action":"select_document_end","when":"normal"},
+
+    // Expected: Cmd+D. Conflict: Ghostty uses it to create a right split.
+    // Fallback: Ctrl+Option+D.
+    {"key":"d","modifiers":["ctrl","alt"],"action":"add_cursor_next_match","when":"normal"},
+    {"key":"d","modifiers":["ctrl","alt"],"action":"open_terminal_right","when":"terminal"},
+    {"key":"d","modifiers":["ctrl","alt"],"action":"file_explorer_duplicate","when":"file_explorer"},
+
+    // Expected: Cmd+Option+Up / Cmd+Option+Down. Ghostty uses these to focus splits.
+    // Fallback: Ctrl+Option+Up / Ctrl+Option+Down.
+    {"key":"Up","modifiers":["ctrl","alt"],"action":"add_cursor_above","when":"normal"},
+    {"key":"Down","modifiers":["ctrl","alt"],"action":"add_cursor_below","when":"normal"},
+
+    // Expected: Cmd+[ / Cmd+]. Ghostty uses these to move between splits.
+    // Fallback: Ctrl+K, [ / Ctrl+K, ] (two-key sequences).
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"]","modifiers":[]}],"action":"insert_tab","when":"normal"},
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"[","modifiers":[]}],"action":"dedent_selection","when":"normal"},
+
+    // Expected: Cmd+F. Conflict: Ghostty uses it for terminal search.
+    // Fallback: Ctrl+F. This replaces Fresh's former Ctrl+F move-right binding.
+    {"key":"f","modifiers":["ctrl"],"action":"search","when":"normal"},
+    {"key":"f","modifiers":["ctrl"],"action":"search","when":"terminal"},
+
+    // Expected: Cmd+G / Cmd+Shift+G. Ghostty uses these for terminal search results.
+    // Fallback: F3 / Shift+F3.
+    {"key":"F3","modifiers":[],"action":"find_next","when":"normal"},
+    {"key":"F3","modifiers":["shift"],"action":"find_previous","when":"normal"},
+
+    // Expected: Cmd+Option+W. Conflict: Ghostty uses it to close a terminal tab.
+    // Fallback: Ctrl+Option+W.
+    {"key":"w","modifiers":["ctrl","alt"],"action":"toggle_search_whole_word","when":"searchPrompt"},
+
+    // Ghostty consumes the expected Cmd+K prefix to clear the terminal screen.
+    // Expected: Cmd+K, Cmd+I. Fallback: Ctrl+K, I.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"i","modifiers":[]}],"action":"lsp_hover","when":"normal"},
+    // Expected: Cmd+K, P. Fallback: Ctrl+K, P.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"p","modifiers":[]}],"action":"copy_relative_file_path","when":"normal"},
+    // Expected: Cmd+K, Cmd+P. Fallback: Ctrl+K, Shift+P.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"p","modifiers":["shift"]}],"action":"copy_file_path","when":"normal"},
+    // Expected: Cmd+K, Cmd+S. Fallback: Ctrl+K, S.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"s","modifiers":[]}],"action":"open_keybinding_editor","when":"global"},
+    // Expected: Cmd+K, Cmd+T. Fallback: Ctrl+K, T.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"t","modifiers":[]}],"action":"select_theme","when":"global"},
+    // Expected: Cmd+K, M. Fallback: Ctrl+K, M.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"m","modifiers":[]}],"action":"set_language","when":"normal"},
+    // Expected: Cmd+K, N. Fallback: Ctrl+K, N.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"n","modifiers":[]}],"action":"set_encoding","when":"normal"},
+    // Expected: Cmd+K, Down. Fallback: Ctrl+K, Down.
+    {"keys":[{"key":"k","modifiers":["ctrl"]},{"key":"Down","modifiers":[]}],"action":"split_horizontal","when":"normal"},
+
+    // -------------------------------------------------------------------------
+    // Native Fresh/Zed-style bindings that do not conflict with the terminal
+    // -------------------------------------------------------------------------
+    {"key":"p","modifiers":["super"],"action":"quick_open","when":"global"},
+    {"key":"o","modifiers":["super"],"action":"open","when":"global"},
+    {"key":"0","modifiers":["ctrl"],"action":"focus_editor","when":"global"},
+    {"key":"p","modifiers":["super","alt"],"action":"quick_open_buffers","when":"global"},
+    {"key":"s","modifiers":["super"],"action":"save","when":"normal"},
+    {"key":"s","modifiers":["super","shift"],"action":"save_as","when":"normal"},
+    {"key":"s","modifiers":["super","alt"],"action":"save_all","when":"normal"},
+    {"key":"x","modifiers":["super"],"action":"cut","when":"normal"},
+    {"key":"l","modifiers":["super"],"action":"select_line","when":"normal"},
+    {"key":"Delete","modifiers":["super"],"action":"delete_to_line_end","when":"normal"},
+    {"key":"Left","modifiers":["super","shift"],"action":"select_line_start","when":"normal"},
+    {"key":"Right","modifiers":["super","shift"],"action":"select_line_end","when":"normal"},
+    {"key":"Backspace","modifiers":["alt"],"action":"delete_word_backward","when":"normal"},
+    {"key":"Delete","modifiers":["alt"],"action":"delete_word_forward","when":"normal"},
+    {"key":"h","modifiers":["ctrl"],"action":"delete_backward","when":"normal"},
+    {"key":"d","modifiers":["ctrl"],"action":"delete_forward","when":"normal"},
+    {"key":"p","modifiers":["ctrl"],"action":"move_up","when":"normal"},
+    {"key":"n","modifiers":["ctrl"],"action":"move_down","when":"normal"},
+    {"key":"l","modifiers":["ctrl"],"action":"recenter","when":"normal"},
+    {"key":"v","modifiers":["ctrl","shift"],"action":"move_page_up","when":"normal"},
+    {"key":"Up","modifiers":["ctrl"],"action":"move_to_paragraph_up","when":"normal"},
+    {"key":"Down","modifiers":["ctrl"],"action":"move_to_paragraph_down","when":"normal"},
+    {"key":"Up","modifiers":["ctrl","shift"],"action":"select_to_paragraph_up","when":"normal"},
+    {"key":"Down","modifiers":["ctrl","shift"],"action":"select_to_paragraph_down","when":"normal"},
+    {"key":"PageUp","modifiers":[],"action":"move_document_start","when":"normal"},
+    {"key":"PageDown","modifiers":[],"action":"move_document_end","when":"normal"},
+    {"key":"k","modifiers":["super","shift"],"action":"delete_line","when":"normal"},
+    {"key":"Down","modifiers":["alt","shift"],"action":"duplicate_line","when":"normal"},
+    {"key":"/","modifiers":["super"],"action":"toggle_comment","when":"normal"},
+    {"key":";","modifiers":["super"],"action":"toggle_line_numbers","when":"normal"},
+    {"key":"i","modifiers":["super","shift"],"action":"format_buffer","when":"normal"},
+    {"key":" ","modifiers":["ctrl"],"action":"lsp_completion","when":"normal"},
+    {"key":"Enter","modifiers":[],"action":"completion_accept","when":"completion"},
+    {"key":"f","modifiers":["super","alt"],"action":"replace","when":"normal"},
+    {"key":"l","modifiers":["super","alt"],"action":"find_in_selection","when":"normal"},
+    {"key":"h","modifiers":["super","shift"],"action":"start_search_replace","when":"normal"},
+    {"key":"c","modifiers":["super","alt"],"action":"toggle_search_case_sensitive","when":"searchPrompt"},
+    {"key":"x","modifiers":["super","alt"],"action":"toggle_search_regex","when":"searchPrompt"},
+    {"key":"i","modifiers":["super"],"action":"lsp_signature_help","when":"normal"},
+    {"key":".","modifiers":["super"],"action":"lsp_code_actions","when":"normal"},
+    // Match Zed: Ctrl+Shift+; toggles LSP inlay hints.
+    {"key":";","modifiers":["ctrl","shift"],"action":"toggle_inlay_hints","when":"normal"},
+    {"key":"F12","modifiers":["shift"],"action":"lsp_implementation","when":"normal"},
+    {"key":"F12","modifiers":["alt","shift"],"action":"lsp_references","when":"normal"},
+    {"key":"[","modifiers":["super","alt"],"action":"toggle_fold","when":"normal"},
+    {"key":"-","modifiers":["ctrl"],"action":"navigate_back","when":"normal"},
+    {"key":"-","modifiers":["ctrl","shift"],"action":"navigate_forward","when":"normal"},
+    {"key":"\\","modifiers":["super"],"action":"split_vertical","when":"normal"},
+    {"key":"`","modifiers":["alt"],"action":"open_terminal","when":"normal"},
+    {"key":"`","modifiers":["alt"],"action":"open_terminal","when":"terminal"},
+    {"key":"`","modifiers":["ctrl"],"action":"toggle_utility_dock","when":"normal"},
+    {"key":"e","modifiers":["super","shift"],"action":"focus_file_explorer","when":"normal"},
+    {"key":"e","modifiers":["super","shift"],"action":"focus_editor","when":"file_explorer"},
+    {"key":"e","modifiers":["super","shift"],"action":"focus_file_explorer","when":"terminal"},
+    {"key":"n","modifiers":["super","alt"],"action":"file_explorer_new_directory","when":"file_explorer"},
+    {"key":"Enter","modifiers":[],"action":"file_explorer_rename","when":"file_explorer"},
+    {"key":" ","modifiers":[],"action":"file_explorer_open","when":"file_explorer"},
+    {"key":"x","modifiers":["super"],"action":"cut","when":"file_explorer"},
+    {"key":"c","modifiers":["super","alt"],"action":"file_explorer_copy_full_path","when":"file_explorer"},
+    {"key":"c","modifiers":["super","alt","shift"],"action":"file_explorer_copy_relative_path","when":"file_explorer"},
+    {"key":"x","modifiers":["super"],"action":"prompt_cut","when":"prompt"}
+  ],
+  "editor": {
+    "enable_inlay_hints": false
+  },
+  "languages": {
+    "python": {
+      "formatter": {
+        "command": "ruff",
+        "args": ["format", "--stdin-filename", "$FILE", "-"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "format_on_save": false
+    }
+  },
+  "lsp": {
+    "python": [
+      {
+        "name": "ty",
+        "command": "ty",
+        "args": ["server"],
+        "enabled": true,
+        "auto_start": true,
+        "root_markers": ["pyproject.toml", "ty.toml", ".git"],
+        "except_features": ["format"]
+      },
+      {
+        "name": "ruff",
+        "command": "ruff",
+        "args": ["server"],
+        "enabled": true,
+        "auto_start": true,
+        "root_markers": ["pyproject.toml", "ruff.toml", ".ruff.toml", ".git"],
+        "only_features": ["diagnostics", "code_action"]
+      }
+    ]
+  }
+}
