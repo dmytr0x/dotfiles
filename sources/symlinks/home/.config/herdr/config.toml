@@ -82,6 +82,15 @@ pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$di
 '''
 
 [[keys.command]]
+description = "Open editor"
+key = "prefix+e"
+type = "shell"
+command = '''
+pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction right --focus | jq -er '.result.pane.pane_id')" &&
+"$HERDR_BIN_PATH" pane run "$pane_id" 'exec "${EDITOR}"'
+'''
+
+[[keys.command]]
 description = "Pane to tab"
 key = "prefix+m"
 type = "shell"
