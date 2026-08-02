@@ -10,9 +10,9 @@ export LANGUAGE="en_GB.UTF-8"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# Use helix if no other editor is configured
-export EDITOR="${EDITOR:-hx}"
-export VISUAL="${VISUAL:-hx}"
+# Use default editor if no other editor is configured
+export EDITOR="${EDITOR:-fresh}"
+export VISUAL="${VISUAL:-fresh}"
 export PAGER="bat"
 
 # Start with a clean slate, removing any inherited LS_COLORS.

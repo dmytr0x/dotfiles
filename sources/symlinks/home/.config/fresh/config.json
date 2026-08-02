@@ -4,10 +4,13 @@
   "keybindings": [
     // -------------------------------------------------------------------------
     // Terminal-conflict fallbacks
-    // Ghostty receives key events before Fresh. These bindings replace shortcuts
-    // owned by Ghostty's default keymap. Herdr needs no fallbacks here; its
-    // Ctrl+B prefix and Shift+Esc binding remain reserved.
+    // Ghostty and Herdr receive key events before Fresh. These bindings replace
+    // shortcuts owned by Ghostty's default keymap or reserved by Herdr.
     // -------------------------------------------------------------------------
+
+    // Expected: Ctrl+B. Conflict: Herdr reserves Ctrl+B as its prefix.
+    // Fallback: Cmd+B.
+    {"key":"b","modifiers":["super"],"action":"toggle_file_explorer","when":"normal"},
 
     // Expected: Cmd+Q. Conflict: Ghostty uses Cmd+Q to quit.
     // Fallback: Ctrl+K, Q.

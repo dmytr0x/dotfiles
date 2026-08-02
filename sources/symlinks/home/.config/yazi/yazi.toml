@@ -7,7 +7,7 @@ show_hidden = true
 
 [opener]
 edit = [
-  { run = 'hx "$@"', desc = "Helix Editor", block = true, for = "unix" },
+  { run = '${EDITOR:-vi} "$@"', desc = "Editor", block = true, for = "unix" },
   { run = 'zed --new "$@"', desc = "Open in Zed", for = "unix" },
 ]
 open = [{ run = 'open "$@"', desc = "Open", for = "macos" }]

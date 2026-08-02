@@ -375,8 +375,10 @@ config.hyperlink_rules = hyperlink_rules
 wezterm.on("open-uri", function(window, pane, uri)
   local url = wezterm.url.parse(uri)
   if url.scheme == "file" then
-    -- open a new window and spawn it!
-    local action = act({ SpawnCommandInNewWindow = { args = { "hx", url.file_path } } })
+    -- Open the file in a new window using the configured editor.
+    local editor_args = wezterm.shell_split(os.getenv("EDITOR") or "vi")
+    table.insert(editor_args, url.file_path)
+    local action = act({ SpawnCommandInNewWindow = { args = editor_args } })
     window:perform_action(action, pane)
     -- prevent the default action from opening in a browser
     return false
