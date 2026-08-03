@@ -1,6 +1,7 @@
 {
   "keymap": "macos",
   "theme": "dmytr0x-dark-modern",
+  "check_for_updates": false,
   "keybindings": [
     // -------------------------------------------------------------------------
     // Terminal-conflict fallbacks
