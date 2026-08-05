@@ -18,6 +18,7 @@ $aws\
 $docker_context\
 $jobs\
 $cmd_duration\
+$hostname\
 $time\
 $line_break\
 $character"""
@@ -28,6 +29,11 @@ add_newline = false
 scan_timeout = 100
 command_timeout = 500
 follow_symlinks = false
+
+[hostname]
+ssh_only = false
+style = "mauve"
+format = "[$hostname]($style)"
 
 [time]
 disabled = false
