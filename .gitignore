@@ -5,4 +5,4 @@ __pycache__/
 .dmypy.json
 
 # Local data
-sources/symlinks/home/.local/bin/data/task/favourite-commands-local.yml
+sources/symlinks/home/.local/bin/data/task/favorite-commands-local.yml

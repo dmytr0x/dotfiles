@@ -2,7 +2,7 @@ version: '3'
 
 includes:
   local:
-    taskfile: ~/.local/bin/data/task/favourite-commands-local.yml
+    taskfile: ~/.local/bin/data/task/favorite-commands-local.yml
     flatten: true
     optional: true
 
