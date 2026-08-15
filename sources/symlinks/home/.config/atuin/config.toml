@@ -318,10 +318,13 @@ name = "vscode-dark-modern"
 ## Can be a percentage, or integer (e.g. "100" means 100 lines tall)
 # height = "60%"
 
-[ui]
+[ai]
+enabled = false
 
 [pty_proxy]
 enabled = false
+
+[ui]
 ## Columns to display in the interactive search, from left to right.
 ## The selection indicator (" > ") is always shown first implicitly.
 ##
