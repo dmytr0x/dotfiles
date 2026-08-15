@@ -1,4 +1,9 @@
 # --- Settings
+
+# Performace: Everything in your shell configuration before atuin init therefore runs twice during startup.
+#             Keep the initialization near the top
+source ~/.config/zsh/tools/atuin.sh
+#
 source ~/.config/zsh/options.sh
 source ~/.config/zsh/key-bindings.sh
 source ~/.config/zsh/env.sh
@@ -9,7 +14,6 @@ source ~/.config/zsh/hooks/herdr-diffstat.sh
 source ~/.config/zsh/tools/starship.sh
 source ~/.config/zsh/tools/ripgrep.sh
 source ~/.config/zsh/tools/fzf.sh
-source ~/.config/zsh/tools/atuin.sh
 source ~/.config/zsh/tools/zoxide.sh
 source ~/.config/zsh/tools/mise.sh
 source ~/.config/zsh/tools/direnv.sh

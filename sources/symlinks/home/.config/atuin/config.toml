@@ -319,6 +319,9 @@ name = "vscode-dark-modern"
 # height = "60%"
 
 [ui]
+
+[pty_proxy]
+enabled = false
 ## Columns to display in the interactive search, from left to right.
 ## The selection indicator (" > ") is always shown first implicitly.
 ##
