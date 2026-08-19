@@ -200,6 +200,7 @@
 
   // ==================== Terminal ====================
   "terminal": {
+    "starts_open": false,
     "font_family": "FiraCode Nerd Font",
     "font_weight": 300,
     "font_size": 12,
