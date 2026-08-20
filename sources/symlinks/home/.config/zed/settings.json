@@ -93,6 +93,9 @@
   // Whether to automatically show a signature help pop-up or not.
   // To show it manually, press: `cmd+i` (editor::ShowSignatureHelp)
   "auto_signature_help": false,
+  // Show signature help after accepting a callable completion without keeping
+  // the pop-up enabled while navigating existing calls.
+  "show_signature_help_after_edits": true,
   "go_to_definition_scroll_strategy": "center",
   "go_to_definition_fallback": "none",
   //
@@ -115,7 +118,18 @@
     // - https://docs.astral.sh/ty/reference/configuration/
     "ty": {
       "settings": {
+        // Keep interactive feedback lightweight; project-wide checks can still
+        // run through `ty check` in CI or the terminal.
         "diagnosticMode": "openFilesOnly",
+        "inlayHints": {
+          "variableTypes": true,
+          "callArgumentNames": true,
+        },
+        "completions": {
+          "autoImport": true,
+          // Insert call parentheses when accepting callable completions.
+          "completeFunctionParentheses": true,
+        },
       },
     },
     // details: https://docs.basedpyright.com/latest/configuration/language-server-settings/
