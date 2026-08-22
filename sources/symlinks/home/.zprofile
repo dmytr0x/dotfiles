@@ -1,11 +1,11 @@
+# --- local/bin
+export PATH="$PATH:$HOME/.local/bin"
+
 # --- brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- zoxide
 eval "$(zoxide init zsh)"
-
-# --- local/bin
-export PATH="$PATH:$HOME/.local/bin"
 
 # --- fzf
 export FZF_COMPLETION_TRIGGER='~~'
