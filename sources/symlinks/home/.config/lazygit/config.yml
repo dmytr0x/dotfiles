@@ -6,31 +6,27 @@ gui:
   theme:
     # Base
     defaultFgColor:
-      - "#8D8C8B"   # main text (soft gray)
+      - "#8D8C8B" # main text (soft gray)
     defaultBgColor:
-      - "#191919"   # near-black background
-
+      - "#191919" # near-black background
     # Borders / panels
     activeBorderColor:
-      - "#0078D4"   # primary blue accent
+      - "#0078D4" # primary blue accent
       - bold
     inactiveBorderColor:
-      - "#515555"   # muted gray (inactive)
+      - "#515555" # muted gray (inactive)
     searchingActiveBorderColor:
-      - "#0E3854"   # deep blue (search mode)
-
+      - "#0E3854" # deep blue (search mode)
     # UI accents
     optionsTextColor:
-      - "#567587"   # blue-gray for option/help text
+      - "#567587" # blue-gray for option/help text
     selectedLineBgColor:
-      - "#2A2A2A"   # selection background (subtle lift)
+      - "#2A2A2A" # selection background (subtle lift)
     selectedRangeBgColor:
-      - "#2E5359"   # teal-gray for range selections
-
+      - "#2E5359" # teal-gray for range selections
     # Git status accents
     unstagedChangesColor:
-      - "#567587"   # cool blue-gray (keeps it calm, Zed-like)
-
+      - "#567587" # cool blue-gray (keeps it calm, Zed-like)
     # Cherry-pick / rebase highlights
     cherryPickedCommitFgColor:
       - "#191919"
@@ -44,22 +40,18 @@ gui:
   showFileTree: true # for rendering changes files in a tree format
   border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
   portraitMode: "always" # one of 'auto' | 'never' | 'always'
-
 disableStartupPopups: true
-
 git:
   parseEmoji: true
   commit:
     autoWrapCommitMessage: true
     autoWrapWidth: 80
-  pagers:
-    - pager: delta --paging=never
-
+  diffRenderers:
+    - command: delta --paging=never
 os:
   copyToClipboardCmd: ""
   editPreset: "zed"
   open: ""
-
 customCommands:
   - key: 'o'
     command: "zed {{.SelectedFile.Name}}"
