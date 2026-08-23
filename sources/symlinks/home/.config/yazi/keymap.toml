@@ -2,6 +2,9 @@
 
 [mgr]
 prepend_keymap = [
+  # Navigation
+  { on = [ "g", "m" ], run = "cd ~/Mega", desc = "Go to Mega" },
+  #
   # Shell
   { on = "<C-;>", run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
   #
