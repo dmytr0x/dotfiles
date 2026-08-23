@@ -10,6 +10,7 @@ prepend_keymap = [
   # Git changes
   # https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi
   { on = [ "\\", "g" ], run = "plugin vcs-files", desc = "Show Git file changes" },
+  { on = [ "\\", "l" ], run = 'shell "lazygit" --block', desc = "Open LazyGit" },
   #
   # Mount manager
   # https://github.com/yazi-rs/plugins/tree/main/mount.yazi
