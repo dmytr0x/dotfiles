@@ -1,4 +1,5 @@
 # Source: https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi-default.toml
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 ratio = [2, 5, 3]
@@ -7,20 +8,20 @@ show_hidden = true
 
 [opener]
 edit = [
-  { run = '${EDITOR:-vi} "$@"', desc = "Editor", block = true, for = "unix" },
-  { run = 'zed --new "$@"', desc = "Open in Zed", for = "unix" },
+  { run = '${EDITOR:-vi} %s', desc = "Editor", block = true, for = "unix" },
+  { run = 'zed --new %s', desc = "Open in Zed", for = "unix" },
 ]
-open = [{ run = 'open "$@"', desc = "Open", for = "macos" }]
+open = [{ run = "open %s", desc = "Open", for = "macos" }]
 reveal = [
-  { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+  { run = "open -R %s1", desc = "Reveal", for = "macos" },
+  { run = "exiftool %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+  { run = "ya pub extract --list %s", desc = "Extract here", for = "unix" },
 ]
 play = [
-  { run = 'open "$@"', orphan = true, desc = "Play", for = "macos" },
-  { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+  { run = "open %s", orphan = true, desc = "Play", for = "macos" },
+  { run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
 ]
 
 [open]

@@ -1,42 +1,30 @@
+#:schema https://yazi-rs.github.io/schemas/keymap.json
+
 [mgr]
 prepend_keymap = [
   # Shell
-  { on = "<C-s>", run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+  { on = "<C-;>", run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
   #
   # === Plugins ===
   #
   # Git changes
   # https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi
-  { on = [
-    "P",
-    "g",
-  ], run = "plugin vcs-files", desc = "Show Git file changes" },
+  { on = [ "\\", "g" ], run = "plugin vcs-files", desc = "Show Git file changes" },
   #
   # Mount manager
   # https://github.com/yazi-rs/plugins/tree/main/mount.yazi
-  { on = [
-    "P",
-    "m",
-  ], run = "plugin mount" },
-  #
-  # Smart filter
-  # https://github.com/yazi-rs/plugins/tree/main/smart-filter.yazi
-  { on = [
-    "P",
-    "f",
-  ], run = "plugin smart-filter", desc = "Smart filter" },
+  { on = [ "\\", "m" ], run = "plugin mount", desc = "Mount manager" },
   #
   # Toggle pane
   #
-  { on = ["P", "p"], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+  { on = [ "\\", "p" ], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
   #
   # Archive selected files
   #
-  { on = [ "A", "a" ], run = "plugin compress", desc = "Create archive" },
-  { on = [ "A", "z" ], run = "plugin compress zip", desc = "Create a zip" },
-  { on = [ "A", "7" ], run = "plugin compress 7z", desc = "Create a 7z" },
-  { on = [ "A", "t" ], run = "plugin compress tar", desc = "Create a tar" },
-  { on = [ "A", "g" ], run = "plugin compress tar.gz", desc = "Create a tar.gz" },
+  { on = [ "\\", "a", "z" ], run = "plugin compress zip", desc = "Create a zip" },
+  { on = [ "\\", "a", "7" ], run = "plugin compress 7z", desc = "Create a 7z" },
+  { on = [ "\\", "a", "t" ], run = "plugin compress tar", desc = "Create a tar" },
+  { on = [ "\\", "a", "g" ], run = "plugin compress tar.gz", desc = "Create a tar.gz" },
   #
 
 ]

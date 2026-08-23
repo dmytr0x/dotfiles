@@ -1,4 +1,4 @@
---- @since 25.12.29
+--- @since 26.5.6
 
 -- Check for windows
 local is_windows = ya.target_family() == "windows"
@@ -6,7 +6,6 @@ local is_windows = ya.target_family() == "windows"
 -- Define default flags and strings
 local is_password, is_encrypted, is_level, is_silent_success = false, false, false, false
 local default_extension = "zip"
-local clean_tar_args = { "--no-mac-metadata", "--no-xattrs" }
 
 -- Allow dots when matching file extension arguments
 local function extension_pattern(ext)
@@ -80,7 +79,7 @@ local selected_or_hovered = ya.sync(function()
 	local path_fnames = {}
 
 	for _, u in pairs(tab.selected) do
-		paths[#paths + 1] = tostring(u.parent)
+		paths[#paths + 1] = tostring(u.url.parent)
 		names[#names + 1] = tostring(u.name)
 	end
 
@@ -190,7 +189,7 @@ local archive_commands = {
 	["%.tar%.gz$"] = {
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-",
 			level_min = 1,
 			level_max = 9,
@@ -198,7 +197,7 @@ local archive_commands = {
 		},
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-mx=",
 			level_min = 1,
 			level_max = 9,
@@ -207,7 +206,7 @@ local archive_commands = {
 		},
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-czf" },
+			args = { "-czf" },
 			level_arg = { "--option", "gzip:compression-level=" },
 			level_min = 1,
 			level_max = 9,
@@ -216,7 +215,7 @@ local archive_commands = {
 	["%.tar%.xz$"] = {
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-",
 			level_min = 1,
 			level_max = 9,
@@ -224,7 +223,7 @@ local archive_commands = {
 		},
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-mx=",
 			level_min = 1,
 			level_max = 9,
@@ -233,7 +232,7 @@ local archive_commands = {
 		},
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-cJf" },
+			args = { "-cJf" },
 			level_arg = { "--option", "xz:compression-level=" },
 			level_min = 1,
 			level_max = 9,
@@ -242,7 +241,7 @@ local archive_commands = {
 	["%.tar%.bz2$"] = {
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-",
 			level_min = 1,
 			level_max = 9,
@@ -250,7 +249,7 @@ local archive_commands = {
 		},
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-mx=",
 			level_min = 1,
 			level_max = 9,
@@ -259,7 +258,7 @@ local archive_commands = {
 		},
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-cjf" },
+			args = { "-cjf" },
 			level_arg = { "--option", "bzip2:compression-level=" },
 			level_min = 1,
 			level_max = 9,
@@ -268,7 +267,7 @@ local archive_commands = {
 	["%.tar%.zst$"] = {
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-",
 			level_min = 1,
 			level_max = 22,
@@ -279,7 +278,7 @@ local archive_commands = {
 	["%.tar%.lz4$"] = {
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-",
 			level_min = 1,
 			level_max = 12,
@@ -289,7 +288,7 @@ local archive_commands = {
 	["%.tar%.lha$"] = {
 		{
 			command = { "tar", "bsdtar" },
-			args = { clean_tar_args[1], clean_tar_args[2], "-rpf" },
+			args = { "rpf" },
 			level_arg = "-o",
 			level_min = 5,
 			level_max = 7,
@@ -298,7 +297,7 @@ local archive_commands = {
 		},
 	},
 	["%.tar$"] = {
-		{ command = { "tar", "bsdtar" }, args = { clean_tar_args[1], clean_tar_args[2], "-rpf" } },
+		{ command = { "tar", "bsdtar" }, args = { "rpf" } },
 	},
 }
 
@@ -461,7 +460,7 @@ return {
 		-- Create a temporary directory for intermediate files
 		local temp_dir_name = ".tmp_compress"
 		local temp_dir = combine_url(output_dir, temp_dir_name)
-		temp_dir = tostring(fs.unique_name(Url(temp_dir)))
+		temp_dir = tostring(fs.unique("dir", Url(temp_dir)))
 
 		-- Attempt to create the temporary directory
 		local temp_dir_status, temp_dir_err = fs.create("dir_all", Url(temp_dir))
@@ -533,7 +532,7 @@ return {
 		-- Move the final file from the temporary directory to the output directory
 		local final_output_url = combine_url(output_dir, original_name)
 		local temp_url_processed = combine_url(temp_dir, original_name)
-		final_output_url = tostring(fs.unique_name(Url(final_output_url)))
+		final_output_url = tostring(fs.unique("file", Url(final_output_url)))
 		local from, to = Url(temp_url_processed), Url(final_output_url)
 		local move_status, move_err = fs.rename(from, to)
 		if not move_status then
