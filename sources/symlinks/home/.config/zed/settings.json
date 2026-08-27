@@ -4,6 +4,7 @@
   "cli_default_open_behavior": "new_window",
 
   // ==================== UI & Appearance ====================
+  "fullscreen_mode": "simple",
   "outline_panel": {
     "dock": "right",
   },
