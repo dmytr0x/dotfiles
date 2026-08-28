@@ -1,7 +1,7 @@
 # --- Settings
 
-# Performace: Everything in your shell configuration before atuin init therefore runs twice during startup.
-#             Keep the initialization near the top
+# Performace: Keep Atuin near the top: its PTY proxy can restart shell initialization,
+#             causing configuration loaded before it to run twice.
 source ~/.config/zsh/tools/atuin.sh
 #
 source ~/.config/zsh/options.sh

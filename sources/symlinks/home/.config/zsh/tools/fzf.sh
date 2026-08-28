@@ -144,5 +144,5 @@ _fzf_comprun() {
   esac
 }
 
-# Set up fzf key bindings and fuzzy completion
-eval "$(fzf --zsh)"
+# Set up fzf file/directory bindings and fuzzy completion without its history binding.
+FZF_CTRL_R_COMMAND= eval "$(fzf --zsh)"
