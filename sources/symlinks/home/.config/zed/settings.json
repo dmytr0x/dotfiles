@@ -23,8 +23,10 @@
     "show": "never",
   },
   // Markdown
-  "markdown_preview_font_family": "FiraCode Nerd Font",
-  "markdown_preview_theme": "Dmytr0x Dark Modern",
+  "markdown_preview": {
+    "font_family": "FiraCode Nerd Font",
+    "theme": "Dmytr0x Dark Modern",
+  },
 
   // ==================== Fonts ====================
   "ui_font_family": ".ZedMono",
@@ -176,6 +178,9 @@
   "git": {
     "worktree_directory": "../.worktrees",
     "hunk_style": "unstaged_hollow",
+    "blame": {
+      "show_avatar": false,
+    },
     "inline_blame": {
       "enabled": true,
       "location": "inline",
