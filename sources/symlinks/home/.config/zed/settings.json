@@ -234,6 +234,8 @@
     "env": {
       "EDITOR": "zed --wait --existing",
       "VISUAL": "zed --wait --existing",
+      // To prevent recurrence when Zed starts within the Herdr
+      "HERDR_ENV": "0",
     },
     //
     // "path_hyperlink_regexes": [...]
