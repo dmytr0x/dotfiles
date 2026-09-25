@@ -1,7 +1,7 @@
 [
   // details: https://zed.dev/docs/tasks
   {
-    "label": "zed: show available env variables",
+    "label": "zed: show environment variables",
     "command": "env | grep ZED",
   },
   {
@@ -20,23 +20,6 @@
     "hide": "on_success",
     "use_new_terminal": true,
     "allow_concurrent_runs": true
-  },
-  {
-    "label": "pi: start with selection",
-    "command": "/bin/zsh",
-    "args": [
-      "-c",
-      "_zed_run_pi_with_context"
-    ],
-    "env": {
-      "ZED_FILENAME": "${ZED_FILENAME}",
-      "ZED_RELATIVE_FILE": "${ZED_RELATIVE_FILE}",
-      "ZED_ROW": "${ZED_ROW}",
-      "ZED_SELECTED_TEXT": "${ZED_SELECTED_TEXT}"
-    },
-    "hide": "on_success",
-    "allow_concurrent_runs": true,
-    "use_new_terminal": true,
   },
   // third-party applications
   {
@@ -71,6 +54,7 @@
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
   },
+  // zed: use task tags
   {
     "label": "Revert $ZED_GIT_SHA_SHORT (no auto-commit)",
     "command": "git",
@@ -79,6 +63,43 @@
     "hide": "on_success",
     "allow_concurrent_runs": true,
     "use_new_terminal": true,
+  },
+  // herdr: send to herdr
+  //
+  // INFO: To guarantee the correct order of substitution and bash execution,
+  //       the command must be a single line!
+  {
+    "label": "automation: send to claude",
+    "command": "send-to-herdr.py --session=\"$(basename \"$ZED_MAIN_GIT_WORKTREE\")\" --worktree=\"$ZED_WORKTREE_ROOT\" --tab-label=claude-\"$ZED_FILENAME\" --pane-label=main --harness=\"$HARNESS\" --message=\"$MESSAGE\"",
+    "env": {
+      "HARNESS": "claude --model=opus --effort medium --permission-mode=auto",
+      "MESSAGE": "File: ${ZED_RELATIVE_FILE}\nLine: ${ZED_ROW}\nContext:\n===\n${ZED_SELECTED_TEXT}\n===\n\n"
+    },
+    "hide": "on_success",
+    "allow_concurrent_runs": false,
+    "use_new_terminal": false
+  },
+  {
+    "label": "automation: send to agent",
+    "command": "send-to-herdr.py --session=\"$(basename \"$ZED_MAIN_GIT_WORKTREE\")\" --worktree=\"$ZED_WORKTREE_ROOT\" --tab-label=cursor-\"$ZED_FILENAME\" --pane-label=main --harness=\"$HARNESS\" --message=\"$MESSAGE\"",
+    "env": {
+      "HARNESS": "cursor --model=cursor-grok-4.6-high --yolo --trust",
+      "MESSAGE": "File: ${ZED_RELATIVE_FILE}\nLine: ${ZED_ROW}\nContext:\n===\n${ZED_SELECTED_TEXT}\n===\n\n"
+    },
+    "hide": "on_success",
+    "allow_concurrent_runs": false,
+    "use_new_terminal": false
+  },
+  {
+    "label": "automation: send to pi",
+    "command": "send-to-herdr.py --session=\"$(basename \"$ZED_MAIN_GIT_WORKTREE\")\" --worktree=\"$ZED_WORKTREE_ROOT\" --tab-label=pi-\"$ZED_FILENAME\" --pane-label=main --harness=\"$HARNESS\" --message=\"$MESSAGE\"",
+    "env": {
+      "HARNESS": "pi --model openai-codex/gpt-6-luna --thinking xhigh --approve",
+      "MESSAGE": "File: ${ZED_RELATIVE_FILE}\nLine: ${ZED_ROW}\nContext:\n===\n${ZED_SELECTED_TEXT}\n===\n\n"
+    },
+    "hide": "on_success",
+    "allow_concurrent_runs": false,
+    "use_new_terminal": false
   },
   //
 ]

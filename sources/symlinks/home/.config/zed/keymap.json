@@ -23,8 +23,10 @@
   {
     "context": "Editor && mode == full",
     "bindings": {
-      // ai
-      "cmd-enter": ["task::Spawn", { "task_name": "pi: start with selection", "reveal_target": "dock" }],
+      // harnesses
+      "shift shift a": ["task::Spawn", { "task_name": "automation: send to agent", }],
+      "shift shift p": ["task::Spawn", { "task_name": "automation: send to pi" }],
+      "shift shift c": ["task::Spawn", { "task_name": "automation: send to claude" }],
       //
       "Up": ["action::Sequence", ["editor::MoveUp", "editor::ScrollCursorCenter"]],
       "Down": ["action::Sequence", ["editor::MoveDown", "editor::ScrollCursorCenter"]],
@@ -162,6 +164,17 @@
     "unbind": {
       // overwritten by `workspace::ToggleEditorZoom`
       "shift-escape": "workspace::ToggleZoom"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "shift-enter": [
+        "terminal::SendText",
+        "\u001b\r"
+      ],
+      // Same tab/panel peeker as in Editor; Terminal otherwise swallows this chord.
+      "alt-cmd-p": "tab_switcher::OpenInActivePane"
     }
   }
 ]

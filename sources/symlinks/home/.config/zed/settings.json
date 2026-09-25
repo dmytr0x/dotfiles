@@ -227,6 +227,9 @@
     "cursor_shape": "bar",
     "copy_on_select": true,
     "blinking": "on",
+    // Send Option as Meta (ESC+) so TUI shortcuts like Claude's Alt+P
+    // model picker work, instead of inserting macOS special characters (π).
+    "option_as_meta": true,
     // Use Zed as the default editor for the built-in terminal
     "env": {
       "EDITOR": "zed --wait --existing",
@@ -288,8 +291,12 @@
       "settings": {
         "theme": "Dmytr0x Dark Modern",
         "icon_theme": "Catppuccin Mocha",
-        "buffer_font_size": 10,
-        "ui_font_size": 12,
+        "buffer_font_size": 11,
+        "ui_font_size": 11,
+        "git_commit_buffer_font_size": 11,
+        "terminal": {
+          "font_size": 11,
+        },
       },
     },
     "Zen": {
