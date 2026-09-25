@@ -33,7 +33,7 @@
   "ui_font_size": 14.0,
   "buffer_font_family": "FiraCode Nerd Font",
   "buffer_font_size": 12.5,
-  "buffer_font_weight": 300,
+  "buffer_font_weight": 400,
   "buffer_line_height": { "custom": 1.4 },
   "buffer_font_features": {
     "calt": false,
@@ -222,7 +222,7 @@
   "terminal": {
     "starts_open": false,
     "font_family": "FiraCode Nerd Font",
-    "font_weight": 300,
+    "font_weight": 400,
     "font_size": 12,
     "cursor_shape": "bar",
     "copy_on_select": true,
