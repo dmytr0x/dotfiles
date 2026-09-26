@@ -171,7 +171,7 @@
     "bindings": {
       "shift-enter": [
         "terminal::SendText",
-        "\u001b\r"
+        "\u001b[13;2u"
       ],
       // Same tab/panel peeker as in Editor; Terminal otherwise swallows this chord.
       "alt-cmd-p": "tab_switcher::OpenInActivePane"

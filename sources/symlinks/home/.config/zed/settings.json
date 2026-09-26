@@ -6,7 +6,7 @@
   // ==================== UI & Appearance ====================
   "fullscreen_mode": "simple",
   "outline_panel": {
-    "dock": "right",
+    "dock": "left",
   },
   "theme": {
     "mode": "system",
