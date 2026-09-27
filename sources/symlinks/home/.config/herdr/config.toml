@@ -31,8 +31,10 @@ rows = [
   ["state_icon", "workspace"],
   ["branch", "git_status"],
   [
-    { token = "$diff_added", fg = "#a6e3a1" },
-    { token = "$diff_deleted", fg = "#f38ba8" },
+    { token = "$git_modified", fg = "#f9e2af" },
+    { token = "$git_staged", fg = "#a6e3a1" },
+    { token = "$git_untracked", fg = "#89b4fa" },
+    { token = "$git_conflicts", fg = "#f38ba8" },
   ],
 ]
 

@@ -14,6 +14,7 @@ target_directories = [
   "home/.config/ghostty",
   "home/.config/helix",
   "home/.config/herdr",
+  "home/.config/herdr/plugins/config/dmytr0x-herdr-tokens",
   "home/.config/hunk",
   "home/.config/lazygit",
   "home/.config/leaderkey",
