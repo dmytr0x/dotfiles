@@ -9,12 +9,12 @@
     "dock": "left",
   },
   "theme": {
-    "mode": "system",
+    "mode": "light",
     "light": "Dmytr0x Light Modern",
     "dark": "Dmytr0x Dark Modern",
   },
   "icon_theme": {
-    "mode": "system",
+    "mode": "light",
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha",
   },
@@ -25,7 +25,7 @@
   // Markdown
   "markdown_preview": {
     "font_family": "FiraCode Nerd Font",
-    "theme": "Dmytr0x Dark Modern",
+    "font_size": 12.5,
   },
 
   // ==================== Fonts ====================
@@ -299,15 +299,24 @@
         "terminal": {
           "font_size": 11,
         },
+        "markdown_preview": {
+          "font_size": 11,
+        },
       },
     },
     "Zen": {
       "settings": {
         "theme": "Dmytr0x Dark Modern",
         "icon_theme": "Catppuccin Mocha",
-        "buffer_font_size": 16,
-        "agent_buffer_font_size": 15.0,
-        "ui_font_size": 15.0,
+        "buffer_font_size": 15,
+        "ui_font_size": 15,
+        "git_commit_buffer_font_size": 15,
+        "terminal": {
+          "font_size": 15,
+        },
+        "markdown_preview": {
+          "font_size": 15,
+        },
         "tab_bar": {
           "show": false,
         },
@@ -334,6 +343,14 @@
         "icon_theme": "Catppuccin Mocha",
         "buffer_font_size": 20,
         "ui_font_size": 18,
+        "git_commit_buffer_font_size": 18,
+        "terminal": {
+          "font_size": 18,
+        },
+        "markdown_preview": {
+          "font_size": 18,
+        },
+
       },
     },
   },
