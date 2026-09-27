@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "🚀 Installing herdr ..."
-brew "herdr"
+brew install herdr
 
 echo "🚀 Installing herdr plugins ..."
 # post create
