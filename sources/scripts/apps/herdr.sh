@@ -2,6 +2,8 @@
 set -euo pipefail
 
 echo "🚀 Installing herdr ..."
+
+# Agent multiplexer that lives in your terminal
 brew install herdr
 
 echo "🚀 Installing herdr plugins ..."
