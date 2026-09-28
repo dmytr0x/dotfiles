@@ -51,7 +51,7 @@ auto-format = true
 name = "python"
 # Organize imports before formatting; resolve project config using the buffer path.
 formatter = { command = "zsh", args = ["-o", "pipefail", "-c", "ruff check --silent --select I --fix-only --stdin-filename \"$1\" - | ruff format --stdin-filename \"$1\" -", "helix-ruff", "%{buffer_name}"] }
-auto-format = true
+auto-format = false
 roots = ["pyproject.toml", "ty.toml", "setup.py", "poetry.lock", ".git"]
 language-servers = ["ty", "ruff"]
 
