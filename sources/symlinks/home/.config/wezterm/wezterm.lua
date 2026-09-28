@@ -376,7 +376,7 @@ wezterm.on("open-uri", function(window, pane, uri)
   local url = wezterm.url.parse(uri)
   if url.scheme == "file" then
     -- Open the file in a new window using the configured editor.
-    local editor_args = wezterm.shell_split(os.getenv("EDITOR") or "vi")
+    local editor_args = wezterm.shell_split(os.getenv("EDITOR") or "hx")
     table.insert(editor_args, url.file_path)
     local action = act({ SpawnCommandInNewWindow = { args = editor_args } })
     window:perform_action(action, pane)

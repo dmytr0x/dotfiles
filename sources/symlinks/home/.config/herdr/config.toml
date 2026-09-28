@@ -75,17 +75,6 @@ width = "90%"
 height = "90%"
 
 [[keys.command]]
-description = "Open Hunk diff"
-key = "prefix+d"
-type = "shell"
-command = '''
-layout="$("$HERDR_BIN_PATH" pane layout --pane "$HERDR_ACTIVE_PANE_ID")" &&
-direction="$(printf '%s\n' "$layout" | jq -er --arg pane "$HERDR_ACTIVE_PANE_ID" '.result.layout.panes[] | select(.pane_id == $pane) | if .rect.width >= (.rect.height * 2) then "right" else "down" end')" &&
-pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$direction" --focus | jq -er '.result.pane.pane_id')" &&
-"$HERDR_BIN_PATH" pane run "$pane_id" "exec hunk diff --agent-notes --watch HEAD"
-'''
-
-[[keys.command]]
 description = "Open editor"
 key = "prefix+e"
 type = "shell"
@@ -95,6 +84,12 @@ direction="$(printf '%s\n' "$layout" | jq -er --arg pane "$HERDR_ACTIVE_PANE_ID"
 pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$direction" --focus | jq -er '.result.pane.pane_id')" &&
 "$HERDR_BIN_PATH" pane run "$pane_id" 'exec "${EDITOR}"'
 '''
+
+[[keys.command]]
+description = "Open task picker"
+key = "prefix+space"
+type = "plugin_action"
+command = "dmytr0x.herdr-task-picker.open"
 
 [[keys.command]]
 description = "Pane to tab"
@@ -109,9 +104,3 @@ command = '''
   --workspace "$HERDR_ACTIVE_WORKSPACE_ID" \
   --focus >/dev/null
 '''
-
-[[keys.command]]
-key = "prefix+space"
-type = "plugin_action"
-command = "dmytr0x.herdr-task-picker.open"
-description = "Picker"

@@ -41,6 +41,8 @@ gui:
   border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
   portraitMode: "always" # one of 'auto' | 'never' | 'always'
 disableStartupPopups: true
+# Return to LazyGit immediately after terminal commands finish.
+promptToReturnFromSubprocess: false
 git:
   parseEmoji: true
   commit:
@@ -50,10 +52,10 @@ git:
     - command: delta --paging=never
 os:
   copyToClipboardCmd: ""
-  editPreset: "zed"
   open: ""
 customCommands:
   - key: 'o'
-    command: "zed {{.SelectedFile.Name}}"
+    command: "hx -- {{.SelectedFile.Name | quote}}"
     context: 'files'
+    output: terminal
     description: 'Open file in Editor'

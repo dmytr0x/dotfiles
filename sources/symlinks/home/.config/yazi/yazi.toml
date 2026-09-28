@@ -9,8 +9,8 @@ show_hidden = true
 
 [opener]
 edit = [
-  { run = '${EDITOR:-vi} %s', desc = "Editor", block = true, for = "unix" },
-  { run = 'zed --new %s', desc = "Open in Zed", for = "unix" },
+  { run = 'hx -- %s', desc = "Open in Helix", block = true, for = "unix" },
+  { run = 'zed -- %s', desc = "Open in Zed", for = "unix" },
 ]
 open = [{ run = "open %s", desc = "Open", for = "macos" }]
 reveal = [
