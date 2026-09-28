@@ -86,6 +86,16 @@ pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$di
 '''
 
 [[keys.command]]
+description = "Open LazyGit status"
+key = "prefix+shift+l"
+type = "shell"
+command = '''
+worktree="$(git -C "${HERDR_ACTIVE_PANE_CWD:-$PWD}" rev-parse --show-toplevel)" &&
+pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction right --cwd "$worktree" --focus | jq -er '.result.pane.pane_id')" &&
+"$HERDR_BIN_PATH" pane run "$pane_id" 'exec lazygit status --screen-mode half'
+'''
+
+[[keys.command]]
 description = "Open task picker"
 key = "prefix+space"
 type = "plugin_action"

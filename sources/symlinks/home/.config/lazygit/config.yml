@@ -1,6 +1,8 @@
 gui:
   sidePanelWidth: 0.3
   expandFocusedSidePanel: true
+  # In half-screen mode, stack the side panel above the main view.
+  enlargedSideViewLocation: "top"
   nerdFontsVersion: "3"
   # Custom color scheme inspired by vscode dark modern, with a Zed-like vibe (dark, minimal, with cool accents)
   theme:
