@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+"""Stage one Helix selection as an unsubmitted draft in this tab's agent."""
+
+import json
+import os
+import socket
+import subprocess
+import sys
+from pathlib import Path
+
+PREFIX = "helix-herdr-draft-v1|"
+
+
+class SendError(Exception):
+    """An error safe to show in Helix (never contains the selection)."""
+
+
+def herdr(*args: str) -> subprocess.CompletedProcess[bytes]:
+    try:
+        return subprocess.run(["herdr", *args], capture_output=True, check=False)
+    except (OSError, ValueError) as exc:
+        raise SendError("could not run herdr") from exc
+
+
+def stage_draft(pane: str, text: str) -> None:
+    # pane.send_input with no keys uses Herdr's live bracketed-paste mode, but
+    # does not append Enter (unlike agent.prompt and pane.run).
+    socket_path = os.environ.get("HERDR_SOCKET_PATH", "")
+    if not socket_path.strip():
+        raise SendError("missing Herdr socket context")
+    request = (
+        json.dumps(
+            {
+                "id": "helix:stage-draft",
+                "method": "pane.send_input",
+                "params": {"pane_id": pane, "text": text, "keys": []},
+            },
+            ensure_ascii=False,
+        ).encode("utf-8")
+        + b"\n"
+    )
+    try:
+        with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as connection:
+            connection.settimeout(5)
+            connection.connect(socket_path)
+            connection.sendall(request)
+            response = bytearray()
+            while b"\n" not in response and len(response) < 1_000_000:
+                chunk = connection.recv(65536)
+                if not chunk:
+                    break
+                response.extend(chunk)
+        data = json.loads(response.split(b"\n", 1)[0])
+        if (
+            data.get("id") != "helix:stage-draft"
+            or data.get("result", {}).get("type") != "ok"
+        ):
+            raise ValueError
+    except (OSError, ValueError, TypeError, AttributeError) as exc:
+        # A lost acknowledgement does not prove input was not delivered.
+        raise SendError(
+            "draft staging failed or is uncertain; do not retry blindly"
+        ) from exc
+
+
+def relative_file(file: str) -> str:
+    root = Path.cwd()
+    try:
+        git = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True,
+            check=False,
+            text=True,
+        )
+        if git.returncode == 0:
+            root = Path(git.stdout.strip())
+    except OSError:
+        pass
+    try:
+        return str(Path(file).resolve().relative_to(root.resolve()))
+    except ValueError:
+        return file
+
+
+def submit(file: str, line: str, focus: bool) -> None:
+    if os.environ.get("HERDR_ENV") != "1":
+        raise SendError("not inside a Herdr pane")
+    workspace = os.environ.get("HERDR_WORKSPACE_ID", "")
+    tab = os.environ.get("HERDR_TAB_ID", "")
+    if not workspace.strip() or not tab.strip():
+        raise SendError("missing Herdr workspace or tab context")
+
+    try:
+        selection = sys.stdin.buffer.read().decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise SendError("selection is not valid UTF-8") from exc
+    if not selection.strip():
+        raise SendError("selection is empty")
+    if "\x00" in selection or "\x1b" in selection:
+        raise SendError("selection contains terminal control bytes")
+    if (
+        file == "[scratch]"
+        or not file.strip()
+        or any(ord(c) < 32 or ord(c) == 127 for c in file)
+    ):
+        raise SendError("selection requires a named file with no control characters")
+    if not line.isdecimal() or int(line) < 1:
+        raise SendError("invalid selection start line")
+    text = f"File: {relative_file(file)}\nLine: {line}\nContext:\n===\n{selection}\n===\n\n"
+
+    listed = herdr("agent", "list")
+    if listed.returncode != 0:
+        raise SendError(f"agent list failed (exit {listed.returncode})")
+    try:
+        agents = json.loads(listed.stdout)["result"]["agents"]
+        if not isinstance(agents, list):
+            raise TypeError
+        matches = []
+        for agent in agents:
+            if not isinstance(agent, dict) or any(
+                not isinstance(agent.get(key), str) or not agent[key].strip()
+                for key in ("workspace_id", "tab_id", "pane_id")
+            ):
+                raise ValueError
+            if agent["workspace_id"] == workspace and agent["tab_id"] == tab:
+                matches.append(agent)
+    except (ValueError, TypeError, KeyError) as exc:
+        raise SendError("malformed agent list response") from exc
+
+    if len(matches) != 1:
+        raise SendError(f"expected one agent in this tab; found {len(matches)}")
+    if matches[0].get("agent_status") not in ("idle", "done"):
+        raise SendError("agent is not ready for a draft; wait until idle or done")
+    pane = matches[0]["pane_id"]
+    stage_draft(pane, text)
+    if focus:
+        focused = herdr("agent", "focus", pane)
+        if focused.returncode != 0:
+            raise SendError(
+                f"draft staged, but focus failed (exit {focused.returncode}); do not resend"
+            )
+
+
+def show_error(message: str) -> None:
+    # Helix 25.07.1 :pipe-to silently discards command stderr and exit status.
+    # A Herdr toast is visible over the editor; use a macOS alert if the CLI is down.
+    if os.environ.get("HERDR_ENV") == "1":
+        try:
+            notice = herdr(
+                "notification", "show", "Helix → Herdr failed", "--body", message
+            )
+            if notice.returncode == 0:
+                return
+        except SendError:
+            pass
+    try:
+        subprocess.run(
+            [
+                "osascript",
+                "-e",
+                'display alert "Helix → Herdr failed" message "Check whether the prompt was submitted before retrying." as critical',
+            ],
+            capture_output=True,
+            check=False,
+        )
+    except OSError:
+        pass  # Last resort: stderr (e.g. non-macOS without Herdr notifications).
+
+
+def main() -> int:
+    if len(sys.argv) != 4 or sys.argv[1:3] != ["--shell", "-c"]:
+        print("usage: helix-send-to-herdr --shell -c COMMAND", file=sys.stderr)
+        return 2
+    command = sys.argv[3]
+    if not command.startswith(PREFIX):
+        # Preserve the original Helix shell for all unrelated :sh/:pipe commands.
+        try:
+            os.execvp("zsh", ["zsh", "-c", command])
+        except OSError:
+            print("helix-send-to-herdr: could not run zsh", file=sys.stderr)
+            return 1
+    try:
+        file, line, mode = command[len(PREFIX) :].rsplit("|", 2)
+        if mode not in ("stay", "focus"):
+            raise ValueError
+        submit(file, line, mode == "focus")
+    except ValueError:
+        print("helix-send-to-herdr: malformed Helix metadata", file=sys.stderr)
+        show_error("malformed Helix metadata")
+        return 1
+    except SendError as exc:
+        message = str(exc)
+        print(f"helix-send-to-herdr: {message}", file=sys.stderr)
+        show_error(message)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

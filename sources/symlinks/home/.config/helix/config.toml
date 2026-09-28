@@ -2,7 +2,8 @@ theme = "dmytr0x"
 
 [editor]
 mouse = true
-shell = ["zsh", "-c"]
+# Keep zsh for ordinary shell commands; pass Helix selection metadata without shell interpolation.
+shell = ["helix-send-to-herdr", "--shell", "-c"]
 line-number = "relative"
 bufferline = "always"
 cursorline = true
@@ -104,6 +105,10 @@ s = ":toggle-option soft-wrap.enable"
 f = ":toggle-option auto-format"
 # waiting for new version!
 # x = ":toggle whitespace.render all none"
+
+[keys.select.space.space]
+h = ":pipe-to \"helix-herdr-draft-v1|%{buffer_name}|%{selection_line_start}|focus\""
+H = ":pipe-to \"helix-herdr-draft-v1|%{buffer_name}|%{selection_line_start}|stay\""
 
 [keys.insert]
 # jk to enter Normal mode
