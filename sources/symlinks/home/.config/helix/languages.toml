@@ -49,8 +49,8 @@ auto-format = true
 # Python
 [[language]]
 name = "python"
-# format the code + organize imports
-formatter = { command = "sh", args = ["-c", "ruff format - | ruff check --select I --fix -"] }
+# Organize imports before formatting; resolve project config using the buffer path.
+formatter = { command = "zsh", args = ["-o", "pipefail", "-c", "ruff check --silent --select I --fix-only --stdin-filename \"$1\" - | ruff format --stdin-filename \"$1\" -", "helix-ruff", "%{buffer_name}"] }
 auto-format = true
 roots = ["pyproject.toml", "ty.toml", "setup.py", "poetry.lock", ".git"]
 language-servers = ["ty", "ruff"]
@@ -59,21 +59,21 @@ language-servers = ["ty", "ruff"]
 command = "ty"
 args = ["server"]
 
-# Helix 25.07 serializes `language-server.ty.config` verbatim as the LSP
-# `initializationOptions` object. Ty expects `diagnosticMode`, `inlayHints`,
-# and the other settings at that object's top level. Adding `.ty` after
-# `.config` would instead send an unrecognized `{ "ty": { ... } }` wrapper.
-# Helix: https://docs.helix-editor.com/languages.html#language-server-configuration
-# Ty: https://docs.astral.sh/ty/reference/editor-settings/
-[language-server.ty.config]
+# Static LSP initialization option; allow ty to discover uv projects and scripts.
+# Only open trusted workspaces with uv integration enabled.
+[language-server.ty.config.experimental]
+useUv = "on"
+
+# ty requests ordinary editor settings via workspace/configuration, section "ty".
+[language-server.ty.config.ty]
 diagnosticMode = "openFilesOnly"
 showSyntaxErrors = true
 
-[language-server.ty.config.inlayHints]
+[language-server.ty.config.ty.inlayHints]
 variableTypes = true
 callArgumentNames = true
 
-[language-server.ty.config.completions]
+[language-server.ty.config.ty.completions]
 autoImport = true
 completeFunctionParentheses = true
 
@@ -81,15 +81,9 @@ completeFunctionParentheses = true
 command = "ruff"
 args = ["server"]
 
-# TODO: check how it works
 [language-server.ruff.config.settings]
 configurationPreference = "filesystemFirst"
-
-[language-server.ruff.config.settings.format]
-preview = false
-
-[language-server.ruff.config.settings.lint]
-preview = false
+showSyntaxErrors = false
 
 # Rust
 [[language]]
