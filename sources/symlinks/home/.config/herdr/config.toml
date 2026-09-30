@@ -62,6 +62,22 @@ navigate_workspace_down = "j"
 [worktrees]
 directory = "~/.worktrees"
 
+# ==== Keys ====
+
+## Swap with a neighbor (built-in)
+# ┌────────────┬────────────────┐
+# │ Action     │ Key            │
+# ├────────────┼────────────────┤
+# │ Swap left  │ prefix+shift+h │
+# ├────────────┼────────────────┤
+# │ Swap down  │ prefix+shift+j │
+# ├────────────┼────────────────┤
+# │ Swap up    │ prefix+shift+k │
+# ├────────────┼────────────────┤
+# │ Swap right │ prefix+shift+l │
+# └────────────┴────────────────┘
+
+
 # Custom commands use the same binding syntax.
 # type = "shell" runs detached in the background.
 # type = "pane" opens a temporary pane and closes it when the command exits.
@@ -76,7 +92,7 @@ height = "90%"
 
 [[keys.command]]
 description = "Open editor"
-key = "prefix+e"
+key = "prefix+shift+e"
 type = "shell"
 command = '''
 worktree="$(git -C "${HERDR_ACTIVE_PANE_CWD:-$PWD}" rev-parse --show-toplevel)" &&
@@ -88,7 +104,7 @@ pane_id="$("$HERDR_BIN_PATH" pane split "$HERDR_ACTIVE_PANE_ID" --direction "$di
 
 [[keys.command]]
 description = "Open LazyGit status"
-key = "prefix+shift+l"
+key = "prefix+shift+s"
 type = "shell"
 command = '''
 worktree="$(git -C "${HERDR_ACTIVE_PANE_CWD:-$PWD}" rev-parse --show-toplevel)" &&
@@ -114,7 +130,7 @@ command = "dmytr0x.herdr-task-picker.open"
 
 [[keys.command]]
 description = "Pane to tab"
-key = "prefix+m"
+key = "prefix+shift+m"
 type = "shell"
 command = '''
 "$HERDR_BIN_PATH" pane zoom "$HERDR_ACTIVE_PANE_ID" \

@@ -20,4 +20,13 @@
 # unset setopt_if_exists
 
 # Make the `/` character not be treated as part of a "word" for `opt-backspace`
-WORDCHARS=${WORDCHARS//\/}
+WORDCHARS=${WORDCHARS//\//}
+
+#
+# These three lines enable Ctrl-X Ctrl-E in zsh: load the built-in “edit this line in $EDITOR” function,
+# register it as a line-editor widget, and bind that key sequence to it.
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+#

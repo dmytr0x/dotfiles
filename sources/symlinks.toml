@@ -19,6 +19,7 @@ target_directories = [
   "home/.config/lazygit",
   "home/.config/leaderkey",
   "home/.config/mise",
+  "home/.config/nvim",
   "home/.config/opencode",
   "home/.config/ripgrep",
   "home/.config/starship",

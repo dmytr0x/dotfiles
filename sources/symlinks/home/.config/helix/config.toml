@@ -93,6 +93,14 @@ q = ":buffer-close"
 # l = """:pipe python3 -c "print('Hello')""""
 # open file picker at current buffer's directory
 F = "file_picker_in_current_buffer_directory"
+#
+# Default comment/uncomment (space.c is now a copy-path submenu):
+# c = "toggle_comments"
+# C = "toggle_block_comments"
+# "A-c" = "toggle_line_comments"
+[keys.normal.space.c]
+c = ':sh printf "%%s" "%{buffer_name}" | pbcopy'
+C = ':sh printf "%%s" "$(realpath "%{buffer_name}")" | pbcopy'
 
 [keys.normal.space.space]
 r = ":reload-all"
