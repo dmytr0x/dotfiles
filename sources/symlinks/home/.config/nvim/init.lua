@@ -6,26 +6,26 @@ vim.g.loaded_python3_provider = 0
 local map = vim.keymap.set
 local group = vim.api.nvim_create_augroup('config', {})
 
--- Windows: open new splits to the right and below.
+-- Windows
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Editor: line numbers, stable sign column, completion menu, folds open by default.
+-- Editor
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = 'yes'
 vim.o.completeopt = 'menuone,noselect,popup,fuzzy'
 vim.o.foldlevelstart = 99
+vim.o.scrolloff = 5
 
--- Diagnostics: inline messages, most severe first.
+-- Diagnostics
 vim.diagnostic.config({
   virtual_text = true,
   severity_sort = true,
 })
 
--- LSP: servers and per-buffer features enabled on attach.
+-- LSP
 vim.lsp.enable({ 'ty', 'ruff' })
--- CursorHold delay for document highlights.
 vim.o.updatetime = 250
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Formatting: :Format, optional format-on-save, and its toggle.
+-- Formatting
 vim.g.autoformat = false
 
 vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format() end, {})
@@ -76,8 +76,9 @@ map('n', '<leader><leader>f', function()
   vim.notify('autoformat: ' .. tostring(vim.g.autoformat))
 end, { desc = 'Toggle auto-format' })
 
--- LSP keymaps: <C-]> jumps to definition via the LSP tagfunc.
+-- LSP keymaps
 map('n', 'gD', vim.lsp.buf.declaration)
+map('n', 'gd', vim.lsp.buf.definition, { desc = 'Definition' })
 map('n', 'gL', '<Cmd>vertical wincmd ]<CR>', { desc = 'Definition in vsplit' })
 map('n', 'gJ', '<C-w>]', { desc = 'Definition in split' })
 map('n', 'grc', vim.lsp.buf.incoming_calls, { desc = 'Incoming calls' })
@@ -91,6 +92,32 @@ map('n', '<leader>S', vim.lsp.buf.workspace_symbol, { desc = 'Workspace symbols'
 map('n', '<leader><leader>a', function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
+
+-- Plugins
+vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
+local snacks = require('snacks')
+snacks.setup({
+  picker = {
+    layout = {
+      preset = 'vertical',
+      layout = { width = 0.9, height = 0.9 },
+    },
+  },
+  lazygit = {},
+})
+local picker = snacks.picker
+
+map('n', '<leader>ff', picker.files, { desc = 'Files' })
+map('n', '<leader>fg', picker.grep, { desc = 'Live grep' })
+map({ 'n', 'x' }, '<leader>fw', picker.grep_word, { desc = 'Grep word under cursor' })
+map('n', '<leader>fb', picker.buffers, { desc = 'Buffers' })
+map('n', '<leader>fo', picker.recent, { desc = 'Recent files' })
+map('n', '<leader>fs', picker.lsp_symbols, { desc = 'Document symbols' })
+map('n', '<leader>fd', picker.diagnostics, { desc = 'Diagnostics' })
+map('n', '<leader>fh', picker.help, { desc = 'Help tags' })
+map('n', '<leader>fk', picker.keymaps, { desc = 'Keymaps' })
+map('n', '<leader>fr', picker.resume, { desc = 'Resume last picker' })
+map('n', '<leader>gg', snacks.lazygit.open, { desc = 'Lazygit' })
 
 -- Appearance: last, so a colorscheme error cannot abort the rest of the config.
 vim.cmd.colorscheme('dmytr0x-dark-modern')

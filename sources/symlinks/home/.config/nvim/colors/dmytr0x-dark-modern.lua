@@ -29,6 +29,7 @@ local c = {
   modified = '#0078D4',
   link = '#4DAAFC',
   match = '#2AAAFF',
+  accent = '#70B8FF', -- Zed's accent text, the theme leaves text.accent unset
 
   comment = '#3D6832',
   comment_doc = '#6A9955',
@@ -260,6 +261,25 @@ local groups = {
   DiagnosticUnderlineHint = { undercurl = true, sp = c.hint },
   DiagnosticUnnecessary = { fg = c.fg_muted },
   DiagnosticDeprecated = { strikethrough = true },
+
+  -- Snacks Picker
+  SnacksPickerPreview = { fg = c.fg, bg = c.bg },
+  SnacksPickerPreviewTitle = { fg = c.accent, bg = c.surface },
+  SnacksPickerListCursorLine = { bg = c.element_active },
+  SnacksPickerMatch = { fg = c.accent },
+  SnacksPickerDir = { fg = c.fg_muted },
+  SnacksPickerPathHidden = { fg = c.line_number },
+  SnacksPickerPathIgnored = { fg = c.line_number },
+  SnacksPickerUnselected = { fg = c.fg_muted },
+  SnacksPickerTotals = { fg = c.fg_muted },
+  SnacksPickerComment = { fg = c.fg_muted },
+  SnacksPickerDesc = { fg = c.fg_muted },
+  SnacksPickerLink = { fg = c.link },
+  SnacksPickerPrompt = { fg = c.keyword },
+  SnacksPickerKeymapRhs = { fg = c.fg_muted },
+  SnacksPickerBufFlags = { fg = c.fg_muted },
+  SnacksPickerGitStatusUntracked = { fg = c.line_number },
+  SnacksPickerGitStatusIgnored = { fg = c.line_number },
 }
 
 for name, spec in pairs(groups) do
