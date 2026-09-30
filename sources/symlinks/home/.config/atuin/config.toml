@@ -226,7 +226,7 @@ ignored_commands = [
   "cd",
   "ls",
   "ll",
-  "hx",
+  "nvim",
   "tree"
 ]
 

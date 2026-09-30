@@ -10,8 +10,8 @@ export LANGUAGE="en_GB.UTF-8"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# Use Helix as the default editor, unless already configured.
-export EDITOR="${EDITOR:-hx}"
+# Use Neovim as the default editor, unless already configured.
+export EDITOR="${EDITOR:-nvim}"
 export VISUAL="${VISUAL:-$EDITOR}"
 export PAGER="bat"
 

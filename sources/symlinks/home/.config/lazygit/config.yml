@@ -57,7 +57,7 @@ os:
   open: ""
 customCommands:
   - key: 'o'
-    command: "hx -- {{.SelectedFile.Name | quote}}"
+    command: "nvim -- {{.SelectedFile.Name | quote}}"
     context: 'files'
     output: terminal
     description: 'Open file in Editor'
