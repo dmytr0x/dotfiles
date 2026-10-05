@@ -150,3 +150,14 @@ pr-status = "pr-status"
 # ttl_ms = 30000
 # [collectors.tokens]
 # current_date = "stdout"
+
+# Background job: fetch each open repository every 5 minutes, in its main
+# worktree. Publishes no tokens; see "Background jobs" in the plugin README.
+[[jobs]]
+name = "fetch"
+command = ["git", "fetch", "--all", "--prune", "--quiet"]
+worktrees = "main"
+interval_ms = 300000
+timeout_ms = 60000
+chunk_size = 4
+env_allow = ["SSH_AUTH_SOCK"]
