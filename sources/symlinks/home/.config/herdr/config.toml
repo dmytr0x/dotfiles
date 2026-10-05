@@ -28,8 +28,8 @@ dark_name = "catppuccin"
 [ui.sidebar.spaces]
 row_gap = 1
 rows = [
-  ["state_icon", "workspace"],
-  ["branch", "git_status"],
+  ["state_icon", { token = "workspace", fg = "#409ebb" }],
+  [{ token = "$git_head", fg = "#b2beff" }, "git_status"],
   [
     { token = "$git_modified", fg = "#f9e2af" },
     { token = "$git_staged", fg = "#a6e3a1" },
