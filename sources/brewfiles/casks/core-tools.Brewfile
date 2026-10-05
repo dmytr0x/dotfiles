@@ -4,8 +4,9 @@ cask "coteditor"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 
-# Control your tools with a few keystrokes
-cask "raycast"
+# Tiny, fully native launcher, hotkeys, and clipboard history
+tap "abue-ammar/tinycast", trusted: true
+cask "abue-ammar/tinycast/tinycast"
 
 # Gecko based web browser
 cask "zen"
