@@ -29,12 +29,16 @@ dark_name = "catppuccin"
 row_gap = 1
 rows = [
   ["state_icon", { token = "workspace", fg = "#409ebb" }],
-  [{ token = "$git_head", fg = "#b2beff" }, "git_status", { token = "$pr", fg = "#cba6f7" }],
+  [{ token = "$git_head", fg = "#b2beff" }, "git_status"],
   [
     { token = "$git_modified", fg = "#f9e2af" },
     { token = "$git_staged", fg = "#a6e3a1" },
     { token = "$git_untracked", fg = "#89b4fa" },
     { token = "$git_conflicts", fg = "#f38ba8" },
+  ],
+  [
+    { token = "$pr", fg = "#569cd6" },
+    { token = "$pr-status", fg = "#569cd6" },
   ],
 ]
 

@@ -57,10 +57,10 @@ LC_ALL = "C"
 [collectors.tokens]
 git_head = "stdout"
 
-# Current-branch GitHub PR (`gh pr view`). Missing PRs, detached HEAD, and
-# non-GitHub checkouts clear the token. Auth/network failures keep the last
-# value until TTL. Requires `gh` on PATH; HOME is inherited for `gh auth`.
-# Do not set GH_REPO: it would pin every workspace to one repository.
+# Current-branch GitHub PR (`gh pr view`). One execution fills `$pr` and
+# `$pr-status`. Missing PRs, detached HEAD, and non-GitHub checkouts clear
+# both. Auth/network failures keep the last values until TTL. Requires `gh`
+# on PATH; HOME is inherited for `gh auth`. Do not set GH_REPO.
 [[collectors]]
 name = "pr"
 provider = "command"
@@ -71,31 +71,32 @@ command = [
 g() {
   command git --no-optional-locks -c core.fsmonitor=false -c color.ui=false "$@"
 }
+clear() {
+  printf '%s\n' '{"pr":null,"pr-status":null}'
+  exit 0
+}
 inside=$(g rev-parse --is-inside-work-tree 2>/dev/null) || inside=
 if [ "$inside" != true ]; then
-  printf '%s\n' '{"pr":null}'
-  exit 0
+  clear
 fi
 if ! g symbolic-ref -q HEAD >/dev/null 2>&1; then
-  printf '%s\n' '{"pr":null}'
-  exit 0
+  clear
 fi
 if ! command -v gh >/dev/null 2>&1; then
   printf '%s\n' "gh not found on PATH" >&2
   exit 1
 fi
 jq='{
-  pr: (
-    "#" + (.number | tostring) + (
-      if .state == "MERGED" then " merged"
-      elif .state == "CLOSED" then " closed"
-      elif .isDraft then " draft"
-      elif .reviewDecision == "CHANGES_REQUESTED" then " changes"
-      elif .reviewDecision == "APPROVED" then " approved"
-      elif .reviewDecision == "REVIEW_REQUIRED" then " review"
-      else ""
-      end
-    )
+  pr: ("#" + (.number | tostring)),
+  "pr-status": (
+    if .state == "MERGED" then "merged"
+    elif .state == "CLOSED" then "closed"
+    elif .isDraft then "draft"
+    elif .reviewDecision == "CHANGES_REQUESTED" then "changes"
+    elif .reviewDecision == "APPROVED" then "approved"
+    elif .reviewDecision == "REVIEW_REQUIRED" then "review"
+    else "open"
+    end
   )
 }'
 msg=$(gh pr view --json number,isDraft,reviewDecision,state --jq "$jq" 2>&1)
@@ -113,8 +114,7 @@ case "$msg" in
   *"does not have a remote"*|\
   *"no remotes found"*|\
   *"Could not resolve to a Repository"*)
-    printf '%s\n' '{"pr":null}'
-    exit 0
+    clear
     ;;
 esac
 printf '%s\n' "$msg" >&2
@@ -135,6 +135,7 @@ GIT_TERMINAL_PROMPT = "0"
 LC_ALL = "C"
 [collectors.tokens]
 pr = "pr"
+pr-status = "pr-status"
 
 # Plain command stdout can map directly to one or more tokens through the
 # reserved "stdout" selector. ANSI escapes are stripped.
