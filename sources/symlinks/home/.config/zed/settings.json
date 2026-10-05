@@ -189,7 +189,7 @@
   },
   "git_panel": {
     "group_by": "staging",
-    "dock": "right",
+    "dock": "left",
     "scrollbar": { "show": "never" },
     "tree_view": true,
     "show_count_badge": true,
