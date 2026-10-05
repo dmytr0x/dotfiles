@@ -57,7 +57,84 @@ LC_ALL = "C"
 [collectors.tokens]
 git_head = "stdout"
 
-
+# Current-branch GitHub PR (`gh pr view`). Missing PRs, detached HEAD, and
+# non-GitHub checkouts clear the token. Auth/network failures keep the last
+# value until TTL. Requires `gh` on PATH; HOME is inherited for `gh auth`.
+# Do not set GH_REPO: it would pin every workspace to one repository.
+[[collectors]]
+name = "pr"
+provider = "command"
+command = [
+  "sh",
+  "-c",
+  '''
+g() {
+  command git --no-optional-locks -c core.fsmonitor=false -c color.ui=false "$@"
+}
+inside=$(g rev-parse --is-inside-work-tree 2>/dev/null) || inside=
+if [ "$inside" != true ]; then
+  printf '%s\n' '{"pr":null}'
+  exit 0
+fi
+if ! g symbolic-ref -q HEAD >/dev/null 2>&1; then
+  printf '%s\n' '{"pr":null}'
+  exit 0
+fi
+if ! command -v gh >/dev/null 2>&1; then
+  printf '%s\n' "gh not found on PATH" >&2
+  exit 1
+fi
+jq='{
+  pr: (
+    "#" + (.number | tostring) + (
+      if .state == "MERGED" then " merged"
+      elif .state == "CLOSED" then " closed"
+      elif .isDraft then " draft"
+      elif .reviewDecision == "CHANGES_REQUESTED" then " changes"
+      elif .reviewDecision == "APPROVED" then " approved"
+      elif .reviewDecision == "REVIEW_REQUIRED" then " review"
+      else ""
+      end
+    )
+  )
+}'
+msg=$(gh pr view --json number,isDraft,reviewDecision,state --jq "$jq" 2>&1)
+status=$?
+if [ "$status" -eq 0 ]; then
+  printf '%s\n' "$msg"
+  exit 0
+fi
+case "$msg" in
+  *"no pull requests found"*|\
+  *"no pull request associated"*|\
+  *"not a git repository"*|\
+  *"not on any branch"*|\
+  *"could not determine current branch"*|\
+  *"does not have a remote"*|\
+  *"no remotes found"*|\
+  *"Could not resolve to a Repository"*)
+    printf '%s\n' '{"pr":null}'
+    exit 0
+    ;;
+esac
+printf '%s\n' "$msg" >&2
+exit "$status"
+''',
+]
+interval_ms = 60000
+timeout_ms = 8000
+ttl_ms = 180000
+env_allow = ["GH_TOKEN", "GITHUB_TOKEN", "GH_HOST", "GH_ENTERPRISE_TOKEN", "GH_CONFIG_DIR"]
+[collectors.env]
+GH_PAGER = "cat"
+PAGER = "cat"
+NO_COLOR = "1"
+GH_PROMPT_DISABLED = "1"
+GH_NO_UPDATE_NOTIFIER = "1"
+GIT_TERMINAL_PROMPT = "0"
+LC_ALL = "C"
+[collectors.tokens]
+pr = "pr"
 
 # Plain command stdout can map directly to one or more tokens through the
 # reserved "stdout" selector. ANSI escapes are stripped.
@@ -72,18 +149,3 @@ git_head = "stdout"
 # ttl_ms = 30000
 # [collectors.tokens]
 # current_date = "stdout"
-
-# Only enable repository-controlled scripts in repositories you trust.
-# [[collectors]]
-# name = "ci"
-# provider = "command"
-# command = ["./scripts/ci-status"]
-# interval_ms = 10000
-# timeout_ms = 2000
-# ttl_ms = 30000
-# env_allow = ["CI_TOKEN"]
-# [collectors.env]
-# CI_FORMAT = "json"
-# [collectors.tokens]
-# ci_status = "status"
-# ci_url = "url"
