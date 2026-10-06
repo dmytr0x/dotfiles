@@ -121,6 +121,8 @@
 
 [alias]
   branch-name = !git rev-parse --abbrev-ref HEAD
+  # origin/HEAD (this repo's default), then local main, then local master
+  default-branch = !git rev-parse --verify --abbrev-ref origin/HEAD 2>/dev/null || git rev-parse --verify --abbrev-ref main 2>/dev/null || git rev-parse --verify --abbrev-ref master 2>/dev/null
 
   st = status --short
   cm = commit
@@ -137,8 +139,8 @@
   llg = ll -E -i --grep
 
   bch = !git branch | fzf | xargs git checkout
-  bll = !git ll $(git config init.defaultBranch)..$(git branch-name)
-  bdf = !git diff $(git config init.defaultBranch) $(git branch-name)
+  bll = !git ll $(git default-branch)..$(git branch-name)
+  bdf = !git diff $(git default-branch) $(git branch-name)
   bp = !git push origin $(git branch-name)
   bpf = !git push --force-with-lease origin $(git branch-name)
 
