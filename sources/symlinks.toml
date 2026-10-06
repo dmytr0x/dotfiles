@@ -10,7 +10,6 @@ target_directories = [
   "home/.config/atuin",
   "home/.config/bat",
   "home/.config/btop",
-  "home/.config/fresh",
   "home/.config/ghostty",
   "home/.config/helix",
   "home/.config/herdr",
