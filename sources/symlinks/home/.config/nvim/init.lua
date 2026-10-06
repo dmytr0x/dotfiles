@@ -2,6 +2,8 @@
 vim.g.mapleader = ' '
 -- The Python ftplugin probes the python3 provider, which spawns python3 to look for pynvim.
 vim.g.loaded_python3_provider = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 local map = vim.keymap.set
 local group = vim.api.nvim_create_augroup('config', {})
@@ -99,8 +101,20 @@ local snacks = require('snacks')
 snacks.setup({
   picker = {
     layout = {
-      preset = 'vertical',
-      layout = { width = 0.9, height = 0.9 },
+      layout = {
+        backdrop = false,
+        width = 0.9,
+        height = 0.9,
+        min_width = 80,
+        min_height = 30,
+        box = 'vertical',
+        border = true,
+        title = '{title} {live} {flags}',
+        title_pos = 'center',
+        { win = 'input', height = 1, border = 'bottom' },
+        { win = 'list', border = 'none' },
+        { win = 'preview', title = '{preview}', height = 0.6, border = 'top' },
+      },
     },
   },
   lazygit = {},
@@ -117,7 +131,38 @@ map('n', '<leader>fd', picker.diagnostics, { desc = 'Diagnostics' })
 map('n', '<leader>fh', picker.help, { desc = 'Help tags' })
 map('n', '<leader>fk', picker.keymaps, { desc = 'Keymaps' })
 map('n', '<leader>fr', picker.resume, { desc = 'Resume last picker' })
-map('n', '<leader>gg', snacks.lazygit.open, { desc = 'Lazygit' })
+map('n', '<leader>fm', picker.git_status, { desc = 'Git modified files' })
+map('n', '<leader>S', snacks.lazygit.open, { desc = 'Lazygit' })
+map('n', '<leader>Y', function()
+  local chooser = vim.fn.tempname()
+  local path = vim.fn.expand('%:p')
+  local cmd = { 'yazi', '--chooser-file=' .. chooser }
+  if path ~= '' and vim.uv.fs_stat(path) then
+    cmd[#cmd + 1] = path
+  end
+  snacks.terminal(cmd, {
+    win = {
+      on_close = function()
+        vim.schedule(function()
+          if vim.uv.fs_stat(chooser) then
+            for _, file in ipairs(vim.fn.readfile(chooser)) do
+              if file ~= '' then
+                vim.cmd.edit(vim.fn.fnameescape(file))
+              end
+            end
+            vim.fn.delete(chooser)
+          end
+        end)
+      end,
+    },
+  })
+end, { desc = 'Yazi' })
+
+map('n', '<leader>v', 'viw', { desc = 'Select word under cursor' })
+map('n', '<leader>q', '<Cmd>q<CR>', { desc = 'Quit' })
+
+-- Clipboard: yank to the OS clipboard without making it the default register.
+map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
 -- Appearance: last, so a colorscheme error cannot abort the rest of the config.
 vim.cmd.colorscheme('dmytr0x-dark-modern')
