@@ -1,3 +1,6 @@
+# I'm lazy
+alias c="clear"
+
 # Easier navigation
 alias ..='cd ..'
 alias 2..='cd ../..'
