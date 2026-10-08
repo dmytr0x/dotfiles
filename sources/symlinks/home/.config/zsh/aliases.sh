@@ -1,5 +1,6 @@
 # I'm lazy
 alias c="clear"
+alias v="nvim"
 
 # Easier navigation
 alias ..='cd ..'
