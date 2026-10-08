@@ -26,7 +26,7 @@ auto_switch = false
 dark_name = "catppuccin"
 
 [theme.custom]
-accent = "#ff2a2a"
+accent = "#ff6b75"
 
 [ui.sidebar.spaces]
 row_gap = 1
