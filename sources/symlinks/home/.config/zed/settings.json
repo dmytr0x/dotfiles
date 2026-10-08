@@ -26,6 +26,7 @@
   "markdown_preview": {
     "font_family": "FiraCode Nerd Font",
     "font_size": 12.5,
+    "limit_content_width": false
   },
 
   // ==================== Fonts ====================
