@@ -68,5 +68,4 @@ vim.keymap.set('n', 'grC', vim.lsp.buf.outgoing_calls, { desc = 'Outgoing calls'
 vim.keymap.set('n', 'grh', show_subtypes, { desc = 'Subtypes' })
 vim.keymap.set('n', 'grH', show_supertypes, { desc = 'Supertypes' })
 vim.keymap.set('n', 'grf', ruff_fix_all, { desc = 'Ruff fix all' })
-vim.keymap.set('n', '<leader>S', vim.lsp.buf.workspace_symbol, { desc = 'Workspace symbols' })
 vim.keymap.set('n', '<leader><leader>a', toggle_inlay_hints, { desc = 'Toggle inlay hints' })

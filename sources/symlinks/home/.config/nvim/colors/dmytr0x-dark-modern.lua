@@ -84,6 +84,7 @@ local groups = {
   WinBarNC = { fg = c.fg_muted, bg = c.bg },
   Visual = { bg = c.selection },
   VisualNOS = { link = 'Visual' },
+  VisualWhitespace = { fg = c.fg_muted, bg = c.selection },
   Search = { bg = c.search },
   IncSearch = { fg = '#FFFFFF', bg = c.cur_search },
   CurSearch = { link = 'IncSearch' },
@@ -261,6 +262,22 @@ local groups = {
   DiagnosticUnderlineHint = { undercurl = true, sp = c.hint },
   DiagnosticUnnecessary = { fg = c.fg_muted },
   DiagnosticDeprecated = { strikethrough = true },
+
+  -- Telescope
+  TelescopeNormal = { fg = c.fg, bg = c.surface },
+  TelescopeBorder = { fg = c.border_variant, bg = c.surface },
+  TelescopeTitle = { fg = c.accent, bg = c.surface, bold = true },
+  TelescopePreviewNormal = { fg = c.fg, bg = c.bg },
+  TelescopePreviewBorder = { fg = c.border_variant, bg = c.bg },
+  TelescopePreviewTitle = { fg = c.accent, bg = c.bg, bold = true },
+  TelescopeSelection = { fg = c.fg, bg = c.element_active },
+  TelescopeSelectionCaret = { fg = c.accent, bg = c.element_active, bold = true },
+  TelescopeMatching = { fg = c.match, bold = true },
+  TelescopePromptPrefix = { fg = c.keyword, bold = true },
+  TelescopePromptCounter = { fg = c.fg_muted },
+  TelescopeResultsComment = { fg = c.fg_muted },
+  TelescopePreviewLine = { bg = c.element_active },
+  TelescopePreviewMatch = { fg = c.match, bg = c.search, bold = true },
 
   -- Snacks Picker
   SnacksPickerPreview = { fg = c.fg, bg = c.bg },
