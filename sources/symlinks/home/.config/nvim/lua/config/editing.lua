@@ -3,10 +3,23 @@
 
 -- Use spaces instead of tab characters when indenting.
 vim.opt.expandtab = true
--- Use four spaces for each automatic indentation level.
-vim.opt.shiftwidth = 4
--- Display existing tab characters as four spaces wide.
-vim.opt.tabstop = 4
+-- Use two spaces for each automatic indentation level.
+vim.opt.shiftwidth = 2
+-- Display existing tab characters as two spaces wide.
+vim.opt.tabstop = 2
+
+-- Set indentation separately for languages that differ from the default.
+local indent_width = { python = 4 }
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = vim.tbl_keys(indent_width),
+  callback = function(args)
+    local width = indent_width[args.match]
+    vim.bo[args.buf].shiftwidth = width
+    vim.bo[args.buf].tabstop = width
+    vim.bo[args.buf].softtabstop = width
+    vim.bo[args.buf].expandtab = true
+  end,
+})
 
 -- Make backspace remove indentation, line breaks, and text before the cursor.
 vim.opt.backspace = { "indent", "eol", "start" }
