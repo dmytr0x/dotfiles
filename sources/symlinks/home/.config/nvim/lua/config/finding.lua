@@ -1,0 +1,67 @@
+-- Dormant example: uncomment the setup below, then add 'finding' to init.lua.
+-- Finding files and Git (optional, disabled)
+-- -------------------------------------------------------
+
+-- vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
+-- local snacks = require('snacks')
+-- -- Snacks tracks setup in its module so this guard also works after reloads.
+-- if not snacks.did_setup then
+--   snacks.setup({
+--     picker = {
+--         layout = {
+--             layout = {
+--                 backdrop = false,
+--                 width = 0.9,
+--                 height = 0.9,
+--                 min_width = 80,
+--                 min_height = 30,
+--                 box = 'vertical',
+--                 border = true,
+--                 title = '{title} {live} {flags}',
+--                 title_pos = 'center',
+--                 { win = 'input',   height = 1,          border = 'bottom' },
+--                 { win = 'list',    border = 'none' },
+--                 { win = 'preview', title = '{preview}', height = 0.6,     border = 'top' },
+--             },
+--         },
+--     },
+--     lazygit = {},
+--   })
+-- end
+-- local picker = snacks.picker
+
+-- vim.keymap.set('n', '<leader>ff', picker.files, { desc = 'Files' })
+-- vim.keymap.set('n', '<leader>fg', picker.grep, { desc = 'Live grep' })
+-- vim.keymap.set({ 'n', 'x' }, '<leader>fw', picker.grep_word, { desc = 'Grep word under cursor' })
+-- vim.keymap.set('n', '<leader>fb', picker.buffers, { desc = 'Buffers' })
+-- vim.keymap.set('n', '<leader>fo', picker.recent, { desc = 'Recent files' })
+-- vim.keymap.set('n', '<leader>fs', picker.lsp_symbols, { desc = 'Document symbols' })
+-- vim.keymap.set('n', '<leader>fd', picker.diagnostics, { desc = 'Diagnostics' })
+-- vim.keymap.set('n', '<leader>fh', picker.help, { desc = 'Help tags' })
+-- vim.keymap.set('n', '<leader>fk', picker.keymaps, { desc = 'Keymaps' })
+-- vim.keymap.set('n', '<leader>fr', picker.resume, { desc = 'Resume last picker' })
+-- vim.keymap.set('n', '<leader>fm', picker.git_status, { desc = 'Git modified files' })
+-- vim.keymap.set('n', '<leader>S', snacks.lazygit.open, { desc = 'Lazygit' })
+-- local function open_yazi()
+--     local chooser = vim.fn.tempname()
+--     local path = vim.fn.expand('%:p')
+--     local cmd = { 'yazi', '--chooser-file=' .. chooser }
+--     if path ~= '' and vim.uv.fs_stat(path) then
+--         cmd[#cmd + 1] = path
+--     end
+--     local function open_selected_files()
+--         if vim.uv.fs_stat(chooser) then
+--             for _, file in ipairs(vim.fn.readfile(chooser)) do
+--                 if file ~= '' then
+--                     vim.cmd.edit(vim.fn.fnameescape(file))
+--                 end
+--             end
+--             vim.fn.delete(chooser)
+--         end
+--     end
+--     local function on_close()
+--         vim.schedule(open_selected_files)
+--     end
+--     snacks.terminal(cmd, { win = { on_close = on_close } })
+-- end
+-- vim.keymap.set('n', '<leader>Y', open_yazi, { desc = 'Yazi' })
