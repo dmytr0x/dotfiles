@@ -146,3 +146,13 @@ _fzf_comprun() {
 
 # Set up fzf file/directory bindings and fuzzy completion without its history binding.
 FZF_CTRL_R_COMMAND= eval "$(fzf --zsh)"
+
+# Files Grep
+fg() {
+  fzf --disabled --ansi --multi --query "${1:-}" \
+    --bind 'start,change:reload:rg --line-number --no-heading --color=always --smart-case -- {q} . || :' \
+    --delimiter : \
+    --preview 'bat --style=numbers --color=always --highlight-line {2} -- {1}' \
+    --preview-window 'right,60%,+{2}/2' \
+    --bind 'enter:become(if [ "$FZF_SELECT_COUNT" -eq 0 ]; then $EDITOR +{2} -- {1}; else $EDITOR +cw -q {+f}; fi)'
+}

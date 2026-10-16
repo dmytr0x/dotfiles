@@ -1,29 +1,19 @@
-# --- Settings
+source_dir() {
+  local parent="$1" pattern="$2" file
 
-# Performace: Keep Atuin near the top: its PTY proxy can restart shell initialization,
-#             causing configuration loaded before it to run twice.
-source ~/.config/zsh/tools/atuin.sh
-#
-source ~/.config/zsh/options.sh
-source ~/.config/zsh/key-bindings.sh
-source ~/.config/zsh/env.sh
-source ~/.config/zsh/aliases.sh
-source ~/.config/zsh/completions.sh
-source ~/.config/zsh/ssh.sh
-source ~/.config/zsh/tools/starship.sh
-source ~/.config/zsh/tools/ripgrep.sh
-source ~/.config/zsh/tools/fzf.sh
-source ~/.config/zsh/tools/zoxide.sh
-source ~/.config/zsh/tools/mise.sh
-source ~/.config/zsh/tools/direnv.sh
-source ~/.config/zsh/tools/worktrunk.sh
+  [[ -d "$parent" ]] || return 0
 
-# Load external sources
-SOURCES_DIR="$HOME/.zsources"
-if [ -d "$SOURCES_DIR" ]; then
-  for entry in "$SOURCES_DIR"/*; do
-    if [ -f "$entry" ]; then
-      source $entry
-    fi
-  done
-fi
+  while IFS= read -r -d '' file; do
+    source "$file"
+  done < <(
+    fd --type f --glob --full-path --absolute-path --print0 \
+       --case-sensitive --no-ignore -- "$pattern" "$parent" |
+      LC_ALL=C sort -z
+  )
+}
+
+# Source the predefined sources. Respect the ordering and priority.
+source_dir "$HOME/.config/zsh/sources" "**/*.sh"
+
+# Source the local sources if they exist.
+source_dir "$HOME/.zsources/" "**/*.sh"
