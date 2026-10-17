@@ -147,8 +147,8 @@ _fzf_comprun() {
 # Set up fzf file/directory bindings and fuzzy completion without its history binding.
 FZF_CTRL_R_COMMAND= eval "$(fzf --zsh)"
 
-# Files Grep
-fg() {
+# Files RipGrep
+frg() {
   fzf --disabled --ansi --multi --query "${1:-}" \
     --bind 'start,change:reload:rg --line-number --no-heading --color=always --smart-case -- {q} . || :' \
     --delimiter : \
