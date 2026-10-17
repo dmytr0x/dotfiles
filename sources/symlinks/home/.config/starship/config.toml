@@ -1,30 +1,28 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """
+$hostname\
+$time\
+$python\
+$nodejs\
+$golang\
+$rust\
+$aws\
+$docker_context\
+$line_break\
 $directory\
 ${custom.giturl}\
 $git_branch\
 ${custom.git_worktree}\
 $git_status\
-$fill\
-$python\
-$lua\
-$nodejs\
-$golang\
-$haskell\
-$rust\
-$ruby\
-$docker_context\
 $jobs\
 $cmd_duration\
-$hostname\
-$time\
 $line_break\
 $character"""
 
-palette = "catppuccin_mocha"
+palette = "dmytr0x"
 
-add_newline = false
+add_newline = true
 scan_timeout = 100
 command_timeout = 500
 follow_symlinks = false
@@ -37,10 +35,10 @@ format = "[$hostname]($style)"
 [time]
 disabled = false
 time_format = "%R"
-format = "[[  $time ](fg:yellow bg:foam)]($style)"
+format = "[[  $time ](fg:yellow)]($style)"
 
 [directory]
-style = "sapphire"
+style = "light_blue"
 format = "[$path ]($style)"
 truncation_length = 5
 truncation_symbol = "…/"
@@ -65,20 +63,9 @@ symbol = " "
 style = "blue"
 symbol = " "
 
-[haskell]
-style = "blue"
-symbol = " "
-
 [rust]
-style = "orange"
+style = "peach"
 symbol = " "
-
-[ruby]
-style = "blue"
-symbol = " "
-
-[package]
-symbol = "󰏗 "
 
 [aws]
 symbol = " "
@@ -87,7 +74,7 @@ format = '[$symbol($profile )(\[$duration\] )]($style)'
 
 [docker_context]
 symbol = " "
-style = "fg:#06969A"
+style = "teal"
 format = "[$symbol]($style) $path"
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_extensions = ["Dockerfile"]
@@ -122,7 +109,7 @@ elif [[ "$GIT_REMOTE" =~ "git" ]]; then
 else
     GIT_REMOTE_SYMBOL=" "
 fi
-echo "$GIT_REMOTE_SYMBOL "
+echo "$GIT_REMOTE_SYMBOL"
 """
 when = "git rev-parse --is-inside-work-tree 2> /dev/null"
 format = "$output"
@@ -130,9 +117,8 @@ require_repo = true
 ignore_timeout = true
 
 [git_branch]
-symbol = "[](base) "
-style = "fg:lavender bg:base"
-format = "  [$symbol$branch]($style)[](base)"
+style = "fg:white bg:dark_gray"
+format = " [[](dark_gray) $branch ]($style)[](dark_gray)"
 
 [git_status]
 format = "[$staged$modified$deleted$renamed$conflicted$ahead_behind]($style)"
@@ -141,13 +127,13 @@ staged = "[✓${count} ](green)"
 modified = "[!${count} ](yellow)"
 renamed = "[»${count} ](blue)"
 deleted = "[-${count} ](red)"
-untracked = "[?${count} ](sapphire)"
-stashed = "[≡${count} ](lavender)"
+untracked = "[?${count} ](purple)"
+stashed = "[≡${count} ](gray)"
 conflicted = "[✖${count} ](red bold)"
 
 ahead = "[⇡${count} ](teal)"
-behind = "[⇣${count} ](peach)"
-diverged = "[⇕⇡${ahead_count}⇣${behind_count} ](mauve)"
+behind = "[⇣${count} ](tan)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count} ](purple)"
 
 [custom.git_worktree]
 description = "Show indicator when inside a git worktree"
@@ -166,37 +152,20 @@ style = "bold green"
 require_repo = true
 ignore_timeout = true
 
-[palettes.catppuccin_mocha]
-# --- background ---
-crust = "#11111b"
-mantle = "#181825"
-base = "#1e1e2e"   # git branch bg
-
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-
-# --- text ---
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-
-# --- accents (catppuccin_mocha) ---
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
+[palettes.dmytr0x]
+# Color names describe the dmytr0x theme colors they represent.
+dark_gray = "#161616"
+gray = "#9D9D9D"
+red = "#F14C4C"
+yellow = "#CCA700"
+green = "#4FE764"
+blue = "#569CD6"
+bright_blue = "#3794FF"
+light_blue = "#4DAAFC"
+teal = "#4EC9B0"
+peach = "#CE9178"
+tan = "#D7BA7D"
+purple = "#C586C0"
+# Additional colors
 mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"  # git branch fg
+white = "#cccccc"
