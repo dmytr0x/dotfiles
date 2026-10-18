@@ -27,6 +27,7 @@ target_directories = [
   "home/.config/yazi",
   "home/.config/zed",
   "home/.config/zsh",
+  "home/.config/aerospace",
   #
   "application_support/Code/User",
   #
