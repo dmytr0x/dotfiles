@@ -541,6 +541,29 @@ do
     --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
     --   },
     -- },
+    defaults = {
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+        },
+        layout_strategy = 'vertical',
+        sorting_strategy = 'ascending',
+        layout_config = {
+            vertical = {
+                width = 0.85,
+                height = 0.85,
+                prompt_position = 'top',
+                mirror = true,
+                preview_height = 0.5,
+            },
+        },
+    },
     -- pickers = {}
     extensions = {
       ['ui-select'] = { require('telescope.themes').get_dropdown() },
