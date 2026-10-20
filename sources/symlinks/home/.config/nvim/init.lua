@@ -706,12 +706,6 @@ do
         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
       end
 
-      -- <leader><leader> - Popular Command Submenu
-      local function toggle_inlay_hints()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end
-      map('<leader><leader>a', toggle_inlay_hints, 'Toggle inlay hints')
-
       -- Rename the variable under your cursor.
       --  Most Language Servers support renaming across files, etc.
       map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
