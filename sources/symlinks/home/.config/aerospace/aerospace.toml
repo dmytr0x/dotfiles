@@ -8,7 +8,13 @@ config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  # My: Highlight the active window with a border
+  #
+  # JankyBorders has a built-in detection of already running process,
+  # so it won't be run twice on AeroSpace restart
+  'exec-and-forget borders active_color=0xff8ab4f8 inactive_color=0x00000000 width=4.0'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -40,6 +46,8 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# My: Mouse lazily follows any focus (window or workspace)
+on-focus-changed = ['move-mouse window-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -73,8 +81,8 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-gaps.inner.horizontal = 0
-gaps.inner.vertical =   0
+gaps.inner.horizontal = 5
+gaps.inner.vertical =   5
 gaps.outer.left =       0
 gaps.outer.bottom =     0
 gaps.outer.top =        0
@@ -203,6 +211,13 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
+	# My: Move back and forth through non-empty workspaces
+    alt-left = 'list-workspaces --monitor focused --empty no | workspace --stdin prev'
+    alt-right = 'list-workspaces --monitor focused --empty no | workspace --stdin next'
+
+    # My: Toggle the current window between floating and tiling
+    alt-cmd-space = 'layout floating tiling'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -218,20 +233,21 @@ gaps.outer.right =      0
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
-    
-# =================
-# My configurations
-# =================
 
+# My: Pin the Ghostty terminal
 [[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
+if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
 run = 'move-node-to-workspace S'
 
+# My: Pin the Zen browser
 [[on-window-detected]]
-if.app-id = 'app.zen-browser.zen'
-run = 'move-node-to-workspace I'
+if = 'test %{app-bundle-id} = app.zen-browser.zen'
+run = 'move-node-to-workspace W'
 
+# My: Always-floating apps
 [[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop'
+if = 'test %{app-bundle-id} = com.bitwarden.desktop'
 run = 'layout floating'
-
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = improver'
+run = 'layout floating'
