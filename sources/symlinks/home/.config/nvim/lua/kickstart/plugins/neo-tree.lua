@@ -14,6 +14,9 @@ vim.keymap.set('n', '<leader>gg', '<Cmd>Neotree float git_status git_base=main<C
 
 require('neo-tree').setup {
   filesystem = {
+    filtered_items = {
+      hide_dotfiles = false,
+    },
     window = {
       mappings = {
         ['\\'] = 'close_window',
