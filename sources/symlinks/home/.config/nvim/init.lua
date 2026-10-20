@@ -586,7 +586,8 @@ do
   vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
   vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
   vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
-  vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+  -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+  vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing [B]uffers' })
 
   -- Add Telescope-based LSP pickers when an LSP attaches to a buffer.
   -- If you later switch picker plugins, this is where to update these mappings.
@@ -701,6 +702,12 @@ do
         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
       end
 
+      -- <leader><leader> - Popular Command Submenu
+      local function toggle_inlay_hints()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end
+      map('<leader><leader>a', toggle_inlay_hints, 'Toggle inlay hints')
+
       -- Rename the variable under your cursor.
       --  Most Language Servers support renaming across files, etc.
       map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -712,6 +719,44 @@ do
       -- WARN: This is not Goto Definition, this is Goto Declaration.
       --  For example, in C this would take you to the header.
       map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+      -- Show types that inherit from the type under your cursor.
+      local function show_subtypes() vim.lsp.buf.typehierarchy 'subtypes' end
+      map('grs', show_subtypes, 'Show [S]ubtypes')
+      vim.api.nvim_buf_create_user_command(event.buf, 'LspSubtypes', show_subtypes, {
+        desc = 'Show subtypes of the type under the cursor',
+      })
+
+      -- Show the base types of the type under your cursor.
+      local function show_supertypes() vim.lsp.buf.typehierarchy 'supertypes' end
+      map('grS', show_supertypes, 'Show [S]upertypes')
+      vim.api.nvim_buf_create_user_command(event.buf, 'LspSupertypes', show_supertypes, {
+        desc = 'Show supertypes of the type under the cursor',
+      })
+
+      -- Fix an issue at the cursor.
+      local function fix()
+          vim.lsp.buf.code_action {
+              context = { only = { 'quickfix' } },
+              apply = true,
+          }
+      end
+      map('grf', fix, '[F]ix')
+      vim.api.nvim_buf_create_user_command(event.buf, 'LspFix', fix, {
+        desc = 'Fix an issue at the cursor',
+      })
+
+      -- Request file-wide fixes from the language server.
+      local function fix_all()
+        vim.lsp.buf.code_action {
+          context = { only = { 'source.fixAll' } },
+          apply = true,
+        }
+      end
+      map('grF', fix_all, '[F]ix All')
+      vim.api.nvim_buf_create_user_command(event.buf, 'LspFixAll', fix_all, {
+        desc = 'Fix all auto-fixable issues in the current file',
+      })
 
       -- The following two autocommands are used to highlight references of the
       -- word under your cursor when your cursor rests there for a little while.
@@ -760,13 +805,15 @@ do
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
+    ty = {},
+    ruff = {},
     -- tsc = {},
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
     --
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
-    -- rust_analyzer = {},
+    rust_analyzer = {},
 
     stylua = {}, -- Used to format Lua code
 
