@@ -9,6 +9,9 @@ vim.pack.add {
 
 vim.keymap.set('n', '\\', '<Cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
 
+-- Open Neo-tree's Git status view in floating mode
+vim.keymap.set('n', '<leader>gg', '<Cmd>Neotree float git_status git_base=main<CR>', { desc = 'Neo-tree Git status', silent = true })
+
 require('neo-tree').setup {
   filesystem = {
     window = {
