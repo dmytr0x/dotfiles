@@ -110,7 +110,14 @@ do
   vim.o.number = true
   -- You can also add relative line numbers, to help with jumping.
   --  Experiment for yourself to see if you like it!
-  -- vim.o.relativenumber = true
+  vim.o.relativenumber = true
+
+  -- Show relative numbers in NORMAL mode and absolute numbers in INSERT mode.
+  vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+    callback = function(event)
+      vim.wo.relativenumber = event.event == "InsertLeave"
+    end,
+  })
 
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
