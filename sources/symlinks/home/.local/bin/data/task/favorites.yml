@@ -215,3 +215,23 @@ tasks:
     desc: "GitHub: Open current branch PR"
     cmds:
       - gh pr view $(git branch-name) --web
+
+  system:prevent-sleep:
+    desc: "System: Keep the display on and prevent idle sleep until stopped with Control-C"
+    cmds:
+      - caffeinate -d -i
+
+  system:prevent-sleep-for-duration:
+    desc: "System: Keep the display on and prevent idle sleep for SECONDS (default 7200; e.g. SECONDS=3600)"
+    vars:
+      SECONDS: '{{.SECONDS | default "7200"}}'
+    cmds:
+      - caffeinate -d -i -t {{.SECONDS}}
+
+  system:prevent-sleep-while-command-runs:
+    desc: "System: Prevent idle sleep while COMMAND runs (e.g. COMMAND='./long-build.sh')"
+    requires:
+      vars:
+        - COMMAND
+    cmds:
+      - caffeinate -i {{.COMMAND}}
