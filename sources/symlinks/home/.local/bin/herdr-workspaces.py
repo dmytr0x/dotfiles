@@ -264,18 +264,12 @@ def open_repository_workspaces(session, repository, focus_first=False):
             branch = worktree.get("branch") or path.name
             label = branch
 
-        # Query the current workspace list for every worktree. The IDs in the
-        # original worktree-list response become stale when a workspace is
-        # closed and reopened during this loop.
-        workspace = find_workspace(session, label, path)
-        if workspace:
-            workspace_id = workspace["workspace_id"]
-            if workspace_has_cwd(session, workspace_id, path):
-                print(f"Already open: {label} ({path})")
-                continue
-
-            print(f"Reopening workspace with the correct CWD: {label} ({path})")
-            run_herdr_json("workspace", "close", workspace_id, session=session)
+        # A checkout-path match is trusted even when its panes have moved
+        # elsewhere. Reopening it would kill those shells, and Herdr refuses to
+        # close a repo workspace that has grouped worktree workspaces.
+        if find_workspace(session, label, path):
+            print(f"Already open: {label} ({path})")
+            continue
 
         focus = focus_first and opened == 0
         run_herdr_json(
