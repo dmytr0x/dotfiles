@@ -73,7 +73,7 @@ uv run dotfiles.py uninstall brewfiles
 Worktrunk has two complete, versioned configurations:
 
 - `sources/symlinks/home/.config/worktrunk/config.work.toml`: work ticket subjects and the existing Claude command.
-- `sources/symlinks/home/.config/worktrunk/config.personal.toml`: Conventional Commits and the same Claude command, editable independently.
+- `sources/symlinks/home/.config/worktrunk/config.personal.toml`: Conventional Commits and Codex with `gpt-6-luna`, editable independently.
 
 Both profiles include the worktree layout and lifecycle hooks. Keep those settings in sync when changing shared behavior.
 
@@ -97,6 +97,12 @@ After installing or updating the symlinks, inspect the selected configuration:
 
 ```sh
 wt config show
+```
+
+Preview the prompt, command, and generated commit message without committing:
+
+```sh
+wt step commit --dry-run
 ```
 
 To inspect either profile explicitly:

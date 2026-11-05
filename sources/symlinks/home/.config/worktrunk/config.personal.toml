@@ -20,7 +20,7 @@ skip-commit-generation-prompt = true
 
 # LLM commit messages for `wt step commit`, `wt step squash`, and `wt merge`.
 [commit.generation]
-command = "codex exec --model gpt-6-lune -c model_reasoning_effort=xhigh --sandbox read-only --ephemeral --color never -"
+command = "codex exec --model gpt-6-luna -c model_reasoning_effort=xhigh --sandbox read-only --ephemeral --color never -"
 
 template-append = """
 - Use Conventional Commits: `type(scope): description` (scope is optional)
