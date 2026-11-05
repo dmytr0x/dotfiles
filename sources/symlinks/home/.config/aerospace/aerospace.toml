@@ -33,12 +33,12 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'accordion'
+default-root-container-layout = 'tiles'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 #               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'horizontal'
+default-root-container-orientation = 'auto'
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
@@ -58,9 +58,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
-                         "C", "D", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
-                         "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -147,28 +145,6 @@ gaps.outer.right =      0
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
-    alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-    alt-b = 'workspace B'
-    alt-c = 'workspace C'
-    alt-d = 'workspace D'
-    alt-e = 'workspace E'
-    alt-f = 'workspace F'
-    alt-g = 'workspace G'
-    alt-i = 'workspace I'
-    alt-m = 'workspace M'
-    alt-n = 'workspace N'
-    alt-o = 'workspace O'
-    alt-p = 'workspace P'
-    alt-q = 'workspace Q'
-    alt-r = 'workspace R'
-    alt-s = 'workspace S'
-    alt-t = 'workspace T'
-    alt-u = 'workspace U'
-    alt-v = 'workspace V'
-    alt-w = 'workspace W'
-    alt-x = 'workspace X'
-    alt-y = 'workspace Y'
-    alt-z = 'workspace Z'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -180,28 +156,6 @@ gaps.outer.right =      0
     alt-shift-7 = 'move-node-to-workspace 7'
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
-    alt-shift-a = 'move-node-to-workspace A'
-    alt-shift-b = 'move-node-to-workspace B'
-    alt-shift-c = 'move-node-to-workspace C'
-    alt-shift-d = 'move-node-to-workspace D'
-    alt-shift-e = 'move-node-to-workspace E'
-    alt-shift-f = 'move-node-to-workspace F'
-    alt-shift-g = 'move-node-to-workspace G'
-    alt-shift-i = 'move-node-to-workspace I'
-    alt-shift-m = 'move-node-to-workspace M'
-    alt-shift-n = 'move-node-to-workspace N'
-    alt-shift-o = 'move-node-to-workspace O'
-    alt-shift-p = 'move-node-to-workspace P'
-    alt-shift-q = 'move-node-to-workspace Q'
-    alt-shift-r = 'move-node-to-workspace R'
-    alt-shift-s = 'move-node-to-workspace S'
-    alt-shift-t = 'move-node-to-workspace T'
-    alt-shift-u = 'move-node-to-workspace U'
-    alt-shift-v = 'move-node-to-workspace V'
-    alt-shift-w = 'move-node-to-workspace W'
-    alt-shift-x = 'move-node-to-workspace X'
-    alt-shift-y = 'move-node-to-workspace Y'
-    alt-shift-z = 'move-node-to-workspace Z'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -211,12 +165,30 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
+    # My: Toggle the fullscreen
+    alt-m = 'fullscreen'
+
 	# My: Move back and forth through non-empty workspaces
     alt-left = 'list-workspaces --monitor focused --empty no | workspace --stdin prev'
     alt-right = 'list-workspaces --monitor focused --empty no | workspace --stdin next'
 
     # My: Toggle the current window between floating and tiling
     alt-cmd-space = 'layout floating tiling'
+
+    # My: Focus another monitor, or move the focused window to it
+    alt-ctrl-h = 'focus-monitor --wrap-around left'
+    alt-ctrl-l = 'focus-monitor --wrap-around right'
+    alt-ctrl-shift-h = 'move-node-to-monitor --focus-follows-window --wrap-around left'
+    alt-ctrl-shift-l = 'move-node-to-monitor --focus-follows-window --wrap-around right'
+
+# My: Pin workspaces to monitors
+# See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[workspace-to-monitor-force-assignment]
+1 = 'secondary'
+2 = 'secondary'
+7 = 'main'
+8 = 'main'
+9 = 'main'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -237,12 +209,12 @@ gaps.outer.right =      0
 # My: Pin the Ghostty terminal
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
-run = 'move-node-to-workspace S'
+run = 'move-node-to-workspace 9'
 
 # My: Pin the Zen browser
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = app.zen-browser.zen'
-run = 'move-node-to-workspace W'
+run = 'move-node-to-workspace 2'
 
 # My: Always-floating apps
 [[on-window-detected]]
