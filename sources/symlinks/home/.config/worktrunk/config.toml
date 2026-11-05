@@ -19,5 +19,21 @@ skip-commit-generation-prompt = true
 
 [[pre-start]]
 setup_start = "echo 'Setting up worktree...'"
-direnv = "if [ -f .envrc ] || [ -f .env ]; then direnv allow; fi"
+share-paths = "uv run ~/.config/worktrunk/share-paths.py {{ primary_worktree_path }} {{ worktree_path }} || :"
+
+[[pre-start]]
+direnv = "if [ -f .envrc ]; then direnv allow; fi"
+
+[[pre-start]]
 setup_finish = "echo 'Worktree setup complete!'"
+
+# Herdr integration: all calls go through herdr-bridge.sh, which is a no-op
+# outside a reachable Herdr. `|| :` keeps hooks green if the script is missing.
+[post-switch]
+herdr-open = "sh ~/.config/worktrunk/herdr-bridge.sh open {{ primary_worktree_path }} {{ worktree_path }} || :"
+
+[post-remove]
+herdr-close = "sh ~/.config/worktrunk/herdr-bridge.sh close {{ primary_worktree_path }} {{ worktree_path }} {{ target_worktree_path | default('') }} || :"
+
+[post-merge]
+herdr-notify = "sh ~/.config/worktrunk/herdr-bridge.sh merged {{ branch }} {{ target }} || :"

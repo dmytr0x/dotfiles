@@ -235,3 +235,12 @@ tasks:
         - COMMAND
     cmds:
       - caffeinate -i {{.COMMAND}}
+
+  worktrunk:merge-source-branch-into-destination-without-squash:
+    desc: "Worktrunk: Merge the source branch into the destination without squashing"
+    requires:
+      vars:
+        - source
+        - destination
+    cmds:
+      - wt merge --no-squash --branch {{.source}} {{.destination}}
