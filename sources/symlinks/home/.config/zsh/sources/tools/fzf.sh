@@ -75,15 +75,6 @@ fzf-show-shortcuts() {
     < ~/.config/zsh/data/shortcuts
 }
 
-# Favourite commands {
-favourites-widget() {
-  BUFFER=' favourite-commands'
-  zle accept-line
-}
-zle -N favourites-widget
-bindkey '^[f' favourites-widget
-# }
-
 # Edit popular file/directory {
 fzf-edit-popular() {
   files=$(for p (
@@ -125,8 +116,7 @@ fzf-edit-popular() {
     --ansi \
     --bind="enter:become(\$EDITOR {1})"
 }
-bindkey -N fzf-edit-popular
-bindkey -s "^[e" "fzf-edit-popular\n"
+alias ffc='fzf-edit-popular'
 # }
 
 # Advanced customization of fzf options via _fzf_comprun function
