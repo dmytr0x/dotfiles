@@ -4,5 +4,8 @@ __pycache__/
 .mypy_cache/
 .dmypy.json
 
+# vim
+sources/symlinks/home/.config/nvim/nvim-pack-lock.json
+
 # Local data
 sources/symlinks/home/.local/bin/data/task/favorite-commands-local.yml
