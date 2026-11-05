@@ -3,9 +3,9 @@ node = "lts"
 python = "latest"
 go = "latest"
 rust = "latest"
-deno = "latest"
 bun = "latest"
 java = "latest"
+uv = "latest"
 
 [settings]
 # env_file = ".env"
