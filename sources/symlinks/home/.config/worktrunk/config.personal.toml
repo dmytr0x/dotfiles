@@ -1,3 +1,4 @@
+# Personal profile: Conventional Commits.
 # Worktrunk configs commands:
 #
 # Details: https://worktrunk.dev/config/
@@ -17,6 +18,20 @@ worktree-path = "~/.worktrees/{{ repo }}/{{ branch | sanitize }}"
 
 skip-commit-generation-prompt = true
 
+# LLM commit messages for `wt step commit`, `wt step squash`, and `wt merge`.
+[commit.generation]
+command = "codex exec --model gpt-6-lune -c model_reasoning_effort=xhigh --sandbox read-only --ephemeral --color never -"
+
+template-append = """
+- Use Conventional Commits: `type(scope): description` (scope is optional)
+- type is exactly one of: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+- Append `!` after the type or scope for a breaking change: `feat!: ...` or `feat(api)!: ...`
+- Use an imperative description, with no trailing period
+- Keep the subject under 100 characters
+- Never add `Co-authored-by`, `Generated with`, or any other attribution trailer
+"""
+
+# Tables run in order; commands within one table run concurrently.
 [[pre-start]]
 setup_start = "echo 'Setting up worktree...'"
 share-paths = "uv run ~/.config/worktrunk/share-paths.py {{ primary_worktree_path }} {{ worktree_path }} || :"

@@ -1,0 +1,57 @@
+# Work profile: work commit conventions.
+# Worktrunk configs commands:
+#
+# Details: https://worktrunk.dev/config/
+#
+# 1. User level:
+#      wt config create
+# 2. Project level:
+#      wt config create --project
+#
+# Show the config:
+#      wt config show
+#
+
+# Centralized worktrees directory
+# Creates: ~/worktrees/myproject/feature-auth
+worktree-path = "~/.worktrees/{{ repo }}/{{ branch | sanitize }}"
+
+skip-commit-generation-prompt = true
+
+# LLM commit messages for `wt step commit`, `wt step squash`, and `wt merge`.
+[commit.generation]
+command = "claude -p --no-session-persistence --model=claude-haiku-5-5 --effort=high --tools='' --safe-mode --setting-sources='user' --system-prompt=''"
+
+# Work GitHub server-side rule (push fails with GH013 otherwise):
+# ^([A-Z\d]+-\d+: \[(chore|fix|revert|feat|feature|security|performance|tech|test|docs|other)!?\].+|Revert ".+"|...)
+template-append = """
+- Subject format is mandatory: `TICKET-ID: [type] Description`
+- TICKET-ID is the leading `<LETTERS/DIGITS>-<NUMBER>` prefix of the branch name (branch `WORK-12345-foo` gives `WORK-12345`). If the branch has none, use `WORK-00000`. Never take the ticket from recent commits (they belong to other branches) and never invent a number.
+- type is exactly one of: chore, fix, revert, feat, feature, security, performance, tech, test, docs, other
+- Append `!` after the type for a breaking change: `WORK-1: [feat!] ...`
+- Description starts lowercase or uppercase as recent commits do; no trailing period
+- The subject may exceed 50 chars when the prefix requires it; keep it under 100
+- Never add `Co-authored-by`, `Generated with`, or any other attribution trailer
+"""
+
+# Tables run in order; commands within one table run concurrently.
+[[pre-start]]
+setup_start = "echo 'Setting up worktree...'"
+share-paths = "uv run ~/.config/worktrunk/share-paths.py {{ primary_worktree_path }} {{ worktree_path }} || :"
+
+[[pre-start]]
+direnv = "if [ -f .envrc ]; then direnv allow; fi"
+
+[[pre-start]]
+setup_finish = "echo 'Worktree setup complete!'"
+
+# Herdr integration: all calls go through herdr-bridge.sh, which is a no-op
+# outside a reachable Herdr. `|| :` keeps hooks green if the script is missing.
+[post-switch]
+herdr-open = "sh ~/.config/worktrunk/herdr-bridge.sh open {{ primary_worktree_path }} {{ worktree_path }} || :"
+
+[post-remove]
+herdr-close = "sh ~/.config/worktrunk/herdr-bridge.sh close {{ primary_worktree_path }} {{ worktree_path }} {{ target_worktree_path | default('') }} || :"
+
+[post-merge]
+herdr-notify = "sh ~/.config/worktrunk/herdr-bridge.sh merged {{ branch }} {{ target }} || :"

@@ -68,6 +68,44 @@ uv run dotfiles.py uninstall symlinks
 uv run dotfiles.py uninstall brewfiles
 ```
 
+## Worktrunk profiles
+
+Worktrunk has two complete, versioned configurations:
+
+- `sources/symlinks/home/.config/worktrunk/config.work.toml`: work ticket subjects and the existing Claude command.
+- `sources/symlinks/home/.config/worktrunk/config.personal.toml`: Conventional Commits and the same Claude command, editable independently.
+
+Both profiles include the worktree layout and lifecycle hooks. Keep those settings in sync when changing shared behavior.
+
+Zsh defaults to the personal profile through `WORKTRUNK_CONFIG_PATH`.
+
+To select the work profile on a machine, create a local shell file outside this repository:
+
+```sh
+mkdir -p ~/.zsources
+cat > ~/.zsources/worktrunk.sh <<'EOF'
+export WORKTRUNK_CONFIG_PATH="$HOME/.config/worktrunk/config.work.toml"
+EOF
+source ~/.zshrc
+```
+
+On the personal machine, leave the default. Zsh loads `~/.zsources/**/*.sh` after the shared shell configuration, so each machine keeps its own selection across dotfiles updates.
+
+The selector applies to Worktrunk processes launched from that shell, including `wt step commit`, `wt step squash`, and `wt merge`. Other launchers must set `WORKTRUNK_CONFIG_PATH` themselves or pass `--config` to select either profile.
+
+After installing or updating the symlinks, inspect the selected configuration:
+
+```sh
+wt config show
+```
+
+To inspect either profile explicitly:
+
+```sh
+wt --config "$HOME/.config/worktrunk/config.work.toml" config show
+wt --config "$HOME/.config/worktrunk/config.personal.toml" config show
+```
+
 ## Pre-commit hooks
 
 This repo uses [pre-commit](https://pre-commit.com) to run checks before each commit, including file hygiene, shell linting, and secret detection via [gitleaks](https://github.com/gitleaks/gitleaks).
