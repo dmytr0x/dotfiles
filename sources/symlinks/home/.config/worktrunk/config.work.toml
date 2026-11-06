@@ -18,6 +18,9 @@ worktree-path = "~/.worktrees/{{ repo }}/{{ branch | sanitize }}"
 
 skip-commit-generation-prompt = true
 
+[list]
+summary = false
+
 # LLM commit messages for `wt step commit`, `wt step squash`, and `wt merge`.
 [commit.generation]
 command = "claude -p --no-session-persistence --model=claude-haiku-5-5 --effort=high --tools='' --safe-mode --setting-sources='user' --system-prompt=''"
@@ -37,10 +40,17 @@ template-append = """
 # Tables run in order; commands within one table run concurrently.
 [[pre-start]]
 setup_start = "echo 'Setting up worktree...'"
-share-paths = "uv run ~/.config/worktrunk/share-paths.py {{ primary_worktree_path }} {{ worktree_path }} || :"
+# create symlinks
+create-symlink-data = "ln -sfn {{ primary_worktree_path }}/.data {{ worktree_path }}/.data || :"
+create-symlink-zed = "ln -sfn {{ primary_worktree_path }}/.zed {{ worktree_path }}/.zed || :"
+# copy data
+copy-envrc = "cp -f {{ primary_worktree_path }}/.envrc {{ worktree_path }}/.envrc || :"
 
 [[pre-start]]
 direnv = "if [ -f .envrc ]; then direnv allow; fi"
+
+[[pre-start]]
+init-python-env = "task --yes --taskfile ~/.local/bin/data/task/favorites.yml --dir {{ worktree_path }} python:bootstrap-local"
 
 [[pre-start]]
 setup_finish = "echo 'Worktree setup complete!'"

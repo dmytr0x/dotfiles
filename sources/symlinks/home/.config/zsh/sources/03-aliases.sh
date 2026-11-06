@@ -85,3 +85,9 @@ hrd() {
   local session="${1:-default}"
   herdr-workspaces.py "$session" "$HOME/herdr-default-workspaces.txt"
 }
+
+# worktrunk
+alias wsc="wt switch --create"
+alias wcm="wt step commit"
+alias ws="wt switch --branches --config-set \"switch.picker.preview=false\" --config-set \"list.columns=['branch', 'ahead-behind', 'branch-diff',  'working-diff', 'age', 'commit', 'message']\""
+alias wl="wt list --config-set \"list.columns=['branch', 'ahead-behind', 'branch-diff',  'working-diff', 'age', 'commit', 'message']\""
