@@ -20,6 +20,8 @@ skip-commit-generation-prompt = true
 
 [list]
 summary = false
+# All columns except path.
+columns = ["branch", "status", "working-diff", "ahead-behind", "branch-diff", "summary", "upstream", "ci", "url", "commit", "age", "message"]
 
 # LLM commit messages for `wt step commit`, `wt step squash`, and `wt merge`.
 [commit.generation]
