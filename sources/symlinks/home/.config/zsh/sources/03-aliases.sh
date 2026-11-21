@@ -1,6 +1,7 @@
 # I'm lazy
 alias c="clear"
 alias v="nvim"
+alias fd="fd --follow --no-ignore --hidden"
 
 # Easier navigation
 alias ..='cd ..'
