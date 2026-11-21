@@ -9,12 +9,12 @@
     "dock": "left",
   },
   "theme": {
-    "mode": "dark",
+    "mode": "system",
     "light": "Dmytr0x Light Modern",
     "dark": "Dmytr0x Dark Modern",
   },
   "icon_theme": {
-    "mode": "light",
+    "mode": "system",
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha",
   },
