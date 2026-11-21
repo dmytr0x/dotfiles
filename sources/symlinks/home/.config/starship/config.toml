@@ -117,8 +117,8 @@ require_repo = true
 ignore_timeout = true
 
 [git_branch]
-style = "fg:white bg:dark_gray"
-format = " [[](dark_gray) $branch ]($style)[](dark_gray)"
+style = "cyan"
+format = " [$branch]($style)"
 
 [git_status]
 format = "[$staged$modified$deleted$renamed$conflicted$ahead_behind]($style)"
@@ -169,3 +169,4 @@ purple = "#C586C0"
 # Additional colors
 mauve = "#cba6f7"
 white = "#cccccc"
+cyan = "#2AA1B3"
