@@ -22,8 +22,9 @@ position = "top-right"
 
 [theme]
 name = "catppuccin"
-auto_switch = false
+auto_switch = true
 dark_name = "catppuccin"
+light_name = "catppuccin-latte"
 
 [theme.custom]
 accent = "#ff6b75"
@@ -34,7 +35,7 @@ rows = [
   ["state_icon", { token = "workspace", fg = "#409ebb" }],
   [{ token = "$git_head", fg = "#b2beff" }, "git_status"],
   [
-    { token = "$git_modified", fg = "#f9e2af" },
+    { token = "$git_modified", fg = "#b07c00" },
     { token = "$git_staged", fg = "#a6e3a1" },
     { token = "$git_untracked", fg = "#89b4fa" },
     { token = "$git_conflicts", fg = "#f38ba8" },
@@ -49,14 +50,14 @@ rows = [
 row_gap = 1
 rows = [
   ["state_icon", "workspace"],
-  [{ token = "agent", fg = "#ffd700", bold = false }, "state_text"],
+  [{ token = "agent", fg = "#ad8500", bold = false }, "state_text"],
   ["tab"],
   ["pane"],
 ]
 
 [keys]
 # open_worktree = "prefix+..."
-zoom = "shift+esc"
+zoom = "prefix+z"
 
 # indexed jumps
 switch_tab = "prefix+1..9"
