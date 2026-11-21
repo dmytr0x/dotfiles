@@ -1,8 +1,7 @@
-# Catppuccin Mocha
+# Catppuccin Mocha (dark) / Latte (light), picked by macOS appearance at shell start.
 # Source: https://github.com/catppuccin/fzf
-#
-FZF_COLORS="\
-bg+:#313244,\
+if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+  FZF_COLORS="\
 bg+:#1e1e2e,\
 preview-bg:-1,\
 selected-bg:#45475a,\
@@ -18,6 +17,24 @@ fg+:#cdd6f4,\
 prompt:#cba6f7,\
 hl+:#f38ba8\
 "
+else
+  FZF_COLORS="\
+bg+:#ccd0da,\
+preview-bg:-1,\
+selected-bg:#bcc0cc,\
+border:#9ca0b0,\
+spinner:#dc8a78,\
+hl:#d20f39,\
+fg:#4c4f69,\
+header:#d20f39,\
+info:#8839ef,\
+pointer:#dc8a78,\
+marker:#7287fd,\
+fg+:#4c4f69,\
+prompt:#8839ef,\
+hl+:#d20f39\
+"
+fi
 
 FZF_PREVIEW_SCRIPT="~/.local/bin/fzf-preview"
 
@@ -101,6 +118,7 @@ fzf-edit-popular() {
     --search-path "$HOME/.config" \
     --search-path "$HOME/dotfiles" \
     --search-path "$HOME/.local/bin" \
+    --search-path "$HOME/.zsources" \
     --type file \
     --type dir \
     --type symlink \
